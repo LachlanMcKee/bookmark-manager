@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "866692763040",
+    "firebase_url": "https://bookmark-manager-debug.firebaseio.com",
+    "project_id": "bookmark-manager-debug",
+    "storage_bucket": "bookmark-manager-debug.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:866692763040:android:be494c3941fa99fb3628c5",
+        "android_client_info": {
+          "package_name": "net.lachlanmckee.bookmark.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "866692763040-o795hjjg46qkp1ftui7n96c5bovvc6nq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTxXEd-8jd-zgwfkUJviBJgz2RX64FkuM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "866692763040-o795hjjg46qkp1ftui7n96c5bovvc6nq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

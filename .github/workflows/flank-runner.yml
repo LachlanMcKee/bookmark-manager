@@ -1,0 +1,40 @@
+name: Flank Runner
+
+on:
+  workflow_dispatch:
+    inputs:
+      flankConfigBase64:
+        description: 'Flank Base64'
+        required: true
+      runId:
+        description: 'Run Id'
+        required: true
+
+jobs:
+  flank:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download debug apk
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: pull-request.yml
+          run_id: ${{ github.event.inputs.runId }}
+          name: debug
+          path: apks
+      - name: Download espresso apk
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: pull-request.yml
+          run_id: ${{ github.event.inputs.runId }}
+          name: espresso
+          path: apks
+      - run: mkdir -p ~/.config/gcloud
+      - shell: bash
+        env:
+          FIREBASE_TESTING_SERVICE_CREDENTIALS_BASE_64: ${{ secrets.FIREBASE_TESTING_SERVICE_CREDENTIALS_BASE_64 }}
+        run: echo "$FIREBASE_TESTING_SERVICE_CREDENTIALS_BASE_64" | base64 --decode > ~/.config/gcloud/application_default_credentials.json
+      - run: echo "${{ github.event.inputs.flankConfigBase64 }}" | base64 --decode > flank.yml
+      - run: cat flank.yml
+      - run: curl -L https://github.com/Flank/flank/releases/download/v20.09.3/flank.jar --output flank.jar
+      - run: ls -lrth
+      - run: java -jar flank.jar firebase test android run
