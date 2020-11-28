@@ -93,6 +93,11 @@ dependencies {
   implementation(Dependencies.Compose.iconsExtended)
   implementation(Dependencies.Compose.liveData)
 
+  // Storage
+  implementation(Dependencies.Storage.roomRuntime)
+  kapt(Dependencies.Storage.roomCompiler)
+  implementation(Dependencies.Storage.roomKtx)
+
   implementation(Dependencies.Network.okHttp)
   implementation(Dependencies.Analytics.firebaseAnalytics)
 

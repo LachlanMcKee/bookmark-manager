@@ -33,6 +33,12 @@ object Dependencies {
     const val daggerCompiler = "com.google.dagger:dagger-compiler:$version"
     const val daggerHiltCompiler = "com.google.dagger:hilt-compiler:$version-alpha"
   }
+  object Storage {
+    private const val roomVersion = "2.3.0-alpha03"
+    const val roomRuntime = "androidx.room:room-runtime:$roomVersion"
+    const val roomCompiler = "androidx.room:room-compiler:$roomVersion"
+    const val roomKtx = "androidx.room:room-ktx:$roomVersion"
+  }
   object Kotlin {
     const val version = "1.4.10"
     const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$version"
