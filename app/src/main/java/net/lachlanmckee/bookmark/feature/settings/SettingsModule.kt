@@ -1,4 +1,4 @@
-package net.lachlanmckee.bookmark.feature.home
+package net.lachlanmckee.bookmark.feature.settings
 
 import androidx.lifecycle.ViewModel
 import dagger.Binds
@@ -11,10 +11,10 @@ import net.lachlanmckee.bookmark.di.viewmodel.ViewModelKey
 
 @Module
 @InstallIn(FragmentComponent::class)
-interface HomeModule {
+interface SettingsModule {
   @FragmentScoped
   @Binds
   @IntoMap
-  @ViewModelKey(HomeViewModel::class)
-  fun bindHomeViewModel(viewModel: HomeViewModel): ViewModel
+  @ViewModelKey(SettingsViewModel::class)
+  fun bindHomeViewModel(viewModel: SettingsViewModel): ViewModel
 }

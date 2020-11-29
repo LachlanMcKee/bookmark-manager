@@ -20,6 +20,6 @@ interface BookmarkDao {
     @Insert
     suspend fun insertAll(vararg bookmarkEntities: BookmarkEntity)
 
-    @Delete
-    suspend fun delete(bookmarkEntity: BookmarkEntity)
+    @Query("DELETE FROM bookmark WHERE uid IN (:bookmarkIds)")
+    suspend fun deleteByIds(bookmarkIds: IntArray)
 }

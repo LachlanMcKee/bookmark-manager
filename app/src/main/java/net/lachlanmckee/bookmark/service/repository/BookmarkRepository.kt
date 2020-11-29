@@ -11,6 +11,8 @@ interface BookmarkRepository {
     fun getBookmarks(): Flow<List<Bookmark>>
 
     suspend fun addBookmark()
+
+    suspend fun removeBookmarks(selectedIds: Set<Int>)
 }
 
 class BookmarkRepositoryImpl @Inject constructor(
@@ -22,7 +24,7 @@ class BookmarkRepositoryImpl @Inject constructor(
             .getAll()
             .map { bookmarkEntities ->
                 bookmarkEntities.map { entity ->
-                    Bookmark(name = entity.name, link = entity.link)
+                    Bookmark(id = entity.uid, name = entity.name, link = entity.link)
                 }
             }
     }
@@ -33,5 +35,9 @@ class BookmarkRepositoryImpl @Inject constructor(
             BookmarkEntity("Amazon", "https://www.amazon.co.uk/"),
             BookmarkEntity("Amazon Very Long", "https://www.amazon.co.uk/abc/123/def/456")
         )
+    }
+
+    override suspend fun removeBookmarks(selectedIds: Set<Int>) {
+        bookmarkDao.deleteByIds(selectedIds.toIntArray())
     }
 }
