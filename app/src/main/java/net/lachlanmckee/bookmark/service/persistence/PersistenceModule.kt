@@ -31,4 +31,10 @@ internal object PersistenceModule {
     fun provideBookmarkDao(database: BookmarkDatabase): BookmarkDao {
         return database.bookmarkDao()
     }
+
+    @Singleton
+    @Provides
+    fun provideFolderDao(database: BookmarkDatabase): FolderDao {
+        return database.folderDao()
+    }
 }

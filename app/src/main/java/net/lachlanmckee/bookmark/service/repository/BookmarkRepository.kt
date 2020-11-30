@@ -8,7 +8,7 @@ import net.lachlanmckee.bookmark.service.persistence.BookmarkEntity
 import javax.inject.Inject
 
 interface BookmarkRepository {
-    fun getBookmarks(): Flow<List<Bookmark>>
+    fun getBookmarks(folderId: Int?): Flow<List<Bookmark>>
 
     suspend fun addBookmark()
 
@@ -19,9 +19,13 @@ class BookmarkRepositoryImpl @Inject constructor(
     private val bookmarkDao: BookmarkDao
 ) : BookmarkRepository {
 
-    override fun getBookmarks(): Flow<List<Bookmark>> {
-        return bookmarkDao
-            .getAll()
+    override fun getBookmarks(folderId: Int?): Flow<List<Bookmark>> {
+        val bookmarksFlow = if (folderId != null) {
+            bookmarkDao.getBookmarksWithinFolder(folderId)
+        } else {
+            bookmarkDao.getTopLevelBookmarks()
+        }
+        return bookmarksFlow
             .map { bookmarkEntities ->
                 bookmarkEntities.map { entity ->
                     Bookmark(id = entity.uid, name = entity.name, link = entity.link)
@@ -30,10 +34,33 @@ class BookmarkRepositoryImpl @Inject constructor(
     }
 
     override suspend fun addBookmark() {
+        bookmarkDao.deleteAll()
         bookmarkDao.insertAll(
-            BookmarkEntity("Google", "https://www.google.com/"),
-            BookmarkEntity("Amazon", "https://www.amazon.co.uk/"),
-            BookmarkEntity("Amazon Very Long", "https://www.amazon.co.uk/abc/123/def/456")
+            BookmarkEntity(
+                name = "Google",
+                link = "https://www.google.com/",
+                folderId = null
+            ),
+            BookmarkEntity(
+                name = "Amazon",
+                link = "https://www.amazon.co.uk/",
+                folderId = null
+            ),
+            BookmarkEntity(
+                name = "Amazon Very Long",
+                link = "https://www.amazon.co.uk/abc/123/def/456",
+                folderId = null
+            ),
+            BookmarkEntity(
+                name = "Amazon Very Long",
+                link = "https://www.amazon.co.uk/abc/123/def/456",
+                folderId = 1
+            ),
+            BookmarkEntity(
+                name = "Amazon Very Long",
+                link = "https://www.amazon.co.uk/abc/123/def/456",
+                folderId = 2
+            )
         )
     }
 

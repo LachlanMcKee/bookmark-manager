@@ -6,18 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumnFor
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -26,7 +27,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import net.lachlanmckee.bookmark.di.viewmodel.ViewModelProviderFactory
-import net.lachlanmckee.bookmark.feature.AppBottomBar
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -37,6 +37,7 @@ class HomeFragment : Fragment() {
 
     private val model: HomeViewModel by viewModels { viewModelProviderFactory }
 
+    @ExperimentalStdlibApi
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -63,7 +64,18 @@ class HomeFragment : Fragment() {
                                 HomeContent(state)
                             },
                             bottomBar = {
-                                AppBottomBar(model)
+//                                AppBottomBar(model)
+
+                                // TEMP
+                                BottomAppBar(cutoutShape = CircleShape) {
+                                    IconButton(onClick = { model.homeClicked() }) {
+                                        Icon(Icons.Filled.Home)
+                                    }
+                                    Spacer(Modifier.weight(1f, true))
+                                    IconButton(onClick = { model.resetData() }) {
+                                        Icon(Icons.Filled.Settings)
+                                    }
+                                }
                             }
                         )
                     }
@@ -102,38 +114,87 @@ class HomeFragment : Fragment() {
 
     @Composable
     private fun BookmarksExistContent(state: HomeViewModel.State.BookmarksExist) {
-        LazyColumnFor(items = state.bookmarks) { bookmark ->
+        LazyColumnFor(items = state.contentList) { content ->
+            when (content) {
+                is HomeViewModel.Content.FolderContent -> FolderRow(
+                    isInEditMode = state.isInEditMode,
+                    folderContent = content
+                )
+                is HomeViewModel.Content.BookmarkContent -> BookmarkRow(
+                    isInEditMode = state.isInEditMode,
+                    bookmarkContent = content
+                )
+            }
+            Divider()
+        }
+    }
+
+    @Composable
+    private fun FolderRow(
+        isInEditMode: Boolean,
+        folderContent: HomeViewModel.Content.FolderContent
+    ) {
+        Surface(color = Color.Gray) {
             Row(
                 Modifier
                     .clickable(
-                        onClick = { model.bookmarkClicked(bookmark) },
-                        onLongClick = { model.bookmarkLongClicked(bookmark) }
+                        onClick = { model.contentClicked(folderContent) },
+                        onLongClick = { model.contentLongClicked(folderContent) }
                     )
             ) {
-                if (state.isInEditMode) {
+                if (isInEditMode) {
                     Box(
                         modifier = Modifier.fillMaxHeight(),
-                        alignment = Alignment.Center
+                        alignment = Alignment.Center,
                     ) {
-                        Checkbox(checked = bookmark.selected, onCheckedChange = {})
+                        Checkbox(checked = folderContent.selected, onCheckedChange = {})
                     }
                 }
                 Box(
                     Modifier
-                        .weight(1f)
+                        .fillMaxWidth()
                         .padding(16.dp)
                 ) {
-                    urlText(bookmark.name)
-                }
-                Box(
-                    Modifier
-                        .weight(2f)
-                        .padding(16.dp)
-                ) {
-                    urlText(bookmark.link)
+                    urlText(folderContent.name)
                 }
             }
-            Divider()
+        }
+    }
+
+    @Composable
+    private fun BookmarkRow(
+        isInEditMode: Boolean,
+        bookmarkContent: HomeViewModel.Content.BookmarkContent
+    ) {
+        Row(
+            Modifier
+                .clickable(
+                    onClick = { model.contentClicked(bookmarkContent) },
+                    onLongClick = { model.contentLongClicked(bookmarkContent) }
+                )
+        ) {
+            if (isInEditMode) {
+                Box(
+                    modifier = Modifier.fillMaxHeight(),
+                    alignment = Alignment.Center
+                ) {
+                    Checkbox(checked = bookmarkContent.selected, onCheckedChange = {})
+                }
+            }
+            Box(
+                Modifier
+                    .weight(1f)
+                    .padding(16.dp)
+            ) {
+                urlText(bookmarkContent.name)
+            }
+            Box(
+                Modifier
+                    .weight(2f)
+                    .padding(16.dp)
+            ) {
+                urlText(bookmarkContent.link)
+            }
         }
     }
 

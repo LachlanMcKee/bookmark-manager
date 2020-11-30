@@ -12,4 +12,8 @@ internal object RepositoryModule {
     @Singleton
     @Provides
     fun provideBookmarkRepository(impl: BookmarkRepositoryImpl): BookmarkRepository = impl
+
+    @Singleton
+    @Provides
+    fun provideFolderRepository(impl: FolderRepositoryImpl): FolderRepository = impl
 }
