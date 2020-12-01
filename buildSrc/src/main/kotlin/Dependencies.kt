@@ -42,7 +42,7 @@ object Dependencies {
   object Kotlin {
     const val version = "1.4.10"
     const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$version"
-    const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.0"
+    const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2"
   }
   object Logging {
     const val timber = "com.jakewharton.timber:timber:4.7.1"

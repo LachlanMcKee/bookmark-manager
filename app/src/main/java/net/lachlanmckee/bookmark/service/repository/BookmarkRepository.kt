@@ -8,63 +8,63 @@ import net.lachlanmckee.bookmark.service.persistence.BookmarkEntity
 import javax.inject.Inject
 
 interface BookmarkRepository {
-    fun getBookmarks(folderId: Int?): Flow<List<Bookmark>>
+  fun getBookmarks(folderId: Int?): Flow<List<Bookmark>>
 
-    suspend fun addBookmark()
+  suspend fun addBookmark()
 
-    suspend fun removeBookmarks(selectedIds: Set<Int>)
+  suspend fun removeBookmarks(selectedIds: Set<Int>)
 }
 
 class BookmarkRepositoryImpl @Inject constructor(
-    private val bookmarkDao: BookmarkDao
+  private val bookmarkDao: BookmarkDao
 ) : BookmarkRepository {
 
-    override fun getBookmarks(folderId: Int?): Flow<List<Bookmark>> {
-        val bookmarksFlow = if (folderId != null) {
-            bookmarkDao.getBookmarksWithinFolder(folderId)
-        } else {
-            bookmarkDao.getTopLevelBookmarks()
+  override fun getBookmarks(folderId: Int?): Flow<List<Bookmark>> {
+    val bookmarksFlow = if (folderId != null) {
+      bookmarkDao.getBookmarksWithinFolder(folderId)
+    } else {
+      bookmarkDao.getTopLevelBookmarks()
+    }
+    return bookmarksFlow
+      .map { bookmarkEntities ->
+        bookmarkEntities.map { entity ->
+          Bookmark(id = entity.uid, name = entity.name, link = entity.link)
         }
-        return bookmarksFlow
-            .map { bookmarkEntities ->
-                bookmarkEntities.map { entity ->
-                    Bookmark(id = entity.uid, name = entity.name, link = entity.link)
-                }
-            }
-    }
+      }
+  }
 
-    override suspend fun addBookmark() {
-        bookmarkDao.deleteAll()
-        bookmarkDao.insertAll(
-            BookmarkEntity(
-                name = "Google",
-                link = "https://www.google.com/",
-                folderId = null
-            ),
-            BookmarkEntity(
-                name = "Amazon",
-                link = "https://www.amazon.co.uk/",
-                folderId = null
-            ),
-            BookmarkEntity(
-                name = "Amazon Very Long",
-                link = "https://www.amazon.co.uk/abc/123/def/456",
-                folderId = null
-            ),
-            BookmarkEntity(
-                name = "Amazon Very Long",
-                link = "https://www.amazon.co.uk/abc/123/def/456",
-                folderId = 1
-            ),
-            BookmarkEntity(
-                name = "Amazon Very Long",
-                link = "https://www.amazon.co.uk/abc/123/def/456",
-                folderId = 2
-            )
-        )
-    }
+  override suspend fun addBookmark() {
+    bookmarkDao.deleteAll()
+    bookmarkDao.insertAll(
+      BookmarkEntity(
+        name = "Google",
+        link = "https://www.google.com/",
+        folderId = null
+      ),
+      BookmarkEntity(
+        name = "Amazon",
+        link = "https://www.amazon.co.uk/",
+        folderId = null
+      ),
+      BookmarkEntity(
+        name = "Amazon Very Long",
+        link = "https://www.amazon.co.uk/abc/123/def/456",
+        folderId = null
+      ),
+      BookmarkEntity(
+        name = "Amazon Very Long",
+        link = "https://www.amazon.co.uk/abc/123/def/456",
+        folderId = 1
+      ),
+      BookmarkEntity(
+        name = "Amazon Very Long",
+        link = "https://www.amazon.co.uk/abc/123/def/456",
+        folderId = 2
+      )
+    )
+  }
 
-    override suspend fun removeBookmarks(selectedIds: Set<Int>) {
-        bookmarkDao.deleteByIds(selectedIds.toIntArray())
-    }
+  override suspend fun removeBookmarks(selectedIds: Set<Int>) {
+    bookmarkDao.deleteByIds(selectedIds.toIntArray())
+  }
 }

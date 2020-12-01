@@ -10,36 +10,36 @@ import net.lachlanmckee.bookmark.R
 import javax.inject.Inject
 
 interface Navigator {
-    fun openBookmark(bookmarkUrl: String)
-    fun home()
-    fun settings()
-    fun back()
+  fun openBookmark(bookmarkUrl: String)
+  fun home()
+  fun settings()
+  fun back()
 }
 
 class NavigatorImpl @Inject constructor(
-    @FragmentScoped private val fragment: Fragment
+  @FragmentScoped private val fragment: Fragment
 ) : Navigator {
 
-    private val navController: NavController
-        get() = fragment.findNavController()
+  private val navController: NavController
+    get() = fragment.findNavController()
 
-    override fun openBookmark(bookmarkUrl: String) {
-        fragment.requireActivity().startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(bookmarkUrl)))
-    }
+  override fun openBookmark(bookmarkUrl: String) {
+    fragment.requireActivity().startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(bookmarkUrl)))
+  }
 
-    override fun home() {
-        navController.popBackStack(R.id.home_dest, false)
-    }
+  override fun home() {
+    navController.popBackStack(R.id.home_dest, false)
+  }
 
-    override fun settings() {
-        if (navController.currentDestination?.id != R.id.settings_dest) {
-            navController.navigate(R.id.settings_dest)
-        }
+  override fun settings() {
+    if (navController.currentDestination?.id != R.id.settings_dest) {
+      navController.navigate(R.id.settings_dest)
     }
+  }
 
-    override fun back() {
-        if (!navController.popBackStack()) {
-            fragment.requireActivity().finish()
-        }
+  override fun back() {
+    if (!navController.popBackStack()) {
+      fragment.requireActivity().finish()
     }
+  }
 }

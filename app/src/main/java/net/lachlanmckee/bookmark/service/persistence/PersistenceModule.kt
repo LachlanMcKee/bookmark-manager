@@ -12,29 +12,29 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 internal object PersistenceModule {
-    @Singleton
-    @Provides
-    fun provideBookmarkDatabase(
-        @ApplicationContext context: Context
-    ): BookmarkDatabase {
-        return Room
-            .databaseBuilder(
-                context,
-                BookmarkDatabase::class.java,
-                "bookmark-database"
-            )
-            .build()
-    }
+  @Singleton
+  @Provides
+  fun provideBookmarkDatabase(
+    @ApplicationContext context: Context
+  ): BookmarkDatabase {
+    return Room
+      .databaseBuilder(
+        context,
+        BookmarkDatabase::class.java,
+        "bookmark-database"
+      )
+      .build()
+  }
 
-    @Singleton
-    @Provides
-    fun provideBookmarkDao(database: BookmarkDatabase): BookmarkDao {
-        return database.bookmarkDao()
-    }
+  @Singleton
+  @Provides
+  fun provideBookmarkDao(database: BookmarkDatabase): BookmarkDao {
+    return database.bookmarkDao()
+  }
 
-    @Singleton
-    @Provides
-    fun provideFolderDao(database: BookmarkDatabase): FolderDao {
-        return database.folderDao()
-    }
+  @Singleton
+  @Provides
+  fun provideFolderDao(database: BookmarkDatabase): FolderDao {
+    return database.folderDao()
+  }
 }

@@ -114,11 +114,10 @@ dependencies {
 
   implementation(Dependencies.Logging.timber)
 
-  testImplementation("org.junit.jupiter:junit-jupiter-engine:5.4.2")
-  testImplementation("org.junit.jupiter:junit-jupiter-api:5.4.2")
-  testImplementation("io.mockk:mockk:1.10.0")
-  testImplementation("androidx.arch.core:core-testing:2.1.0")
-  testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.0")
+  testImplementation(UnitTestDependencies.junitEngine)
+  testImplementation(UnitTestDependencies.junitApi)
+  testImplementation(UnitTestDependencies.mockk)
+  testImplementation(UnitTestDependencies.coroutinesTest)
 
   debugImplementation(EspressoTestDependencies.fragmentTesting)
   androidTestImplementation(EspressoTestDependencies.junit)

@@ -9,11 +9,11 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 internal object RepositoryModule {
-    @Singleton
-    @Provides
-    fun provideBookmarkRepository(impl: BookmarkRepositoryImpl): BookmarkRepository = impl
+  @Singleton
+  @Provides
+  fun provideBookmarkRepository(impl: BookmarkRepositoryImpl): BookmarkRepository = impl
 
-    @Singleton
-    @Provides
-    fun provideFolderRepository(impl: FolderRepositoryImpl): FolderRepository = impl
+  @Singleton
+  @Provides
+  fun provideFolderRepository(impl: FolderRepositoryImpl): FolderRepository = impl
 }

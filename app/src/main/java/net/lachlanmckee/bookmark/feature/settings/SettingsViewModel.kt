@@ -6,14 +6,14 @@ import net.lachlanmckee.bookmark.feature.RootViewModel
 import javax.inject.Inject
 
 class SettingsViewModel @Inject constructor(
-    private val navigator: Navigator
+  private val navigator: Navigator
 ) : ViewModel(), RootViewModel {
 
-    override fun homeClicked() {
-        navigator.home()
-    }
+  override fun homeClicked() {
+    navigator.home()
+  }
 
-    override fun settingsClicked() {
-        navigator.settings()
-    }
+  override fun settingsClicked() {
+    navigator.settings()
+  }
 }

@@ -30,9 +30,11 @@ class SettingsFragment : Fragment() {
         MaterialTheme {
           Scaffold(
             topBar = {
-              TopAppBar(title = {
-                Text(text = "Settings")
-              })
+              TopAppBar(
+                title = {
+                  Text(text = "Settings")
+                }
+              )
             },
             bodyContent = {
               Text(text = "Settings screen")

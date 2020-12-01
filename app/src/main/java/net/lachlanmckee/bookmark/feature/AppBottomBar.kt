@@ -13,13 +13,13 @@ import androidx.compose.ui.Modifier
 
 @Composable
 fun AppBottomBar(rootViewModel: RootViewModel) {
-    BottomAppBar(cutoutShape = CircleShape) {
-        IconButton(onClick = { rootViewModel.homeClicked() }) {
-            Icon(Icons.Filled.Home)
-        }
-        Spacer(Modifier.weight(1f, true))
-        IconButton(onClick = { rootViewModel.settingsClicked() }) {
-            Icon(Icons.Filled.Settings)
-        }
+  BottomAppBar(cutoutShape = CircleShape) {
+    IconButton(onClick = { rootViewModel.homeClicked() }) {
+      Icon(Icons.Filled.Home)
     }
+    Spacer(Modifier.weight(1f, true))
+    IconButton(onClick = { rootViewModel.settingsClicked() }) {
+      Icon(Icons.Filled.Settings)
+    }
+  }
 }
