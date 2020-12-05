@@ -148,7 +148,7 @@ class HomeFragment : Fragment() {
         if (isInEditMode) {
           Box(
             modifier = Modifier.fillMaxHeight(),
-            alignment = Alignment.Center,
+            contentAlignment = Alignment.Center,
           ) {
             Checkbox(checked = folderContent.selected, onCheckedChange = {})
           }
@@ -179,7 +179,7 @@ class HomeFragment : Fragment() {
       if (isInEditMode) {
         Box(
           modifier = Modifier.fillMaxHeight(),
-          alignment = Alignment.Center
+          contentAlignment = Alignment.Center
         ) {
           Checkbox(checked = bookmarkContent.selected, onCheckedChange = {})
         }

@@ -17,9 +17,9 @@ object Dependencies {
     const val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:$navigationVersion"
   }
   object Compose {
-    const val version = "1.0.0-alpha07"
+    const val version = "1.0.0-alpha08"
     const val ui = "androidx.compose.ui:ui:$version"
-    const val uiTooling = "androidx.ui:ui-tooling:$version"
+    const val uiTooling = "androidx.compose.ui:ui-tooling:$version"
     const val foundation = "androidx.compose.foundation:foundation:$version"
     const val material = "androidx.compose.material:material:$version"
     const val iconsCore = "androidx.compose.material:material-icons-core:$version"
@@ -40,7 +40,7 @@ object Dependencies {
     const val roomKtx = "androidx.room:room-ktx:$roomVersion"
   }
   object Kotlin {
-    const val version = "1.4.10"
+    const val version = "1.4.20"
     const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$version"
     const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2"
   }
