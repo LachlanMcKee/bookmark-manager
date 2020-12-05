@@ -27,7 +27,7 @@ object Dependencies {
     const val liveData = "androidx.compose.runtime:runtime-livedata:$version"
   }
   object Di {
-    const val version = "2.29.1"
+    const val version = "2.30.1"
     const val dagger = "com.google.dagger:dagger:$version"
     const val daggerHilt = "com.google.dagger:hilt-android:$version-alpha"
     const val daggerCompiler = "com.google.dagger:dagger-compiler:$version"
