@@ -12,6 +12,7 @@ import javax.inject.Inject
 interface Navigator {
   fun openBookmark(bookmarkUrl: String)
   fun home()
+  fun search()
   fun settings()
   fun back()
 }
@@ -29,6 +30,12 @@ class NavigatorImpl @Inject constructor(
 
   override fun home() {
     navController.popBackStack(R.id.home_dest, false)
+  }
+
+  override fun search() {
+    if (navController.currentDestination?.id != R.id.search_dest) {
+      navController.navigate(R.id.search_dest)
+    }
   }
 
   override fun settings() {

@@ -8,7 +8,9 @@ import net.lachlanmckee.bookmark.service.persistence.BookmarkEntity
 import javax.inject.Inject
 
 interface BookmarkRepository {
-  fun getBookmarks(folderId: Int?): Flow<List<Bookmark>>
+  fun getBookmarksByQuery(text: String): Flow<List<Bookmark>>
+
+  fun getBookmarksByFolder(folderId: Int?): Flow<List<Bookmark>>
 
   suspend fun addBookmark()
 
@@ -19,7 +21,14 @@ class BookmarkRepositoryImpl @Inject constructor(
   private val bookmarkDao: BookmarkDao
 ) : BookmarkRepository {
 
-  override fun getBookmarks(folderId: Int?): Flow<List<Bookmark>> {
+  override fun getBookmarksByQuery(text: String): Flow<List<Bookmark>> {
+    return bookmarkDao.findByNameOrLink(text)
+      .map { bookmarkEntities ->
+        bookmarkEntities.map(::mapToBookmark)
+      }
+  }
+
+  override fun getBookmarksByFolder(folderId: Int?): Flow<List<Bookmark>> {
     val bookmarksFlow = if (folderId != null) {
       bookmarkDao.getBookmarksWithinFolder(folderId)
     } else {
@@ -27,10 +36,12 @@ class BookmarkRepositoryImpl @Inject constructor(
     }
     return bookmarksFlow
       .map { bookmarkEntities ->
-        bookmarkEntities.map { entity ->
-          Bookmark(id = entity.uid, name = entity.name, link = entity.link)
-        }
+        bookmarkEntities.map(::mapToBookmark)
       }
+  }
+
+  private fun mapToBookmark(entity: BookmarkEntity): Bookmark {
+    return Bookmark(id = entity.uid, name = entity.name, link = entity.link)
   }
 
   override suspend fun addBookmark() {

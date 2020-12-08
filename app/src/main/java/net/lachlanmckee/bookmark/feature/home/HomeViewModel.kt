@@ -34,7 +34,7 @@ class HomeViewModel @Inject constructor(
         val folderId = folderMetadata?.folderId
         combine(
           folderRepository.getFolders(folderId),
-          bookmarkRepository.getBookmarks(folderId),
+          bookmarkRepository.getBookmarksByFolder(folderId),
           editStateFlowable,
           ::Triple
         )
@@ -147,6 +147,10 @@ class HomeViewModel @Inject constructor(
 
   override fun homeClicked() {
     navigator.home()
+  }
+
+  override fun searchClicked() {
+    navigator.search()
   }
 
   override fun settingsClicked() {

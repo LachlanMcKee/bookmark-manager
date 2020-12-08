@@ -16,8 +16,8 @@ interface BookmarkDao {
   @Query("SELECT * FROM bookmark WHERE uid IN (:bookmarkIds)")
   fun loadAllByIds(bookmarkIds: IntArray): Flow<List<BookmarkEntity>>
 
-  @Query("SELECT * FROM bookmark WHERE name LIKE :name LIMIT 1")
-  fun findByName(name: String): Flow<BookmarkEntity>
+  @Query("SELECT * FROM bookmark WHERE name LIKE '%' || :nameOrUrl || '%' or link LIKE '%' || :nameOrUrl || '%'")
+  fun findByNameOrLink(nameOrUrl: String): Flow<List<BookmarkEntity>>
 
   @Insert
   suspend fun insertAll(vararg bookmarkEntities: BookmarkEntity)

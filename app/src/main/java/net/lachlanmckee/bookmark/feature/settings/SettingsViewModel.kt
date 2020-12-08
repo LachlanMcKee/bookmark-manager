@@ -13,6 +13,10 @@ class SettingsViewModel @Inject constructor(
     navigator.home()
   }
 
+  override fun searchClicked() {
+    navigator.search()
+  }
+
   override fun settingsClicked() {
     navigator.settings()
   }

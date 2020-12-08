@@ -301,7 +301,7 @@ class HomeViewModelTest {
   }
 
   private fun givenBookmarks(parentId: Int?, bookmarks: List<Bookmark>) {
-    every { bookmarkRepository.getBookmarks(parentId) } returns flowOf(bookmarks)
+    every { bookmarkRepository.getBookmarksByFolder(parentId) } returns flowOf(bookmarks)
   }
 
   private companion object {
