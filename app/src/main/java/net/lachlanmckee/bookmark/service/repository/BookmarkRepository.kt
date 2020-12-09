@@ -3,8 +3,10 @@ package net.lachlanmckee.bookmark.service.repository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import net.lachlanmckee.bookmark.service.model.Bookmark
+import net.lachlanmckee.bookmark.service.model.Metadata
 import net.lachlanmckee.bookmark.service.persistence.BookmarkDao
 import net.lachlanmckee.bookmark.service.persistence.BookmarkEntity
+import net.lachlanmckee.bookmark.service.persistence.BookmarkWithMetadata
 import javax.inject.Inject
 
 interface BookmarkRepository {
@@ -41,7 +43,23 @@ class BookmarkRepositoryImpl @Inject constructor(
   }
 
   private fun mapToBookmark(entity: BookmarkEntity): Bookmark {
-    return Bookmark(id = entity.uid, name = entity.name, link = entity.link)
+    return Bookmark(
+      id = entity.bookmarkId,
+      name = entity.name,
+      link = entity.link,
+      metadata = emptyList()
+    )
+  }
+
+  private fun mapToBookmark(entity: BookmarkWithMetadata): Bookmark {
+    return Bookmark(
+      id = entity.bookmark.bookmarkId,
+      name = entity.bookmark.name,
+      link = entity.bookmark.link,
+      metadata = entity.metadata.map {
+        Metadata(it.metadataId, it.name)
+      }
+    )
   }
 
   override suspend fun addBookmark() {

@@ -7,10 +7,13 @@ import androidx.room.RoomDatabase
   version = 1,
   entities = [
     BookmarkEntity::class,
-    FolderEntity::class
+    FolderEntity::class,
+    MetadataEntity::class,
+    BookmarkMetadataCrossRef::class
   ]
 )
 abstract class BookmarkDatabase : RoomDatabase() {
   abstract fun bookmarkDao(): BookmarkDao
   abstract fun folderDao(): FolderDao
+  abstract fun metadataDao(): MetadataDao
 }
