@@ -20,9 +20,9 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun ClickableRow(
-  backgroundColor: Color,
+  backgroundColor: Color = Color.White,
   onClick: () -> Unit,
-  onLongClick: () -> Unit,
+  onLongClick: () -> Unit = {},
   content: @Composable RowScope.() -> Unit
 ) {
   Surface(
@@ -95,29 +95,14 @@ fun RootBottomAppBar(
 }
 
 @Composable
-fun BookmarkRow(
+fun BookmarkRowContent(
   label: String,
   link: String,
-  isSelected: Boolean,
-  isInEditMode: Boolean,
-  onClick: () -> Unit,
-  onLongClick: () -> Unit
 ) {
-  CheckableRow(
-    backgroundColor = Color.White,
-    isSelected = isSelected,
-    isInEditMode = isInEditMode,
-    onClick = onClick,
-    onLongClick = onLongClick,
-    content = {
-      Providers(AmbientContentColor provides Color.Black) {
-        Column {
-          RowText(text = label, style = MaterialTheme.typography.h6)
-          RowText(text = link, style = MaterialTheme.typography.subtitle1)
-        }
-      }
-    }
-  )
+  Column {
+    RowText(text = label, style = MaterialTheme.typography.h6)
+    RowText(text = link, style = MaterialTheme.typography.subtitle1)
+  }
 }
 
 @Composable

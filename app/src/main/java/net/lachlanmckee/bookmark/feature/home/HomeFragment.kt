@@ -16,7 +16,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import net.lachlanmckee.bookmark.compose.fragmentComposeView
 import net.lachlanmckee.bookmark.di.viewmodel.ViewModelProviderFactory
-import net.lachlanmckee.bookmark.feature.BookmarkRow
 import net.lachlanmckee.bookmark.feature.RootBottomAppBar
 import timber.log.Timber
 import javax.inject.Inject

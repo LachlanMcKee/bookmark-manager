@@ -7,6 +7,9 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import net.lachlanmckee.bookmark.service.persistence.dao.BookmarkDao
+import net.lachlanmckee.bookmark.service.persistence.dao.FolderDao
+import net.lachlanmckee.bookmark.service.persistence.dao.MetadataDao
 import javax.inject.Singleton
 
 @Module
@@ -36,5 +39,11 @@ internal object PersistenceModule {
   @Provides
   fun provideFolderDao(database: BookmarkDatabase): FolderDao {
     return database.folderDao()
+  }
+
+  @Singleton
+  @Provides
+  fun provideMetadataDao(database: BookmarkDatabase): MetadataDao {
+    return database.metadataDao()
   }
 }

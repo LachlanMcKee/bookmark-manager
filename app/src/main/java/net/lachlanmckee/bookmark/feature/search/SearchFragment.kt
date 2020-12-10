@@ -6,9 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumnFor
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -20,17 +18,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.ExperimentalFocus
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focusRequester
+import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import net.lachlanmckee.bookmark.compose.fragmentComposeView
 import net.lachlanmckee.bookmark.di.viewmodel.ViewModelProviderFactory
-import net.lachlanmckee.bookmark.feature.BookmarkRow
+import net.lachlanmckee.bookmark.feature.BookmarkRowContent
+import net.lachlanmckee.bookmark.feature.ClickableRow
 import net.lachlanmckee.bookmark.feature.RootBottomAppBar
 import timber.log.Timber
 import javax.inject.Inject
 
+@ExperimentalLayout
 @ExperimentalFocus
 @AndroidEntryPoint
 class SearchFragment : Fragment() {
@@ -119,14 +120,24 @@ class SearchFragment : Fragment() {
   private fun ResultsContent(state: SearchViewModel.State.Results) {
     LazyColumnFor(items = state.contentList) { content ->
       when (content) {
-        is SearchViewModel.Content.BookmarkContent -> BookmarkRow(
-          label = content.name,
-          link = content.link,
-          isSelected = false,
-          isInEditMode = false,
-          onClick = { model.contentClicked(content) },
-          onLongClick = { }
-        )
+        is SearchViewModel.Content.BookmarkContent -> {
+          ClickableRow(
+            onClick = { model.contentClicked(content) },
+            content = {
+              Column {
+                BookmarkRowContent(
+                  label = content.name,
+                  link = content.link
+                )
+
+                ChipCollection(
+                  modifier = Modifier.padding(top = 8.dp),
+                  labels = content.metadataNames
+                )
+              }
+            }
+          )
+        }
       }
       Divider()
     }

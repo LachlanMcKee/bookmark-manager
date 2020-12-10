@@ -43,7 +43,8 @@ class SearchViewModel @Inject constructor(
                 Content.BookmarkContent(
                   id = bookmark.id,
                   name = bookmark.name,
-                  link = bookmark.link
+                  link = bookmark.link,
+                  metadataNames = bookmark.metadata.map { it.name }
                 )
               )
             }
@@ -104,9 +105,10 @@ class SearchViewModel @Inject constructor(
 
   sealed class Content {
     data class BookmarkContent(
-      val id: Int,
+      val id: Long,
       val name: String,
-      val link: String
+      val link: String,
+      val metadataNames: List<String>
     ) : Content()
   }
 

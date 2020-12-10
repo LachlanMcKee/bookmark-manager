@@ -192,18 +192,18 @@ class HomeViewModel @Inject constructor(
   }
 
   sealed class Content {
-    abstract val id: Int
+    abstract val id: Long
     abstract val name: String
     abstract val selected: Boolean
 
     data class FolderContent(
-      override val id: Int,
+      override val id: Long,
       override val name: String,
       override val selected: Boolean
     ) : Content()
 
     data class BookmarkContent(
-      override val id: Int,
+      override val id: Long,
       override val name: String,
       override val selected: Boolean,
       val link: String
@@ -211,13 +211,13 @@ class HomeViewModel @Inject constructor(
   }
 
   data class FolderMetadata(
-    val folderId: Int,
+    val folderId: Long,
     val parent: FolderMetadata?
   )
 
   private data class EditState(
     val isInEditMode: Boolean,
-    val selectedFolderIds: Set<Int>,
-    val selectedBookmarkIds: Set<Int>
+    val selectedFolderIds: Set<Long>,
+    val selectedBookmarkIds: Set<Long>
   )
 }
