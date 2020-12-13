@@ -10,6 +10,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.text.AnnotatedString
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
@@ -97,15 +98,15 @@ class HomeFragment : Fragment() {
     LazyColumnFor(items = state.contentList) { content ->
       when (content) {
         is HomeViewModel.Content.FolderContent -> FolderRow(
-          label = content.name,
+          label = AnnotatedString(content.name),
           isSelected = content.selected,
           isInEditMode = state.isInEditMode,
           onClick = { model.contentClicked(content) },
           onLongClick = { model.contentLongClicked(content) }
         )
         is HomeViewModel.Content.BookmarkContent -> BookmarkRow(
-          label = content.name,
-          link = content.link,
+          label = AnnotatedString(content.name),
+          link = AnnotatedString(content.link),
           isSelected = content.selected,
           isInEditMode = state.isInEditMode,
           onClick = { model.contentClicked(content) },

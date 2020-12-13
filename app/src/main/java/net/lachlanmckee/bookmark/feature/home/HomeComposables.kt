@@ -5,14 +5,15 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Providers
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.AnnotatedString
 import net.lachlanmckee.bookmark.compose.CheckableRow
 import net.lachlanmckee.bookmark.compose.RowText
 import net.lachlanmckee.bookmark.feature.BookmarkRowContent
 
 @Composable
 fun BookmarkRow(
-  label: String,
-  link: String,
+  label: AnnotatedString,
+  link: AnnotatedString,
   isSelected: Boolean = false,
   isInEditMode: Boolean = false,
   onClick: () -> Unit,
@@ -26,7 +27,10 @@ fun BookmarkRow(
     onLongClick = onLongClick,
     content = {
       Providers(AmbientContentColor provides Color.Black) {
-        BookmarkRowContent(label = label, link = link)
+        BookmarkRowContent(
+          label = label,
+          link = link
+        )
       }
     }
   )
@@ -34,7 +38,7 @@ fun BookmarkRow(
 
 @Composable
 fun FolderRow(
-  label: String,
+  label: AnnotatedString,
   isSelected: Boolean,
   isInEditMode: Boolean,
   onClick: () -> Unit,
@@ -48,7 +52,10 @@ fun FolderRow(
     onLongClick = onLongClick,
     content = {
       Providers(AmbientContentColor provides Color.White) {
-        RowText(text = label, style = MaterialTheme.typography.h6)
+        RowText(
+          text = label,
+          style = MaterialTheme.typography.h6
+        )
       }
     }
   )

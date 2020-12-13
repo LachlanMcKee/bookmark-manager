@@ -47,12 +47,12 @@ class SearchViewModel @Inject constructor(
               add(
                 Content.BookmarkContent(
                   id = bookmark.id,
-                  name = bookmark.name,
-                  link = bookmark.link,
+                  name = createSearchText(bookmark.name, queryMetadata.query),
+                  link = createSearchText(bookmark.link, queryMetadata.query),
                   metadata = bookmark.metadata.map {
                     SearchMetadata(
                       id = it.id,
-                      name = it.name
+                      name = createSearchText(it.name, queryMetadata.query)
                     )
                   }
                 )
@@ -77,7 +77,7 @@ class SearchViewModel @Inject constructor(
   fun contentClicked(content: Content) {
     when (content) {
       is Content.BookmarkContent -> {
-        navigator.openBookmark(content.link)
+        navigator.openBookmark(content.link.fullText)
       }
     }
   }
@@ -118,6 +118,36 @@ class SearchViewModel @Inject constructor(
     )
   }
 
+  private fun createSearchText(fullText: String, query: String): SearchText {
+    val segments = mutableListOf<TextSegment>()
+    val boldRanges = mutableListOf<IntRange>()
+
+    query
+      .split("\\s")
+      .filter { it.isNotEmpty() }
+      .forEach { querySegment ->
+        var currentIndex = 0
+        while (true) {
+          val nextIndex = fullText.indexOf(querySegment, currentIndex, ignoreCase = true)
+
+          Timber.d("nextIndex: $nextIndex")
+          if (nextIndex == -1) {
+            break
+          }
+
+          boldRanges.add(IntRange(nextIndex, nextIndex + querySegment.length))
+          currentIndex = nextIndex + 1
+        }
+      }
+
+    Timber.d("Bold ranges: $boldRanges")
+
+    return SearchText(
+      fullText = fullText,
+      segments = listOf(TextSegment.Standard(fullText))
+    )
+  }
+
   sealed class State {
     abstract val query: String
     abstract val selectedMetadata: List<SearchMetadata>
@@ -137,19 +167,31 @@ class SearchViewModel @Inject constructor(
   sealed class Content {
     data class BookmarkContent(
       val id: Long,
-      val name: String,
-      val link: String,
+      val name: SearchText,
+      val link: SearchText,
       val metadata: List<SearchMetadata>
     ) : Content()
   }
 
   data class SearchMetadata(
     val id: Long,
-    val name: String
+    val name: SearchText
   )
 
   data class QueryMetadata(
     val query: String,
     val selectedMetadata: Set<SearchMetadata>
   )
+
+  data class SearchText(
+    val fullText: String,
+    val segments: List<TextSegment>
+  )
+
+  sealed class TextSegment {
+    abstract val text: String
+
+    data class Standard(override val text: String) : TextSegment()
+    data class Highlighted(override val text: String) : TextSegment()
+  }
 }

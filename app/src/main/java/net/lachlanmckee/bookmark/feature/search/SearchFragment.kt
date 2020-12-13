@@ -20,6 +20,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.ExperimentalFocus
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focusRequester
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -90,7 +93,7 @@ class SearchFragment : Fragment() {
           ChipCollection(
             modifier = Modifier.padding(8.dp),
             data = state.selectedMetadata,
-            labelFunc = SearchViewModel.SearchMetadata::name,
+            labelFunc = { buildAnnotatedString(it.name.segments) },
             onClick = model::metadataFilterClicked
           )
         }
@@ -140,14 +143,14 @@ class SearchFragment : Fragment() {
           content = {
             Column {
               BookmarkRowContent(
-                label = content.name,
-                link = content.link
+                label = buildAnnotatedString(content.name.segments),
+                link = buildAnnotatedString(content.link.segments)
               )
 
               ChipCollection(
                 modifier = Modifier.padding(top = 8.dp),
                 data = content.metadata,
-                labelFunc = SearchViewModel.SearchMetadata::name,
+                labelFunc = { buildAnnotatedString(it.name.segments) },
                 onClick = model::metadataRowItemClicked
               )
             }
@@ -156,6 +159,28 @@ class SearchFragment : Fragment() {
       }
     }
     Divider()
+  }
+
+  private fun buildAnnotatedString(segments: List<SearchViewModel.TextSegment>): AnnotatedString {
+    return with(AnnotatedString.Builder()) {
+      segments.forEach { segment ->
+        when (segment) {
+          is SearchViewModel.TextSegment.Standard -> {
+            append(segment.text)
+          }
+          is SearchViewModel.TextSegment.Highlighted -> {
+            append(AnnotatedString
+              .Builder()
+              .apply {
+                pushStyle(SpanStyle(fontWeight = FontWeight.Bold))
+                append(segment.text)
+              }
+              .toAnnotatedString())
+          }
+        }
+      }
+      toAnnotatedString()
+    }
   }
 
   override fun onDestroyView() {
