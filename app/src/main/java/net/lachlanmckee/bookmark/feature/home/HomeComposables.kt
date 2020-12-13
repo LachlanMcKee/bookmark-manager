@@ -5,9 +5,9 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Providers
 import androidx.compose.ui.graphics.Color
+import net.lachlanmckee.bookmark.compose.CheckableRow
+import net.lachlanmckee.bookmark.compose.RowText
 import net.lachlanmckee.bookmark.feature.BookmarkRowContent
-import net.lachlanmckee.bookmark.feature.CheckableRow
-import net.lachlanmckee.bookmark.feature.RowText
 
 @Composable
 fun BookmarkRow(

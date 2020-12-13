@@ -7,13 +7,15 @@ import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumnFor
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.onActive
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.ExperimentalFocus
 import androidx.compose.ui.focus.FocusRequester
@@ -23,11 +25,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import net.lachlanmckee.bookmark.compose.fragmentComposeView
+import net.lachlanmckee.bookmark.compose.*
 import net.lachlanmckee.bookmark.di.viewmodel.ViewModelProviderFactory
 import net.lachlanmckee.bookmark.feature.BookmarkRowContent
-import net.lachlanmckee.bookmark.feature.ClickableRow
-import net.lachlanmckee.bookmark.feature.RootBottomAppBar
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -78,13 +78,28 @@ class SearchFragment : Fragment() {
   @Composable
   private fun SearchContent(state: SearchViewModel.State) {
     Timber.d("state: $state")
-    Column {
-      SearchTextField(state)
+    LazyColumn(
+      state = rememberLazyListState(),
+      horizontalAlignment = Alignment.Start
+    ) {
+      item {
+        SearchTextField(state)
+      }
+      if (state.selectedMetadata.isNotEmpty()) {
+        item {
+          ChipCollection(
+            modifier = Modifier.padding(8.dp),
+            data = state.selectedMetadata,
+            labelFunc = SearchViewModel.SearchMetadata::name,
+            onClick = model::metadataFilterClicked
+          )
+        }
+      }
       when (state) {
         SearchViewModel.State.Empty -> {
         }
         is SearchViewModel.State.Results -> {
-          ResultsContent(state)
+          items(state.contentList) { RowContent(it) }
         }
       }
     }
@@ -117,30 +132,30 @@ class SearchFragment : Fragment() {
   }
 
   @Composable
-  private fun ResultsContent(state: SearchViewModel.State.Results) {
-    LazyColumnFor(items = state.contentList) { content ->
-      when (content) {
-        is SearchViewModel.Content.BookmarkContent -> {
-          ClickableRow(
-            onClick = { model.contentClicked(content) },
-            content = {
-              Column {
-                BookmarkRowContent(
-                  label = content.name,
-                  link = content.link
-                )
+  fun RowContent(content: SearchViewModel.Content) {
+    when (content) {
+      is SearchViewModel.Content.BookmarkContent -> {
+        ClickableRow(
+          onClick = { model.contentClicked(content) },
+          content = {
+            Column {
+              BookmarkRowContent(
+                label = content.name,
+                link = content.link
+              )
 
-                ChipCollection(
-                  modifier = Modifier.padding(top = 8.dp),
-                  labels = content.metadataNames
-                )
-              }
+              ChipCollection(
+                modifier = Modifier.padding(top = 8.dp),
+                data = content.metadata,
+                labelFunc = SearchViewModel.SearchMetadata::name,
+                onClick = model::metadataRowItemClicked
+              )
             }
-          )
-        }
+          }
+        )
       }
-      Divider()
     }
+    Divider()
   }
 
   override fun onDestroyView() {

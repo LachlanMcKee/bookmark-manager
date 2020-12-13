@@ -1,16 +1,12 @@
-package net.lachlanmckee.bookmark.feature
+package net.lachlanmckee.bookmark.compose
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Refresh
-import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.AmbientContentColor
+import androidx.compose.material.Checkbox
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.Providers
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -68,41 +64,6 @@ fun CheckableRow(
       content()
     }
   )
-}
-
-@Composable
-fun RootBottomAppBar(
-  homeClick: () -> Unit,
-  searchClick: () -> Unit,
-  resetClick: () -> Unit,
-  settingsClick: () -> Unit
-) {
-  BottomAppBar(cutoutShape = CircleShape) {
-    IconButton(onClick = { homeClick() }) {
-      Icon(Icons.Filled.Home)
-    }
-    IconButton(onClick = { searchClick() }) {
-      Icon(Icons.Filled.Search)
-    }
-    Spacer(Modifier.weight(1f, true))
-    IconButton(onClick = { resetClick() }) {
-      Icon(Icons.Filled.Refresh)
-    }
-    IconButton(onClick = { settingsClick() }) {
-      Icon(Icons.Filled.Settings)
-    }
-  }
-}
-
-@Composable
-fun BookmarkRowContent(
-  label: String,
-  link: String,
-) {
-  Column {
-    RowText(text = label, style = MaterialTheme.typography.h6)
-    RowText(text = link, style = MaterialTheme.typography.subtitle1)
-  }
 }
 
 @Composable

@@ -9,8 +9,8 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
+import net.lachlanmckee.bookmark.compose.RootBottomAppBar
 import net.lachlanmckee.bookmark.di.viewmodel.ViewModelProviderFactory
-import net.lachlanmckee.bookmark.feature.AppBottomBar
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -24,7 +24,7 @@ class SettingsFragment : Fragment() {
     inflater: LayoutInflater,
     container: ViewGroup?,
     savedInstanceState: Bundle?
-  ): View? {
+  ): View {
     return ComposeView(requireContext()).apply {
       setContent {
         MaterialTheme {
@@ -40,7 +40,12 @@ class SettingsFragment : Fragment() {
               Text(text = "Settings screen")
             },
             bottomBar = {
-              AppBottomBar(model)
+              RootBottomAppBar(
+                homeClick = { model.homeClicked() },
+                searchClick = { model.searchClicked() },
+                resetClick = { TODO() },
+                settingsClick = { model.settingsClicked() }
+              )
             }
           )
         }

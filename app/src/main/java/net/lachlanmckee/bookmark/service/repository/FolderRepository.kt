@@ -2,12 +2,12 @@ package net.lachlanmckee.bookmark.service.repository
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import net.lachlanmckee.bookmark.service.model.Folder
+import net.lachlanmckee.bookmark.service.model.FolderModel
 import net.lachlanmckee.bookmark.service.persistence.dao.FolderDao
 import javax.inject.Inject
 
 interface FolderRepository {
-  fun getFolders(parentId: Long?): Flow<List<Folder>>
+  fun getFolders(parentId: Long?): Flow<List<FolderModel>>
 
   suspend fun addFolder()
 
@@ -18,7 +18,7 @@ class FolderRepositoryImpl @Inject constructor(
   private val folderDao: FolderDao
 ) : FolderRepository {
 
-  override fun getFolders(parentId: Long?): Flow<List<Folder>> {
+  override fun getFolders(parentId: Long?): Flow<List<FolderModel>> {
     val foldersFlow = if (parentId != null) {
       folderDao.getChildFolders(parentId)
     } else {
@@ -27,7 +27,7 @@ class FolderRepositoryImpl @Inject constructor(
     return foldersFlow
       .map { folderEntities ->
         folderEntities.map { entity ->
-          Folder(
+          FolderModel(
             id = entity.folderId,
             parentId = entity.parentId,
             name = entity.name

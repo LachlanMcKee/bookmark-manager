@@ -1,8 +1,8 @@
 package net.lachlanmckee.bookmark.service.model
 
-data class Bookmark(
+data class BookmarkModel(
   val id: Long,
   val name: String,
   val link: String,
-  val metadata: List<Metadata>
+  val metadata: List<MetadataModel>
 )

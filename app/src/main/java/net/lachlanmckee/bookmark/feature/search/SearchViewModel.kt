@@ -15,7 +15,12 @@ class SearchViewModel @Inject constructor(
 ) : ViewModel(), RootViewModel {
 
   private val currentQueryFlowable: MutableStateFlow<QueryMetadata> =
-    MutableStateFlow(QueryMetadata(""))
+    MutableStateFlow(
+      QueryMetadata(
+        query = "",
+        selectedMetadata = linkedSetOf()
+      )
+    )
 
   @ExperimentalStdlibApi
   @ExperimentalCoroutinesApi
@@ -44,18 +49,25 @@ class SearchViewModel @Inject constructor(
                   id = bookmark.id,
                   name = bookmark.name,
                   link = bookmark.link,
-                  metadataNames = bookmark.metadata.map { it.name }
+                  metadata = bookmark.metadata.map {
+                    SearchMetadata(
+                      id = it.id,
+                      name = it.name
+                    )
+                  }
                 )
               )
             }
           }
           State.Results(
             query = queryMetadata.query,
+            selectedMetadata = queryMetadata.selectedMetadata.toList(),
             contentList = contentList
           )
         } else {
           State.Results(
             query = queryMetadata.query,
+            selectedMetadata = queryMetadata.selectedMetadata.toList(),
             contentList = emptyList()
           )
         }
@@ -68,6 +80,20 @@ class SearchViewModel @Inject constructor(
         navigator.openBookmark(content.link)
       }
     }
+  }
+
+  fun metadataFilterClicked(metadata: SearchMetadata) {
+    val previousQuery = currentQueryFlowable.value
+    currentQueryFlowable.value = previousQuery.copy(
+      selectedMetadata = previousQuery.selectedMetadata.minus(metadata)
+    )
+  }
+
+  fun metadataRowItemClicked(metadata: SearchMetadata) {
+    val previousQuery = currentQueryFlowable.value
+    currentQueryFlowable.value = previousQuery.copy(
+      selectedMetadata = previousQuery.selectedMetadata.plus(metadata)
+    )
   }
 
   override fun homeClicked() {
@@ -87,18 +113,23 @@ class SearchViewModel @Inject constructor(
   }
 
   fun searchTextChanged(text: String) {
-    currentQueryFlowable.value = QueryMetadata(text)
+    currentQueryFlowable.value = currentQueryFlowable.value.copy(
+      query = text
+    )
   }
 
   sealed class State {
     abstract val query: String
+    abstract val selectedMetadata: List<SearchMetadata>
 
     object Empty : State() {
       override val query: String = ""
+      override val selectedMetadata: List<SearchMetadata> = emptyList()
     }
 
     data class Results(
       override val query: String,
+      override val selectedMetadata: List<SearchMetadata>,
       val contentList: List<Content>
     ) : State()
   }
@@ -108,11 +139,17 @@ class SearchViewModel @Inject constructor(
       val id: Long,
       val name: String,
       val link: String,
-      val metadataNames: List<String>
+      val metadata: List<SearchMetadata>
     ) : Content()
   }
 
+  data class SearchMetadata(
+    val id: Long,
+    val name: String
+  )
+
   data class QueryMetadata(
-    val query: String
+    val query: String,
+    val selectedMetadata: Set<SearchMetadata>
   )
 }

@@ -1,4 +1,4 @@
-package net.lachlanmckee.bookmark.feature
+package net.lachlanmckee.bookmark.compose
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.shape.CircleShape
@@ -7,18 +7,31 @@ import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 @Composable
-fun AppBottomBar(rootViewModel: RootViewModel) {
+fun RootBottomAppBar(
+  homeClick: () -> Unit,
+  searchClick: () -> Unit,
+  resetClick: () -> Unit,
+  settingsClick: () -> Unit
+) {
   BottomAppBar(cutoutShape = CircleShape) {
-    IconButton(onClick = { rootViewModel.homeClicked() }) {
+    IconButton(onClick = { homeClick() }) {
       Icon(Icons.Filled.Home)
     }
+    IconButton(onClick = { searchClick() }) {
+      Icon(Icons.Filled.Search)
+    }
     Spacer(Modifier.weight(1f, true))
-    IconButton(onClick = { rootViewModel.settingsClicked() }) {
+    IconButton(onClick = { resetClick() }) {
+      Icon(Icons.Filled.Refresh)
+    }
+    IconButton(onClick = { settingsClick() }) {
       Icon(Icons.Filled.Settings)
     }
   }

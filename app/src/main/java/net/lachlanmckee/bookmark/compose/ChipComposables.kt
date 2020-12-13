@@ -1,4 +1,4 @@
-package net.lachlanmckee.bookmark.feature.search
+package net.lachlanmckee.bookmark.compose
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -19,18 +19,24 @@ import androidx.compose.ui.unit.dp
 
 @ExperimentalLayout
 @Composable
-fun ChipCollection(
+fun <T> ChipCollection(
   modifier: Modifier,
-  labels: List<String>,
-  style: TextStyle = MaterialTheme.typography.subtitle1
+  style: TextStyle = MaterialTheme.typography.subtitle1,
+  data: List<T>,
+  labelFunc: (T) -> String,
+  onClick: (T) -> Unit
 ) {
   Box(modifier = modifier) {
     FlowRow(
       mainAxisSpacing = 4.dp,
       crossAxisSpacing = 4.dp,
       content = {
-        labels.forEach { label ->
-          Chip(text = label, style = style)
+        data.forEach { item ->
+          Chip(
+            text = labelFunc(item),
+            style = style,
+            onClick = { onClick(item) }
+          )
         }
       }
     )
@@ -40,19 +46,18 @@ fun ChipCollection(
 @Composable
 fun Chip(
   text: String,
-  style: TextStyle
+  style: TextStyle,
+  onClick: () -> Unit
 ) {
-    Text(
-      modifier = Modifier
-        .clickable(
-          onClick = {}
-        )
-        .background(Color.LightGray, RoundedCornerShape(8.dp))
-        .padding(8.dp),
-      text = text,
-      style = style,
-      color = AmbientContentColor.current,
-      overflow = TextOverflow.Ellipsis,
-      maxLines = 1
-    )
+  Text(
+    modifier = Modifier
+      .clickable(onClick = onClick)
+      .background(Color.LightGray, RoundedCornerShape(8.dp))
+      .padding(8.dp),
+    text = text,
+    style = style,
+    color = AmbientContentColor.current,
+    overflow = TextOverflow.Ellipsis,
+    maxLines = 1
+  )
 }

@@ -2,8 +2,8 @@ package net.lachlanmckee.bookmark.service.repository
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import net.lachlanmckee.bookmark.service.model.Bookmark
-import net.lachlanmckee.bookmark.service.model.Metadata
+import net.lachlanmckee.bookmark.service.model.BookmarkModel
+import net.lachlanmckee.bookmark.service.model.MetadataModel
 import net.lachlanmckee.bookmark.service.persistence.dao.BookmarkDao
 import net.lachlanmckee.bookmark.service.persistence.dao.FolderDao
 import net.lachlanmckee.bookmark.service.persistence.dao.MetadataDao
@@ -14,9 +14,9 @@ import net.lachlanmckee.bookmark.service.persistence.entity.MetadataEntity
 import javax.inject.Inject
 
 interface BookmarkRepository {
-  fun getBookmarksByQuery(text: String): Flow<List<Bookmark>>
+  fun getBookmarksByQuery(text: String): Flow<List<BookmarkModel>>
 
-  fun getBookmarksByFolder(folderId: Long?): Flow<List<Bookmark>>
+  fun getBookmarksByFolder(folderId: Long?): Flow<List<BookmarkModel>>
 
   suspend fun addBookmark()
 
@@ -29,14 +29,14 @@ class BookmarkRepositoryImpl @Inject constructor(
   private val folderDao: FolderDao
 ) : BookmarkRepository {
 
-  override fun getBookmarksByQuery(text: String): Flow<List<Bookmark>> {
+  override fun getBookmarksByQuery(text: String): Flow<List<BookmarkModel>> {
     return bookmarkDao.findByNameOrLink(text)
       .map { bookmarkEntities ->
         bookmarkEntities.map(::mapToBookmark)
       }
   }
 
-  override fun getBookmarksByFolder(folderId: Long?): Flow<List<Bookmark>> {
+  override fun getBookmarksByFolder(folderId: Long?): Flow<List<BookmarkModel>> {
     val bookmarksFlow = if (folderId != null) {
       bookmarkDao.getBookmarksWithinFolder(folderId)
     } else {
@@ -48,8 +48,8 @@ class BookmarkRepositoryImpl @Inject constructor(
       }
   }
 
-  private fun mapToBookmark(entity: BookmarkEntity): Bookmark {
-    return Bookmark(
+  private fun mapToBookmark(entity: BookmarkEntity): BookmarkModel {
+    return BookmarkModel(
       id = entity.bookmarkId,
       name = entity.name,
       link = entity.link,
@@ -57,13 +57,13 @@ class BookmarkRepositoryImpl @Inject constructor(
     )
   }
 
-  private fun mapToBookmark(entity: BookmarkWithMetadata): Bookmark {
-    return Bookmark(
+  private fun mapToBookmark(entity: BookmarkWithMetadata): BookmarkModel {
+    return BookmarkModel(
       id = entity.bookmark.bookmarkId,
       name = entity.bookmark.name,
       link = entity.bookmark.link,
       metadata = entity.metadata.map {
-        Metadata(it.metadataId, it.name)
+        MetadataModel(it.metadataId, it.name)
       }
     )
   }

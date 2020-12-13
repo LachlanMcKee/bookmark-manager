@@ -10,8 +10,8 @@ import net.lachlanmckee.bookmark.feature.Navigator
 import net.lachlanmckee.bookmark.feature.home.HomeViewModel.Content.BookmarkContent
 import net.lachlanmckee.bookmark.feature.home.HomeViewModel.Content.FolderContent
 import net.lachlanmckee.bookmark.feature.home.HomeViewModel.State.*
-import net.lachlanmckee.bookmark.service.model.Bookmark
-import net.lachlanmckee.bookmark.service.model.Folder
+import net.lachlanmckee.bookmark.service.model.BookmarkModel
+import net.lachlanmckee.bookmark.service.model.FolderModel
 import net.lachlanmckee.bookmark.service.repository.BookmarkRepository
 import net.lachlanmckee.bookmark.service.repository.FolderRepository
 import net.lachlanmckee.bookmark.test.util.LiveDataTester.testLiveData
@@ -296,22 +296,22 @@ class HomeViewModelTest {
     coVerify { bookmarkRepository.removeBookmarks(eq(setOf(1))) }
   }
 
-  private fun givenFolders(parentId: Int?, folders: List<Folder>) {
+  private fun givenFolders(parentId: Int?, folders: List<FolderModel>) {
     every { folderRepository.getFolders(parentId) } returns flowOf(folders)
   }
 
-  private fun givenBookmarks(parentId: Int?, bookmarks: List<Bookmark>) {
+  private fun givenBookmarks(parentId: Int?, bookmarks: List<BookmarkModel>) {
     every { bookmarkRepository.getBookmarksByFolder(parentId) } returns flowOf(bookmarks)
   }
 
   private companion object {
-    private val folder1 = Folder(id = 1, parentId = null, name = "folder1")
-    private val bookmark1 = Bookmark(
+    private val folder1 = FolderModel(id = 1, parentId = null, name = "folder1")
+    private val bookmark1 = BookmarkModel(
       id = 10,
       name = "Bookmark1",
       link = "https://www.google.com/"
     )
-    private val bookmark2 = Bookmark(
+    private val bookmark2 = BookmarkModel(
       id = 11,
       name = "Bookmark2",
       link = "https://www.android.com/"
