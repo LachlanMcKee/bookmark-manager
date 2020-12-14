@@ -38,7 +38,12 @@ class SearchViewModel @Inject constructor(
 
   @ExperimentalStdlibApi
   private fun getBookmarks(queryMetadata: QueryMetadata): Flow<State> {
-    return bookmarkRepository.getBookmarksByQuery(queryMetadata.query)
+    val terms = queryMetadata
+      .query
+      .split("\\s".toRegex())
+      .filter { it.isNotEmpty() }
+
+    return bookmarkRepository.getBookmarksByQuery(terms)
       .map { bookmarks ->
         Timber.d("Search. query: ${queryMetadata.query}, result: $bookmarks")
         if (bookmarks.isNotEmpty()) {
@@ -47,12 +52,12 @@ class SearchViewModel @Inject constructor(
               add(
                 Content.BookmarkContent(
                   id = bookmark.id,
-                  name = createSearchText(bookmark.name, queryMetadata.query),
-                  link = createSearchText(bookmark.link, queryMetadata.query),
+                  name = createSearchText(bookmark.name, terms),
+                  link = createSearchText(bookmark.link, terms),
                   metadata = bookmark.metadata.map {
                     SearchMetadata(
                       id = it.id,
-                      name = createSearchText(it.name, queryMetadata.query)
+                      name = createSearchText(it.name, terms)
                     )
                   }
                 )
@@ -118,13 +123,11 @@ class SearchViewModel @Inject constructor(
     )
   }
 
-  private fun createSearchText(fullText: String, query: String): SearchText {
+  private fun createSearchText(fullText: String, terms: List<String>): SearchText {
     val segments = mutableListOf<TextSegment>()
     val boldRanges = mutableListOf<IntRange>()
 
-    query
-      .split("\\s")
-      .filter { it.isNotEmpty() }
+    terms
       .forEach { querySegment ->
         var currentIndex = 0
         while (true) {

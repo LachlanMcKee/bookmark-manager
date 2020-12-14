@@ -1,13 +1,13 @@
 package net.lachlanmckee.bookmark.service.persistence.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Transaction
+import androidx.room.*
+import androidx.sqlite.db.SimpleSQLiteQuery
+import androidx.sqlite.db.SupportSQLiteQuery
 import kotlinx.coroutines.flow.Flow
 import net.lachlanmckee.bookmark.service.persistence.entity.BookmarkEntity
 import net.lachlanmckee.bookmark.service.persistence.entity.BookmarkMetadataCrossRef
 import net.lachlanmckee.bookmark.service.persistence.entity.BookmarkWithMetadata
+import net.lachlanmckee.bookmark.service.persistence.entity.MetadataEntity
 
 @Dao
 abstract class BookmarkDao {
@@ -21,21 +21,63 @@ abstract class BookmarkDao {
   abstract fun loadAllByIds(bookmarkIds: LongArray): Flow<List<BookmarkEntity>>
 
   @Transaction
-  @Query(
-    """
-    SELECT *
-    FROM bookmark
-    WHERE name LIKE '%' || :nameOrUrl || '%'
-    or link LIKE '%' || :nameOrUrl || '%'
-    or bookmarkId in (
-        SELECT BookmarkMetadataCrossRef.bookmarkId
-        FROM BookmarkMetadataCrossRef
-        INNER JOIN Metadata ON BookmarkMetadataCrossRef.metadataId = Metadata.metadataId
-        WHERE Metadata.name LIKE '%' || :nameOrUrl || '%'
-    )
-  """
+  @RawQuery(
+    observedEntities = [
+      BookmarkEntity::class,
+      MetadataEntity::class,
+      BookmarkMetadataCrossRef::class
+    ]
   )
-  abstract fun findByNameOrLink(nameOrUrl: String): Flow<List<BookmarkWithMetadata>>
+  abstract fun findByTextRawQuery(query: SupportSQLiteQuery): Flow<List<BookmarkWithMetadata>>
+
+  open fun findByTerms(terms: List<String>): Flow<List<BookmarkWithMetadata>> {
+    val query = buildString {
+      appendLine("SELECT * FROM bookmark")
+      appendLine("WHERE")
+
+      // Like queries
+      terms.forEachIndexed { index, _ ->
+        if (index != 0) {
+          append("AND ")
+        }
+        appendLine("(")
+        appendLine("name LIKE '%' || ? || '%'")
+        appendLine("OR link LIKE '%' || ? || '%'")
+
+        appendLine("OR bookmarkId in (")
+        appendLine("SELECT BookmarkMetadataCrossRef.bookmarkId")
+        appendLine("FROM BookmarkMetadataCrossRef")
+        appendLine("INNER JOIN Metadata ON BookmarkMetadataCrossRef.metadataId = Metadata.metadataId")
+        appendLine("WHERE Metadata.name LIKE '%' || ? || '%'")
+        appendLine(")")
+        appendLine(")")
+      }
+    }
+
+    val bindArgs: Array<Any> = terms
+      .flatMap {
+        listOf(it, it, it)
+      }
+      .toTypedArray()
+
+    return findByTextRawQuery(SimpleSQLiteQuery(query, bindArgs))
+
+//    return findByTextRawQuery(
+//      SimpleSQLiteQuery(
+//        """
+//        SELECT *
+//        FROM bookmark
+//        WHERE name LIKE '%' || :nameOrUrl || '%'
+//        or link LIKE '%' || :nameOrUrl || '%'
+//        or bookmarkId in (
+//            SELECT BookmarkMetadataCrossRef.bookmarkId
+//            FROM BookmarkMetadataCrossRef
+//            INNER JOIN Metadata ON BookmarkMetadataCrossRef.metadataId = Metadata.metadataId
+//            WHERE Metadata.name LIKE '%' || :nameOrUrl || '%'
+//        )
+//      """.trimIndent()
+//      )
+  }
 
   @Transaction
   open suspend fun insert(bookmarkEntity: BookmarkEntity, vararg metadataIds: Long) {

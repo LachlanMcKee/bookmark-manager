@@ -14,7 +14,7 @@ import net.lachlanmckee.bookmark.service.persistence.entity.MetadataEntity
 import javax.inject.Inject
 
 interface BookmarkRepository {
-  fun getBookmarksByQuery(text: String): Flow<List<BookmarkModel>>
+  fun getBookmarksByQuery(terms: List<String>): Flow<List<BookmarkModel>>
 
   fun getBookmarksByFolder(folderId: Long?): Flow<List<BookmarkModel>>
 
@@ -29,8 +29,8 @@ class BookmarkRepositoryImpl @Inject constructor(
   private val folderDao: FolderDao
 ) : BookmarkRepository {
 
-  override fun getBookmarksByQuery(text: String): Flow<List<BookmarkModel>> {
-    return bookmarkDao.findByNameOrLink(text)
+  override fun getBookmarksByQuery(terms: List<String>): Flow<List<BookmarkModel>> {
+    return bookmarkDao.findByTerms(terms)
       .map { bookmarkEntities ->
         bookmarkEntities.map(::mapToBookmark)
       }
