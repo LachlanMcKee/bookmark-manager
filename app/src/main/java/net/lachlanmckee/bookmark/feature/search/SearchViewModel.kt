@@ -43,7 +43,11 @@ class SearchViewModel @Inject constructor(
       .split("\\s".toRegex())
       .filter { it.isNotEmpty() }
 
-    return bookmarkRepository.getBookmarksByQuery(terms)
+    return bookmarkRepository
+      .getBookmarksByQuery(
+        terms = terms,
+        metadataIds = queryMetadata.selectedMetadata.map { it.id }
+      )
       .map { bookmarks ->
         Timber.d("Search. query: ${queryMetadata.query}, result: $bookmarks")
         if (bookmarks.isNotEmpty()) {

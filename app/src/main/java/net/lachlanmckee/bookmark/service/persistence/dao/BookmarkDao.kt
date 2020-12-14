@@ -30,15 +30,34 @@ abstract class BookmarkDao {
   )
   abstract fun findByTextRawQuery(query: SupportSQLiteQuery): Flow<List<BookmarkWithMetadata>>
 
-  open fun findByTerms(terms: List<String>): Flow<List<BookmarkWithMetadata>> {
+  @OptIn(ExperimentalStdlibApi::class)
+  open fun findByTermsAndMetadataIds(
+    terms: List<String>,
+    metadataIds: List<Long>
+  ): Flow<List<BookmarkWithMetadata>> {
     val query = buildString {
       appendLine("SELECT * FROM bookmark")
       appendLine("WHERE")
 
+      metadataIds.forEachIndexed { index, _ ->
+        if (index != 0) {
+          appendLine("AND ")
+        }
+        appendLine("bookmarkId in (")
+        appendLine("SELECT BookmarkMetadataCrossRef.bookmarkId")
+        appendLine("FROM BookmarkMetadataCrossRef")
+        append("WHERE BookmarkMetadataCrossRef.metadataId = ?")
+        appendLine(")")
+      }
+
+      if (metadataIds.isNotEmpty()) {
+        appendLine("AND ")
+      }
+
       // Like queries
       terms.forEachIndexed { index, _ ->
         if (index != 0) {
-          append("AND ")
+          appendLine("AND ")
         }
         appendLine("(")
         appendLine("name LIKE '%' || ? || '%'")
@@ -54,13 +73,18 @@ abstract class BookmarkDao {
       }
     }
 
-    val bindArgs: Array<Any> = terms
-      .flatMap {
-        listOf(it, it, it)
+    val bindArgs: List<Any> = buildList {
+      if (metadataIds.isNotEmpty()) {
+        addAll(metadataIds)
       }
-      .toTypedArray()
+      terms.forEach {
+        add(it)
+        add(it)
+        add(it)
+      }
+    }
 
-    return findByTextRawQuery(SimpleSQLiteQuery(query, bindArgs))
+    return findByTextRawQuery(SimpleSQLiteQuery(query, bindArgs.toTypedArray()))
 
 //    return findByTextRawQuery(
 //      SimpleSQLiteQuery(
