@@ -296,11 +296,11 @@ class HomeViewModelTest {
     coVerify { bookmarkRepository.removeBookmarks(eq(setOf(1))) }
   }
 
-  private fun givenFolders(parentId: Int?, folders: List<FolderModel>) {
+  private fun givenFolders(parentId: Long?, folders: List<FolderModel>) {
     every { folderRepository.getFolders(parentId) } returns flowOf(folders)
   }
 
-  private fun givenBookmarks(parentId: Int?, bookmarks: List<BookmarkModel>) {
+  private fun givenBookmarks(parentId: Long?, bookmarks: List<BookmarkModel>) {
     every { bookmarkRepository.getBookmarksByFolder(parentId) } returns flowOf(bookmarks)
   }
 
@@ -309,12 +309,14 @@ class HomeViewModelTest {
     private val bookmark1 = BookmarkModel(
       id = 10,
       name = "Bookmark1",
-      link = "https://www.google.com/"
+      link = "https://www.google.com/",
+      metadata = emptyList()
     )
     private val bookmark2 = BookmarkModel(
       id = 11,
       name = "Bookmark2",
-      link = "https://www.android.com/"
+      link = "https://www.android.com/",
+      metadata = emptyList()
     )
 
     private val unselectedFolderContent1 = FolderContent(
