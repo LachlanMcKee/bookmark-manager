@@ -17,7 +17,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.onActive
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.ExperimentalFocus
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focusRequester
 import androidx.compose.ui.text.AnnotatedString
@@ -35,7 +34,6 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @ExperimentalLayout
-@ExperimentalFocus
 @AndroidEntryPoint
 class SearchFragment : Fragment() {
   @Inject

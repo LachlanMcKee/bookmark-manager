@@ -82,8 +82,6 @@ dependencies {
 
   implementation(Dependencies.AndroidX.appcompat)
   implementation(Dependencies.AndroidX.coreKtx)
-  implementation(Dependencies.AndroidX.constraintLayout)
-  implementation(Dependencies.AndroidX.lifecycleExtensions)
   implementation(Dependencies.AndroidX.lifecycleViewModelKtx)
   implementation(Dependencies.AndroidX.lifecycleLiveDataKtx)
   implementation(Dependencies.AndroidX.navigationFragmentKtx)
