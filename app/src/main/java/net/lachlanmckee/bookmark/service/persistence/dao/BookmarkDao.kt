@@ -50,11 +50,10 @@ abstract class BookmarkDao {
         appendLine(")")
       }
 
-      if (metadataIds.isNotEmpty()) {
+      if (metadataIds.isNotEmpty() && terms.isNotEmpty()) {
         appendLine("AND ")
       }
 
-      // Like queries
       terms.forEachIndexed { index, _ ->
         if (index != 0) {
           appendLine("AND ")

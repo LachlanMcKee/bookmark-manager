@@ -25,19 +25,27 @@ class SearchViewModel @Inject constructor(
   @ExperimentalStdlibApi
   @ExperimentalCoroutinesApi
   val state: LiveData<State> by lazy {
-    currentQueryFlowable
-      .flatMapLatest { queryMetadata ->
-        if (queryMetadata.query.isNotEmpty()) {
-          getBookmarks(queryMetadata)
-        } else {
-          flowOf(State.Empty)
+    bookmarkRepository
+      .getAllMetadata()
+      .flatMapLatest { allMetadataModelList ->
+        val allMetadata = allMetadataModelList.map {
+          SearchMetadata(it.id, createSearchText(it.name, emptyList()))
         }
+
+        currentQueryFlowable
+          .flatMapLatest { queryMetadata ->
+            getBookmarks(queryMetadata, allMetadata)
+          }
       }
+      .onStart { emit(State.Empty(emptyList())) }
       .asLiveData(viewModelScope.coroutineContext)
   }
 
   @ExperimentalStdlibApi
-  private fun getBookmarks(queryMetadata: QueryMetadata): Flow<State> {
+  private fun getBookmarks(
+    queryMetadata: QueryMetadata,
+    allMetadata: List<SearchMetadata>
+  ): Flow<State> {
     val terms = queryMetadata
       .query
       .split("\\s".toRegex())
@@ -70,12 +78,14 @@ class SearchViewModel @Inject constructor(
           }
           State.Results(
             query = queryMetadata.query,
+            metadata = allMetadata,
             selectedMetadata = queryMetadata.selectedMetadata.toList(),
             contentList = contentList
           )
         } else {
           State.Results(
             query = queryMetadata.query,
+            metadata = allMetadata,
             selectedMetadata = queryMetadata.selectedMetadata.toList(),
             contentList = emptyList()
           )
@@ -157,15 +167,17 @@ class SearchViewModel @Inject constructor(
 
   sealed class State {
     abstract val query: String
+    abstract val metadata: List<SearchMetadata>
     abstract val selectedMetadata: List<SearchMetadata>
 
-    object Empty : State() {
+    data class Empty(override val metadata: List<SearchMetadata>) : State() {
       override val query: String = ""
       override val selectedMetadata: List<SearchMetadata> = emptyList()
     }
 
     data class Results(
       override val query: String,
+      override val metadata: List<SearchMetadata>,
       override val selectedMetadata: List<SearchMetadata>,
       val contentList: List<Content>
     ) : State()

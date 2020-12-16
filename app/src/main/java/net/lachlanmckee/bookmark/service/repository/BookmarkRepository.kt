@@ -1,6 +1,7 @@
 package net.lachlanmckee.bookmark.service.repository
 
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import net.lachlanmckee.bookmark.service.model.BookmarkModel
 import net.lachlanmckee.bookmark.service.model.MetadataModel
@@ -21,6 +22,8 @@ interface BookmarkRepository {
 
   fun getBookmarksByFolder(folderId: Long?): Flow<List<BookmarkModel>>
 
+  fun getAllMetadata(): Flow<List<MetadataModel>>
+
   suspend fun addBookmark()
 
   suspend fun removeBookmarks(selectedIds: Set<Long>)
@@ -36,6 +39,9 @@ class BookmarkRepositoryImpl @Inject constructor(
     terms: List<String>,
     metadataIds: List<Long>
   ): Flow<List<BookmarkModel>> {
+    if (terms.isEmpty() && metadataIds.isEmpty()) {
+      return flowOf(emptyList())
+    }
     return bookmarkDao.findByTermsAndMetadataIds(terms, metadataIds)
       .map { bookmarkEntities ->
         bookmarkEntities.map(::mapToBookmark)
@@ -52,6 +58,12 @@ class BookmarkRepositoryImpl @Inject constructor(
       .map { bookmarkEntities ->
         bookmarkEntities.map(::mapToBookmark)
       }
+  }
+
+  override fun getAllMetadata(): Flow<List<MetadataModel>> {
+    return metadataDao.getAllMetadata().map { metadataList ->
+      metadataList.map { MetadataModel(it.metadataId, it.name) }
+    }
   }
 
   private fun mapToBookmark(entity: BookmarkEntity): BookmarkModel {
@@ -91,9 +103,12 @@ class BookmarkRepositoryImpl @Inject constructor(
     )
 
     val metadataIds = metadataDao.insertAll(
-      MetadataEntity("Metadata Pizza ABC"),
-      MetadataEntity("Metadata Donut DEF"),
-      MetadataEntity("Metadata Chocolate GHI"),
+      MetadataEntity("Food"),
+      MetadataEntity("Travel"),
+      MetadataEntity("Social"),
+      MetadataEntity("Work"),
+      MetadataEntity("News"),
+      MetadataEntity("Finance"),
     )
 
     bookmarkDao.insert(

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -19,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focusRequester
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -86,18 +88,35 @@ class SearchFragment : Fragment() {
       item {
         SearchTextField(state)
       }
+      if (state.metadata.isNotEmpty()) {
+        item {
+          ChipCollection(
+            modifier = Modifier
+              .fillMaxWidth()
+              .background(Color.DarkGray)
+              .padding(8.dp),
+            data = state.metadata,
+            labelFunc = { buildAnnotatedString(it.name.segments) },
+            onClick = model::metadataRowItemClicked
+          )
+        }
+      }
       if (state.selectedMetadata.isNotEmpty()) {
         item {
           ChipCollection(
-            modifier = Modifier.padding(8.dp),
+            modifier = Modifier
+              .fillMaxWidth()
+              .background(Color.Cyan)
+              .padding(8.dp),
             data = state.selectedMetadata,
+            showCloseIcon = true,
             labelFunc = { buildAnnotatedString(it.name.segments) },
             onClick = model::metadataFilterClicked
           )
         }
       }
       when (state) {
-        SearchViewModel.State.Empty -> {
+        is SearchViewModel.State.Empty -> {
         }
         is SearchViewModel.State.Results -> {
           items(state.contentList) { RowContent(it) }
