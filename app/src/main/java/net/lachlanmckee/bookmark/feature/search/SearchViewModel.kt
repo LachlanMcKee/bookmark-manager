@@ -1,6 +1,8 @@
 package net.lachlanmckee.bookmark.feature.search
 
 import androidx.lifecycle.*
+import androidx.paging.PagingData
+import androidx.paging.map
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
 import net.lachlanmckee.bookmark.feature.Navigator
@@ -24,7 +26,7 @@ class SearchViewModel @Inject constructor(
 
   @ExperimentalStdlibApi
   @ExperimentalCoroutinesApi
-  val state: LiveData<State> by lazy {
+  val state: LiveData<Results> by lazy {
     bookmarkRepository
       .getAllMetadata()
       .flatMapLatest { allMetadataModelList ->
@@ -33,11 +35,11 @@ class SearchViewModel @Inject constructor(
         }
 
         currentQueryFlowable
-          .flatMapLatest { queryMetadata ->
+          .mapLatest { queryMetadata ->
             getBookmarks(queryMetadata, allMetadata)
           }
       }
-      .onStart { emit(State.Empty(emptyList())) }
+      .onStart { emit(emptyResults) }
       .asLiveData(viewModelScope.coroutineContext)
   }
 
@@ -45,52 +47,39 @@ class SearchViewModel @Inject constructor(
   private fun getBookmarks(
     queryMetadata: QueryMetadata,
     allMetadata: List<SearchMetadata>
-  ): Flow<State> {
+  ): Results {
     val terms = queryMetadata
       .query
       .split("\\s".toRegex())
       .filter { it.isNotEmpty() }
 
-    return bookmarkRepository
-      .getBookmarksByQuery(
-        terms = terms,
-        metadataIds = queryMetadata.selectedMetadata.map { it.id }
-      )
-      .map { bookmarks ->
-        Timber.d("Search. query: ${queryMetadata.query}, result: $bookmarks")
-        if (bookmarks.isNotEmpty()) {
-          val contentList = buildList {
-            bookmarks.forEach { bookmark ->
-              add(
-                Content.BookmarkContent(
-                  id = bookmark.id,
-                  name = createSearchText(bookmark.name, terms),
-                  link = createSearchText(bookmark.link, terms),
-                  metadata = bookmark.metadata.map {
-                    SearchMetadata(
-                      id = it.id,
-                      name = createSearchText(it.name, terms)
-                    )
-                  }
+    return Results(
+      query = queryMetadata.query,
+      metadata = allMetadata,
+      selectedMetadata = queryMetadata.selectedMetadata.toList(),
+      contentList = bookmarkRepository
+        .getBookmarksByQuery(
+          terms = terms,
+          metadataIds = queryMetadata.selectedMetadata.map { it.id }
+        )
+        .map { bookmarksData ->
+          Timber.d("Search. query: ${queryMetadata.query}, result: $bookmarksData")
+
+          bookmarksData.map { bookmark ->
+            Content.BookmarkContent(
+              id = bookmark.id,
+              name = createSearchText(bookmark.name, terms),
+              link = createSearchText(bookmark.link, terms),
+              metadata = bookmark.metadata.map {
+                SearchMetadata(
+                  id = it.id,
+                  name = createSearchText(it.name, terms)
                 )
-              )
-            }
+              }
+            )
           }
-          State.Results(
-            query = queryMetadata.query,
-            metadata = allMetadata,
-            selectedMetadata = queryMetadata.selectedMetadata.toList(),
-            contentList = contentList
-          )
-        } else {
-          State.Results(
-            query = queryMetadata.query,
-            metadata = allMetadata,
-            selectedMetadata = queryMetadata.selectedMetadata.toList(),
-            contentList = emptyList()
-          )
         }
-      }
+    )
   }
 
   fun contentClicked(content: Content) {
@@ -165,23 +154,19 @@ class SearchViewModel @Inject constructor(
     )
   }
 
-  sealed class State {
-    abstract val query: String
-    abstract val metadata: List<SearchMetadata>
-    abstract val selectedMetadata: List<SearchMetadata>
+  data class Results(
+    val query: String,
+    val metadata: List<SearchMetadata>,
+    val selectedMetadata: List<SearchMetadata>,
+    val contentList: Flow<PagingData<Content>>
+  )
 
-    data class Empty(override val metadata: List<SearchMetadata>) : State() {
-      override val query: String = ""
-      override val selectedMetadata: List<SearchMetadata> = emptyList()
-    }
-
-    data class Results(
-      override val query: String,
-      override val metadata: List<SearchMetadata>,
-      override val selectedMetadata: List<SearchMetadata>,
-      val contentList: List<Content>
-    ) : State()
-  }
+  val emptyResults = Results(
+    query = "",
+    metadata = emptyList(),
+    selectedMetadata = emptyList(),
+    contentList = emptyFlow()
+  )
 
   sealed class Content {
     data class BookmarkContent(

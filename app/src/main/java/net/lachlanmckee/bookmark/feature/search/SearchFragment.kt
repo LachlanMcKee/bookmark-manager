@@ -27,6 +27,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.paging.LoadState
+import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.items
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import net.lachlanmckee.bookmark.compose.*
@@ -79,8 +82,11 @@ class SearchFragment : Fragment() {
   }
 
   @Composable
-  private fun SearchContent(state: SearchViewModel.State) {
+  private fun SearchContent(state: SearchViewModel.Results) {
     Timber.d("state: $state")
+
+    val lazyPagingContent = state.contentList.collectAsLazyPagingItems()
+
     LazyColumn(
       state = rememberLazyListState(),
       horizontalAlignment = Alignment.Start
@@ -115,18 +121,97 @@ class SearchFragment : Fragment() {
           )
         }
       }
-      when (state) {
-        is SearchViewModel.State.Empty -> {
+
+      items(lazyPagingContent) {
+        if (it != null) {
+          RowContent(it)
+        } else {
+          RowContentPlaceholder()
         }
-        is SearchViewModel.State.Results -> {
-          items(state.contentList) { RowContent(it) }
+      }
+
+      lazyPagingContent.apply {
+        when {
+          loadState.refresh is LoadState.Loading -> {
+            item { LoadingView(modifier = Modifier.fillParentMaxSize()) }
+          }
+          loadState.append is LoadState.Loading -> {
+            item { LoadingItem() }
+          }
+          loadState.refresh is LoadState.Error -> {
+            val e = lazyPagingContent.loadState.refresh as LoadState.Error
+            item {
+              ErrorItem(
+                message = e.error.localizedMessage!!,
+                modifier = Modifier.fillParentMaxSize(),
+                onClickRetry = { retry() }
+              )
+            }
+          }
+          loadState.append is LoadState.Error -> {
+            val e = lazyPagingContent.loadState.append as LoadState.Error
+            item {
+              ErrorItem(
+                message = e.error.localizedMessage!!,
+                onClickRetry = { retry() }
+              )
+            }
+          }
         }
+      }
+
+      // https://proandroiddev.com/infinite-lists-with-paging-3-in-jetpack-compose-b095533aefe6
+    }
+  }
+
+  @Composable
+  fun LoadingView(
+    modifier: Modifier = Modifier
+  ) {
+    Column(
+      modifier = modifier,
+      verticalArrangement = Arrangement.Center,
+      horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+      CircularProgressIndicator()
+    }
+  }
+
+  @Composable
+  fun LoadingItem() {
+    CircularProgressIndicator(
+      modifier = Modifier.fillMaxWidth()
+        .padding(16.dp)
+        .wrapContentWidth(Alignment.CenterHorizontally)
+    )
+  }
+
+  @Composable
+  fun ErrorItem(
+    message: String,
+    modifier: Modifier = Modifier,
+    onClickRetry: () -> Unit
+  ) {
+    Row(
+      modifier = modifier.padding(16.dp),
+      horizontalArrangement = Arrangement.SpaceBetween,
+      verticalAlignment = Alignment.CenterVertically
+    ) {
+      Text(
+        text = message,
+        maxLines = 1,
+        modifier = Modifier.weight(1f),
+        style = MaterialTheme.typography.h6,
+        color = Color.Red
+      )
+      OutlinedButton(onClick = onClickRetry) {
+        Text(text = "Try again")
       }
     }
   }
 
   @Composable
-  private fun SearchTextField(state: SearchViewModel.State) {
+  private fun SearchTextField(state: SearchViewModel.Results) {
     val focusRequester = FocusRequester()
     onActive(callback = { focusRequester.requestFocus() })
     TextField(
@@ -175,6 +260,21 @@ class SearchFragment : Fragment() {
         )
       }
     }
+    Divider()
+  }
+
+  @Composable
+  fun RowContentPlaceholder() {
+    StandardRow(
+      content = {
+        Column {
+          BookmarkRowContent(
+            label = buildAnnotatedString(listOf(SearchViewModel.TextSegment.Standard("Loading"))),
+            link = buildAnnotatedString(listOf(SearchViewModel.TextSegment.Standard("Loading")))
+          )
+        }
+      }
+    )
     Divider()
   }
 

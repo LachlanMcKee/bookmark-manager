@@ -94,6 +94,7 @@ dependencies {
   implementation(Dependencies.Compose.iconsCore)
   implementation(Dependencies.Compose.iconsExtended)
   implementation(Dependencies.Compose.liveData)
+  implementation(Dependencies.Compose.paging)
 
   // Storage
   implementation(Dependencies.Storage.roomRuntime)

@@ -1,5 +1,6 @@
 package net.lachlanmckee.bookmark.service.persistence.dao
 
+import androidx.paging.PagingSource
 import androidx.room.*
 import androidx.sqlite.db.SimpleSQLiteQuery
 import androidx.sqlite.db.SupportSQLiteQuery
@@ -17,9 +18,6 @@ abstract class BookmarkDao {
   @Query("SELECT * FROM bookmark WHERE folderId = :folderId")
   abstract fun getBookmarksWithinFolder(folderId: Long): Flow<List<BookmarkEntity>>
 
-  @Query("SELECT * FROM bookmark WHERE bookmarkId IN (:bookmarkIds)")
-  abstract fun loadAllByIds(bookmarkIds: LongArray): Flow<List<BookmarkEntity>>
-
   @Transaction
   @RawQuery(
     observedEntities = [
@@ -28,13 +26,15 @@ abstract class BookmarkDao {
       BookmarkMetadataCrossRef::class
     ]
   )
-  abstract fun findByTextRawQuery(query: SupportSQLiteQuery): Flow<List<BookmarkWithMetadata>>
+  abstract fun findByTextRawQuery(
+    query: SupportSQLiteQuery
+  ): PagingSource<Int, BookmarkWithMetadata>
 
   @OptIn(ExperimentalStdlibApi::class)
   open fun findByTermsAndMetadataIds(
     terms: List<String>,
     metadataIds: List<Long>
-  ): Flow<List<BookmarkWithMetadata>> {
+  ): PagingSource<Int, BookmarkWithMetadata> {
     val query = buildString {
       appendLine("SELECT * FROM bookmark")
       appendLine("WHERE")
@@ -84,22 +84,6 @@ abstract class BookmarkDao {
     }
 
     return findByTextRawQuery(SimpleSQLiteQuery(query, bindArgs.toTypedArray()))
-
-//    return findByTextRawQuery(
-//      SimpleSQLiteQuery(
-//        """
-//        SELECT *
-//        FROM bookmark
-//        WHERE name LIKE '%' || :nameOrUrl || '%'
-//        or link LIKE '%' || :nameOrUrl || '%'
-//        or bookmarkId in (
-//            SELECT BookmarkMetadataCrossRef.bookmarkId
-//            FROM BookmarkMetadataCrossRef
-//            INNER JOIN Metadata ON BookmarkMetadataCrossRef.metadataId = Metadata.metadataId
-//            WHERE Metadata.name LIKE '%' || :nameOrUrl || '%'
-//        )
-//      """.trimIndent()
-//      )
   }
 
   @Transaction

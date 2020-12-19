@@ -23,6 +23,7 @@ object Dependencies {
     const val iconsCore = "androidx.compose.material:material-icons-core:$version"
     const val iconsExtended = "androidx.compose.material:material-icons-extended:$version"
     const val liveData = "androidx.compose.runtime:runtime-livedata:$version"
+    const val paging = "androidx.paging:paging-compose:1.0.0-alpha04"
   }
   object Di {
     const val version = "2.30.1"

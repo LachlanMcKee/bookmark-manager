@@ -8,8 +8,8 @@ import androidx.room.PrimaryKey
   tableName = "bookmark",
   foreignKeys = [
     ForeignKey(
-      entity = BookmarkEntity::class,
-      parentColumns = ["bookmarkId"],
+      entity = FolderEntity::class,
+      parentColumns = ["folderId"],
       childColumns = ["folderId"],
       onDelete = ForeignKey.CASCADE
     ),

@@ -1,5 +1,6 @@
 package net.lachlanmckee.bookmark.service.repository
 
+import androidx.paging.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
@@ -18,7 +19,7 @@ interface BookmarkRepository {
   fun getBookmarksByQuery(
     terms: List<String>,
     metadataIds: List<Long>
-  ): Flow<List<BookmarkModel>>
+  ): Flow<PagingData<BookmarkModel>>
 
   fun getBookmarksByFolder(folderId: Long?): Flow<List<BookmarkModel>>
 
@@ -38,13 +39,20 @@ class BookmarkRepositoryImpl @Inject constructor(
   override fun getBookmarksByQuery(
     terms: List<String>,
     metadataIds: List<Long>
-  ): Flow<List<BookmarkModel>> {
+  ): Flow<PagingData<BookmarkModel>> {
     if (terms.isEmpty() && metadataIds.isEmpty()) {
-      return flowOf(emptyList())
+      return flowOf(PagingData.empty())
     }
-    return bookmarkDao.findByTermsAndMetadataIds(terms, metadataIds)
-      .map { bookmarkEntities ->
-        bookmarkEntities.map(::mapToBookmark)
+
+    return Pager(PagingConfig(pageSize = 20)) {
+        bookmarkDao
+          .findByTermsAndMetadataIds(terms, metadataIds)
+      }
+      .flow
+      .map { pagingData ->
+        pagingData.map {
+          mapToBookmark(it)
+        }
       }
   }
 
@@ -149,16 +157,18 @@ class BookmarkRepositoryImpl @Inject constructor(
       metadataIds[2]
     )
 
-    bookmarkDao.insert(
-      BookmarkEntity(
-        name = "Amazon Very Long",
-        link = "https://www.amazon.co.uk/abc/123/def/456",
-        folderId = folderIds[1]
-      ),
-      metadataIds[0],
-      metadataIds[1],
-      metadataIds[2]
-    )
+    repeat(1000) {
+      bookmarkDao.insert(
+        BookmarkEntity(
+          name = "Amazon Very Long $it",
+          link = "https://www.amazon.co.uk/abc/123/def/$it",
+          folderId = folderIds[1]
+        ),
+        metadataIds[0],
+        metadataIds[1],
+        metadataIds[2]
+      )
+    }
   }
 
   override suspend fun removeBookmarks(selectedIds: Set<Long>) {
