@@ -14,7 +14,6 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import net.lachlanmckee.bookmark.util.runIf
 import net.lachlanmckee.bookmark.util.runIfNotNull
 
 @Composable
@@ -51,7 +50,7 @@ fun CheckableRow(
   isSelected: Boolean,
   isInEditMode: Boolean,
   onClick: () -> Unit,
-  onLongClick: () -> Unit,
+  onLongClick: (() -> Unit)? = null,
   content: @Composable RowScope.() -> Unit
 ) {
   StandardRow(

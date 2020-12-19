@@ -17,7 +17,7 @@ fun BookmarkRow(
   isSelected: Boolean = false,
   isInEditMode: Boolean = false,
   onClick: () -> Unit,
-  onLongClick: () -> Unit = {}
+  onLongClick: (() -> Unit)? = null
 ) {
   CheckableRow(
     backgroundColor = Color.White,
@@ -42,7 +42,7 @@ fun FolderRow(
   isSelected: Boolean,
   isInEditMode: Boolean,
   onClick: () -> Unit,
-  onLongClick: () -> Unit
+  onLongClick: (() -> Unit)? = null
 ) {
   CheckableRow(
     backgroundColor = Color.Gray,
