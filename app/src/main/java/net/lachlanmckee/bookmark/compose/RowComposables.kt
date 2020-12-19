@@ -14,12 +14,14 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import net.lachlanmckee.bookmark.util.runIf
+import net.lachlanmckee.bookmark.util.runIfNotNull
 
 @Composable
-fun ClickableRow(
+fun StandardRow(
   backgroundColor: Color = Color.White,
-  onClick: () -> Unit,
-  onLongClick: () -> Unit = {},
+  onClick: (() -> Unit)? = null,
+  onLongClick: (() -> Unit)? = null,
   content: @Composable RowScope.() -> Unit
 ) {
   Surface(
@@ -27,10 +29,12 @@ fun ClickableRow(
     modifier = Modifier
       .defaultMinSizeConstraints(minHeight = 80.dp)
       .fillMaxWidth()
-      .clickable(
-        onClick = onClick,
-        onLongClick = onLongClick
-      )
+      .runIfNotNull(onClick) { nonNullOnClick ->
+        clickable(
+          onClick = nonNullOnClick,
+          onLongClick = onLongClick
+        )
+      }
   ) {
     Row(
       modifier = Modifier.padding(16.dp),
@@ -50,7 +54,7 @@ fun CheckableRow(
   onLongClick: () -> Unit,
   content: @Composable RowScope.() -> Unit
 ) {
-  ClickableRow(
+  StandardRow(
     backgroundColor = backgroundColor,
     onClick = onClick,
     onLongClick = onLongClick,

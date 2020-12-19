@@ -155,7 +155,7 @@ class SearchFragment : Fragment() {
   fun RowContent(content: SearchViewModel.Content) {
     when (content) {
       is SearchViewModel.Content.BookmarkContent -> {
-        ClickableRow(
+        StandardRow(
           onClick = { model.contentClicked(content) },
           content = {
             Column {
