@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
-import androidx.compose.foundation.lazy.LazyColumnFor
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -95,25 +95,27 @@ class HomeFragment : Fragment() {
 
   @Composable
   private fun BookmarksExistContent(state: HomeViewModel.State.BookmarksExist) {
-    LazyColumnFor(items = state.contentList) { content ->
-      when (content) {
-        is HomeViewModel.Content.FolderContent -> FolderRow(
-          label = AnnotatedString(content.name),
-          isSelected = content.selected,
-          isInEditMode = state.isInEditMode,
-          onClick = { model.contentClicked(content) },
-          onLongClick = { model.contentLongClicked(content) }
-        )
-        is HomeViewModel.Content.BookmarkContent -> BookmarkRow(
-          label = AnnotatedString(content.name),
-          link = AnnotatedString(content.link),
-          isSelected = content.selected,
-          isInEditMode = state.isInEditMode,
-          onClick = { model.contentClicked(content) },
-          onLongClick = { model.contentLongClicked(content) }
-        )
+    LazyColumn {
+      items(state.contentList) { content ->
+        when (content) {
+          is HomeViewModel.Content.FolderContent -> FolderRow(
+            label = AnnotatedString(content.name),
+            isSelected = content.selected,
+            isInEditMode = state.isInEditMode,
+            onClick = { model.contentClicked(content) },
+            onLongClick = { model.contentLongClicked(content) }
+          )
+          is HomeViewModel.Content.BookmarkContent -> BookmarkRow(
+            label = AnnotatedString(content.name),
+            link = AnnotatedString(content.link),
+            isSelected = content.selected,
+            isInEditMode = state.isInEditMode,
+            onClick = { model.contentClicked(content) },
+            onLongClick = { model.contentLongClicked(content) }
+          )
+        }
+        Divider()
       }
-      Divider()
     }
   }
 
