@@ -286,13 +286,15 @@ class SearchFragment : Fragment() {
             append(segment.text)
           }
           is SearchViewModel.TextSegment.Highlighted -> {
-            append(AnnotatedString
-              .Builder()
-              .apply {
-                pushStyle(SpanStyle(fontWeight = FontWeight.Bold))
-                append(segment.text)
-              }
-              .toAnnotatedString())
+            append(
+              AnnotatedString
+                .Builder()
+                .apply {
+                  pushStyle(SpanStyle(fontWeight = FontWeight.Bold))
+                  append(segment.text)
+                }
+                .toAnnotatedString()
+            )
           }
         }
       }

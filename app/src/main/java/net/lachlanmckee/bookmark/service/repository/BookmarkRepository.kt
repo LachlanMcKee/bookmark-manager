@@ -45,9 +45,9 @@ class BookmarkRepositoryImpl @Inject constructor(
     }
 
     return Pager(PagingConfig(pageSize = 20)) {
-        bookmarkDao
-          .findByTermsAndMetadataIds(terms, metadataIds)
-      }
+      bookmarkDao
+        .findByTermsAndMetadataIds(terms, metadataIds)
+    }
       .flow
       .map { pagingData ->
         pagingData.map {
