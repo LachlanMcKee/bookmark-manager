@@ -293,7 +293,7 @@ class HomeViewModelTest {
     homeViewModel.deleteClicked()
 
     coVerify { folderRepository.removeFolders(eq(setOf(1))) }
-    coVerify { bookmarkRepository.removeBookmarks(eq(setOf(1))) }
+    coVerify { bookmarkRepository.removeContent(eq(setOf(1))) }
   }
 
   private fun givenFolders(parentId: Long?, folders: List<FolderModel>) {
@@ -301,7 +301,7 @@ class HomeViewModelTest {
   }
 
   private fun givenBookmarks(parentId: Long?, bookmarks: List<BookmarkModel>) {
-    every { bookmarkRepository.getBookmarksByFolder(parentId) } returns flowOf(bookmarks)
+    every { bookmarkRepository.getFolderContent(parentId) } returns flowOf(bookmarks)
   }
 
   private companion object {

@@ -6,12 +6,11 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import net.lachlanmckee.bookmark.feature.Navigator
 import net.lachlanmckee.bookmark.feature.RootViewModel
+import net.lachlanmckee.bookmark.service.model.FolderContentModel
 import net.lachlanmckee.bookmark.service.repository.BookmarkRepository
-import net.lachlanmckee.bookmark.service.repository.FolderRepository
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
-  private val folderRepository: FolderRepository,
   private val bookmarkRepository: BookmarkRepository,
   private val navigator: Navigator
 ) : ViewModel(), RootViewModel {
@@ -33,33 +32,30 @@ class HomeViewModel @Inject constructor(
       .flatMapLatest { folderMetadata ->
         val folderId = folderMetadata?.folderId
         combine(
-          folderRepository.getFolders(folderId),
-          bookmarkRepository.getBookmarksByFolder(folderId),
+          bookmarkRepository.getFolderContent(folderId),
           editStateFlowable,
-          ::Triple
+          ::Pair
         )
       }
-      .map { (folders, bookmarks, editState) ->
-        if (folders.isNotEmpty() || bookmarks.isNotEmpty()) {
-          val contentList = buildList {
-            folders.forEach { folder ->
-              add(
+      .map { (bookmarkContent, editState) ->
+        if (bookmarkContent.isNotEmpty()) {
+          val contentList = bookmarkContent.map { contentModel ->
+            when (contentModel) {
+              is FolderContentModel.Folder -> {
                 Content.FolderContent(
-                  id = folder.id,
-                  name = folder.name,
-                  selected = editState.selectedFolderIds.contains(folder.id)
+                  id = contentModel.folder.id,
+                  name = contentModel.folder.name,
+                  selected = editState.selectedFolderIds.contains(contentModel.folder.id)
                 )
-              )
-            }
-            bookmarks.forEach { bookmark ->
-              add(
+              }
+              is FolderContentModel.Bookmark -> {
                 Content.BookmarkContent(
-                  id = bookmark.id,
-                  name = bookmark.name,
-                  selected = editState.selectedBookmarkIds.contains(bookmark.id),
-                  link = bookmark.link
+                  id = contentModel.bookmark.id,
+                  name = contentModel.bookmark.name,
+                  selected = editState.selectedBookmarkIds.contains(contentModel.bookmark.id),
+                  link = contentModel.bookmark.link
                 )
-              )
+              }
             }
           }
           State.BookmarksExist(
@@ -75,8 +71,7 @@ class HomeViewModel @Inject constructor(
 
   fun resetData() {
     viewModelScope.launch {
-      bookmarkRepository.addBookmark()
-      folderRepository.addFolder()
+      bookmarkRepository.resetData()
     }
   }
 
@@ -161,8 +156,10 @@ class HomeViewModel @Inject constructor(
     val currentEditState = editStateFlowable.value
     if (currentEditState.isInEditMode) {
       viewModelScope.launch {
-        folderRepository.removeFolders(currentEditState.selectedFolderIds)
-        bookmarkRepository.removeBookmarks(currentEditState.selectedBookmarkIds)
+        bookmarkRepository.removeContent(
+          folderIds = currentEditState.selectedFolderIds,
+          bookmarkIds = currentEditState.selectedBookmarkIds
+        )
       }
     }
   }

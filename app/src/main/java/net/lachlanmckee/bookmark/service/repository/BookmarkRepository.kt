@@ -1,10 +1,10 @@
 package net.lachlanmckee.bookmark.service.repository
 
 import androidx.paging.*
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.*
 import net.lachlanmckee.bookmark.service.model.BookmarkModel
+import net.lachlanmckee.bookmark.service.model.FolderContentModel
+import net.lachlanmckee.bookmark.service.model.FolderModel
 import net.lachlanmckee.bookmark.service.model.MetadataModel
 import net.lachlanmckee.bookmark.service.persistence.dao.BookmarkDao
 import net.lachlanmckee.bookmark.service.persistence.dao.FolderDao
@@ -21,13 +21,13 @@ interface BookmarkRepository {
     metadataIds: List<Long>
   ): Flow<PagingData<BookmarkModel>>
 
-  fun getBookmarksByFolder(folderId: Long?): Flow<List<BookmarkModel>>
+  fun getFolderContent(folderId: Long?): Flow<List<FolderContentModel>>
 
   fun getAllMetadata(): Flow<List<MetadataModel>>
 
-  suspend fun addBookmark()
+  suspend fun resetData()
 
-  suspend fun removeBookmarks(selectedIds: Set<Long>)
+  suspend fun removeContent(folderIds: Set<Long>, bookmarkIds: Set<Long>)
 }
 
 class BookmarkRepositoryImpl @Inject constructor(
@@ -56,16 +56,39 @@ class BookmarkRepositoryImpl @Inject constructor(
       }
   }
 
-  override fun getBookmarksByFolder(folderId: Long?): Flow<List<BookmarkModel>> {
+  override fun getFolderContent(folderId: Long?): Flow<List<FolderContentModel>> {
     val bookmarksFlow = if (folderId != null) {
       bookmarkDao.getBookmarksWithinFolder(folderId)
     } else {
       bookmarkDao.getTopLevelBookmarks()
     }
-    return bookmarksFlow
-      .map { bookmarkEntities ->
-        bookmarkEntities.map(::mapToBookmark)
+
+    val foldersFlow = if (folderId != null) {
+      folderDao.getChildFolders(folderId)
+    } else {
+      folderDao.getTopLevelFolders()
+    }
+
+    val folders = foldersFlow
+      .map { folderEntities ->
+        folderEntities.map { entity ->
+          FolderContentModel.Folder(FolderModel(
+            id = entity.folderId,
+            parentId = entity.parentId,
+            name = entity.name
+          ))
+        }
       }
+
+    val bookmarks = bookmarksFlow
+      .map { bookmarkEntities ->
+        bookmarkEntities.map {
+          FolderContentModel.Bookmark(mapToBookmark(it))
+        }
+      }
+    return folders.flatMapLatest { folderList ->
+      bookmarks.map { bookmarkList -> folderList.plus(bookmarkList) }
+    }
   }
 
   override fun getAllMetadata(): Flow<List<MetadataModel>> {
@@ -94,7 +117,7 @@ class BookmarkRepositoryImpl @Inject constructor(
     )
   }
 
-  override suspend fun addBookmark() {
+  override suspend fun resetData() {
     bookmarkDao.deleteAll()
     metadataDao.deleteAll()
     folderDao.deleteAll()
@@ -171,7 +194,8 @@ class BookmarkRepositoryImpl @Inject constructor(
     }
   }
 
-  override suspend fun removeBookmarks(selectedIds: Set<Long>) {
-    bookmarkDao.deleteByIds(selectedIds.toLongArray())
+  override suspend fun removeContent(folderIds: Set<Long>, bookmarkIds: Set<Long>) {
+    folderDao.deleteByIds(folderIds.toLongArray())
+    bookmarkDao.deleteByIds(bookmarkIds.toLongArray())
   }
 }
