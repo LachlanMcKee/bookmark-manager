@@ -55,8 +55,9 @@ class SearchViewModel @Inject constructor(
 
     return Results(
       query = queryMetadata.query,
-      metadata = allMetadata,
-      selectedMetadata = queryMetadata.selectedMetadata.toList(),
+      metadata = allMetadata.map { metadata ->
+        SelectableMetadata(queryMetadata.selectedMetadata.contains(metadata), metadata)
+      },
       contentList = bookmarkRepository
         .getBookmarksByQuery(
           terms = terms,
@@ -90,17 +91,16 @@ class SearchViewModel @Inject constructor(
     }
   }
 
-  fun metadataFilterClicked(metadata: SearchMetadata) {
-    val previousQuery = currentQueryFlowable.value
-    currentQueryFlowable.value = previousQuery.copy(
-      selectedMetadata = previousQuery.selectedMetadata.minus(metadata)
-    )
-  }
-
   fun metadataRowItemClicked(metadata: SearchMetadata) {
     val previousQuery = currentQueryFlowable.value
     currentQueryFlowable.value = previousQuery.copy(
-      selectedMetadata = previousQuery.selectedMetadata.plus(metadata)
+      selectedMetadata = previousQuery.selectedMetadata.let { selectedMetadata ->
+        if (selectedMetadata.contains(metadata)) {
+          selectedMetadata.minus(metadata)
+        } else {
+          selectedMetadata.plus(metadata)
+        }
+      }
     )
   }
 
@@ -156,15 +156,13 @@ class SearchViewModel @Inject constructor(
 
   data class Results(
     val query: String,
-    val metadata: List<SearchMetadata>,
-    val selectedMetadata: List<SearchMetadata>,
+    val metadata: List<SelectableMetadata>,
     val contentList: Flow<PagingData<Content>>
   )
 
   private val emptyResults = Results(
     query = "",
     metadata = emptyList(),
-    selectedMetadata = emptyList(),
     contentList = emptyFlow()
   )
 
@@ -180,6 +178,11 @@ class SearchViewModel @Inject constructor(
   data class SearchMetadata(
     val id: Long,
     val name: SearchText
+  )
+
+  data class SelectableMetadata(
+    val isSelected: Boolean,
+    val metadata: SearchMetadata
   )
 
   data class QueryMetadata(

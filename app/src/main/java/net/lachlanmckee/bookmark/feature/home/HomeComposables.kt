@@ -12,7 +12,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
 import net.lachlanmckee.bookmark.compose.CheckableRow
-import net.lachlanmckee.bookmark.compose.ChipCollection
+import net.lachlanmckee.bookmark.compose.ChipFlowRow
 import net.lachlanmckee.bookmark.compose.RowText
 import net.lachlanmckee.bookmark.feature.BookmarkRowContent
 import net.lachlanmckee.bookmark.feature.home.HomeViewModel.Content.BookmarkContent.Metadata
@@ -43,7 +43,7 @@ fun BookmarkRow(
             link = link
           )
 
-          ChipCollection(
+          ChipFlowRow(
             modifier = Modifier.padding(top = 8.dp),
             data = metadata,
             labelFunc = { AnnotatedString(it.name) },

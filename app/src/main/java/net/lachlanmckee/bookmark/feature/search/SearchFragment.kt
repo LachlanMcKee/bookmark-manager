@@ -87,80 +87,63 @@ class SearchFragment : Fragment() {
 
     val lazyPagingContent = state.contentList.collectAsLazyPagingItems()
 
-    LazyColumn(
-      state = rememberLazyListState(),
-      horizontalAlignment = Alignment.Start
-    ) {
-      item {
-        SearchTextField(state)
-      }
+    Column {
+      SearchTextField(state)
+
       if (state.metadata.isNotEmpty()) {
-        item {
-          ChipCollection(
-            modifier = Modifier
-              .fillMaxWidth()
-              .background(Color.DarkGray)
-              .padding(8.dp),
-            data = state.metadata,
-            labelFunc = { buildAnnotatedString(it.name.segments) },
-            onClick = model::metadataRowItemClicked
-          )
-        }
-      }
-      if (state.selectedMetadata.isNotEmpty()) {
-        item {
-          ChipCollection(
-            modifier = Modifier
-              .fillMaxWidth()
-              .background(Color.Cyan)
-              .padding(8.dp),
-            data = state.selectedMetadata,
-            showCloseIcon = true,
-            labelFunc = { buildAnnotatedString(it.name.segments) },
-            onClick = model::metadataFilterClicked
-          )
-        }
+        ChipHorizontalList(
+          modifier = Modifier.background(Color.DarkGray),
+          data = state.metadata.map { it.metadata },
+          isSelected = state.metadata.map { it.isSelected },
+          labelFunc = { buildAnnotatedString(it.name.segments) },
+          onClick = { model.metadataRowItemClicked(it) }
+        )
       }
 
-      items(lazyPagingContent) {
-        if (it != null) {
-          RowContent(it)
-        } else {
-          RowContentPlaceholder()
+      LazyColumn(
+        state = rememberLazyListState(),
+        horizontalAlignment = Alignment.Start
+      ) {
+        items(lazyPagingContent) {
+          if (it != null) {
+            RowContent(it)
+          } else {
+            RowContentPlaceholder()
+          }
         }
-      }
 
-      lazyPagingContent.apply {
-        when {
-          loadState.refresh is LoadState.Loading -> {
-            item { LoadingView(modifier = Modifier.fillParentMaxSize()) }
-          }
-          loadState.append is LoadState.Loading -> {
-            item { LoadingItem() }
-          }
-          loadState.refresh is LoadState.Error -> {
-            val e = lazyPagingContent.loadState.refresh as LoadState.Error
-            item {
-              ErrorItem(
-                message = e.error.localizedMessage!!,
-                modifier = Modifier.fillParentMaxSize(),
-                onClickRetry = { retry() }
-              )
+        lazyPagingContent.apply {
+          when {
+            loadState.refresh is LoadState.Loading -> {
+              item { LoadingView(modifier = Modifier.fillParentMaxSize()) }
             }
-          }
-          loadState.append is LoadState.Error -> {
-            val e = lazyPagingContent.loadState.append as LoadState.Error
-            item {
-              ErrorItem(
-                message = e.error.localizedMessage!!,
-                onClickRetry = { retry() }
-              )
+            loadState.append is LoadState.Loading -> {
+              item { LoadingItem() }
+            }
+            loadState.refresh is LoadState.Error -> {
+              val e = lazyPagingContent.loadState.refresh as LoadState.Error
+              item {
+                ErrorItem(
+                  message = e.error.localizedMessage!!,
+                  modifier = Modifier.fillParentMaxSize(),
+                  onClickRetry = { retry() }
+                )
+              }
+            }
+            loadState.append is LoadState.Error -> {
+              val e = lazyPagingContent.loadState.append as LoadState.Error
+              item {
+                ErrorItem(
+                  message = e.error.localizedMessage!!,
+                  onClickRetry = { retry() }
+                )
+              }
             }
           }
         }
-      }
 
-      // https://proandroiddev.com/infinite-lists-with-paging-3-in-jetpack-compose-b095533aefe6
+        // https://proandroiddev.com/infinite-lists-with-paging-3-in-jetpack-compose-b095533aefe6
+      }
     }
   }
 
@@ -249,7 +232,7 @@ class SearchFragment : Fragment() {
                 link = buildAnnotatedString(content.link.segments)
               )
 
-              ChipCollection(
+              ChipFlowRow(
                 modifier = Modifier.padding(top = 8.dp),
                 data = content.metadata,
                 labelFunc = { buildAnnotatedString(it.name.segments) },
