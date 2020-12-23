@@ -97,15 +97,6 @@ class BookmarkRepositoryImpl @Inject constructor(
     }
   }
 
-  private fun mapToBookmark(entity: BookmarkEntity): BookmarkModel {
-    return BookmarkModel(
-      id = entity.bookmarkId,
-      name = entity.name,
-      link = entity.link,
-      metadata = emptyList()
-    )
-  }
-
   private fun mapToBookmark(entity: BookmarkWithMetadata): BookmarkModel {
     return BookmarkModel(
       id = entity.bookmark.bookmarkId,

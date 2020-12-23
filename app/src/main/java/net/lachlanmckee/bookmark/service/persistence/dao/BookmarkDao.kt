@@ -13,10 +13,10 @@ import net.lachlanmckee.bookmark.service.persistence.entity.MetadataEntity
 @Dao
 abstract class BookmarkDao {
   @Query("SELECT * FROM bookmark WHERE folderId is NULL")
-  abstract fun getTopLevelBookmarks(): Flow<List<BookmarkEntity>>
+  abstract fun getTopLevelBookmarks(): Flow<List<BookmarkWithMetadata>>
 
   @Query("SELECT * FROM bookmark WHERE folderId = :folderId")
-  abstract fun getBookmarksWithinFolder(folderId: Long): Flow<List<BookmarkEntity>>
+  abstract fun getBookmarksWithinFolder(folderId: Long): Flow<List<BookmarkWithMetadata>>
 
   @Transaction
   @RawQuery(

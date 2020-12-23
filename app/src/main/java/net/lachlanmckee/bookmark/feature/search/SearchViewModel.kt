@@ -161,7 +161,7 @@ class SearchViewModel @Inject constructor(
     val contentList: Flow<PagingData<Content>>
   )
 
-  val emptyResults = Results(
+  private val emptyResults = Results(
     query = "",
     metadata = emptyList(),
     selectedMetadata = emptyList(),

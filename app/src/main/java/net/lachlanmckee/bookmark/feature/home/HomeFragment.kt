@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
+import androidx.compose.foundation.layout.ExperimentalLayout
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -21,6 +22,7 @@ import net.lachlanmckee.bookmark.di.viewmodel.ViewModelProviderFactory
 import timber.log.Timber
 import javax.inject.Inject
 
+@ExperimentalLayout
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
   @Inject
@@ -108,10 +110,12 @@ class HomeFragment : Fragment() {
           is HomeViewModel.Content.BookmarkContent -> BookmarkRow(
             label = AnnotatedString(content.name),
             link = AnnotatedString(content.link),
+            metadata = content.metadata,
             isSelected = content.selected,
             isInEditMode = state.isInEditMode,
-            onClick = { model.contentClicked(content) },
-            onLongClick = { model.contentLongClicked(content) }
+            bookmarkOnClick = { model.contentClicked(content) },
+            bookmarkOnLongClick = { model.contentLongClicked(content) },
+            metadataOnClick = {  }
           )
         }
         Divider()

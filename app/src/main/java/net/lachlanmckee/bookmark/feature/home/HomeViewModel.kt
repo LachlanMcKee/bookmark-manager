@@ -53,7 +53,10 @@ class HomeViewModel @Inject constructor(
                   id = contentModel.bookmark.id,
                   name = contentModel.bookmark.name,
                   selected = editState.selectedBookmarkIds.contains(contentModel.bookmark.id),
-                  link = contentModel.bookmark.link
+                  link = contentModel.bookmark.link,
+                  metadata = contentModel.bookmark.metadata.map {
+                    Content.BookmarkContent.Metadata(it.id, it.name)
+                  }
                 )
               }
             }
@@ -203,8 +206,14 @@ class HomeViewModel @Inject constructor(
       override val id: Long,
       override val name: String,
       override val selected: Boolean,
-      val link: String
-    ) : Content()
+      val link: String,
+      val metadata: List<Metadata>
+    ) : Content() {
+      data class Metadata(
+        val id: Long,
+        val name: String
+      )
+    }
   }
 
   data class FolderMetadata(
