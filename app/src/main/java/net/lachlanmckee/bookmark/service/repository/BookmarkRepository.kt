@@ -72,11 +72,13 @@ class BookmarkRepositoryImpl @Inject constructor(
     val folders = foldersFlow
       .map { folderEntities ->
         folderEntities.map { entity ->
-          FolderContentModel.Folder(FolderModel(
-            id = entity.folderId,
-            parentId = entity.parentId,
-            name = entity.name
-          ))
+          FolderContentModel.Folder(
+            FolderModel(
+              id = entity.folderId,
+              parentId = entity.parentId,
+              name = entity.name
+            )
+          )
         }
       }
 

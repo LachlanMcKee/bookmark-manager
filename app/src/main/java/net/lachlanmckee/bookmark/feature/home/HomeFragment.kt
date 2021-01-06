@@ -115,7 +115,7 @@ class HomeFragment : Fragment() {
             isInEditMode = state.isInEditMode,
             bookmarkOnClick = { model.contentClicked(content) },
             bookmarkOnLongClick = { model.contentLongClicked(content) },
-            metadataOnClick = {  }
+            metadataOnClick = { }
           )
         }
         Divider()
