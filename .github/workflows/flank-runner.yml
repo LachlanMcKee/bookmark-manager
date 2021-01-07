@@ -38,6 +38,7 @@ jobs:
       - run: curl -L https://github.com/Flank/flank/releases/download/v20.09.3/flank.jar --output flank.jar
       - run: ls -lrth
       - run: java -jar flank.jar firebase test android run
+      - run: ls -lrth
       - name: Upload JUnit Report
         uses: actions/upload-artifact@v2
         with:
