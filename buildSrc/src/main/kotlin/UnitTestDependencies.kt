@@ -1,3 +1,6 @@
 object UnitTestDependencies {
-  const val junit = "junit:junit:4.13.1"
+  const val junitEngine = "org.junit.jupiter:junit-jupiter-engine:5.4.2"
+  const val junitApi = "org.junit.jupiter:junit-jupiter-api:5.4.2"
+  const val mockk = "io.mockk:mockk:1.10.3"
+  const val coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2"
 }

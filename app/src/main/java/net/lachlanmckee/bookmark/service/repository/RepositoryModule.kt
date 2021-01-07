@@ -3,11 +3,13 @@ package net.lachlanmckee.bookmark.service.repository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 internal object RepositoryModule {
-    @Provides
-    fun provideBookmarkRepository(impl: BookmarkRepositoryImpl): BookmarkRepository = impl
+  @Singleton
+  @Provides
+  fun provideBookmarkRepository(impl: BookmarkRepositoryImpl): BookmarkRepository = impl
 }

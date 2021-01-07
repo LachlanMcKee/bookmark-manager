@@ -67,10 +67,21 @@ android {
     kotlinCompilerVersion = Dependencies.Kotlin.version
     kotlinCompilerExtensionVersion = Dependencies.Compose.version
   }
+
+  packagingOptions {
+    resources {
+      excludes += "META-INF/AL2.0"
+      excludes += "META-INF/LGPL2.1"
+    }
+  }
 }
 
 kapt {
   correctErrorTypes = true
+}
+
+tasks.withType<Test> {
+  useJUnitPlatform()
 }
 
 dependencies {
@@ -78,8 +89,6 @@ dependencies {
 
   implementation(Dependencies.AndroidX.appcompat)
   implementation(Dependencies.AndroidX.coreKtx)
-  implementation(Dependencies.AndroidX.constraintLayout)
-  implementation(Dependencies.AndroidX.lifecycleExtensions)
   implementation(Dependencies.AndroidX.lifecycleViewModelKtx)
   implementation(Dependencies.AndroidX.lifecycleLiveDataKtx)
   implementation(Dependencies.AndroidX.navigationFragmentKtx)
@@ -92,6 +101,12 @@ dependencies {
   implementation(Dependencies.Compose.iconsCore)
   implementation(Dependencies.Compose.iconsExtended)
   implementation(Dependencies.Compose.liveData)
+  implementation(Dependencies.Compose.paging)
+
+  // Storage
+  implementation(Dependencies.Storage.roomRuntime)
+  kapt(Dependencies.Storage.roomCompiler)
+  implementation(Dependencies.Storage.roomKtx)
 
   implementation(Dependencies.Network.okHttp)
   implementation(Dependencies.Analytics.firebaseAnalytics)
@@ -105,7 +120,10 @@ dependencies {
 
   implementation(Dependencies.Logging.timber)
 
-  testImplementation(UnitTestDependencies.junit)
+  testImplementation(UnitTestDependencies.junitEngine)
+  testImplementation(UnitTestDependencies.junitApi)
+  testImplementation(UnitTestDependencies.mockk)
+  testImplementation(UnitTestDependencies.coroutinesTest)
 
   debugImplementation(EspressoTestDependencies.fragmentTesting)
   androidTestImplementation(EspressoTestDependencies.junit)

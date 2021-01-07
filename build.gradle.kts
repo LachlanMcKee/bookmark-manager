@@ -7,7 +7,7 @@ buildscript {
     jcenter()
   }
   dependencies {
-    classpath("com.android.tools.build:gradle:4.2.0-alpha16")
+    classpath("com.android.tools.build:gradle:7.0.0-alpha03")
     classpath(kotlin("gradle-plugin", version = Dependencies.Kotlin.version))
 
     classpath("com.google.gms:google-services:4.3.4")
@@ -82,6 +82,8 @@ subprojects {
     kotlinOptions {
       jvmTarget = "1.8"
       useIR = true
+      freeCompilerArgs = freeCompilerArgs + "-Xopt-in=kotlin.RequiresOptIn"
+      freeCompilerArgs = freeCompilerArgs + "-Xopt-in=kotlin.contracts.ExperimentalContracts"
     }
   }
 }

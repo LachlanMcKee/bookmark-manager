@@ -38,3 +38,21 @@ jobs:
       - run: curl -L https://github.com/Flank/flank/releases/download/v20.09.3/flank.jar --output flank.jar
       - run: ls -lrth
       - run: java -jar flank.jar firebase test android run
+      - name: Upload JUnit Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: JUnitReport.xml
+          path: JUnitReport.xml
+          retention-days: 2
+      - name: Upload Cost Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: CostReport.txt
+          path: CostReport.txt
+          retention-days: 2
+      - name: Upload Flank Yml
+        uses: actions/upload-artifact@v2
+        with:
+          name: flank.yml
+          path: flank.yml
+          retention-days: 2
