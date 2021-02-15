@@ -1,31 +1,61 @@
-name: Android Feature Branch CI
-
+name: Pull Request CI
 on: pull_request
-
 jobs:
-  pull_request:
-    name: Build with Gradle
-    runs-on: ubuntu-18.04
-
+  instrumentation-tests:
+    name: Instrumentation tests
+    runs-on: macOS-latest
+    timeout-minutes: 30
+    strategy:
+      matrix:
+        api-level: [21, 25, 29]
     steps:
       - uses: actions/checkout@v2
-      - name: set up JDK 11
-        uses: actions/setup-java@v1
+      - uses: gradle/wrapper-validation-action@v1
+      - uses: actions/setup-java@v1
         with:
           java-version: 11.0.8
+      - name: Instrumentation tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api-level }}
+          arch: x86
+          script: ./gradlew connectedCheck --stacktrace
+
+  spotless:
+    name: Spotless
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v2
+      - uses: gradle/wrapper-validation-action@v1
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 11.0.8
+      - uses: actions/cache@v1
+        with:
+          path: ~/.gradle/caches
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}
       - name: Spotless
-        run: bash ./gradlew spotlessCheck
-      - name: Build with Gradle
-        run: bash ./gradlew assembleDebug assembleDebugAndroidTest
-      - name: Upload Debug APK
-        uses: actions/upload-artifact@v2
+        run: ./gradlew spotlessCheck
+        working-directory: .
+
+  unit-tests:
+    name: Unit tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      JAVA_TOOL_OPTIONS: -Xmx4g
+      GRADLE_OPTS: -Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2 -Dkotlin.incremental=false -Dkotlin.compiler.execution.strategy=in-process -Dorg.gradle.parallel=true
+    steps:
+      - uses: actions/checkout@v2
+      - uses: gradle/wrapper-validation-action@v1
+      - uses: actions/setup-java@v1
         with:
-          name: debug
-          path: app/build/outputs/apk/debug/app-debug.apk
-          retention-days: 2
-      - name: Upload Espresso APK
-        uses: actions/upload-artifact@v2
+          java-version: 11.0.8
+      - uses: actions/cache@v1
         with:
-          name: espresso
-          path: app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
-          retention-days: 2
+          path: ~/.gradle/caches
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}
+      - name: Unit tests
+        run: ./gradlew testDebugUnitTest
+        working-directory: .

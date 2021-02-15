@@ -11,9 +11,9 @@ import net.lachlanmckee.bookmark.feature.home.HomeViewModel.Content.BookmarkCont
 import net.lachlanmckee.bookmark.feature.home.HomeViewModel.Content.FolderContent
 import net.lachlanmckee.bookmark.feature.home.HomeViewModel.State.*
 import net.lachlanmckee.bookmark.service.model.BookmarkModel
+import net.lachlanmckee.bookmark.service.model.FolderContentModel
 import net.lachlanmckee.bookmark.service.model.FolderModel
 import net.lachlanmckee.bookmark.service.repository.BookmarkRepository
-import net.lachlanmckee.bookmark.service.repository.FolderRepository
 import net.lachlanmckee.bookmark.test.util.LiveDataTester.testLiveData
 import net.lachlanmckee.bookmark.test.util.getOrAwaitValue
 import net.lachlanmckee.bookmark.test.util.getOrAwaitValues
@@ -24,12 +24,11 @@ import org.junit.jupiter.api.Test
 @ExperimentalStdlibApi
 @ExperimentalCoroutinesApi
 class HomeViewModelTest {
-  private val folderRepository: FolderRepository = mockk(relaxed = true)
   private val bookmarkRepository: BookmarkRepository = mockk(relaxed = true)
   private val navigator: Navigator = mockk(relaxed = true)
 
   private val homeViewModel = HomeViewModel(
-    folderRepository, bookmarkRepository, navigator
+    bookmarkRepository, navigator
   )
 
   @Test
@@ -52,8 +51,7 @@ class HomeViewModelTest {
 
   @Test
   fun givenFolderAndBookmarksDoNotExist_whenStateObserved_thenExpectEmptyState() = testLiveData {
-    givenFolders(null, emptyList())
-    givenBookmarks(null, emptyList())
+    givenFolderContent(null, emptyList())
     assertEquals(Empty, homeViewModel.state.getOrAwaitValue())
   }
 
@@ -65,11 +63,20 @@ class HomeViewModelTest {
 
   @Test
   fun whenFolderClicked_thenRequestNewDataAndShowNestedFolder() = testLiveData {
-    givenFolders(null, listOf(folder1))
-    givenBookmarks(null, listOf(bookmark1))
+    givenFolderContent(
+      parentId = null,
+      folderContentModels = listOf(
+        FolderContentModel.Folder(folder1),
+        FolderContentModel.Bookmark(bookmark1)
+      )
+    )
 
-    givenFolders(1, emptyList())
-    givenBookmarks(1, listOf(bookmark2))
+    givenFolderContent(
+      parentId = 1,
+      folderContentModels = listOf(
+        FolderContentModel.Bookmark(bookmark2)
+      )
+    )
 
     val statesList = homeViewModel.state.getOrAwaitValues(numberOfValues = 3) { nextStepIndex ->
       if (nextStepIndex == 1) {
@@ -110,8 +117,13 @@ class HomeViewModelTest {
   @Test
   fun givenFolderAndBookmarksExists_whenStateObserved_thenExpectBookmarksExistState() =
     testLiveData {
-      givenFolders(null, listOf(folder1))
-      givenBookmarks(null, listOf(bookmark1))
+      givenFolderContent(
+        parentId = null,
+        folderContentModels = listOf(
+          FolderContentModel.Folder(folder1),
+          FolderContentModel.Bookmark(bookmark1)
+        )
+      )
 
       assertEquals(
         BookmarksExist(
@@ -128,8 +140,13 @@ class HomeViewModelTest {
   @Test
   fun givenFolderAndBookmarksExists_whenLongClickFolderAndClickBookmark_thenExpectEditMode() =
     testLiveData {
-      givenFolders(null, listOf(folder1))
-      givenBookmarks(null, listOf(bookmark1))
+      givenFolderContent(
+        parentId = null,
+        folderContentModels = listOf(
+          FolderContentModel.Folder(folder1),
+          FolderContentModel.Bookmark(bookmark1)
+        )
+      )
 
       val statesList =
         homeViewModel.state.getOrAwaitValues(numberOfValues = 5) { nextStepIndex ->
@@ -191,8 +208,13 @@ class HomeViewModelTest {
 
   @Test
   fun givenInEditMode_whenBackPressed_thenExitEditMode() = testLiveData {
-    givenFolders(null, listOf(folder1))
-    givenBookmarks(null, listOf(bookmark1))
+    givenFolderContent(
+      parentId = null,
+      folderContentModels = listOf(
+        FolderContentModel.Folder(folder1),
+        FolderContentModel.Bookmark(bookmark1)
+      )
+    )
 
     val statesList = homeViewModel.state.getOrAwaitValues(numberOfValues = 3) { nextStepIndex ->
       if (nextStepIndex == 1) {
@@ -234,8 +256,13 @@ class HomeViewModelTest {
   @Test
   fun givenFolderAndBookmarksExists_whenLongClickBookmarkAndClickFolder_thenExpectEditMode() =
     testLiveData {
-      givenFolders(null, listOf(folder1))
-      givenBookmarks(null, listOf(bookmark1))
+      givenFolderContent(
+        parentId = null,
+        folderContentModels = listOf(
+          FolderContentModel.Folder(folder1),
+          FolderContentModel.Bookmark(bookmark1)
+        )
+      )
 
       val statesList =
         homeViewModel.state.getOrAwaitValues(numberOfValues = 3) { nextStepIndex ->
@@ -278,8 +305,13 @@ class HomeViewModelTest {
   @Disabled("Currently mockk doesn't work with verify coroutines.")
   @Test
   fun givenInEditMode_whenDeletePressed_thenRemoveFoldersAndBookmarks() = testLiveData {
-    givenFolders(null, listOf(folder1))
-    givenBookmarks(null, listOf(bookmark1))
+    givenFolderContent(
+      parentId = null,
+      folderContentModels = listOf(
+        FolderContentModel.Folder(folder1),
+        FolderContentModel.Bookmark(bookmark1)
+      )
+    )
 
     homeViewModel.state.getOrAwaitValues(numberOfValues = 3) { nextStepIndex ->
       if (nextStepIndex == 1) {
@@ -292,16 +324,16 @@ class HomeViewModelTest {
 
     homeViewModel.deleteClicked()
 
-    coVerify { folderRepository.removeFolders(eq(setOf(1))) }
-    coVerify { bookmarkRepository.removeContent(eq(setOf(1))) }
+    coVerify {
+      bookmarkRepository.removeContent(
+        folderIds = eq(setOf(1)),
+        bookmarkIds = eq(setOf(1))
+      )
+    }
   }
 
-  private fun givenFolders(parentId: Long?, folders: List<FolderModel>) {
-    every { folderRepository.getFolders(parentId) } returns flowOf(folders)
-  }
-
-  private fun givenBookmarks(parentId: Long?, bookmarks: List<BookmarkModel>) {
-    every { bookmarkRepository.getFolderContent(parentId) } returns flowOf(bookmarks)
+  private fun givenFolderContent(parentId: Long?, folderContentModels: List<FolderContentModel>) {
+    every { bookmarkRepository.getFolderContent(parentId) } returns flowOf(folderContentModels)
   }
 
   private companion object {
@@ -328,13 +360,15 @@ class HomeViewModelTest {
       id = 10,
       name = "Bookmark1",
       selected = false,
-      link = "https://www.google.com/"
+      link = "https://www.google.com/",
+      metadata = emptyList()
     )
     private val unselectedBookmarkContent2 = BookmarkContent(
       id = 11,
       name = "Bookmark2",
       selected = false,
-      link = "https://www.android.com/"
+      link = "https://www.android.com/",
+      metadata = emptyList()
     )
   }
 }
