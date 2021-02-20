@@ -36,24 +36,14 @@ jobs:
       - run: echo "${{ github.event.inputs.flankConfigBase64 }}" | base64 --decode > flank.yml
       - run: cat flank.yml
       - run: curl -L https://github.com/Flank/flank/releases/download/v20.09.3/flank.jar --output flank.jar
-      - run: ls -lrth
       - run: java -jar flank.jar firebase test android run
-      - run: ls -lrth
-      - name: Upload JUnit Report
+      - name: Upload Flank Data
         uses: actions/upload-artifact@v2
         with:
-          name: JUnitReport.xml
-          path: JUnitReport.xml
-          retention-days: 2
-      - name: Upload Cost Report
-        uses: actions/upload-artifact@v2
-        with:
-          name: CostReport.txt
-          path: CostReport.txt
-          retention-days: 2
-      - name: Upload Flank Yml
-        uses: actions/upload-artifact@v2
-        with:
-          name: flank.yml
-          path: flank.yml
+          name: flank-data.zip
+          path: |
+            results/**/JUnitReport.xml
+            results/**/CostReport.txt
+            results/**/flank.yml
+            results/**/matrix_ids.json
           retention-days: 2
