@@ -22,17 +22,17 @@ fun RootBottomAppBar(
 ) {
   BottomAppBar(cutoutShape = CircleShape) {
     IconButton(onClick = { homeClick() }) {
-      Icon(Icons.Filled.Home)
+      Icon(Icons.Filled.Home, "Home")
     }
     IconButton(onClick = { searchClick() }) {
-      Icon(Icons.Filled.Search)
+      Icon(Icons.Filled.Search, "Search")
     }
     Spacer(Modifier.weight(1f, true))
     IconButton(onClick = { resetClick() }) {
-      Icon(Icons.Filled.Refresh)
+      Icon(Icons.Filled.Refresh, "Refresh")
     }
     IconButton(onClick = { settingsClick() }) {
-      Icon(Icons.Filled.Settings)
+      Icon(Icons.Filled.Settings, "Settings")
     }
   }
 }

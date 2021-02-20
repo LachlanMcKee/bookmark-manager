@@ -25,7 +25,7 @@ android {
     versionCode = System.getenv("BITRISE_BUILD_NUMBER")?.toIntOrNull() ?: 1
     versionName = "0.0.1"
 
-    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    testInstrumentationRunner = "net.lachlanmckee.bookmark.testing.CustomTestRunner"
 
     testOptions {
       execution = "ANDROIDX_TEST_ORCHESTRATOR"
@@ -86,6 +86,7 @@ tasks.withType<Test> {
 dependencies {
   implementation(Dependencies.Kotlin.stdlib)
 
+  implementation(Dependencies.AndroidX.activityCompose)
   implementation(Dependencies.AndroidX.appcompat)
   implementation(Dependencies.AndroidX.coreKtx)
   implementation(Dependencies.AndroidX.lifecycleViewModelKtx)
@@ -133,6 +134,7 @@ dependencies {
   androidTestImplementation(EspressoTestDependencies.composeTesting)
   androidTestImplementation(EspressoTestDependencies.navigation)
   androidTestImplementation(EspressoTestDependencies.daggerHiltAndroidTesting)
+  androidTestImplementation(EspressoTestDependencies.mockk)
   kaptAndroidTest(Dependencies.Di.daggerHiltCompiler)
   androidTestUtil(EspressoTestDependencies.orchestrator)
 }
