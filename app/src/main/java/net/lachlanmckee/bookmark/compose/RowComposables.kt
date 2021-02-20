@@ -1,11 +1,9 @@
 package net.lachlanmckee.bookmark.compose
 
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.AmbientContentColor
-import androidx.compose.material.Checkbox
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -16,6 +14,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import net.lachlanmckee.bookmark.util.runIfNotNull
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun StandardRow(
   backgroundColor: Color = Color.White,
@@ -29,7 +28,7 @@ fun StandardRow(
       .defaultMinSizeConstraints(minHeight = 80.dp)
       .fillMaxWidth()
       .runIfNotNull(onClick) { nonNullOnClick ->
-        clickable(
+        combinedClickable(
           onClick = nonNullOnClick,
           onLongClick = onLongClick
         )
@@ -75,7 +74,7 @@ fun RowText(text: AnnotatedString, style: TextStyle) {
   Text(
     text = text,
     style = style,
-    color = AmbientContentColor.current,
+    color = LocalContentColor.current,
     overflow = TextOverflow.Ellipsis,
     maxLines = 1
   )

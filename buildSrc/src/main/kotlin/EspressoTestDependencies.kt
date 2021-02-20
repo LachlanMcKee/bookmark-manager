@@ -10,4 +10,5 @@ object EspressoTestDependencies {
   const val rules = "androidx.test:rules:1.3.0"
   const val navigation = "androidx.navigation:navigation-testing:${Dependencies.AndroidX.navigationVersion}"
   const val orchestrator = "androidx.test:orchestrator:1.3.0"
+  const val mockk = "io.mockk:mockk-android:1.10.3"
 }

@@ -5,19 +5,17 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Arrangement.Absolute.spacedBy
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.foundation.text.appendInlineContent
-import androidx.compose.material.AmbientContentColor
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Cancel
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.useOrElse
+import androidx.compose.ui.graphics.takeOrElse
 import androidx.compose.ui.text.*
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -109,7 +107,7 @@ fun Chip(
           placeholderVerticalAlign = PlaceholderVerticalAlign.Center
         ),
         children = {
-          Icon(Icons.Rounded.Cancel)
+          Icon(Icons.Rounded.Cancel, "Remove")
         }
       )
     )
@@ -120,11 +118,11 @@ fun Chip(
   Text(
     modifier = Modifier
       .clickable(onClick = onClick)
-      .background(backgroundColor.useOrElse { Color.LightGray }, RoundedCornerShape(8.dp))
+      .background(backgroundColor.takeOrElse { Color.LightGray }, RoundedCornerShape(8.dp))
       .padding(vertical = 8.dp, horizontal = 12.dp),
     text = chipText,
     style = style,
-    color = AmbientContentColor.current,
+    color = LocalContentColor.current,
     overflow = TextOverflow.Ellipsis,
     maxLines = 1,
     inlineContent = inlineTextContent
