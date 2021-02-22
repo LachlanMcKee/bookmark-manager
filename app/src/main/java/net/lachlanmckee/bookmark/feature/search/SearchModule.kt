@@ -15,6 +15,6 @@ interface SearchModule {
   @FragmentScoped
   @Binds
   @IntoMap
-  @ViewModelKey(SearchViewModel::class)
-  fun bindHomeViewModel(viewModel: SearchViewModel): ViewModel
+  @ViewModelKey(SearchViewModelImpl::class)
+  fun bindSearchViewModel(viewModel: SearchViewModelImpl): ViewModel
 }

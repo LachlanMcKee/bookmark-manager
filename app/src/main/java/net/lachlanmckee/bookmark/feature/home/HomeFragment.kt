@@ -17,7 +17,7 @@ class HomeFragment : Fragment() {
   @Inject
   lateinit var viewModelProviderFactory: ViewModelProviderFactory
 
-  private val model: HomeViewModel by viewModels { viewModelProviderFactory }
+  private val model: HomeViewModelImpl by viewModels { viewModelProviderFactory }
 
   @ExperimentalCoroutinesApi
   @ExperimentalStdlibApi
@@ -27,7 +27,7 @@ class HomeFragment : Fragment() {
     savedInstanceState: Bundle?
   ): View {
     return fragmentComposeView {
-      HomeScreen(model)
+      HomeScreen(model.state, model)
     }
   }
 }

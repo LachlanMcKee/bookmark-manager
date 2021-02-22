@@ -23,29 +23,29 @@ import org.junit.jupiter.api.Test
 
 @ExperimentalStdlibApi
 @ExperimentalCoroutinesApi
-class HomeViewModelTest {
+class HomeViewModelImplTest {
   private val bookmarkRepository: BookmarkRepository = mockk(relaxed = true)
   private val navigator: Navigator = mockk(relaxed = true)
 
-  private val homeViewModel = HomeViewModel(
+  private val homeViewModel = HomeViewModelImpl(
     bookmarkRepository, navigator
   )
 
   @Test
   fun givenNoState_whenBackPressed_thenNavigateBack() {
-    homeViewModel.backPressed()
+    homeViewModel(HomeViewModel.Event.Back)
     verify { navigator.back() }
   }
 
   @Test
   fun givenNoState_whenHomePressed_thenNavigateToHome() {
-    homeViewModel.homeClicked()
+    homeViewModel(HomeViewModel.Event.HomeClicked)
     verify { navigator.home() }
   }
 
   @Test
   fun givenNoState_whenSettingsPressed_thenNavigateToSettings() {
-    homeViewModel.settingsClicked()
+    homeViewModel(HomeViewModel.Event.SettingsClicked)
     verify { navigator.settings() }
   }
 
@@ -57,7 +57,7 @@ class HomeViewModelTest {
 
   @Test
   fun whenBookmarkClicked_thenNavigateToBookmark() = testLiveData {
-    homeViewModel.contentClicked(unselectedBookmarkContent1)
+    homeViewModel(HomeViewModel.Event.ContentClicked(unselectedBookmarkContent1))
     verify { navigator.openBookmark("https://www.google.com/") }
   }
 
@@ -80,10 +80,10 @@ class HomeViewModelTest {
 
     val statesList = homeViewModel.state.getOrAwaitValues(numberOfValues = 3) { nextStepIndex ->
       if (nextStepIndex == 1) {
-        homeViewModel.contentClicked(unselectedFolderContent1)
+        homeViewModel(HomeViewModel.Event.ContentClicked(unselectedFolderContent1))
       }
       if (nextStepIndex == 2) {
-        homeViewModel.backPressed()
+        homeViewModel(HomeViewModel.Event.Back)
       }
     }
 
@@ -151,16 +151,16 @@ class HomeViewModelTest {
       val statesList =
         homeViewModel.state.getOrAwaitValues(numberOfValues = 5) { nextStepIndex ->
           if (nextStepIndex == 1) {
-            homeViewModel.contentLongClicked(unselectedFolderContent1)
+            homeViewModel(HomeViewModel.Event.ContentLongClicked(unselectedFolderContent1))
           }
           if (nextStepIndex == 2) {
-            homeViewModel.contentClicked(unselectedBookmarkContent1)
+            homeViewModel(HomeViewModel.Event.ContentClicked(unselectedBookmarkContent1))
           }
           if (nextStepIndex == 3) {
-            homeViewModel.contentClicked(unselectedFolderContent1)
+            homeViewModel(HomeViewModel.Event.ContentClicked(unselectedFolderContent1))
           }
           if (nextStepIndex == 4) {
-            homeViewModel.contentClicked(unselectedBookmarkContent1)
+            homeViewModel(HomeViewModel.Event.ContentClicked(unselectedBookmarkContent1))
           }
         }
 
@@ -218,10 +218,10 @@ class HomeViewModelTest {
 
     val statesList = homeViewModel.state.getOrAwaitValues(numberOfValues = 3) { nextStepIndex ->
       if (nextStepIndex == 1) {
-        homeViewModel.contentLongClicked(unselectedFolderContent1)
+        homeViewModel(HomeViewModel.Event.ContentLongClicked(unselectedFolderContent1))
       }
       if (nextStepIndex == 2) {
-        homeViewModel.backPressed()
+        homeViewModel(HomeViewModel.Event.Back)
       }
     }
 
@@ -267,10 +267,10 @@ class HomeViewModelTest {
       val statesList =
         homeViewModel.state.getOrAwaitValues(numberOfValues = 3) { nextStepIndex ->
           if (nextStepIndex == 1) {
-            homeViewModel.contentLongClicked(unselectedBookmarkContent1)
+            homeViewModel(HomeViewModel.Event.ContentLongClicked(unselectedBookmarkContent1))
           }
           if (nextStepIndex == 2) {
-            homeViewModel.contentClicked(unselectedFolderContent1)
+            homeViewModel(HomeViewModel.Event.ContentClicked(unselectedFolderContent1))
           }
         }
 
@@ -315,14 +315,14 @@ class HomeViewModelTest {
 
     homeViewModel.state.getOrAwaitValues(numberOfValues = 3) { nextStepIndex ->
       if (nextStepIndex == 1) {
-        homeViewModel.contentLongClicked(unselectedFolderContent1)
+        homeViewModel(HomeViewModel.Event.ContentLongClicked(unselectedFolderContent1))
       }
       if (nextStepIndex == 2) {
-        homeViewModel.contentClicked(unselectedBookmarkContent1)
+        homeViewModel(HomeViewModel.Event.ContentClicked(unselectedBookmarkContent1))
       }
     }
 
-    homeViewModel.deleteClicked()
+    homeViewModel(HomeViewModel.Event.Delete)
 
     coVerify {
       bookmarkRepository.removeContent(

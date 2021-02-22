@@ -5,9 +5,13 @@ jobs:
     name: Instrumentation tests
     runs-on: macOS-latest
     timeout-minutes: 30
+    env:
+      APPLITOOLS_API_KEY: ${{ secrets.APPLITOOLS_API_KEY }}
+      APPLITOOLS_BATCH_ID: ${{ github.sha }}
     strategy:
+      fail-fast: false
       matrix:
-        api-level: [21, 25, 29]
+        api-level: [21, 26, 29]
     steps:
       - uses: actions/checkout@v2
       - uses: gradle/wrapper-validation-action@v1

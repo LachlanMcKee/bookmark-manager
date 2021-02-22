@@ -15,6 +15,6 @@ interface HomeModule {
   @FragmentScoped
   @Binds
   @IntoMap
-  @ViewModelKey(HomeViewModel::class)
-  fun bindHomeViewModel(viewModel: HomeViewModel): ViewModel
+  @ViewModelKey(HomeViewModelImpl::class)
+  fun bindHomeViewModel(viewModel: HomeViewModelImpl): ViewModel
 }

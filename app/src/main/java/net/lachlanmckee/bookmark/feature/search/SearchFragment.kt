@@ -17,7 +17,7 @@ class SearchFragment : Fragment() {
   @Inject
   lateinit var viewModelProviderFactory: ViewModelProviderFactory
 
-  private val model: SearchViewModel by viewModels { viewModelProviderFactory }
+  private val model: SearchViewModelImpl by viewModels { viewModelProviderFactory }
 
   @ExperimentalCoroutinesApi
   @ExperimentalStdlibApi
@@ -26,6 +26,6 @@ class SearchFragment : Fragment() {
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View {
-    return fragmentComposeView { SearchScreen(model) }
+    return fragmentComposeView { SearchScreen(model.state, model) }
   }
 }
