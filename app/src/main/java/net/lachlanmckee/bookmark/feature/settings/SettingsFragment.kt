@@ -36,7 +36,7 @@ class SettingsFragment : Fragment() {
                 }
               )
             },
-            bodyContent = {
+            content = {
               Text(text = "Settings screen")
             },
             bottomBar = {
