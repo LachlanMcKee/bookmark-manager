@@ -2,7 +2,6 @@ package net.lachlanmckee.bookmark.feature.home
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayout
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -10,7 +9,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.Providers
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
@@ -47,7 +46,7 @@ fun HomeScreen(model: HomeViewModel) {
       floatingActionButton = {
         HomeFab(model, state!!)
       },
-      bodyContent = {
+      content = {
         HomeContent(model, state!!)
       },
       bottomBar = {
@@ -88,7 +87,6 @@ private fun HomeContent(model: HomeViewModel, state: HomeViewModel.State) {
   }
 }
 
-@OptIn(ExperimentalLayout::class)
 @Composable
 private fun BookmarksExistContent(model: HomeViewModel, state: HomeViewModel.State.BookmarksExist) {
   LazyColumn {
@@ -117,7 +115,6 @@ private fun BookmarksExistContent(model: HomeViewModel, state: HomeViewModel.Sta
   }
 }
 
-@ExperimentalLayout
 @Composable
 fun BookmarkRow(
   label: AnnotatedString,
@@ -136,7 +133,7 @@ fun BookmarkRow(
     onClick = bookmarkOnClick,
     onLongClick = bookmarkOnLongClick,
     content = {
-      Providers(LocalContentColor provides Color.Black) {
+      CompositionLocalProvider(LocalContentColor provides Color.Black) {
         Column {
           BookmarkRowContent(
             label = label,
@@ -170,7 +167,7 @@ fun FolderRow(
     onClick = onClick,
     onLongClick = onLongClick,
     content = {
-      Providers(LocalContentColor provides Color.White) {
+      CompositionLocalProvider(LocalContentColor provides Color.White) {
         RowText(
           text = label,
           style = MaterialTheme.typography.h6

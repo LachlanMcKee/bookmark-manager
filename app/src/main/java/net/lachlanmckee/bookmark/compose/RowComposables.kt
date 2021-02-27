@@ -25,7 +25,7 @@ fun StandardRow(
   Surface(
     color = backgroundColor,
     modifier = Modifier
-      .defaultMinSizeConstraints(minHeight = 80.dp)
+      .defaultMinSize(minHeight = 80.dp)
       .fillMaxWidth()
       .runIfNotNull(onClick) { nonNullOnClick ->
         combinedClickable(

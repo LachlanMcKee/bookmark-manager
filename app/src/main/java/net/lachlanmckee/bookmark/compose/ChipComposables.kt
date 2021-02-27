@@ -20,8 +20,8 @@ import androidx.compose.ui.text.*
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.icesmith.simplecomposeflowrow.SimpleFlowRow
 
-@ExperimentalLayout
 @Composable
 fun <T> ChipFlowRow(
   modifier: Modifier,
@@ -32,9 +32,9 @@ fun <T> ChipFlowRow(
   onClick: (T) -> Unit
 ) {
   Box(modifier = modifier) {
-    FlowRow(
-      mainAxisSpacing = 4.dp,
-      crossAxisSpacing = 4.dp,
+    SimpleFlowRow(
+      horizontalGap = 4.dp,
+      verticalGap = 4.dp,
       content = {
         data.forEach { item ->
           Chip(

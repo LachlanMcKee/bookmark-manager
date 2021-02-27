@@ -102,6 +102,7 @@ dependencies {
   implementation(Dependencies.Compose.iconsExtended)
   implementation(Dependencies.Compose.liveData)
   implementation(Dependencies.Compose.paging)
+  implementation(Dependencies.Compose.simpleFlowRow)
 
   // Storage
   implementation(Dependencies.Storage.roomRuntime)

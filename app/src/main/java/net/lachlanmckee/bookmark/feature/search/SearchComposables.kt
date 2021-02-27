@@ -33,7 +33,6 @@ import net.lachlanmckee.bookmark.compose.RootBottomAppBar
 import net.lachlanmckee.bookmark.compose.StandardRow
 import net.lachlanmckee.bookmark.feature.BookmarkRowContent
 
-@ExperimentalLayout
 @ExperimentalCoroutinesApi
 @ExperimentalStdlibApi
 @Composable
@@ -53,7 +52,7 @@ fun SearchScreen(model: SearchViewModel) {
           }
         )
       },
-      bodyContent = {
+      content = {
         SearchContent(model, state!!)
       },
       bottomBar = {
@@ -68,7 +67,6 @@ fun SearchScreen(model: SearchViewModel) {
   }
 }
 
-@ExperimentalLayout
 @Composable
 private fun SearchContent(model: SearchViewModel, state: SearchViewModel.Results) {
   val lazyPagingContent: LazyPagingItems<SearchViewModel.Content> = state.contentList.collectAsLazyPagingItems()
@@ -204,7 +202,6 @@ private fun SearchTextField(model: SearchViewModel, state: SearchViewModel.Resul
   )
 }
 
-@ExperimentalLayout
 @Composable
 fun RowContent(model: SearchViewModel, content: SearchViewModel.Content) {
   when (content) {

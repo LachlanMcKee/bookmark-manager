@@ -1,6 +1,5 @@
 package net.lachlanmckee.bookmark.testing
 
-import androidx.compose.foundation.layout.ExperimentalLayout
 import androidx.compose.material.MaterialTheme
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -20,7 +19,6 @@ import org.junit.Rule
 import org.junit.Test
 import javax.inject.Inject
 
-@ExperimentalLayout
 @HiltAndroidTest
 class HomeFragmentTest {
 
