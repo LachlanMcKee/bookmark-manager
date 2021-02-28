@@ -90,8 +90,13 @@ subprojects {
     kotlinOptions {
       jvmTarget = "1.8"
       useIR = true
-      freeCompilerArgs = freeCompilerArgs + "-Xopt-in=kotlin.RequiresOptIn"
-      freeCompilerArgs = freeCompilerArgs + "-Xopt-in=kotlin.contracts.ExperimentalContracts"
+      freeCompilerArgs = freeCompilerArgs + listOf(
+        "-Xopt-in=kotlin.ExperimentalStdlibApi",
+        "-Xopt-in=kotlin.RequiresOptIn",
+        "-Xopt-in=kotlin.contracts.ExperimentalContracts",
+        "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+        "-Xopt-in=androidx.compose.foundation.ExperimentalFoundationApi"
+      )
     }
   }
 }

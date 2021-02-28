@@ -3,13 +3,11 @@ package net.lachlanmckee.bookmark.test.util
 import androidx.arch.core.executor.ArchTaskExecutor
 import androidx.arch.core.executor.TaskExecutor
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.setMain
 
-@ExperimentalCoroutinesApi
 object LiveDataTester {
   fun testLiveData(testFunc: () -> Unit) {
     ArchTaskExecutor.getInstance()

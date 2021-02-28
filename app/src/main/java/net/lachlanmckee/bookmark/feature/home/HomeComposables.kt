@@ -17,7 +17,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.LiveData
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import net.lachlanmckee.bookmark.components.chip.layout.ChipFlowRow
 import net.lachlanmckee.bookmark.components.row.CheckableRow
 import net.lachlanmckee.bookmark.components.row.RowText
@@ -25,8 +24,6 @@ import net.lachlanmckee.bookmark.compose.RootBottomAppBar
 import net.lachlanmckee.bookmark.feature.BookmarkRowContent
 import net.lachlanmckee.bookmark.feature.home.HomeViewModel.Content.BookmarkContent.Metadata
 
-@ExperimentalCoroutinesApi
-@ExperimentalStdlibApi
 @Composable
 fun HomeScreen(
   stateLiveData: LiveData<HomeViewModel.State>,
