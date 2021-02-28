@@ -1,3 +1,5 @@
+import java.util.Properties
+
 buildscript {
   repositories {
     google()
@@ -32,6 +34,9 @@ android {
     }
 
     testInstrumentationRunnerArguments["clearPackageData"] = "true"
+
+    addOptionalKey("APPLITOOLS_API_KEY", getApplitoolsApiKey())
+    addOptionalKey("APPLITOOLS_BATCH_ID", System.getenv("APPLITOOLS_BATCH_ID"))
   }
 
   signingConfigs {
@@ -72,6 +77,28 @@ android {
       excludes += "META-INF/AL2.0"
       excludes += "META-INF/LGPL2.1"
     }
+  }
+}
+
+fun getApplitoolsApiKey(): String? {
+  var applitoolsApiKey: String? = System.getenv("APPLITOOLS_API_KEY")
+  if (applitoolsApiKey == null) {
+    val propsFile = file("../local.properties")
+    if (propsFile.exists()) {
+      applitoolsApiKey = Properties().run {
+        load(propsFile.reader())
+        getProperty("applitoolsApiKey")
+      }
+    }
+  }
+  return applitoolsApiKey
+}
+
+fun com.android.build.api.dsl.BaseFlavor.addOptionalKey(key: String, value: String?) {
+  if (value != null) {
+    buildConfigField("String", key, "\"$value\"")
+  } else {
+    buildConfigField("String", key, "null")
   }
 }
 
@@ -136,6 +163,13 @@ dependencies {
   androidTestImplementation(EspressoTestDependencies.navigation)
   androidTestImplementation(EspressoTestDependencies.daggerHiltAndroidTesting)
   androidTestImplementation(EspressoTestDependencies.mockk)
+
+  androidTestImplementation("com.applitools:eyes-android-espresso:4.7.6@aar")
+  androidTestImplementation("com.applitools:eyes-android-common:4.7.6")
+  androidTestImplementation("com.applitools:eyes-android-core:4.7.6")
+  androidTestImplementation("com.applitools:eyes-android-components:4.7.6@aar")
+  androidTestImplementation("com.applitools:eyes-android-components-androidx:4.7.6@aar")
+
   kaptAndroidTest(Dependencies.Di.daggerHiltCompiler)
   androidTestUtil(EspressoTestDependencies.orchestrator)
 }

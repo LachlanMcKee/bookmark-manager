@@ -22,6 +22,7 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.LiveData
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -32,15 +33,19 @@ import net.lachlanmckee.bookmark.compose.ChipHorizontalList
 import net.lachlanmckee.bookmark.compose.RootBottomAppBar
 import net.lachlanmckee.bookmark.compose.StandardRow
 import net.lachlanmckee.bookmark.feature.BookmarkRowContent
+import net.lachlanmckee.bookmark.feature.search.SearchViewModel.State
 
 @ExperimentalCoroutinesApi
 @ExperimentalStdlibApi
 @Composable
-fun SearchScreen(model: SearchViewModel) {
-  val state: SearchViewModel.Results? by model.state.observeAsState()
+fun SearchScreen(
+  stateLiveData: LiveData<State>,
+  events: (SearchViewModel.Event) -> Unit
+) {
+  val state: State? by stateLiveData.observeAsState()
 
   BackHandler {
-    model.backPressed()
+    events(SearchViewModel.Event.Back)
   }
 
   if (state != null) {
@@ -53,14 +58,14 @@ fun SearchScreen(model: SearchViewModel) {
         )
       },
       content = {
-        SearchContent(model, state!!)
+        SearchContent(state!!, events)
       },
       bottomBar = {
         RootBottomAppBar(
-          homeClick = { model.homeClicked() },
-          searchClick = { model.searchClicked() },
+          homeClick = { events(SearchViewModel.Event.HomeClicked) },
+          searchClick = { events(SearchViewModel.Event.SearchClicked) },
           resetClick = { },
-          settingsClick = { model.settingsClicked() }
+          settingsClick = { events(SearchViewModel.Event.SettingsClicked) }
         )
       }
     )
@@ -68,11 +73,15 @@ fun SearchScreen(model: SearchViewModel) {
 }
 
 @Composable
-private fun SearchContent(model: SearchViewModel, state: SearchViewModel.Results) {
-  val lazyPagingContent: LazyPagingItems<SearchViewModel.Content> = state.contentList.collectAsLazyPagingItems()
+private fun SearchContent(
+  state: State,
+  events: (SearchViewModel.Event) -> Unit
+) {
+  val lazyPagingContent: LazyPagingItems<SearchViewModel.Content> =
+    state.contentList.collectAsLazyPagingItems()
 
   Column {
-    SearchTextField(model, state)
+    SearchTextField(state, events)
 
     if (state.metadata.isNotEmpty()) {
       ChipHorizontalList(
@@ -80,14 +89,14 @@ private fun SearchContent(model: SearchViewModel, state: SearchViewModel.Results
         data = state.metadata.map { it.metadata },
         isSelected = state.metadata.map { it.isSelected },
         labelFunc = { buildAnnotatedString(it.name.segments) },
-        onClick = { model.metadataRowItemClicked(it) }
+        onClick = { events(SearchViewModel.Event.MetadataRowItemClicked(it)) }
       )
     }
 
     LazyColumn {
       items(lazyPagingContent) { content ->
         if (content != null) {
-          RowContent(model, content)
+          RowContent(content, events)
         } else {
           RowContentPlaceholder()
         }
@@ -175,7 +184,10 @@ fun ErrorItem(
 }
 
 @Composable
-private fun SearchTextField(model: SearchViewModel, state: SearchViewModel.Results) {
+private fun SearchTextField(
+  state: State,
+  events: (SearchViewModel.Event) -> Unit
+) {
   val focusRequester = FocusRequester()
   DisposableEffect(Unit) {
     focusRequester.requestFocus()
@@ -189,7 +201,7 @@ private fun SearchTextField(model: SearchViewModel, state: SearchViewModel.Resul
     trailingIcon = {
       if (state.query.isNotEmpty()) {
         Box(
-          modifier = Modifier.clickable { model.searchTextChanged("") }
+          modifier = Modifier.clickable { events(SearchViewModel.Event.SearchTextChanged("")) }
         ) {
           Icon(Icons.Filled.Clear, "Clear")
         }
@@ -197,17 +209,20 @@ private fun SearchTextField(model: SearchViewModel, state: SearchViewModel.Resul
     },
     value = state.query,
     onValueChange = {
-      model.searchTextChanged(it)
+      events(SearchViewModel.Event.SearchTextChanged(it))
     }
   )
 }
 
 @Composable
-fun RowContent(model: SearchViewModel, content: SearchViewModel.Content) {
+fun RowContent(
+  content: SearchViewModel.Content,
+  events: (SearchViewModel.Event) -> Unit
+) {
   when (content) {
     is SearchViewModel.Content.BookmarkContent -> {
       StandardRow(
-        onClick = { model.contentClicked(content) },
+        onClick = { events(SearchViewModel.Event.ContentClicked(content)) },
         content = {
           Column {
             BookmarkRowContent(
@@ -219,7 +234,7 @@ fun RowContent(model: SearchViewModel, content: SearchViewModel.Content) {
               modifier = Modifier.padding(top = 8.dp),
               data = content.metadata,
               labelFunc = { buildAnnotatedString(it.name.segments) },
-              onClick = model::metadataRowItemClicked
+              onClick = { events(SearchViewModel.Event.MetadataRowItemClicked(it)) }
             )
           }
         }

@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.LiveData
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import net.lachlanmckee.bookmark.compose.CheckableRow
 import net.lachlanmckee.bookmark.compose.ChipFlowRow
@@ -27,11 +28,14 @@ import net.lachlanmckee.bookmark.feature.home.HomeViewModel.Content.BookmarkCont
 @ExperimentalCoroutinesApi
 @ExperimentalStdlibApi
 @Composable
-fun HomeScreen(model: HomeViewModel) {
-  val state: HomeViewModel.State? by model.state.observeAsState()
+fun HomeScreen(
+  stateLiveData: LiveData<HomeViewModel.State>,
+  events: (HomeViewModel.Event) -> Unit
+) {
+  val state: HomeViewModel.State? by stateLiveData.observeAsState()
 
   BackHandler {
-    model.backPressed()
+    events(HomeViewModel.Event.Back)
   }
 
   if (state != null) {
@@ -44,17 +48,17 @@ fun HomeScreen(model: HomeViewModel) {
         )
       },
       floatingActionButton = {
-        HomeFab(model, state!!)
+        HomeFab(state!!, events)
       },
       content = {
-        HomeContent(model, state!!)
+        HomeContent(state!!, events)
       },
       bottomBar = {
         RootBottomAppBar(
-          homeClick = { model.homeClicked() },
-          searchClick = { model.searchClicked() },
-          resetClick = { model.resetData() },
-          settingsClick = { model.settingsClicked() }
+          homeClick = { events(HomeViewModel.Event.HomeClicked) },
+          searchClick = { events(HomeViewModel.Event.SearchClicked) },
+          resetClick = { events(HomeViewModel.Event.ResetDataClicked) },
+          settingsClick = { events(HomeViewModel.Event.SettingsClicked) }
         )
       }
     )
@@ -62,13 +66,16 @@ fun HomeScreen(model: HomeViewModel) {
 }
 
 @Composable
-private fun HomeFab(model: HomeViewModel, state: HomeViewModel.State) {
+private fun HomeFab(
+  state: HomeViewModel.State,
+  events: (HomeViewModel.Event) -> Unit
+) {
   when (state) {
     HomeViewModel.State.Empty -> {
     }
     is HomeViewModel.State.BookmarksExist -> {
       if (state.isInEditMode) {
-        FloatingActionButton(onClick = { model.deleteClicked() }) {
+        FloatingActionButton(onClick = { events(HomeViewModel.Event.Delete) }) {
           Icon(Icons.Filled.Delete, "Delete")
         }
       }
@@ -77,18 +84,24 @@ private fun HomeFab(model: HomeViewModel, state: HomeViewModel.State) {
 }
 
 @Composable
-private fun HomeContent(model: HomeViewModel, state: HomeViewModel.State) {
+private fun HomeContent(
+  state: HomeViewModel.State,
+  events: (HomeViewModel.Event) -> Unit
+) {
   when (state) {
     HomeViewModel.State.Empty -> {
     }
     is HomeViewModel.State.BookmarksExist -> {
-      BookmarksExistContent(model, state)
+      BookmarksExistContent(state, events)
     }
   }
 }
 
 @Composable
-private fun BookmarksExistContent(model: HomeViewModel, state: HomeViewModel.State.BookmarksExist) {
+private fun BookmarksExistContent(
+  state: HomeViewModel.State.BookmarksExist,
+  events: (HomeViewModel.Event) -> Unit
+) {
   LazyColumn {
     items(state.contentList) { content ->
       when (content) {
@@ -96,8 +109,8 @@ private fun BookmarksExistContent(model: HomeViewModel, state: HomeViewModel.Sta
           label = AnnotatedString(content.name),
           isSelected = content.selected,
           isInEditMode = state.isInEditMode,
-          onClick = { model.contentClicked(content) },
-          onLongClick = { model.contentLongClicked(content) }
+          onClick = { events(HomeViewModel.Event.ContentClicked(content)) },
+          onLongClick = { events(HomeViewModel.Event.ContentLongClicked(content)) }
         )
         is HomeViewModel.Content.BookmarkContent -> BookmarkRow(
           label = AnnotatedString(content.name),
@@ -105,8 +118,8 @@ private fun BookmarksExistContent(model: HomeViewModel, state: HomeViewModel.Sta
           metadata = content.metadata,
           isSelected = content.selected,
           isInEditMode = state.isInEditMode,
-          bookmarkOnClick = { model.contentClicked(content) },
-          bookmarkOnLongClick = { model.contentLongClicked(content) },
+          bookmarkOnClick = { events(HomeViewModel.Event.ContentClicked(content)) },
+          bookmarkOnLongClick = { events(HomeViewModel.Event.ContentLongClicked(content)) },
           metadataOnClick = { }
         )
       }
