@@ -6,4 +6,11 @@ pluginManagement {
 }
 
 rootProject.name = "Bookmark Manager"
-include(":app")
+include(
+  ":app",
+  ":kotlin-utils",
+  ":components:chip",
+  ":components:chip-layouts",
+  ":components:row"
+)
+includeBuild("plugins")

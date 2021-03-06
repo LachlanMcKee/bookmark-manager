@@ -28,10 +28,10 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import net.lachlanmckee.bookmark.compose.ChipFlowRow
-import net.lachlanmckee.bookmark.compose.ChipHorizontalList
+import net.lachlanmckee.bookmark.components.chip.layout.ChipFlowRow
+import net.lachlanmckee.bookmark.components.chip.layout.ChipHorizontalList
+import net.lachlanmckee.bookmark.components.row.StandardRow
 import net.lachlanmckee.bookmark.compose.RootBottomAppBar
-import net.lachlanmckee.bookmark.compose.StandardRow
 import net.lachlanmckee.bookmark.feature.BookmarkRowContent
 import net.lachlanmckee.bookmark.feature.search.SearchViewModel.State
 
