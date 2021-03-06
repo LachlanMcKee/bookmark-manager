@@ -2,7 +2,6 @@ package net.lachlanmckee.bookmark.feature.search
 
 import androidx.lifecycle.*
 import androidx.paging.map
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
 import net.lachlanmckee.bookmark.feature.Navigator
 import net.lachlanmckee.bookmark.feature.search.SearchViewModel.*
@@ -23,8 +22,6 @@ class SearchViewModelImpl @Inject constructor(
       )
     )
 
-  @ExperimentalStdlibApi
-  @ExperimentalCoroutinesApi
   override val state: LiveData<State> by lazy {
     bookmarkRepository
       .getAllMetadata()
@@ -54,7 +51,6 @@ class SearchViewModelImpl @Inject constructor(
     }
   }
 
-  @ExperimentalStdlibApi
   private fun getBookmarks(
     queryMetadata: QueryMetadata,
     allMetadata: List<SearchMetadata>

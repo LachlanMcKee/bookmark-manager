@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
@@ -31,8 +30,6 @@ class HomeViewModelImpl @Inject constructor(
     )
   )
 
-  @ExperimentalCoroutinesApi
-  @ExperimentalStdlibApi
   override val state: LiveData<State> by lazy {
     currentFolderFlowable
       .flatMapLatest { folderMetadata ->

@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import net.lachlanmckee.bookmark.compose.fragmentComposeView
 import net.lachlanmckee.bookmark.di.viewmodel.ViewModelProviderFactory
 import javax.inject.Inject
@@ -19,8 +18,6 @@ class SearchFragment : Fragment() {
 
   private val model: SearchViewModelImpl by viewModels { viewModelProviderFactory }
 
-  @ExperimentalCoroutinesApi
-  @ExperimentalStdlibApi
   override fun onCreateView(
     inflater: LayoutInflater,
     container: ViewGroup?,

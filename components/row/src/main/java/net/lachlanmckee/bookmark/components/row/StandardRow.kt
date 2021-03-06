@@ -1,6 +1,5 @@
 package net.lachlanmckee.bookmark.components.row
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -11,7 +10,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import net.lachlanmckee.bookmark.util.runIfNotNull
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun StandardRow(
   backgroundColor: Color = Color.White,

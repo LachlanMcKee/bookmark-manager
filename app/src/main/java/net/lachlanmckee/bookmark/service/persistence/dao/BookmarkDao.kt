@@ -30,7 +30,6 @@ abstract class BookmarkDao {
     query: SupportSQLiteQuery
   ): PagingSource<Int, BookmarkWithMetadata>
 
-  @OptIn(ExperimentalStdlibApi::class)
   open fun findByTermsAndMetadataIds(
     terms: List<String>,
     metadataIds: List<Long>

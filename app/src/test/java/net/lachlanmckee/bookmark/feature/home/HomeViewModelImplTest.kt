@@ -4,7 +4,6 @@ import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
 import net.lachlanmckee.bookmark.feature.Navigator
 import net.lachlanmckee.bookmark.feature.home.HomeViewModel.Content.BookmarkContent
@@ -21,8 +20,6 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
-@ExperimentalStdlibApi
-@ExperimentalCoroutinesApi
 class HomeViewModelImplTest {
   private val bookmarkRepository: BookmarkRepository = mockk(relaxed = true)
   private val navigator: Navigator = mockk(relaxed = true)

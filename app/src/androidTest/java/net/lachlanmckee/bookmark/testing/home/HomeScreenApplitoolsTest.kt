@@ -5,7 +5,6 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.lifecycle.MutableLiveData
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import net.lachlanmckee.bookmark.HiltTestActivity
 import net.lachlanmckee.bookmark.feature.home.HomeScreen
 import net.lachlanmckee.bookmark.feature.home.HomeViewModel
@@ -25,8 +24,6 @@ class HomeScreenApplitoolsTest {
   @get:Rule
   val hiltRule = HiltAndroidRule(this)
 
-  @ExperimentalCoroutinesApi
-  @ExperimentalStdlibApi
   @Test
   fun verifyHomeScreenDesign() {
     hiltRule.inject()
