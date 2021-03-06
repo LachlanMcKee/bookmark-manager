@@ -1,6 +1,6 @@
-object Dependencies {
-  const val ktlintVersion = "0.39.0"
+package net.lachlanmckee.bookmark.dependencies
 
+internal object Dependencies {
   object Analytics {
     const val firebaseAnalytics = "com.google.firebase:firebase-analytics:17.6.0"
   }

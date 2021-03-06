@@ -18,10 +18,10 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.LiveData
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import net.lachlanmckee.bookmark.compose.CheckableRow
-import net.lachlanmckee.bookmark.compose.ChipFlowRow
+import net.lachlanmckee.bookmark.components.chip.layout.ChipFlowRow
+import net.lachlanmckee.bookmark.components.row.CheckableRow
+import net.lachlanmckee.bookmark.components.row.RowText
 import net.lachlanmckee.bookmark.compose.RootBottomAppBar
-import net.lachlanmckee.bookmark.compose.RowText
 import net.lachlanmckee.bookmark.feature.BookmarkRowContent
 import net.lachlanmckee.bookmark.feature.home.HomeViewModel.Content.BookmarkContent.Metadata
 

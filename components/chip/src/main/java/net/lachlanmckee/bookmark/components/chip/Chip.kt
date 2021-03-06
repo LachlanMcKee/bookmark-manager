@@ -1,15 +1,15 @@
-package net.lachlanmckee.bookmark.compose
+package net.lachlanmckee.bookmark.components.chip
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.layout.Arrangement.Absolute.spacedBy
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.foundation.text.appendInlineContent
-import androidx.compose.material.*
+import androidx.compose.material.Icon
+import androidx.compose.material.LocalContentColor
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Cancel
 import androidx.compose.runtime.Composable
@@ -20,65 +20,6 @@ import androidx.compose.ui.text.*
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.icesmith.simplecomposeflowrow.SimpleFlowRow
-
-@Composable
-fun <T> ChipFlowRow(
-  modifier: Modifier,
-  style: TextStyle = MaterialTheme.typography.subtitle1,
-  showCloseIcon: Boolean = false,
-  data: List<T>,
-  labelFunc: (T) -> AnnotatedString,
-  onClick: (T) -> Unit
-) {
-  Box(modifier = modifier) {
-    SimpleFlowRow(
-      horizontalGap = 4.dp,
-      verticalGap = 4.dp,
-      content = {
-        data.forEach { item ->
-          Chip(
-            text = labelFunc(item),
-            style = style,
-            showCloseIcon = showCloseIcon,
-            onClick = { onClick(item) }
-          )
-        }
-      }
-    )
-  }
-}
-
-@Composable
-fun <T> ChipHorizontalList(
-  modifier: Modifier,
-  style: TextStyle = MaterialTheme.typography.subtitle1,
-  showCloseIcon: Boolean = false,
-  data: List<T>,
-  isSelected: List<Boolean>,
-  labelFunc: (T) -> AnnotatedString,
-  onClick: (T) -> Unit
-) {
-  LazyRow(
-    modifier = modifier,
-    contentPadding = PaddingValues(8.dp),
-    horizontalArrangement = spacedBy(8.dp)
-  ) {
-    itemsIndexed(data) { index, item ->
-      Chip(
-        text = labelFunc(item),
-        backgroundColor = if (isSelected[index]) {
-          Color.Red
-        } else {
-          Color.Unspecified
-        },
-        style = style,
-        showCloseIcon = showCloseIcon,
-        onClick = { onClick(item) }
-      )
-    }
-  }
-}
 
 @Composable
 fun Chip(

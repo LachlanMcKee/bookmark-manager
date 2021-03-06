@@ -4,7 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.AnnotatedString
-import net.lachlanmckee.bookmark.compose.RowText
+import net.lachlanmckee.bookmark.components.row.RowText
 
 @Composable
 fun BookmarkRowContent(

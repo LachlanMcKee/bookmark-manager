@@ -8,12 +8,12 @@ buildscript {
   }
   dependencies {
     classpath("com.android.tools.build:gradle:7.0.0-alpha08")
-    classpath(kotlin("gradle-plugin", version = Dependencies.Kotlin.version))
+    classpath(kotlin("gradle-plugin", version = "1.4.30"))
 
     classpath("com.google.gms:google-services:4.3.4")
-    classpath("com.google.dagger:hilt-android-gradle-plugin:${Dependencies.Di.version}-alpha")
+    classpath("com.google.dagger:hilt-android-gradle-plugin:2.31.2-alpha")
     classpath("com.google.firebase:firebase-appdistribution-gradle:2.0.1")
-    classpath("androidx.navigation:navigation-safe-args-gradle-plugin:${Dependencies.AndroidX.navigationVersion}")
+    classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.3.3")
   }
 }
 
@@ -30,7 +30,7 @@ spotless {
     endWithNewline()
   }
   kotlin {
-    ktlint(Dependencies.ktlintVersion).userData(
+    ktlint("0.39.0").userData(
       mapOf(
         "indent_size" to "2",
         "disabled_rules" to "no-wildcard-imports"
@@ -42,7 +42,7 @@ spotless {
     targetExclude("**/build/**")
   }
   kotlinGradle {
-    ktlint(Dependencies.ktlintVersion).userData(mapOf("indent_size" to "2"))
+    ktlint("0.39.0").userData(mapOf("indent_size" to "2"))
     target("**/*.gradle.kts")
     trimTrailingWhitespace()
     endWithNewline()
@@ -68,7 +68,14 @@ allprojects {
 }
 
 subprojects {
+  buildscript {
+    repositories {
+      google()
+    }
+  }
+
   repositories {
+    google()
     jcenter()
   }
 
