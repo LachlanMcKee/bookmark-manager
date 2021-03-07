@@ -1,8 +1,60 @@
 name: Pull Request CI
 on: pull_request
 jobs:
+  spotless-and-dependencies:
+    name: Spotless and depedencies check
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v2
+      - uses: gradle/wrapper-validation-action@v1
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 11.0.8
+      - uses: actions/cache@v1
+        with:
+          path: ~/.gradle/caches
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}
+      - name: Spotless
+        run: ./gradlew spotlessCheck
+        working-directory: .
+      - name: Dependencies Check
+        run: ./gradlew dependenciesUpdateCheck
+        working-directory: .
+      - name: Upload failed dependencies file(s)
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: dependency-baselines
+          path: |
+            **/dependencies-new.txt
+          retention-days: 2
+
+  unit-tests:
+    name: Unit tests
+    needs: spotless-and-dependencies
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      JAVA_TOOL_OPTIONS: -Xmx4g
+      GRADLE_OPTS: -Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2 -Dkotlin.incremental=false -Dkotlin.compiler.execution.strategy=in-process -Dorg.gradle.parallel=true
+    steps:
+      - uses: actions/checkout@v2
+      - uses: gradle/wrapper-validation-action@v1
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 11.0.8
+      - uses: actions/cache@v1
+        with:
+          path: ~/.gradle/caches
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}
+      - name: Unit tests
+        run: ./gradlew testDebugUnitTest
+        working-directory: .
+
   instrumentation-tests:
     name: Instrumentation tests
+    needs: spotless-and-dependencies
     runs-on: macOS-latest
     timeout-minutes: 30
     env:
@@ -24,42 +76,3 @@ jobs:
           api-level: ${{ matrix.api-level }}
           arch: x86
           script: ./gradlew connectedCheck --stacktrace
-
-  spotless:
-    name: Spotless
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@v2
-      - uses: gradle/wrapper-validation-action@v1
-      - uses: actions/setup-java@v1
-        with:
-          java-version: 11.0.8
-      - uses: actions/cache@v1
-        with:
-          path: ~/.gradle/caches
-          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}
-      - name: Spotless
-        run: ./gradlew spotlessCheck
-        working-directory: .
-
-  unit-tests:
-    name: Unit tests
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    env:
-      JAVA_TOOL_OPTIONS: -Xmx4g
-      GRADLE_OPTS: -Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2 -Dkotlin.incremental=false -Dkotlin.compiler.execution.strategy=in-process -Dorg.gradle.parallel=true
-    steps:
-      - uses: actions/checkout@v2
-      - uses: gradle/wrapper-validation-action@v1
-      - uses: actions/setup-java@v1
-        with:
-          java-version: 11.0.8
-      - uses: actions/cache@v1
-        with:
-          path: ~/.gradle/caches
-          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}
-      - name: Unit tests
-        run: ./gradlew testDebugUnitTest
-        working-directory: .
