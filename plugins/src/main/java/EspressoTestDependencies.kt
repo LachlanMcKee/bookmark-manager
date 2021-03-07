@@ -1,6 +1,4 @@
-package net.lachlanmckee.bookmark.dependencies
-
-internal object EspressoTestDependencies {
+object EspressoTestDependencies {
   private const val espressoVersion = "3.3.0"
   const val junit = "androidx.test.ext:junit:1.1.2"
   const val composeTesting = "androidx.compose.ui:ui-test-junit4:${Dependencies.Compose.version}"
@@ -13,4 +11,11 @@ internal object EspressoTestDependencies {
   const val navigation = "androidx.navigation:navigation-testing:${Dependencies.AndroidX.navigationVersion}"
   const val orchestrator = "androidx.test:orchestrator:1.3.0"
   const val mockk = "io.mockk:mockk-android:1.10.3"
+
+  private const val applitoolsVersion = "4.7.6"
+  const val applitoolsEspresso = "com.applitools:eyes-android-espresso:$applitoolsVersion@aar"
+  const val applitoolsCommon = "com.applitools:eyes-android-common:$applitoolsVersion"
+  const val applitoolsCore = "com.applitools:eyes-android-core:$applitoolsVersion"
+  const val applitoolsComponents = "com.applitools:eyes-android-components:$applitoolsVersion@aar"
+  const val applitoolsComponentsAndroidX = "com.applitools:eyes-android-components-androidx:$applitoolsVersion@aar"
 }

@@ -8,7 +8,8 @@ pluginManagement {
 rootProject.name = "Bookmark Manager"
 include(
   ":app",
-  ":kotlin-utils",
+  ":utils:applitools-compose",
+  ":utils:kotlin-utils",
   ":components:chip",
   ":components:chip-layouts",
   ":components:row"

@@ -1,6 +1,4 @@
-package net.lachlanmckee.bookmark.dependencies
-
-internal object Dependencies {
+object Dependencies {
   object Analytics {
     const val firebaseAnalytics = "com.google.firebase:firebase-analytics:17.6.0"
   }

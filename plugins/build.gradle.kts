@@ -26,11 +26,11 @@ gradlePlugin {
   plugins {
     create("net.lachlanmckee.bookmark.app") {
       id = "net.lachlanmckee.bookmark.app"
-      implementationClass = "net.lachlanmckee.bookmark.AppProjectPlugin"
+      implementationClass = "AppProjectPlugin"
     }
     create("net.lachlanmckee.bookmark.library") {
       id = "net.lachlanmckee.bookmark.library"
-      implementationClass = "net.lachlanmckee.bookmark.LibraryProjectPlugin"
+      implementationClass = "LibraryProjectPlugin"
     }
   }
 }
