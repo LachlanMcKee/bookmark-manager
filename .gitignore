@@ -37,3 +37,6 @@ captures/
 # IntelliJ
 *.iml
 .idea
+
+# Dependencies
+**/dependencies-new.txt

@@ -67,6 +67,8 @@ allprojects {
   }
 }
 
+val rootDir = projectDir
+
 subprojects {
   buildscript {
     repositories {
@@ -98,5 +100,55 @@ subprojects {
         "-Xopt-in=androidx.compose.foundation.ExperimentalFoundationApi"
       )
     }
+  }
+
+  tasks.register("dependenciesUpdateCheck", Exec::class.java) {
+    dependenciesUpdateFunc { newDependencies ->
+      val existingDependencies = project.file("dependencies-baseline.txt").readText()
+      if (existingDependencies != newDependencies) {
+        project.file("dependencies-new.txt").writeText(newDependencies)
+        throw GradleException("Dependencies have been updated")
+      }
+    }
+  }
+
+  tasks.register("dependenciesUpdateApply", Exec::class.java) {
+    dependenciesUpdateFunc { newDependencies ->
+      project.file("dependencies-baseline.txt").writeText(newDependencies)
+    }
+  }
+}
+
+inline fun Exec.dependenciesUpdateFunc(crossinline func: Task.(String) -> Unit) {
+  enabled = project.tasks.any { it.name == "androidDependencies" }
+  workingDir = rootDir
+
+  if (System.getProperty("os.name").toLowerCase(java.util.Locale.ROOT).contains("windows")) {
+    commandLine("cmd", "/c", "gradlew.bat", "${project.path}:androidDependencies")
+  } else {
+    commandLine("./gradlew", "${project.path}:androidDependencies")
+  }
+
+  val taskOutput = StringBuilder()
+  var acceptOutput = false
+  val listener: StandardOutputListener = object : StandardOutputListener {
+    override fun onOutput(line: CharSequence) {
+      if (acceptOutput) {
+        if (line.startsWith("BUILD SUCCESSFUL")) {
+          acceptOutput = false
+          logging.removeStandardErrorListener(this)
+        } else {
+          taskOutput.append(line)
+        }
+      } else {
+        acceptOutput = line.startsWith("> Task ${project.path}:androidDependencies")
+      }
+    }
+  }
+
+  logging.addStandardOutputListener(listener)
+  doLast {
+    logging.removeStandardErrorListener(listener)
+    func(taskOutput.toString())
   }
 }

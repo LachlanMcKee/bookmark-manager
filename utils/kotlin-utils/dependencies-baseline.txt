@@ -1,0 +1,156 @@
+
+debug
+debugCompileClasspath - Dependencies for compilation
++--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
++--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.2@jar
++--- org.jetbrains.kotlin:kotlin-stdlib:1.4.30@jar
++--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
++--- com.jakewharton.timber:timber:4.7.1@aar
+\--- org.jetbrains:annotations:16.0.1@jar
+
+debugRuntimeClasspath - Dependencies for runtime/packaging
++--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
++--- com.jakewharton.timber:timber:4.7.1@aar
++--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.2@jar
++--- org.jetbrains.kotlin:kotlin-stdlib:1.4.30@jar
++--- org.jetbrains:annotations:16.0.1@jar
+\--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
+
+release
+releaseCompileClasspath - Dependencies for compilation
++--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
++--- com.jakewharton.timber:timber:4.7.1@aar
++--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.2@jar
++--- org.jetbrains.kotlin:kotlin-stdlib:1.4.30@jar
++--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
+\--- org.jetbrains:annotations:16.0.1@jar
+
+releaseRuntimeClasspath - Dependencies for runtime/packaging
++--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
++--- com.jakewharton.timber:timber:4.7.1@aar
++--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.2@jar
++--- org.jetbrains.kotlin:kotlin-stdlib:1.4.30@jar
++--- org.jetbrains:annotations:16.0.1@jar
+\--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
+
+debugAndroidTest
+debugAndroidTestCompileClasspath - Dependencies for compilation
++--- :utils:kotlin-utils (variant: debug)
++--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
++--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.2@jar
++--- org.jetbrains.kotlin:kotlin-stdlib:1.4.30@jar
++--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
++--- com.jakewharton.timber:timber:4.7.1@aar
+\--- org.jetbrains:annotations:16.0.1@jar
+
+debugAndroidTestRuntimeClasspath - Dependencies for runtime/packaging
++--- :utils:kotlin-utils (variant: debug)
++--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
++--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.2@jar
++--- org.jetbrains.kotlin:kotlin-stdlib:1.4.30@jar
++--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
++--- com.jakewharton.timber:timber:4.7.1@aar
+\--- org.jetbrains:annotations:16.0.1@jar
+
+debugUnitTest
+debugUnitTestCompileClasspath - Dependencies for compilation
++--- :utils:kotlin-utils (variant: debug)
++--- org.junit.jupiter:junit-jupiter-engine:5.4.2@jar
++--- org.junit.jupiter:junit-jupiter-api:5.4.2@jar
++--- org.junit.platform:junit-platform-engine:1.4.2@jar
++--- org.junit.platform:junit-platform-commons:1.4.2@jar
++--- org.apiguardian:apiguardian-api:1.0.0@jar
++--- org.opentest4j:opentest4j:1.1.1@jar
++--- io.mockk:mockk:1.10.3@jar
++--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
++--- org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2@jar
++--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.2@jar
++--- org.jetbrains.kotlin:kotlin-stdlib:1.4.30@jar
++--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
++--- com.jakewharton.timber:timber:4.7.1@aar
++--- org.jetbrains:annotations:16.0.1@jar
++--- io.mockk:mockk-common:1.10.3@jar
++--- io.mockk:mockk-dsl-jvm:1.10.3@jar
+\--- io.mockk:mockk-dsl:1.10.3@jar
+
+debugUnitTestRuntimeClasspath - Dependencies for runtime/packaging
++--- :utils:kotlin-utils (variant: debug)
++--- org.junit.jupiter:junit-jupiter-engine:5.4.2@jar
++--- org.junit.jupiter:junit-jupiter-api:5.4.2@jar
++--- io.mockk:mockk:1.10.3@jar
++--- org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2@jar
++--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
++--- org.jetbrains.kotlinx:kotlinx-coroutines-debug:1.4.2@jar
++--- com.jakewharton.timber:timber:4.7.1@aar
++--- org.junit.platform:junit-platform-engine:1.4.2@jar
++--- org.junit.platform:junit-platform-commons:1.4.2@jar
++--- org.apiguardian:apiguardian-api:1.0.0@jar
++--- org.opentest4j:opentest4j:1.1.1@jar
++--- io.mockk:mockk-agent-jvm:1.10.3@jar
++--- io.mockk:mockk-dsl-jvm:1.10.3@jar
++--- org.jetbrains.kotlin:kotlin-reflect:1.4.20@jar
++--- io.mockk:mockk-common:1.10.3@jar
++--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.2@jar
++--- org.jetbrains.kotlin:kotlin-stdlib:1.4.30@jar
++--- org.jetbrains:annotations:16.0.1@jar
++--- io.mockk:mockk-agent-common:1.10.3@jar
++--- io.mockk:mockk-agent-api:1.10.3@jar
++--- org.objenesis:objenesis:3.1@jar
++--- net.bytebuddy:byte-buddy:1.10.14@jar
++--- net.bytebuddy:byte-buddy-agent:1.10.14@jar
++--- io.mockk:mockk-dsl:1.10.3@jar
++--- net.java.dev.jna:jna-platform:5.5.0@jar
++--- net.java.dev.jna:jna:5.5.0@jar
+\--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
+
+releaseUnitTest
+releaseUnitTestCompileClasspath - Dependencies for compilation
++--- :utils:kotlin-utils (variant: release)
++--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
++--- org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2@jar
++--- com.jakewharton.timber:timber:4.7.1@aar
++--- org.junit.jupiter:junit-jupiter-engine:5.4.2@jar
++--- org.junit.jupiter:junit-jupiter-api:5.4.2@jar
++--- org.junit.platform:junit-platform-engine:1.4.2@jar
++--- org.junit.platform:junit-platform-commons:1.4.2@jar
++--- org.apiguardian:apiguardian-api:1.0.0@jar
++--- org.opentest4j:opentest4j:1.1.1@jar
++--- io.mockk:mockk:1.10.3@jar
++--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.2@jar
++--- org.jetbrains.kotlin:kotlin-stdlib:1.4.30@jar
++--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
++--- org.jetbrains:annotations:16.0.1@jar
++--- io.mockk:mockk-common:1.10.3@jar
++--- io.mockk:mockk-dsl-jvm:1.10.3@jar
+\--- io.mockk:mockk-dsl:1.10.3@jar
+
+releaseUnitTestRuntimeClasspath - Dependencies for runtime/packaging
++--- :utils:kotlin-utils (variant: release)
++--- org.junit.jupiter:junit-jupiter-engine:5.4.2@jar
++--- org.junit.jupiter:junit-jupiter-api:5.4.2@jar
++--- io.mockk:mockk:1.10.3@jar
++--- org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2@jar
++--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
++--- org.jetbrains.kotlinx:kotlinx-coroutines-debug:1.4.2@jar
++--- com.jakewharton.timber:timber:4.7.1@aar
++--- org.junit.platform:junit-platform-engine:1.4.2@jar
++--- org.junit.platform:junit-platform-commons:1.4.2@jar
++--- org.apiguardian:apiguardian-api:1.0.0@jar
++--- org.opentest4j:opentest4j:1.1.1@jar
++--- io.mockk:mockk-agent-jvm:1.10.3@jar
++--- io.mockk:mockk-dsl-jvm:1.10.3@jar
++--- org.jetbrains.kotlin:kotlin-reflect:1.4.20@jar
++--- io.mockk:mockk-common:1.10.3@jar
++--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.2@jar
++--- org.jetbrains.kotlin:kotlin-stdlib:1.4.30@jar
++--- org.jetbrains:annotations:16.0.1@jar
++--- io.mockk:mockk-agent-common:1.10.3@jar
++--- io.mockk:mockk-agent-api:1.10.3@jar
++--- org.objenesis:objenesis:3.1@jar
++--- net.bytebuddy:byte-buddy:1.10.14@jar
++--- net.bytebuddy:byte-buddy-agent:1.10.14@jar
++--- io.mockk:mockk-dsl:1.10.3@jar
++--- net.java.dev.jna:jna-platform:5.5.0@jar
++--- net.java.dev.jna:jna:5.5.0@jar
+\--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
+
