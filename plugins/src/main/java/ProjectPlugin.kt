@@ -1,11 +1,6 @@
-package net.lachlanmckee.bookmark
-
 import com.android.build.gradle.BaseExtension
 import com.android.build.gradle.LibraryExtension
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
-import net.lachlanmckee.bookmark.dependencies.Dependencies
-import net.lachlanmckee.bookmark.dependencies.EspressoTestDependencies
-import net.lachlanmckee.bookmark.dependencies.UnitTestDependencies
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -109,7 +104,7 @@ internal abstract class ProjectPlugin : Plugin<Project> {
     implementation(Dependencies.Kotlin.stdlib)
     implementation(Dependencies.Kotlin.coroutinesCore)
     if (moduleConfiguration.dependencies.kotlin.utils) {
-      implementation(project(":kotlin-utils"))
+      implementation(project(":utils:kotlin-utils"))
     }
     implementation(Dependencies.Logging.timber)
 
@@ -196,11 +191,15 @@ internal abstract class ProjectPlugin : Plugin<Project> {
         "testingMode must be UNIT_AND_INSTRUMENTATION if specifying instrumentation dependencies"
       }
       if (instrumentation.applitools) {
-        androidTestImplementation("com.applitools:eyes-android-espresso:4.7.6@aar")
-        androidTestImplementation("com.applitools:eyes-android-common:4.7.6")
-        androidTestImplementation("com.applitools:eyes-android-core:4.7.6")
-        androidTestImplementation("com.applitools:eyes-android-components:4.7.6@aar")
-        androidTestImplementation("com.applitools:eyes-android-components-androidx:4.7.6@aar")
+        androidTestImplementation(EspressoTestDependencies.applitoolsEspresso)
+        androidTestImplementation(EspressoTestDependencies.applitoolsCommon)
+        androidTestImplementation(EspressoTestDependencies.applitoolsCore)
+        androidTestImplementation(EspressoTestDependencies.applitoolsComponents)
+        androidTestImplementation(EspressoTestDependencies.applitoolsComponentsAndroidX)
+
+        if (moduleConfiguration.composeEnabled) {
+          implementation(project(":utils:applitools-compose"))
+        }
       }
     }
 

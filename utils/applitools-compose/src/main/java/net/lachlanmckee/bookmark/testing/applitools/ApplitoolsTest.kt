@@ -1,4 +1,4 @@
-package net.lachlanmckee.bookmark.testing.util.annotation
+package net.lachlanmckee.bookmark.testing.applitools
 
 import android.os.Build
 import androidx.test.internal.runner.filters.ParentFilter

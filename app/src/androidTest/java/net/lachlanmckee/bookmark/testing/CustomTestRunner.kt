@@ -5,7 +5,7 @@ import android.content.Context
 import android.os.Bundle
 import androidx.test.runner.AndroidJUnitRunner
 import dagger.hilt.android.testing.HiltTestApplication
-import net.lachlanmckee.bookmark.testing.util.annotation.ApplitoolsTest
+import net.lachlanmckee.bookmark.testing.applitools.ApplitoolsTest
 import timber.log.Timber
 
 class CustomTestRunner : AndroidJUnitRunner() {

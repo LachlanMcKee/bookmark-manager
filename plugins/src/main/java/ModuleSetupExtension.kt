@@ -1,5 +1,3 @@
-package net.lachlanmckee.bookmark
-
 import javax.inject.Inject
 
 open class ModuleSetupExtension @Inject constructor(

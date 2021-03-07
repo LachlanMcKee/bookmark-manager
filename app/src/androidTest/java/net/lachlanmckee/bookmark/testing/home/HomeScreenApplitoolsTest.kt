@@ -8,8 +8,8 @@ import dagger.hilt.android.testing.HiltAndroidTest
 import net.lachlanmckee.bookmark.HiltTestActivity
 import net.lachlanmckee.bookmark.feature.home.HomeScreen
 import net.lachlanmckee.bookmark.feature.home.HomeViewModel
-import net.lachlanmckee.bookmark.testing.util.annotation.ApplitoolsTest
-import net.lachlanmckee.bookmark.testing.util.eyes.eyesTest
+import net.lachlanmckee.bookmark.testing.applitools.ApplitoolsTest
+import net.lachlanmckee.bookmark.testing.applitools.eyesTest
 import org.junit.Rule
 import org.junit.Test
 
