@@ -9,25 +9,58 @@ plugins {
 moduleSetup {
   configuration = ModuleConfiguration(
     composeEnabled = true,
-    testingMode = ModuleConfiguration.TestingMode.UNIT_AND_INSTRUMENTATION,
-    dependencies = ModuleConfiguration.Dependencies(
-      androidX = ModuleConfiguration.AndroidX(
-        navigation = true,
-        lifecycle = true
-      ),
-      analytics = ModuleConfiguration.Analytics(
-        firebase = true
-      ),
-      networking = ModuleConfiguration.Networking(
-        okHttp = true
-      ),
-      dagger = ModuleConfiguration.Dagger.WITH_COMPILER,
-      compose = ModuleConfiguration.Compose.ENABLE_ALL,
-      room = ModuleConfiguration.Room.WITH_COMPILER,
-      instrumentation = ModuleConfiguration.Instrumentation(
-        applitools = true
+    dependencies = { project ->
+      appendFrom(CommonDependencies.ComposeCore(project))
+
+      implementation(
+        project(":components:chip-layouts"),
+        project(":components:row"),
+
+        Dependencies.Logging.timber,
+
+        Dependencies.AndroidX.activityCompose,
+        Dependencies.AndroidX.appcompat,
+        Dependencies.AndroidX.coreKtx,
+        Dependencies.AndroidX.navigationFragmentKtx,
+        Dependencies.AndroidX.navigationUiKtx,
+        Dependencies.AndroidX.lifecycleViewModelKtx,
+        Dependencies.AndroidX.lifecycleLiveDataKtx,
+
+        Dependencies.Analytics.firebaseAnalytics,
+
+        Dependencies.Network.okHttp
       )
-    )
+
+      implementation(Dependencies.Di.dagger)
+      implementation(Dependencies.Di.daggerHilt)
+      kapt(Dependencies.Di.daggerCompiler)
+      kapt(Dependencies.Di.daggerHiltCompiler)
+
+      implementation(
+        Dependencies.Compose.iconsCore,
+        Dependencies.Compose.iconsExtended,
+        Dependencies.Compose.liveData,
+        Dependencies.Compose.paging,
+        Dependencies.Compose.simpleFlowRow
+      )
+
+      // Storage
+      implementation(Dependencies.Storage.roomRuntime)
+      kapt(Dependencies.Storage.roomCompiler)
+      implementation(Dependencies.Storage.roomKtx)
+
+      debugImplementation(EspressoTestDependencies.fragmentTesting)
+      androidTestImplementation(
+        EspressoTestDependencies.espressoIntents,
+        EspressoTestDependencies.mockk,
+        EspressoTestDependencies.navigation,
+        EspressoTestDependencies.daggerHiltAndroidTesting,
+
+        project(":utils:applitools-compose")
+      )
+
+      kaptAndroidTest(Dependencies.Di.daggerHiltCompiler)
+    }
   )
 }
 
@@ -57,9 +90,4 @@ android {
       proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
     }
   }
-}
-
-dependencies {
-  implementation(project(":components:chip-layouts"))
-  implementation(project(":components:row"))
 }

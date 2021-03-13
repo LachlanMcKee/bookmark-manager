@@ -4,9 +4,8 @@ plugins {
 
 moduleSetup {
   configuration = ModuleConfiguration(
-    testingMode = ModuleConfiguration.TestingMode.UNIT,
-    dependencies = ModuleConfiguration.Dependencies(
-      kotlin = ModuleConfiguration.Kotlin(utils = false)
-    )
+    dependencies = {
+      implementation(Dependencies.Kotlin.stdlib)
+    }
   )
 }
