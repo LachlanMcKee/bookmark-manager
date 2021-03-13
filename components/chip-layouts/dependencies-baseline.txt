@@ -1,9 +1,8 @@
 
 debug
 debugCompileClasspath - Dependencies for compilation
-+--- androidx.fragment:fragment-testing:1.3.0-beta01@aar
-+--- androidx.fragment:fragment-ktx:1.3.0-beta01@aar
-+--- androidx.fragment:fragment:1.3.0@aar
++--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
++--- com.github.LachlanMcKee:android-samples:1.0.0@aar
 +--- androidx.compose.ui:ui-tooling:1.0.0-beta01@aar
 +--- androidx.compose.material:material:1.0.0-beta01@aar
 +--- androidx.compose.material:material-ripple:1.0.0-beta01@aar
@@ -13,54 +12,24 @@ debugCompileClasspath - Dependencies for compilation
 +--- androidx.compose.material:material-icons-core:1.0.0-beta01@aar
 +--- androidx.compose.foundation:foundation-layout:1.0.0-beta01@aar
 +--- androidx.compose.ui:ui:1.0.0-beta01@aar
-+--- androidx.test:core:1.3.0@aar
 +--- androidx.compose.animation:animation-core:1.0.0-beta01@aar
 +--- androidx.compose.runtime:runtime-saveable:1.0.0-beta01@aar
-+--- androidx.compose.ui:ui-text:1.0.0-beta01@aar
-+--- androidx.compose.ui:ui-graphics:1.0.0-beta01@aar
-+--- androidx.compose.ui:ui-unit:1.0.0-beta01@aar
-+--- androidx.compose.ui:ui-geometry:1.0.0-beta01@aar
-+--- androidx.activity:activity-ktx:1.2.0@aar
-+--- androidx.core:core-ktx:1.1.0@aar
-+--- androidx.test:monitor:1.3.0@aar
-+--- androidx.lifecycle:lifecycle-livedata-core-ktx:2.3.0-beta01@aar
-+--- androidx.activity:activity:1.2.0@aar
-+--- androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.0@aar
-+--- androidx.loader:loader:1.0.0@aar
-+--- androidx.lifecycle:lifecycle-livedata:2.0.0@aar
-+--- androidx.lifecycle:lifecycle-livedata-core:2.3.0@aar
-+--- androidx.viewpager:viewpager:1.0.0@aar
-+--- androidx.customview:customview:1.0.0@aar
-+--- androidx.core:core:1.5.0-beta01@aar
-+--- androidx.lifecycle:lifecycle-runtime-ktx:2.3.0@aar
-+--- androidx.lifecycle:lifecycle-runtime:2.3.0@aar
-+--- androidx.lifecycle:lifecycle-common:2.3.0@jar
-+--- androidx.collection:collection-ktx:1.1.0@jar
-+--- androidx.versionedparcelable:versionedparcelable:1.1.0@aar
-+--- androidx.collection:collection:1.1.0@jar
-+--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0@aar
-+--- androidx.lifecycle:lifecycle-viewmodel:2.3.0@aar
-+--- androidx.savedstate:savedstate-ktx:1.1.0@aar
-+--- androidx.savedstate:savedstate:1.1.0@aar
-+--- androidx.arch.core:core-runtime:2.1.0@aar
-+--- androidx.arch.core:core-common:2.1.0@jar
-+--- androidx.annotation:annotation:1.2.0-beta01@jar
-+--- androidx.annotation:annotation-experimental:1.0.0@aar
-+--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
-+--- com.github.LachlanMcKee:android-samples:1.0.0@aar
 +--- androidx.compose.runtime:runtime:1.0.0-beta01@aar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1@jar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.2@jar
 +--- org.jetbrains.kotlin:kotlin-stdlib:1.4.30@jar
 +--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
-+--- com.jakewharton.timber:timber:4.7.1@aar
-+--- org.jetbrains:annotations:16.0.1@jar
++--- org.jetbrains:annotations:13.0@jar
++--- androidx.compose.ui:ui-text:1.0.0-beta01@aar
++--- androidx.compose.ui:ui-graphics:1.0.0-beta01@aar
++--- androidx.compose.ui:ui-unit:1.0.0-beta01@aar
++--- androidx.compose.ui:ui-geometry:1.0.0-beta01@aar
++--- androidx.annotation:annotation:1.2.0-beta01@jar
 +--- :utils:kotlin-utils (variant: debug)
 \--- :components:chip (variant: debug)
 
 debugRuntimeClasspath - Dependencies for runtime/packaging
 +--- :components:chip (variant: debug)
-+--- androidx.fragment:fragment-testing:1.3.0-beta01@aar
 +--- :utils:kotlin-utils (variant: debug)
 +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
 +--- com.github.LachlanMcKee:android-samples:1.0.0@aar
@@ -82,24 +51,17 @@ debugRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.compose.ui:ui-geometry:1.0.0-beta01@aar
 +--- androidx.compose.ui:ui-util:1.0.0-beta01@aar
 +--- androidx.compose.runtime:runtime:1.0.0-beta01@aar
-+--- androidx.fragment:fragment-ktx:1.3.0-beta01@aar
 +--- androidx.activity:activity-ktx:1.2.0@aar
-+--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0@aar
 +--- androidx.lifecycle:lifecycle-runtime-ktx:2.3.0@aar
++--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0@aar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1@jar
-+--- com.jakewharton.timber:timber:4.7.1@aar
-+--- androidx.test:core:1.3.0@aar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.2@jar
-+--- androidx.core:core-ktx:1.1.0@aar
-+--- androidx.collection:collection-ktx:1.1.0@jar
-+--- androidx.lifecycle:lifecycle-livedata-core-ktx:2.3.0-beta01@aar
 +--- org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:0.3.3@jar
++--- androidx.core:core-ktx:1.1.0@aar
 +--- androidx.savedstate:savedstate-ktx:1.1.0@aar
 +--- org.jetbrains.kotlin:kotlin-stdlib:1.4.30@jar
-+--- org.jetbrains:annotations:16.0.1@jar
 +--- androidx.appcompat:appcompat:1.3.0-beta01@aar
 +--- androidx.fragment:fragment:1.3.0@aar
-+--- androidx.test:monitor:1.3.0@aar
 +--- androidx.autofill:autofill:1.0.0@aar
 +--- androidx.viewpager:viewpager:1.0.0@aar
 +--- androidx.loader:loader:1.0.0@aar
@@ -120,12 +82,13 @@ debugRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.tracing:tracing:1.0.0@aar
 +--- androidx.lifecycle:lifecycle-livedata:2.0.0@aar
 +--- androidx.lifecycle:lifecycle-livedata-core:2.3.0@aar
-+--- androidx.lifecycle:lifecycle-common:2.3.0@jar
 +--- androidx.arch.core:core-runtime:2.1.0@aar
 +--- androidx.arch.core:core-common:2.1.0@jar
++--- androidx.lifecycle:lifecycle-common:2.3.0@jar
 +--- androidx.interpolator:interpolator:1.0.0@aar
 +--- androidx.annotation:annotation:1.2.0-beta01@jar
 +--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
++--- org.jetbrains:annotations:13.0@jar
 \--- androidx.annotation:annotation-experimental:1.0.0@aar
 
 release
@@ -145,13 +108,12 @@ releaseCompileClasspath - Dependencies for compilation
 +--- androidx.compose.runtime:runtime:1.0.0-beta01@aar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1@jar
 +--- :utils:kotlin-utils (variant: release)
-+--- com.jakewharton.timber:timber:4.7.1@aar
 +--- com.github.LachlanMcKee:android-samples:1.0.0@aar
 +--- :components:chip (variant: release)
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.2@jar
 +--- org.jetbrains.kotlin:kotlin-stdlib:1.4.30@jar
 +--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
-+--- org.jetbrains:annotations:16.0.1@jar
++--- org.jetbrains:annotations:13.0@jar
 +--- androidx.compose.ui:ui-text:1.0.0-beta01@aar
 +--- androidx.compose.ui:ui-graphics:1.0.0-beta01@aar
 +--- androidx.compose.ui:ui-unit:1.0.0-beta01@aar
@@ -185,13 +147,11 @@ releaseRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.lifecycle:lifecycle-runtime-ktx:2.3.0@aar
 +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0@aar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1@jar
-+--- com.jakewharton.timber:timber:4.7.1@aar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.2@jar
 +--- org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:0.3.3@jar
 +--- androidx.core:core-ktx:1.1.0@aar
 +--- androidx.savedstate:savedstate-ktx:1.1.0@aar
 +--- org.jetbrains.kotlin:kotlin-stdlib:1.4.30@jar
-+--- org.jetbrains:annotations:16.0.1@jar
 +--- androidx.appcompat:appcompat:1.3.0-beta01@aar
 +--- androidx.fragment:fragment:1.3.0@aar
 +--- androidx.autofill:autofill:1.0.0@aar
@@ -220,6 +180,7 @@ releaseRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.interpolator:interpolator:1.0.0@aar
 +--- androidx.annotation:annotation:1.2.0-beta01@jar
 +--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
++--- org.jetbrains:annotations:13.0@jar
 \--- androidx.annotation:annotation-experimental:1.0.0@aar
 
 debugAndroidTest
@@ -227,57 +188,48 @@ debugAndroidTestCompileClasspath - Dependencies for compilation
 +--- :components:chip-layouts (variant: debug)
 +--- androidx.compose.ui:ui-test-junit4:1.0.0-beta01@aar
 +--- androidx.test.ext:junit:1.1.2@aar
-+--- androidx.test.espresso:espresso-intents:3.3.0@aar
 +--- androidx.test.espresso:espresso-core:3.3.0@aar
 +--- androidx.test:rules:1.3.0@aar
 +--- androidx.test:runner:1.3.0@aar
-+--- io.mockk:mockk-android:1.10.3@aar
-+--- androidx.compose.ui:ui-test:1.0.0-beta01@aar
++--- junit:junit:4.12@jar
++--- org.hamcrest:hamcrest-integration:1.3@jar
++--- org.hamcrest:hamcrest-library:1.3@jar
++--- org.hamcrest:hamcrest-core:1.3@jar
++--- androidx.test:core:1.3.0@aar
 +--- androidx.compose.ui:ui-tooling:1.0.0-beta01@aar
 +--- androidx.compose.material:material:1.0.0-beta01@aar
 +--- androidx.compose.material:material-ripple:1.0.0-beta01@aar
 +--- androidx.compose.foundation:foundation:1.0.0-beta01@aar
++--- androidx.compose.ui:ui-test:1.0.0-beta01@aar
 +--- androidx.compose.ui:ui-tooling-data:1.0.0-beta01@aar
 +--- androidx.compose.animation:animation:1.0.0-beta01@aar
 +--- androidx.compose.material:material-icons-core:1.0.0-beta01@aar
 +--- androidx.compose.foundation:foundation-layout:1.0.0-beta01@aar
 +--- androidx.compose.ui:ui:1.0.0-beta01@aar
-+--- androidx.compose.animation:animation-core:1.0.0-beta01@aar
-+--- androidx.fragment:fragment-testing:1.3.0-beta01@aar
-+--- androidx.fragment:fragment-ktx:1.3.0-beta01@aar
-+--- androidx.fragment:fragment:1.3.0@aar
-+--- androidx.activity:activity-ktx:1.2.0@aar
-+--- androidx.activity:activity:1.2.0@aar
-+--- androidx.test:core:1.3.0@aar
 +--- androidx.test:monitor:1.3.0@aar
++--- androidx.activity:activity:1.2.0@aar
++--- androidx.compose.animation:animation-core:1.0.0-beta01@aar
 +--- androidx.compose.runtime:runtime-saveable:1.0.0-beta01@aar
 +--- androidx.compose.ui:ui-text:1.0.0-beta01@aar
 +--- androidx.compose.ui:ui-graphics:1.0.0-beta01@aar
 +--- androidx.compose.ui:ui-unit:1.0.0-beta01@aar
 +--- androidx.compose.ui:ui-geometry:1.0.0-beta01@aar
-+--- androidx.compose.ui:ui-util:1.0.0-beta01@aar
-+--- androidx.core:core-ktx:1.1.0@aar
-+--- androidx.viewpager:viewpager:1.0.0@aar
-+--- androidx.loader:loader:1.0.0@aar
-+--- androidx.customview:customview:1.0.0@aar
 +--- androidx.core:core:1.5.0-beta01@aar
-+--- androidx.lifecycle:lifecycle-runtime-ktx:2.3.0@aar
 +--- androidx.lifecycle:lifecycle-runtime:2.3.0@aar
 +--- androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.0@aar
-+--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0@aar
-+--- androidx.lifecycle:lifecycle-viewmodel:2.3.0@aar
-+--- androidx.savedstate:savedstate-ktx:1.1.0@aar
-+--- androidx.savedstate:savedstate:1.1.0@aar
-+--- androidx.lifecycle:lifecycle-livedata-core-ktx:2.3.0-beta01@aar
-+--- androidx.lifecycle:lifecycle-livedata:2.0.0@aar
 +--- androidx.lifecycle:lifecycle-livedata-core:2.3.0@aar
 +--- androidx.lifecycle:lifecycle-common:2.3.0@jar
++--- androidx.compose.ui:ui-util:1.0.0-beta01@aar
++--- androidx.lifecycle:lifecycle-viewmodel:2.3.0@aar
++--- androidx.savedstate:savedstate:1.1.0@aar
 +--- androidx.versionedparcelable:versionedparcelable:1.1.0@aar
-+--- androidx.arch.core:core-runtime:2.1.0@aar
 +--- androidx.arch.core:core-common:2.1.0@jar
-+--- androidx.collection:collection-ktx:1.1.0@jar
 +--- androidx.collection:collection:1.1.0@jar
 +--- androidx.annotation:annotation:1.2.0-beta01@jar
++--- androidx.test.espresso:espresso-idling-resource:3.3.0@aar
++--- com.squareup:javawriter:2.1.1@jar
++--- javax.inject:javax.inject:1@jar
++--- com.google.code.findbugs:jsr305:2.0.1@jar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.1@jar
 +--- androidx.compose.runtime:runtime:1.0.0-beta01@aar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1@jar
@@ -286,21 +238,7 @@ debugAndroidTestCompileClasspath - Dependencies for compilation
 +--- com.github.LachlanMcKee:android-samples:1.0.0@aar
 +--- org.jetbrains.kotlin:kotlin-stdlib:1.4.30@jar
 +--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
-+--- com.jakewharton.timber:timber:4.7.1@aar
-+--- org.jetbrains:annotations:16.0.1@jar
-+--- androidx.annotation:annotation-experimental:1.0.0@aar
-+--- junit:junit:4.12@jar
-+--- org.hamcrest:hamcrest-integration:1.3@jar
-+--- org.hamcrest:hamcrest-library:1.3@jar
-+--- org.hamcrest:hamcrest-core:1.3@jar
-+--- androidx.test.espresso:espresso-idling-resource:3.3.0@aar
-+--- com.squareup:javawriter:2.1.1@jar
-+--- javax.inject:javax.inject:1@jar
-+--- com.google.code.findbugs:jsr305:2.0.1@jar
-+--- io.mockk:mockk:1.10.3@jar
-+--- io.mockk:mockk-common:1.10.3@jar
-+--- io.mockk:mockk-dsl-jvm:1.10.3@jar
-+--- io.mockk:mockk-dsl:1.10.3@jar
++--- org.jetbrains:annotations:13.0@jar
 +--- :utils:kotlin-utils (variant: debug)
 \--- :components:chip (variant: debug)
 
@@ -308,15 +246,13 @@ debugAndroidTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- :components:chip-layouts (variant: debug)
 +--- androidx.compose.ui:ui-test-junit4:1.0.0-beta01@aar
 +--- androidx.test.ext:junit:1.1.2@aar
-+--- androidx.test.espresso:espresso-intents:3.3.0@aar
 +--- androidx.compose.ui:ui-test:1.0.0-beta01@aar
 +--- androidx.test.espresso:espresso-core:3.3.0@aar
 +--- androidx.test:rules:1.3.0@aar
 +--- androidx.test:runner:1.3.0@aar
-+--- io.mockk:mockk-android:1.10.3@aar
 +--- :components:chip (variant: debug)
-+--- androidx.fragment:fragment-testing:1.3.0-beta01@aar
-+--- androidx.fragment:fragment-ktx:1.3.0-beta01@aar
++--- :utils:kotlin-utils (variant: debug)
++--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
 +--- com.github.LachlanMcKee:android-samples:1.0.0@aar
 +--- androidx.compose.ui:ui-tooling:1.0.0-beta01@aar
 +--- androidx.compose.material:material:1.0.0-beta01@aar
@@ -324,16 +260,11 @@ debugAndroidTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.compose.foundation:foundation:1.0.0-beta01@aar
 +--- androidx.compose.animation:animation:1.0.0-beta01@aar
 +--- androidx.compose.foundation:foundation-layout:1.0.0-beta01@aar
++--- androidx.compose.ui:ui-tooling-data:1.0.0-beta01@aar
 +--- androidx.compose.material:material-icons-extended:1.0.0-beta01@aar
 +--- androidx.compose.material:material-icons-core:1.0.0-beta01@aar
-+--- androidx.compose.ui:ui-tooling-data:1.0.0-beta01@aar
 +--- androidx.compose.ui:ui:1.0.0-beta01@aar
-+--- androidx.appcompat:appcompat:1.3.0-beta01@aar
-+--- androidx.fragment:fragment:1.3.0@aar
-+--- androidx.activity:activity-ktx:1.2.0@aar
-+--- androidx.activity:activity:1.2.0@aar
-+--- androidx.test:core:1.3.0@aar
-+--- androidx.test:monitor:1.3.0@aar
++--- org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.1@jar
 +--- androidx.compose.ui:ui-text:1.0.0-beta01@aar
 +--- androidx.compose.ui:ui-graphics:1.0.0-beta01@aar
 +--- androidx.compose.animation:animation-core:1.0.0-beta01@aar
@@ -342,8 +273,24 @@ debugAndroidTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.compose.runtime:runtime-saveable:1.0.0-beta01@aar
 +--- androidx.compose.ui:ui-util:1.0.0-beta01@aar
 +--- androidx.compose.runtime:runtime:1.0.0-beta01@aar
-+--- androidx.autofill:autofill:1.0.0@aar
++--- androidx.activity:activity-ktx:1.2.0@aar
++--- androidx.lifecycle:lifecycle-runtime-ktx:2.3.0@aar
++--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0@aar
++--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1@jar
++--- org.jetbrains.kotlinx:kotlinx-coroutines-debug:1.4.1@jar
++--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.2@jar
++--- org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:0.3.3@jar
 +--- androidx.core:core-ktx:1.1.0@aar
++--- androidx.savedstate:savedstate-ktx:1.1.0@aar
++--- org.jetbrains.kotlin:kotlin-stdlib:1.4.30@jar
++--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
++--- org.jetbrains:annotations:13.0@jar
++--- androidx.test:core:1.3.0@aar
++--- androidx.test:monitor:1.3.0@aar
++--- androidx.appcompat:appcompat:1.3.0-beta01@aar
++--- androidx.fragment:fragment:1.3.0@aar
++--- androidx.activity:activity:1.2.0@aar
++--- androidx.autofill:autofill:1.0.0@aar
 +--- androidx.viewpager:viewpager:1.0.0@aar
 +--- androidx.loader:loader:1.0.0@aar
 +--- androidx.appcompat:appcompat-resources:1.3.0-beta01@aar
@@ -352,42 +299,22 @@ debugAndroidTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.vectordrawable:vectordrawable-animated:1.1.0@aar
 +--- androidx.vectordrawable:vectordrawable:1.1.0@aar
 +--- androidx.core:core:1.5.0-beta01@aar
-+--- androidx.versionedparcelable:versionedparcelable:1.1.0@aar
-+--- androidx.collection:collection-ktx:1.1.0@jar
-+--- androidx.collection:collection:1.1.0@jar
-+--- androidx.lifecycle:lifecycle-runtime-ktx:2.3.0@aar
 +--- androidx.lifecycle:lifecycle-runtime:2.3.0@aar
 +--- androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.0@aar
-+--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0@aar
-+--- androidx.lifecycle:lifecycle-viewmodel:2.3.0@aar
-+--- androidx.savedstate:savedstate-ktx:1.1.0@aar
 +--- androidx.savedstate:savedstate:1.1.0@aar
-+--- androidx.tracing:tracing:1.0.0@aar
-+--- androidx.lifecycle:lifecycle-livedata-core-ktx:2.3.0-beta01@aar
 +--- androidx.lifecycle:lifecycle-livedata:2.0.0@aar
 +--- androidx.lifecycle:lifecycle-livedata-core:2.3.0@aar
 +--- androidx.lifecycle:lifecycle-common:2.3.0@jar
++--- androidx.versionedparcelable:versionedparcelable:1.1.0@aar
++--- androidx.collection:collection:1.1.0@jar
++--- androidx.lifecycle:lifecycle-viewmodel:2.3.0@aar
++--- androidx.tracing:tracing:1.0.0@aar
 +--- androidx.arch.core:core-runtime:2.1.0@aar
 +--- androidx.arch.core:core-common:2.1.0@jar
 +--- androidx.cursoradapter:cursoradapter:1.0.0@aar
 +--- androidx.interpolator:interpolator:1.0.0@aar
 +--- androidx.annotation:annotation:1.2.0-beta01@jar
 +--- androidx.annotation:annotation-experimental:1.0.0@aar
-+--- io.mockk:mockk-agent-android:1.10.3@aar
-+--- :utils:kotlin-utils (variant: debug)
-+--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
-+--- org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.1@jar
-+--- io.mockk:mockk:1.10.3@jar
-+--- io.mockk:mockk-dsl-jvm:1.10.3@jar
-+--- org.jetbrains.kotlin:kotlin-reflect:1.4.20@jar
-+--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1@jar
-+--- org.jetbrains.kotlinx:kotlinx-coroutines-debug:1.4.1@jar
-+--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.2@jar
-+--- org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:0.3.3@jar
-+--- org.jetbrains.kotlin:kotlin-stdlib:1.4.30@jar
-+--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
-+--- com.jakewharton.timber:timber:4.7.1@aar
-+--- org.jetbrains:annotations:16.0.1@jar
 +--- junit:junit:4.12@jar
 +--- androidx.test.espresso:espresso-idling-resource:3.3.0@aar
 +--- com.squareup:javawriter:2.1.1@jar
@@ -395,21 +322,13 @@ debugAndroidTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- org.hamcrest:hamcrest-integration:1.3@jar
 +--- org.hamcrest:hamcrest-library:1.3@jar
 +--- com.google.code.findbugs:jsr305:2.0.1@jar
-+--- io.mockk:mockk-agent-common:1.10.3@jar
-+--- io.mockk:mockk-agent-api:1.10.3@jar
 +--- org.hamcrest:hamcrest-core:1.3@jar
-+--- io.mockk:mockk-common:1.10.3@jar
-+--- com.linkedin.dexmaker:dexmaker:2.21.0@jar
-+--- org.objenesis:objenesis:2.6@jar
-+--- io.mockk:mockk-dsl:1.10.3@jar
-+--- com.jakewharton.android.repackaged:dalvik-dx:9.0.0_r3@jar
 +--- net.java.dev.jna:jna-platform:5.5.0@jar
 \--- net.java.dev.jna:jna:5.5.0@jar
 
 debugUnitTest
 debugUnitTestCompileClasspath - Dependencies for compilation
 +--- :components:chip-layouts (variant: debug)
-+--- androidx.fragment:fragment-testing:1.3.0-beta01@aar
 +--- org.junit.jupiter:junit-jupiter-engine:5.4.2@jar
 +--- org.junit.jupiter:junit-jupiter-api:5.4.2@jar
 +--- org.junit.platform:junit-platform-engine:1.4.2@jar
@@ -420,7 +339,6 @@ debugUnitTestCompileClasspath - Dependencies for compilation
 +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
 +--- com.github.LachlanMcKee:android-samples:1.0.0@aar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2@jar
-+--- androidx.fragment:fragment-ktx:1.3.0-beta01@aar
 +--- androidx.compose.ui:ui-tooling:1.0.0-beta01@aar
 +--- androidx.compose.material:material:1.0.0-beta01@aar
 +--- androidx.compose.material:material-ripple:1.0.0-beta01@aar
@@ -433,47 +351,19 @@ debugUnitTestCompileClasspath - Dependencies for compilation
 +--- androidx.compose.animation:animation-core:1.0.0-beta01@aar
 +--- androidx.compose.runtime:runtime-saveable:1.0.0-beta01@aar
 +--- androidx.compose.runtime:runtime:1.0.0-beta01@aar
-+--- androidx.activity:activity-ktx:1.2.0@aar
-+--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0@aar
-+--- androidx.lifecycle:lifecycle-runtime-ktx:2.3.0@aar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1@jar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.2@jar
-+--- androidx.core:core-ktx:1.1.0@aar
-+--- androidx.collection:collection-ktx:1.1.0@jar
-+--- androidx.lifecycle:lifecycle-livedata-core-ktx:2.3.0-beta01@aar
-+--- androidx.savedstate:savedstate-ktx:1.1.0@aar
 +--- org.jetbrains.kotlin:kotlin-stdlib:1.4.30@jar
 +--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
-+--- com.jakewharton.timber:timber:4.7.1@aar
-+--- org.jetbrains:annotations:16.0.1@jar
++--- org.jetbrains:annotations:13.0@jar
 +--- io.mockk:mockk-common:1.10.3@jar
 +--- io.mockk:mockk-dsl-jvm:1.10.3@jar
 +--- io.mockk:mockk-dsl:1.10.3@jar
-+--- androidx.fragment:fragment:1.3.0@aar
-+--- androidx.test:core:1.3.0@aar
 +--- androidx.compose.ui:ui-text:1.0.0-beta01@aar
 +--- androidx.compose.ui:ui-graphics:1.0.0-beta01@aar
 +--- androidx.compose.ui:ui-unit:1.0.0-beta01@aar
 +--- androidx.compose.ui:ui-geometry:1.0.0-beta01@aar
-+--- androidx.test:monitor:1.3.0@aar
-+--- androidx.activity:activity:1.2.0@aar
-+--- androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.0@aar
-+--- androidx.loader:loader:1.0.0@aar
-+--- androidx.lifecycle:lifecycle-livedata:2.0.0@aar
-+--- androidx.lifecycle:lifecycle-livedata-core:2.3.0@aar
-+--- androidx.viewpager:viewpager:1.0.0@aar
-+--- androidx.customview:customview:1.0.0@aar
-+--- androidx.core:core:1.5.0-beta01@aar
-+--- androidx.lifecycle:lifecycle-runtime:2.3.0@aar
-+--- androidx.lifecycle:lifecycle-common:2.3.0@jar
-+--- androidx.versionedparcelable:versionedparcelable:1.1.0@aar
-+--- androidx.collection:collection:1.1.0@jar
-+--- androidx.lifecycle:lifecycle-viewmodel:2.3.0@aar
-+--- androidx.savedstate:savedstate:1.1.0@aar
-+--- androidx.arch.core:core-runtime:2.1.0@aar
-+--- androidx.arch.core:core-common:2.1.0@jar
 +--- androidx.annotation:annotation:1.2.0-beta01@jar
-+--- androidx.annotation:annotation-experimental:1.0.0@aar
 +--- :utils:kotlin-utils (variant: debug)
 \--- :components:chip (variant: debug)
 
@@ -484,7 +374,6 @@ debugUnitTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- io.mockk:mockk:1.10.3@jar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2@jar
 +--- :components:chip (variant: debug)
-+--- androidx.fragment:fragment-testing:1.3.0-beta01@aar
 +--- :utils:kotlin-utils (variant: debug)
 +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
 +--- com.github.LachlanMcKee:android-samples:1.0.0@aar
@@ -507,12 +396,10 @@ debugUnitTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.compose.ui:ui-geometry:1.0.0-beta01@aar
 +--- androidx.compose.ui:ui-util:1.0.0-beta01@aar
 +--- androidx.compose.runtime:runtime:1.0.0-beta01@aar
-+--- androidx.fragment:fragment-ktx:1.3.0-beta01@aar
 +--- androidx.activity:activity-ktx:1.2.0@aar
-+--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0@aar
 +--- androidx.lifecycle:lifecycle-runtime-ktx:2.3.0@aar
++--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0@aar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1@jar
-+--- com.jakewharton.timber:timber:4.7.1@aar
 +--- org.junit.platform:junit-platform-engine:1.4.2@jar
 +--- org.junit.platform:junit-platform-commons:1.4.2@jar
 +--- org.apiguardian:apiguardian-api:1.0.0@jar
@@ -522,17 +409,12 @@ debugUnitTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- org.jetbrains.kotlin:kotlin-reflect:1.4.20@jar
 +--- io.mockk:mockk-common:1.10.3@jar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.2@jar
-+--- androidx.core:core-ktx:1.1.0@aar
-+--- androidx.collection:collection-ktx:1.1.0@jar
-+--- androidx.lifecycle:lifecycle-livedata-core-ktx:2.3.0-beta01@aar
 +--- org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:0.3.3@jar
++--- androidx.core:core-ktx:1.1.0@aar
 +--- androidx.savedstate:savedstate-ktx:1.1.0@aar
 +--- org.jetbrains.kotlin:kotlin-stdlib:1.4.30@jar
-+--- androidx.test:core:1.3.0@aar
-+--- org.jetbrains:annotations:16.0.1@jar
 +--- androidx.appcompat:appcompat:1.3.0-beta01@aar
 +--- androidx.fragment:fragment:1.3.0@aar
-+--- androidx.test:monitor:1.3.0@aar
 +--- androidx.autofill:autofill:1.0.0@aar
 +--- androidx.viewpager:viewpager:1.0.0@aar
 +--- androidx.loader:loader:1.0.0@aar
@@ -553,9 +435,9 @@ debugUnitTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.tracing:tracing:1.0.0@aar
 +--- androidx.lifecycle:lifecycle-livedata:2.0.0@aar
 +--- androidx.lifecycle:lifecycle-livedata-core:2.3.0@aar
-+--- androidx.lifecycle:lifecycle-common:2.3.0@jar
 +--- androidx.arch.core:core-runtime:2.1.0@aar
 +--- androidx.arch.core:core-common:2.1.0@jar
++--- androidx.lifecycle:lifecycle-common:2.3.0@jar
 +--- androidx.interpolator:interpolator:1.0.0@aar
 +--- androidx.annotation:annotation:1.2.0-beta01@jar
 +--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
@@ -567,6 +449,7 @@ debugUnitTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- io.mockk:mockk-dsl:1.10.3@jar
 +--- net.java.dev.jna:jna-platform:5.5.0@jar
 +--- net.java.dev.jna:jna:5.5.0@jar
++--- org.jetbrains:annotations:13.0@jar
 \--- androidx.annotation:annotation-experimental:1.0.0@aar
 
 releaseUnitTest
@@ -588,7 +471,6 @@ releaseUnitTestCompileClasspath - Dependencies for compilation
 +--- androidx.compose.runtime:runtime:1.0.0-beta01@aar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1@jar
 +--- :utils:kotlin-utils (variant: release)
-+--- com.jakewharton.timber:timber:4.7.1@aar
 +--- com.github.LachlanMcKee:android-samples:1.0.0@aar
 +--- :components:chip (variant: release)
 +--- org.junit.jupiter:junit-jupiter-engine:5.4.2@jar
@@ -601,7 +483,7 @@ releaseUnitTestCompileClasspath - Dependencies for compilation
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.2@jar
 +--- org.jetbrains.kotlin:kotlin-stdlib:1.4.30@jar
 +--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
-+--- org.jetbrains:annotations:16.0.1@jar
++--- org.jetbrains:annotations:13.0@jar
 +--- io.mockk:mockk-common:1.10.3@jar
 +--- io.mockk:mockk-dsl-jvm:1.10.3@jar
 +--- io.mockk:mockk-dsl:1.10.3@jar
@@ -644,7 +526,6 @@ releaseUnitTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.lifecycle:lifecycle-runtime-ktx:2.3.0@aar
 +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0@aar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1@jar
-+--- com.jakewharton.timber:timber:4.7.1@aar
 +--- org.junit.platform:junit-platform-engine:1.4.2@jar
 +--- org.junit.platform:junit-platform-commons:1.4.2@jar
 +--- org.apiguardian:apiguardian-api:1.0.0@jar
@@ -658,7 +539,6 @@ releaseUnitTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.core:core-ktx:1.1.0@aar
 +--- androidx.savedstate:savedstate-ktx:1.1.0@aar
 +--- org.jetbrains.kotlin:kotlin-stdlib:1.4.30@jar
-+--- org.jetbrains:annotations:16.0.1@jar
 +--- androidx.appcompat:appcompat:1.3.0-beta01@aar
 +--- androidx.fragment:fragment:1.3.0@aar
 +--- androidx.autofill:autofill:1.0.0@aar
@@ -695,5 +575,6 @@ releaseUnitTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- io.mockk:mockk-dsl:1.10.3@jar
 +--- net.java.dev.jna:jna-platform:5.5.0@jar
 +--- net.java.dev.jna:jna:5.5.0@jar
++--- org.jetbrains:annotations:13.0@jar
 \--- androidx.annotation:annotation-experimental:1.0.0@aar
 

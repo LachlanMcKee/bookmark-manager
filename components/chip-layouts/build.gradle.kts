@@ -3,11 +3,13 @@ plugins {
 }
 
 moduleSetup {
-  configuration = ModuleConfiguration.composeModule {
-    simpleFlowRow = true
-  }
-}
+  configuration = ModuleConfiguration(
+    composeEnabled = true,
+    dependencies = { project ->
+      appendFrom(CommonDependencies.ComposeCore(project))
 
-dependencies {
-  implementation(project(":components:chip"))
+      implementation(Dependencies.Compose.simpleFlowRow)
+      implementation(project(":components:chip"))
+    }
+  )
 }

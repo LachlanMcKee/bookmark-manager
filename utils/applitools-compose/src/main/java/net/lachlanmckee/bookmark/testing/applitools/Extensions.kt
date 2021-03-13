@@ -5,11 +5,10 @@ import androidx.annotation.RequiresApi
 import androidx.compose.ui.test.junit4.ComposeTestRule
 import com.applitools.eyes.android.common.BatchInfo
 import com.applitools.eyes.android.components.androidx.AndroidXComponentsProvider
-import com.applitools.eyes.android.espresso.Eyes
 import net.lachlanmckee.bookmark.util.applitools.BuildConfig
 
 @RequiresApi(Build.VERSION_CODES.O)
-fun ComposeTestRule.eyesTest(testName: String, tagsFunc: Eyes.() -> Unit) {
+fun ComposeTestRule.eyesTest(testName: String, tagsFunc: EyesWrapper.() -> Unit) {
   ComposeEyes(this).apply {
     apiKey = requireNotNull(BuildConfig.APPLITOOLS_API_KEY) { "Applitools API key is missing" }
 
@@ -23,7 +22,7 @@ fun ComposeTestRule.eyesTest(testName: String, tagsFunc: Eyes.() -> Unit) {
 
     try {
       open("BookmarkManager", testName)
-      tagsFunc(this)
+      tagsFunc(EyesWrapperImpl(this))
       close()
     } finally {
       abortIfNotClosed()

@@ -3,5 +3,10 @@ plugins {
 }
 
 moduleSetup {
-  configuration = ModuleConfiguration.composeModule()
+  configuration = ModuleConfiguration(
+    composeEnabled = true,
+    dependencies = { project ->
+      appendFrom(CommonDependencies.ComposeCore(project))
+    }
+  )
 }

@@ -3,7 +3,12 @@ plugins {
 }
 
 moduleSetup {
-  configuration = ModuleConfiguration.composeModule {
-    icons = true
-  }
+  configuration = ModuleConfiguration(
+    composeEnabled = true,
+    dependencies = { project ->
+      appendFrom(CommonDependencies.ComposeCore(project))
+
+      implementation(Dependencies.Compose.iconsExtended)
+    }
+  )
 }
