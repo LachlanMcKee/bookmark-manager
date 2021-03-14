@@ -9,6 +9,11 @@ import net.lachlanmckee.bookmark.util.applitools.BuildConfig
 
 @RequiresApi(Build.VERSION_CODES.O)
 fun ComposeTestRule.eyesTest(testName: String, tagsFunc: EyesWrapper.() -> Unit) {
+  if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+    // Cannot currently take screenshots of Composables below Oreo.
+    return
+  }
+
   ComposeEyes(this).apply {
     apiKey = requireNotNull(BuildConfig.APPLITOOLS_API_KEY) { "Applitools API key is missing" }
 

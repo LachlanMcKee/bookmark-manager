@@ -516,10 +516,11 @@ debugAndroidTestCompileClasspath - Dependencies for compilation
 +--- androidx.test.espresso:espresso-core:3.3.0@aar
 +--- androidx.test:rules:1.3.0@aar
 +--- androidx.test:runner:1.3.0@aar
++--- :utils:applitools-compose (variant: debug)
++--- :utils:instrumentation-utils (variant: debug)
 +--- io.mockk:mockk-android:1.10.3@aar
 +--- androidx.navigation:navigation-testing:2.3.3@aar
 +--- com.google.dagger:hilt-android-testing:2.31.2-alpha@aar
-+--- :utils:applitools-compose (variant: debug)
 +--- junit:junit:4.12@jar
 +--- org.hamcrest:hamcrest-integration:1.3@jar
 +--- org.hamcrest:hamcrest-library:1.3@jar
@@ -560,11 +561,11 @@ debugAndroidTestCompileClasspath - Dependencies for compilation
 +--- com.google.android.gms:play-services-measurement-sdk-api:17.6.0@aar
 +--- com.google.android.gms:play-services-measurement-base:17.6.0@aar
 +--- com.google.android.gms:play-services-stats:17.0.0@aar
++--- com.google.firebase:firebase-measurement-connector:18.0.0@aar
 +--- com.google.firebase:firebase-installations:16.3.2@aar
 +--- com.google.firebase:firebase-common:19.3.0@aar
 +--- com.google.firebase:firebase-installations-interop:16.0.0@aar
 +--- com.google.android.gms:play-services-tasks:17.0.0@aar
-+--- com.google.firebase:firebase-measurement-connector:18.0.0@aar
 +--- com.google.android.gms:play-services-basement:17.0.0@aar
 +--- androidx.fragment:fragment:1.3.0@aar
 +--- androidx.navigation:navigation-runtime:2.3.3@aar
@@ -645,16 +646,16 @@ debugAndroidTestCompileClasspath - Dependencies for compilation
 +--- com.jakewharton.timber:timber:4.7.1@aar
 +--- org.jetbrains:annotations:16.0.1@jar
 +--- androidx.annotation:annotation-experimental:1.0.0@aar
++--- com.google.dagger:dagger-lint-aar:2.31.2@aar
++--- androidx.multidex:multidex:2.0.1@aar
 +--- io.mockk:mockk:1.10.3@jar
 +--- io.mockk:mockk-common:1.10.3@jar
 +--- io.mockk:mockk-dsl-jvm:1.10.3@jar
 +--- io.mockk:mockk-dsl:1.10.3@jar
-+--- com.google.dagger:dagger-lint-aar:2.31.2@aar
-+--- androidx.multidex:multidex:2.0.1@aar
++--- com.google.auto.value:auto-value-annotations:1.6.5@jar
 +--- :utils:kotlin-utils (variant: debug)
 +--- :components:chip-layouts (variant: debug)
-+--- :components:row (variant: debug)
-\--- com.google.auto.value:auto-value-annotations:1.6.5@jar
+\--- :components:row (variant: debug)
 
 debugAndroidTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- :utils:applitools-compose (variant: debug)
@@ -664,15 +665,21 @@ debugAndroidTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.compose.ui:ui-test:1.0.0-beta01@aar
 +--- androidx.test.espresso:espresso-core:3.3.0@aar
 +--- androidx.test:rules:1.3.0@aar
++--- :utils:instrumentation-utils (variant: debug)
 +--- androidx.test:runner:1.3.0@aar
 +--- io.mockk:mockk-android:1.10.3@aar
 +--- androidx.navigation:navigation-testing:2.3.3@aar
 +--- com.google.dagger:hilt-android-testing:2.31.2-alpha@aar
++--- com.google.firebase:firebase-installations:16.3.2@aar
 +--- com.google.dagger:hilt-android:2.31.2-alpha@aar
 +--- androidx.compose.foundation:foundation:1.0.0-beta01@aar
 +--- androidx.compose.animation:animation:1.0.0-beta01@aar
 +--- androidx.compose.foundation:foundation-layout:1.0.0-beta01@aar
 +--- androidx.compose.ui:ui:1.0.0-beta01@aar
++--- com.google.firebase:firebase-common:19.3.0@aar
++--- com.google.firebase:firebase-installations-interop:16.0.0@aar
++--- com.google.android.gms:play-services-tasks:17.0.0@aar
++--- com.google.android.gms:play-services-basement:17.0.0@aar
 +--- androidx.appcompat:appcompat:1.3.0-beta01@aar
 +--- androidx.fragment:fragment:1.3.0@aar
 +--- androidx.test:core:1.3.0@aar
@@ -681,6 +688,7 @@ debugAndroidTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.navigation:navigation-runtime:2.3.3@aar
 +--- androidx.activity:activity-ktx:1.3.0-alpha03@aar
 +--- androidx.activity:activity:1.3.0-alpha03@aar
++--- com.google.firebase:firebase-components:16.0.0@aar
 +--- androidx.compose.ui:ui-text:1.0.0-beta01@aar
 +--- androidx.viewpager:viewpager:1.0.0@aar
 +--- androidx.loader:loader:1.0.0@aar
@@ -731,11 +739,13 @@ debugAndroidTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.2@jar
 +--- org.jetbrains.kotlin:kotlin-stdlib:1.4.30@jar
 +--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
++--- com.jakewharton.timber:timber:4.7.1@aar
 +--- org.jetbrains:annotations:16.0.1@jar
 +--- junit:junit:4.12@jar
 +--- org.hamcrest:hamcrest-integration:1.3@jar
 +--- org.hamcrest:hamcrest-library:1.3@jar
 +--- org.hamcrest:hamcrest-core:1.3@jar
++--- com.google.auto.value:auto-value-annotations:1.6.5@jar
 +--- com.google.dagger:hilt-core:2.31.2-alpha@jar
 +--- com.google.dagger:dagger:2.31.2@jar
 +--- javax.inject:javax.inject:1@jar
@@ -743,22 +753,22 @@ debugAndroidTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- com.google.code.findbugs:jsr305:3.0.1@jar
 +--- androidx.test.espresso:espresso-idling-resource:3.3.0@aar
 +--- com.squareup:javawriter:2.1.1@jar
++--- com.applitools:eyes-android-espresso:4.7.8@aar
++--- com.applitools:eyes-android-core:4.7.8@jar
++--- com.applitools:eyes-android-common:4.7.8@jar
++--- com.applitools:eyes-android-components:4.7.8@aar
++--- com.applitools:eyes-android-components-androidx:4.7.8@aar
 +--- io.mockk:mockk-agent-common:1.10.3@jar
 +--- io.mockk:mockk-agent-api:1.10.3@jar
 +--- androidx.multidex:multidex:2.0.1@aar
-+--- com.applitools:eyes-android-espresso:4.7.6@aar
-+--- com.applitools:eyes-android-core:4.7.6@jar
-+--- com.applitools:eyes-android-common:4.7.6@jar
-+--- com.applitools:eyes-android-components:4.7.6@aar
-+--- com.applitools:eyes-android-components-androidx:4.7.6@aar
++--- com.fasterxml.jackson.core:jackson-databind:2.9.7@jar
 +--- io.mockk:mockk-common:1.10.3@jar
 +--- com.linkedin.dexmaker:dexmaker:2.21.0@jar
 +--- org.objenesis:objenesis:2.6@jar
-+--- com.fasterxml.jackson.core:jackson-databind:2.9.7@jar
-+--- io.mockk:mockk-dsl:1.10.3@jar
-+--- com.jakewharton.android.repackaged:dalvik-dx:9.0.0_r3@jar
 +--- com.fasterxml.jackson.core:jackson-annotations:2.9.0@jar
 +--- com.fasterxml.jackson.core:jackson-core:2.9.7@jar
++--- io.mockk:mockk-dsl:1.10.3@jar
++--- com.jakewharton.android.repackaged:dalvik-dx:9.0.0_r3@jar
 +--- net.java.dev.jna:jna-platform:5.5.0@jar
 \--- net.java.dev.jna:jna:5.5.0@jar
 

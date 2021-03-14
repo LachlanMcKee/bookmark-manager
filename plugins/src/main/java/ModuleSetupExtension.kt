@@ -19,5 +19,6 @@ interface ConfigurationChanged {
 
 data class ModuleConfiguration(
   val composeEnabled: Boolean = false,
+  val useHiltWithinAndroidTest: Boolean = false,
   val dependencies: (ProjectDependencies.(Project) -> Unit) = {}
 )

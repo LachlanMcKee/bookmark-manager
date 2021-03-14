@@ -181,6 +181,8 @@ debugAndroidTestCompileClasspath - Dependencies for compilation
 +--- androidx.test.espresso:espresso-core:3.3.0@aar
 +--- androidx.test:rules:1.3.0@aar
 +--- androidx.test:runner:1.3.0@aar
++--- :utils:applitools-compose (variant: debug)
++--- :utils:instrumentation-utils (variant: debug)
 +--- junit:junit:4.12@jar
 +--- org.hamcrest:hamcrest-integration:1.3@jar
 +--- org.hamcrest:hamcrest-library:1.3@jar
@@ -219,7 +221,7 @@ debugAndroidTestCompileClasspath - Dependencies for compilation
 +--- androidx.test.espresso:espresso-idling-resource:3.3.0@aar
 +--- com.squareup:javawriter:2.1.1@jar
 +--- javax.inject:javax.inject:1@jar
-+--- com.google.code.findbugs:jsr305:2.0.1@jar
++--- com.google.code.findbugs:jsr305:3.0.1@jar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.1@jar
 +--- androidx.compose.runtime:runtime:1.0.0-beta01@aar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1@jar
@@ -232,12 +234,15 @@ debugAndroidTestCompileClasspath - Dependencies for compilation
 
 debugAndroidTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- :components:row (variant: debug)
++--- :utils:applitools-compose (variant: debug)
 +--- androidx.compose.ui:ui-test-junit4:1.0.0-beta01@aar
 +--- androidx.test.ext:junit:1.1.2@aar
 +--- androidx.compose.ui:ui-test:1.0.0-beta01@aar
 +--- androidx.test.espresso:espresso-core:3.3.0@aar
 +--- androidx.test:rules:1.3.0@aar
++--- :utils:instrumentation-utils (variant: debug)
 +--- androidx.test:runner:1.3.0@aar
++--- com.google.firebase:firebase-installations:16.3.2@aar
 +--- :utils:kotlin-utils (variant: debug)
 +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
 +--- androidx.compose.ui:ui-tooling:1.0.0-beta01@aar
@@ -269,12 +274,20 @@ debugAndroidTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.savedstate:savedstate-ktx:1.1.0@aar
 +--- org.jetbrains.kotlin:kotlin-stdlib:1.4.30@jar
 +--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
++--- com.jakewharton.timber:timber:4.7.1@aar
 +--- org.jetbrains:annotations:13.0@jar
++--- com.google.dagger:hilt-android-testing:2.31.2-alpha@aar
 +--- androidx.test:core:1.3.0@aar
 +--- androidx.test:monitor:1.3.0@aar
++--- com.google.dagger:hilt-android:2.31.2-alpha@aar
++--- com.google.firebase:firebase-common:19.3.0@aar
++--- com.google.firebase:firebase-installations-interop:16.0.0@aar
++--- com.google.android.gms:play-services-tasks:17.0.0@aar
++--- com.google.android.gms:play-services-basement:17.0.0@aar
 +--- androidx.appcompat:appcompat:1.3.0-beta01@aar
 +--- androidx.fragment:fragment:1.3.0@aar
 +--- androidx.activity:activity:1.2.0@aar
++--- com.google.firebase:firebase-components:16.0.0@aar
 +--- androidx.autofill:autofill:1.0.0@aar
 +--- androidx.viewpager:viewpager:1.0.0@aar
 +--- androidx.loader:loader:1.0.0@aar
@@ -303,11 +316,24 @@ debugAndroidTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- junit:junit:4.12@jar
 +--- androidx.test.espresso:espresso-idling-resource:3.3.0@aar
 +--- com.squareup:javawriter:2.1.1@jar
++--- com.google.dagger:hilt-core:2.31.2-alpha@jar
++--- com.google.dagger:dagger:2.31.2@jar
 +--- javax.inject:javax.inject:1@jar
 +--- org.hamcrest:hamcrest-integration:1.3@jar
 +--- org.hamcrest:hamcrest-library:1.3@jar
-+--- com.google.code.findbugs:jsr305:2.0.1@jar
++--- com.google.code.findbugs:jsr305:3.0.1@jar
++--- com.applitools:eyes-android-espresso:4.7.8@aar
++--- com.applitools:eyes-android-core:4.7.8@jar
++--- com.applitools:eyes-android-common:4.7.8@jar
++--- com.applitools:eyes-android-components:4.7.8@aar
++--- com.applitools:eyes-android-components-androidx:4.7.8@aar
 +--- org.hamcrest:hamcrest-core:1.3@jar
++--- com.fasterxml.jackson.core:jackson-databind:2.9.7@jar
++--- com.google.dagger:dagger-lint-aar:2.31.2@aar
++--- androidx.multidex:multidex:2.0.1@aar
++--- com.google.auto.value:auto-value-annotations:1.6.5@jar
++--- com.fasterxml.jackson.core:jackson-annotations:2.9.0@jar
++--- com.fasterxml.jackson.core:jackson-core:2.9.7@jar
 +--- net.java.dev.jna:jna-platform:5.5.0@jar
 \--- net.java.dev.jna:jna:5.5.0@jar
 

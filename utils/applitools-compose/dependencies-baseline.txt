@@ -36,14 +36,14 @@ debugCompileClasspath - Dependencies for compilation
 +--- androidx.annotation:annotation:1.2.0-beta01@jar
 +--- junit:junit:4.12@jar
 +--- org.hamcrest:hamcrest-core:1.3@jar
-+--- com.applitools:eyes-android-espresso:4.7.6@aar
-+--- com.applitools:eyes-android-core:4.7.6@jar
-+--- com.applitools:eyes-android-common:4.7.6@jar
++--- com.applitools:eyes-android-espresso:4.7.8@aar
++--- com.applitools:eyes-android-core:4.7.8@jar
++--- com.applitools:eyes-android-common:4.7.8@jar
 +--- com.fasterxml.jackson.core:jackson-databind:2.9.7@jar
 +--- com.fasterxml.jackson.core:jackson-annotations:2.9.0@jar
 +--- com.fasterxml.jackson.core:jackson-core:2.9.7@jar
-+--- com.applitools:eyes-android-components:4.7.6@aar
-\--- com.applitools:eyes-android-components-androidx:4.7.6@aar
++--- com.applitools:eyes-android-components:4.7.8@aar
+\--- com.applitools:eyes-android-components-androidx:4.7.8@aar
 
 debugRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.compose.ui:ui-test-junit4:1.0.0-beta01@aar
@@ -69,11 +69,11 @@ debugRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.test:rules:1.3.0@aar
 +--- androidx.test.espresso:espresso-core:3.3.0@aar
 +--- androidx.test:runner:1.3.0@aar
-+--- com.applitools:eyes-android-espresso:4.7.6@aar
-+--- com.applitools:eyes-android-core:4.7.6@jar
-+--- com.applitools:eyes-android-common:4.7.6@jar
-+--- com.applitools:eyes-android-components:4.7.6@aar
-+--- com.applitools:eyes-android-components-androidx:4.7.6@aar
++--- com.applitools:eyes-android-espresso:4.7.8@aar
++--- com.applitools:eyes-android-core:4.7.8@jar
++--- com.applitools:eyes-android-common:4.7.8@jar
++--- com.applitools:eyes-android-components:4.7.8@aar
++--- com.applitools:eyes-android-components-androidx:4.7.8@aar
 +--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
 +--- org.jetbrains:annotations:13.0@jar
 +--- androidx.test.ext:junit:1.1.2@aar
@@ -134,11 +134,11 @@ releaseCompileClasspath - Dependencies for compilation
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.1@jar
 +--- org.jetbrains.kotlin:kotlin-stdlib:1.4.30@jar
 +--- androidx.test:runner:1.3.0@aar
-+--- com.applitools:eyes-android-espresso:4.7.6@aar
-+--- com.applitools:eyes-android-core:4.7.6@jar
-+--- com.applitools:eyes-android-common:4.7.6@jar
-+--- com.applitools:eyes-android-components:4.7.6@aar
-+--- com.applitools:eyes-android-components-androidx:4.7.6@aar
++--- com.applitools:eyes-android-espresso:4.7.8@aar
++--- com.applitools:eyes-android-core:4.7.8@jar
++--- com.applitools:eyes-android-common:4.7.8@jar
++--- com.applitools:eyes-android-components:4.7.8@aar
++--- com.applitools:eyes-android-components-androidx:4.7.8@aar
 +--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
 +--- org.jetbrains:annotations:13.0@jar
 +--- androidx.test.ext:junit:1.1.2@aar
@@ -191,11 +191,11 @@ releaseRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.test:rules:1.3.0@aar
 +--- androidx.test.espresso:espresso-core:3.3.0@aar
 +--- androidx.test:runner:1.3.0@aar
-+--- com.applitools:eyes-android-espresso:4.7.6@aar
-+--- com.applitools:eyes-android-core:4.7.6@jar
-+--- com.applitools:eyes-android-common:4.7.6@jar
-+--- com.applitools:eyes-android-components:4.7.6@aar
-+--- com.applitools:eyes-android-components-androidx:4.7.6@aar
++--- com.applitools:eyes-android-espresso:4.7.8@aar
++--- com.applitools:eyes-android-core:4.7.8@jar
++--- com.applitools:eyes-android-common:4.7.8@jar
++--- com.applitools:eyes-android-components:4.7.8@aar
++--- com.applitools:eyes-android-components-androidx:4.7.8@aar
 +--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
 +--- org.jetbrains:annotations:13.0@jar
 +--- androidx.test.ext:junit:1.1.2@aar
@@ -281,14 +281,14 @@ debugAndroidTestCompileClasspath - Dependencies for compilation
 +--- androidx.annotation:annotation:1.2.0-beta01@jar
 +--- junit:junit:4.12@jar
 +--- org.hamcrest:hamcrest-core:1.3@jar
-+--- com.applitools:eyes-android-espresso:4.7.6@aar
-+--- com.applitools:eyes-android-core:4.7.6@jar
-+--- com.applitools:eyes-android-common:4.7.6@jar
++--- com.applitools:eyes-android-espresso:4.7.8@aar
++--- com.applitools:eyes-android-core:4.7.8@jar
++--- com.applitools:eyes-android-common:4.7.8@jar
 +--- com.fasterxml.jackson.core:jackson-databind:2.9.7@jar
 +--- com.fasterxml.jackson.core:jackson-annotations:2.9.0@jar
 +--- com.fasterxml.jackson.core:jackson-core:2.9.7@jar
-+--- com.applitools:eyes-android-components:4.7.6@aar
-\--- com.applitools:eyes-android-components-androidx:4.7.6@aar
++--- com.applitools:eyes-android-components:4.7.8@aar
+\--- com.applitools:eyes-android-components-androidx:4.7.8@aar
 
 debugAndroidTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- :utils:applitools-compose (variant: debug)
@@ -351,14 +351,14 @@ debugAndroidTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- org.hamcrest:hamcrest-integration:1.3@jar
 +--- org.hamcrest:hamcrest-library:1.3@jar
 +--- org.hamcrest:hamcrest-core:1.3@jar
-+--- com.applitools:eyes-android-espresso:4.7.6@aar
-+--- com.applitools:eyes-android-core:4.7.6@jar
-+--- com.applitools:eyes-android-common:4.7.6@jar
++--- com.applitools:eyes-android-espresso:4.7.8@aar
++--- com.applitools:eyes-android-core:4.7.8@jar
++--- com.applitools:eyes-android-common:4.7.8@jar
 +--- com.fasterxml.jackson.core:jackson-databind:2.9.7@jar
 +--- com.fasterxml.jackson.core:jackson-annotations:2.9.0@jar
 +--- com.fasterxml.jackson.core:jackson-core:2.9.7@jar
-+--- com.applitools:eyes-android-components:4.7.6@aar
-+--- com.applitools:eyes-android-components-androidx:4.7.6@aar
++--- com.applitools:eyes-android-components:4.7.8@aar
++--- com.applitools:eyes-android-components-androidx:4.7.8@aar
 +--- androidx.annotation:annotation-experimental:1.0.0@aar
 +--- net.java.dev.jna:jna-platform:5.5.0@jar
 +--- net.java.dev.jna:jna:5.5.0@jar
@@ -405,14 +405,14 @@ debugUnitTestCompileClasspath - Dependencies for compilation
 +--- androidx.annotation:annotation:1.2.0-beta01@jar
 +--- junit:junit:4.12@jar
 +--- org.hamcrest:hamcrest-core:1.3@jar
-+--- com.applitools:eyes-android-espresso:4.7.6@aar
-+--- com.applitools:eyes-android-core:4.7.6@jar
-+--- com.applitools:eyes-android-common:4.7.6@jar
++--- com.applitools:eyes-android-espresso:4.7.8@aar
++--- com.applitools:eyes-android-core:4.7.8@jar
++--- com.applitools:eyes-android-common:4.7.8@jar
 +--- com.fasterxml.jackson.core:jackson-databind:2.9.7@jar
 +--- com.fasterxml.jackson.core:jackson-annotations:2.9.0@jar
 +--- com.fasterxml.jackson.core:jackson-core:2.9.7@jar
-+--- com.applitools:eyes-android-components:4.7.6@aar
-\--- com.applitools:eyes-android-components-androidx:4.7.6@aar
++--- com.applitools:eyes-android-components:4.7.8@aar
+\--- com.applitools:eyes-android-components-androidx:4.7.8@aar
 
 debugUnitTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- :utils:applitools-compose (variant: debug)
@@ -439,11 +439,11 @@ debugUnitTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.test:rules:1.3.0@aar
 +--- androidx.test.espresso:espresso-core:3.3.0@aar
 +--- androidx.test:runner:1.3.0@aar
-+--- com.applitools:eyes-android-espresso:4.7.6@aar
-+--- com.applitools:eyes-android-core:4.7.6@jar
-+--- com.applitools:eyes-android-common:4.7.6@jar
-+--- com.applitools:eyes-android-components:4.7.6@aar
-+--- com.applitools:eyes-android-components-androidx:4.7.6@aar
++--- com.applitools:eyes-android-espresso:4.7.8@aar
++--- com.applitools:eyes-android-core:4.7.8@jar
++--- com.applitools:eyes-android-common:4.7.8@jar
++--- com.applitools:eyes-android-components:4.7.8@aar
++--- com.applitools:eyes-android-components-androidx:4.7.8@aar
 +--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
 +--- org.jetbrains:annotations:13.0@jar
 +--- androidx.test.ext:junit:1.1.2@aar
@@ -505,11 +505,11 @@ releaseUnitTestCompileClasspath - Dependencies for compilation
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.1@jar
 +--- org.jetbrains.kotlin:kotlin-stdlib:1.4.30@jar
 +--- androidx.test:runner:1.3.0@aar
-+--- com.applitools:eyes-android-espresso:4.7.6@aar
-+--- com.applitools:eyes-android-core:4.7.6@jar
-+--- com.applitools:eyes-android-common:4.7.6@jar
-+--- com.applitools:eyes-android-components:4.7.6@aar
-+--- com.applitools:eyes-android-components-androidx:4.7.6@aar
++--- com.applitools:eyes-android-espresso:4.7.8@aar
++--- com.applitools:eyes-android-core:4.7.8@jar
++--- com.applitools:eyes-android-common:4.7.8@jar
++--- com.applitools:eyes-android-components:4.7.8@aar
++--- com.applitools:eyes-android-components-androidx:4.7.8@aar
 +--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
 +--- org.jetbrains:annotations:13.0@jar
 +--- androidx.test.ext:junit:1.1.2@aar
@@ -563,11 +563,11 @@ releaseUnitTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.test:rules:1.3.0@aar
 +--- androidx.test.espresso:espresso-core:3.3.0@aar
 +--- androidx.test:runner:1.3.0@aar
-+--- com.applitools:eyes-android-espresso:4.7.6@aar
-+--- com.applitools:eyes-android-core:4.7.6@jar
-+--- com.applitools:eyes-android-common:4.7.6@jar
-+--- com.applitools:eyes-android-components:4.7.6@aar
-+--- com.applitools:eyes-android-components-androidx:4.7.6@aar
++--- com.applitools:eyes-android-espresso:4.7.8@aar
++--- com.applitools:eyes-android-core:4.7.8@jar
++--- com.applitools:eyes-android-common:4.7.8@jar
++--- com.applitools:eyes-android-components:4.7.8@aar
++--- com.applitools:eyes-android-components-androidx:4.7.8@aar
 +--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
 +--- org.jetbrains:annotations:13.0@jar
 +--- androidx.test.ext:junit:1.1.2@aar

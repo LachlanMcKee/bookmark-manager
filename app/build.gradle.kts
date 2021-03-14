@@ -9,6 +9,7 @@ plugins {
 moduleSetup {
   configuration = ModuleConfiguration(
     composeEnabled = true,
+    useHiltWithinAndroidTest = true,
     dependencies = { project ->
       appendFrom(CommonDependencies.ComposeCore(project))
 
@@ -54,9 +55,7 @@ moduleSetup {
         EspressoTestDependencies.espressoIntents,
         EspressoTestDependencies.mockk,
         EspressoTestDependencies.navigation,
-        EspressoTestDependencies.daggerHiltAndroidTesting,
-
-        project(":utils:applitools-compose")
+        EspressoTestDependencies.daggerHiltAndroidTesting
       )
 
       kaptAndroidTest(Dependencies.Di.daggerHiltCompiler)

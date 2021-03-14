@@ -25,8 +25,6 @@ internal abstract class ProjectPlugin : Plugin<Project> {
   }
 
   private fun Project.applyProject(moduleConfiguration: ModuleConfiguration) {
-    println("applyProject: $moduleConfiguration")
-
     if (this@ProjectPlugin is AppProjectPlugin) {
       extensions.configure<BaseAppModuleExtension>("android") {
         applyAndroid(moduleConfiguration)
@@ -63,8 +61,6 @@ internal abstract class ProjectPlugin : Plugin<Project> {
   }
 
   private fun BaseExtension.applyAndroid(moduleConfiguration: ModuleConfiguration) {
-    println("applyAndroid: $moduleConfiguration")
-
     compileSdkVersion(30)
 
     defaultConfig {
@@ -72,7 +68,11 @@ internal abstract class ProjectPlugin : Plugin<Project> {
       targetSdkVersion(30)
 
       testInstrumentationRunner =
-        "net.lachlanmckee.bookmark.testing.CustomTestRunner"
+        if (moduleConfiguration.useHiltWithinAndroidTest) {
+          "net.lachlanmckee.bookmark.testing.HiltBookmarkTestRunner"
+        } else {
+          "net.lachlanmckee.bookmark.testing.BookmarkTestRunner"
+        }
 
       testOptions {
         execution = "ANDROIDX_TEST_ORCHESTRATOR"
