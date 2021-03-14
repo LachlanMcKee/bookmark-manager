@@ -55,6 +55,9 @@ fun ProjectDependencies.kaptAndroidTest(vararg dependencies: Any) =
 fun ProjectDependencies.androidTestUtil(vararg dependencies: Any) =
   dependencyGroup("androidTestUtil", *dependencies)
 
+fun ProjectDependencies.androidTestRuntimeOnly(vararg dependencies: Any) =
+  dependencyGroup("androidTestRuntimeOnly", *dependencies)
+
 private fun ProjectDependencies.dependencyGroup(type: String, vararg dependencies: Any) {
   group(type).also { group ->
     dependencies.forEach { dependency ->
