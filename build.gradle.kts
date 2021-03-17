@@ -11,9 +11,8 @@ buildscript {
     classpath(kotlin("gradle-plugin", version = "1.4.30"))
 
     classpath("com.google.gms:google-services:4.3.4")
-    classpath("com.google.dagger:hilt-android-gradle-plugin:2.31.2-alpha")
+    classpath("com.google.dagger:hilt-android-gradle-plugin:2.33-beta")
     classpath("com.google.firebase:firebase-appdistribution-gradle:2.0.1")
-    classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.3.3")
   }
 }
 

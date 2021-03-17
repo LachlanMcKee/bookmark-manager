@@ -1,11 +1,8 @@
 package net.lachlanmckee.bookmark.feature.home
 
-import androidx.lifecycle.LiveData
-import net.lachlanmckee.bookmark.feature.home.HomeViewModel.Event
+import net.lachlanmckee.bookmark.feature.BookmarkViewModel
 
-interface HomeViewModel : (Event) -> Unit {
-
-  val state: LiveData<State>
+interface HomeViewModel : BookmarkViewModel<HomeViewModel.State, HomeViewModel.Event> {
 
   sealed class State {
     object Empty : State()

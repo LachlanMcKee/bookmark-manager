@@ -4,14 +4,11 @@ object Dependencies {
   }
   object AndroidX {
     private const val lifecycleVersion = "2.2.0"
-    const val navigationVersion = "2.3.3"
     const val activityCompose = "androidx.activity:activity-compose:1.3.0-alpha03"
-    const val appcompat = "androidx.appcompat:appcompat:1.2.0"
+    const val appcompat = "androidx.appcompat:appcompat:1.3.0-beta01"
     const val coreKtx = "androidx.core:core-ktx:1.3.2"
     const val lifecycleViewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
     const val lifecycleLiveDataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
-    const val navigationFragmentKtx = "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
-    const val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:$navigationVersion"
   }
   object Compose {
     const val version = "1.0.0-beta01"
@@ -23,14 +20,16 @@ object Dependencies {
     const val iconsExtended = "androidx.compose.material:material-icons-extended:$version"
     const val liveData = "androidx.compose.runtime:runtime-livedata:$version"
     const val paging = "androidx.paging:paging-compose:1.0.0-alpha08"
+    const val navigation = "androidx.navigation:navigation-compose:1.0.0-alpha09"
     const val simpleFlowRow = "com.github.LachlanMcKee:android-samples:1.0.0"
   }
   object Di {
-    const val version = "2.31.2"
+    const val version = "2.33"
     const val dagger = "com.google.dagger:dagger:$version"
-    const val daggerHilt = "com.google.dagger:hilt-android:$version-alpha"
+    const val daggerHilt = "com.google.dagger:hilt-android:$version-beta"
     const val daggerCompiler = "com.google.dagger:dagger-compiler:$version"
-    const val daggerHiltCompiler = "com.google.dagger:hilt-compiler:$version-alpha"
+    const val daggerHiltCompiler = "com.google.dagger:hilt-compiler:$version-beta"
+    const val daggerHiltNavigationCompose = "androidx.hilt:hilt-navigation-compose:1.0.0-alpha01"
   }
   object Storage {
     private const val roomVersion = "2.3.0-alpha04"

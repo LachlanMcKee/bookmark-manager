@@ -1,13 +1,10 @@
 package net.lachlanmckee.bookmark.feature.search
 
-import androidx.lifecycle.LiveData
 import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
-import net.lachlanmckee.bookmark.feature.search.SearchViewModel.Event
+import net.lachlanmckee.bookmark.feature.BookmarkViewModel
 
-interface SearchViewModel : (Event) -> Unit {
-
-  val state: LiveData<State>
+interface SearchViewModel : BookmarkViewModel<SearchViewModel.State, SearchViewModel.Event> {
 
   data class State(
     val query: String,
