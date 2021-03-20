@@ -23,9 +23,16 @@ import net.lachlanmckee.bookmark.feature.search.SearchScreen
 import net.lachlanmckee.bookmark.feature.search.SearchViewModelImpl
 import net.lachlanmckee.bookmark.feature.settings.SettingsScreen
 import net.lachlanmckee.bookmark.feature.settings.SettingsViewModel
+import javax.inject.Inject
+import javax.inject.Provider
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+  @Inject
+  lateinit var navFactories: @JvmSuppressWildcards Set<NavFactory>
+
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
@@ -38,17 +45,13 @@ class MainActivity : AppCompatActivity() {
   fun BookmarkApp() {
     val navController = rememberNavController()
     NavHost(navController, startDestination = "home") {
-      bookmarkComposable<HomeViewModelImpl>(
-        navController = navController,
-        route = "home",
-        content = {
-          HomeScreen(
-            stateLiveData = state,
-            events = eventConsumer
-          )
-        }
-      )
+
+      navFactories.forEach { factory ->
+        factory.create(this, navController)
+      }
+
       bookmarkComposable<SearchViewModelImpl>(
+        viewModelClass = SearchViewModelImpl::class.java,
         navController = navController,
         route = "search",
         content = {
@@ -59,48 +62,13 @@ class MainActivity : AppCompatActivity() {
         }
       )
       bookmarkComposable<SettingsViewModel>(
+        viewModelClass = SettingsViewModel::class.java,
         navController = navController,
         route = "settings",
         content = {
           SettingsScreen(this)
         }
       )
-    }
-  }
-
-  inline fun <reified VM> NavGraphBuilder.bookmarkComposable(
-    navController: NavHostController,
-    route: String,
-    arguments: List<NamedNavArgument> = emptyList(),
-    deepLinks: List<NavDeepLink> = emptyList(),
-    crossinline content: @Composable VM.(NavBackStackEntry) -> Unit
-  ) where VM : ViewModel, VM : BookmarkViewModel<*, *> {
-    composable(route, arguments, deepLinks) {
-      val viewModel: VM = hiltNavGraphViewModel()
-      NavigationComposable(navController, viewModel.navigation)
-
-      content(viewModel, it)
-    }
-  }
-
-  @Composable
-  fun NavigationComposable(
-    navController: NavHostController,
-    navigationLiveData: LiveData<Navigation>
-  ) {
-    val context = LocalContext.current
-    val navigation: Navigation? by navigationLiveData.observeAsState()
-
-    if (navigation != null) {
-      when (val nonNullNavigation = navigation) {
-        is Navigation.Back -> navController.popBackStack()
-        is Navigation.Bookmark -> context.startActivity(
-          Intent(Intent.ACTION_VIEW, Uri.parse(nonNullNavigation.url))
-        )
-        is Navigation.Home -> navController.navigate("home") { launchSingleTop = true }
-        is Navigation.Search -> navController.navigate("search") { launchSingleTop = true }
-        is Navigation.Settings -> navController.navigate("settings") { launchSingleTop = true }
-      }
     }
   }
 }
