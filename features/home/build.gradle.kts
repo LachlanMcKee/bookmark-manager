@@ -14,7 +14,8 @@ moduleSetup {
       )
 
       testImplementation(
-        project(":utils:live-data-test-utils")
+        project(":utils:live-data-test-utils"),
+        UnitTestDependencies.turbine
       )
     }
   )

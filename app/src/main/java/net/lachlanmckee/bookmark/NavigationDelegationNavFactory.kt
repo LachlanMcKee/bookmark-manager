@@ -3,10 +3,8 @@ package net.lachlanmckee.bookmark
 import android.content.Intent
 import android.net.Uri
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalContext
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavDeepLink
@@ -14,10 +12,14 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NamedNavArgument
 import androidx.navigation.compose.navigate
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import net.lachlanmckee.bookmark.feature.BookmarkViewModel
 import net.lachlanmckee.bookmark.feature.Navigation
 import net.lachlanmckee.bookmark.feature.NavigationDelegationNavFactory
 import net.lachlanmckee.compose.navigation.viewModelComposable
+import timber.log.Timber
 import javax.inject.Inject
 
 class NavigationDelegationNavFactoryImpl @Inject constructor() : NavigationDelegationNavFactory {
@@ -48,25 +50,30 @@ class NavigationDelegationNavFactoryImpl @Inject constructor() : NavigationDeleg
 @Composable
 fun NavigationComposable(
   navController: NavHostController,
-  navigationLiveData: LiveData<Navigation>
+  navigationLiveData: Flow<Navigation>
 ) {
   val context = LocalContext.current
-  val navigation: Navigation? by navigationLiveData.observeAsState()
 
-  if (navigation != null) {
-    when (val nonNullNavigation = navigation) {
-      is Navigation.Back -> navController.popBackStack()
-      is Navigation.Bookmark -> context.startActivity(
-        Intent(Intent.ACTION_VIEW, Uri.parse(nonNullNavigation.url))
-      )
-      is Navigation.Home -> navController.navigate("home") {
-        launchSingleTop = true
-      }
-      is Navigation.Search -> navController.navigate("search") {
-        launchSingleTop = true
-      }
-      is Navigation.Settings -> navController.navigate("settings") {
-        launchSingleTop = true
+  Timber.w("LACHLAN_LOG. NavigationComposable")
+  val coroutineScope = rememberCoroutineScope()
+
+  coroutineScope.launch {
+    navigationLiveData.collectLatest { navigation ->
+      Timber.w("LACHLAN_LOG. NavigationComposable. $navigation")
+      when (navigation) {
+        is Navigation.Back -> navController.popBackStack()
+        is Navigation.Bookmark -> context.startActivity(
+          Intent(Intent.ACTION_VIEW, Uri.parse(navigation.url))
+        )
+        is Navigation.Home -> navController.navigate("home") {
+          launchSingleTop = true
+        }
+        is Navigation.Search -> navController.navigate("search") {
+          launchSingleTop = true
+        }
+        is Navigation.Settings -> navController.navigate("settings") {
+          launchSingleTop = true
+        }
       }
     }
   }

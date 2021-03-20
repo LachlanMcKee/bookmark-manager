@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emptyFlow
 import net.lachlanmckee.bookmark.feature.BookmarkViewModel
 import net.lachlanmckee.bookmark.feature.Navigation
 import javax.inject.Inject
@@ -33,6 +35,6 @@ internal class SettingsViewModel @Inject constructor() :
 
   override val eventConsumer: (Nothing) -> Unit = {}
 
-  override val navigation: LiveData<Navigation>
-    get() = navigationFlow
+  override val navigation: Flow<Navigation>
+    get() = emptyFlow()
 }

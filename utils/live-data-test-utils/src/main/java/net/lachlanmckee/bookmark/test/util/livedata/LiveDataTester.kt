@@ -11,7 +11,7 @@ import kotlinx.coroutines.test.setMain
 
 object LiveDataTester {
   @SuppressLint("RestrictedApi")
-  fun testLiveData(testFunc: () -> Unit) {
+  fun testLiveData(testFunc: suspend () -> Unit) {
     ArchTaskExecutor.getInstance()
       .setDelegate(object : TaskExecutor() {
         override fun executeOnDiskIO(runnable: Runnable) {
