@@ -1,72 +1,72 @@
 
 debug
 debugCompileClasspath - Dependencies for compilation
-+--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
-+--- org.jetbrains.kotlin:kotlin-stdlib:1.4.30@jar
-+--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
++--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.31@jar
++--- org.jetbrains.kotlin:kotlin-stdlib:1.4.31@jar
++--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.31@jar
 \--- org.jetbrains:annotations:13.0@jar
 
 debugRuntimeClasspath - Dependencies for runtime/packaging
-+--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
-+--- org.jetbrains.kotlin:kotlin-stdlib:1.4.30@jar
-+--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
++--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.31@jar
++--- org.jetbrains.kotlin:kotlin-stdlib:1.4.31@jar
++--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.31@jar
 \--- org.jetbrains:annotations:13.0@jar
 
 release
 releaseCompileClasspath - Dependencies for compilation
-+--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
-+--- org.jetbrains.kotlin:kotlin-stdlib:1.4.30@jar
-+--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
++--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.31@jar
++--- org.jetbrains.kotlin:kotlin-stdlib:1.4.31@jar
++--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.31@jar
 \--- org.jetbrains:annotations:13.0@jar
 
 releaseRuntimeClasspath - Dependencies for runtime/packaging
-+--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
-+--- org.jetbrains.kotlin:kotlin-stdlib:1.4.30@jar
-+--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
++--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.31@jar
++--- org.jetbrains.kotlin:kotlin-stdlib:1.4.31@jar
++--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.31@jar
 \--- org.jetbrains:annotations:13.0@jar
 
 debugAndroidTest
 debugAndroidTestCompileClasspath - Dependencies for compilation
 +--- :utils:kotlin-utils (variant: debug)
-+--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
-+--- org.jetbrains.kotlin:kotlin-stdlib:1.4.30@jar
-+--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
++--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.31@jar
++--- org.jetbrains.kotlin:kotlin-stdlib:1.4.31@jar
++--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.31@jar
 \--- org.jetbrains:annotations:13.0@jar
 
 debugAndroidTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- :utils:kotlin-utils (variant: debug)
-+--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
-+--- org.jetbrains.kotlin:kotlin-stdlib:1.4.30@jar
-+--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
++--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.31@jar
++--- org.jetbrains.kotlin:kotlin-stdlib:1.4.31@jar
++--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.31@jar
 \--- org.jetbrains:annotations:13.0@jar
 
 debugUnitTest
 debugUnitTestCompileClasspath - Dependencies for compilation
 +--- :utils:kotlin-utils (variant: debug)
-+--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
-+--- org.jetbrains.kotlin:kotlin-stdlib:1.4.30@jar
-+--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
++--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.31@jar
++--- org.jetbrains.kotlin:kotlin-stdlib:1.4.31@jar
++--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.31@jar
 \--- org.jetbrains:annotations:13.0@jar
 
 debugUnitTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- :utils:kotlin-utils (variant: debug)
-+--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
-+--- org.jetbrains.kotlin:kotlin-stdlib:1.4.30@jar
-+--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
++--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.31@jar
++--- org.jetbrains.kotlin:kotlin-stdlib:1.4.31@jar
++--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.31@jar
 \--- org.jetbrains:annotations:13.0@jar
 
 releaseUnitTest
 releaseUnitTestCompileClasspath - Dependencies for compilation
 +--- :utils:kotlin-utils (variant: release)
-+--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
-+--- org.jetbrains.kotlin:kotlin-stdlib:1.4.30@jar
-+--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
++--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.31@jar
++--- org.jetbrains.kotlin:kotlin-stdlib:1.4.31@jar
++--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.31@jar
 \--- org.jetbrains:annotations:13.0@jar
 
 releaseUnitTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- :utils:kotlin-utils (variant: release)
-+--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
-+--- org.jetbrains.kotlin:kotlin-stdlib:1.4.30@jar
-+--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30@jar
++--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.31@jar
++--- org.jetbrains.kotlin:kotlin-stdlib:1.4.31@jar
++--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.31@jar
 \--- org.jetbrains:annotations:13.0@jar
 

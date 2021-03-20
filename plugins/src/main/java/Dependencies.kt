@@ -3,15 +3,15 @@ object Dependencies {
     const val firebaseAnalytics = "com.google.firebase:firebase-analytics:17.6.0"
   }
   object AndroidX {
-    private const val lifecycleVersion = "2.2.0"
-    const val activityCompose = "androidx.activity:activity-compose:1.3.0-alpha03"
+    private const val lifecycleVersion = "2.3.0"
+    const val activityCompose = "androidx.activity:activity-compose:1.3.0-alpha04"
     const val appcompat = "androidx.appcompat:appcompat:1.3.0-beta01"
-    const val coreKtx = "androidx.core:core-ktx:1.3.2"
+    const val coreKtx = "androidx.core:core-ktx:1.5.0-beta02"
     const val lifecycleViewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
     const val lifecycleLiveDataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
   }
   object Compose {
-    const val version = "1.0.0-beta01"
+    const val version = "1.0.0-beta02"
     const val ui = "androidx.compose.ui:ui:$version"
     const val uiTooling = "androidx.compose.ui:ui-tooling:$version"
     const val foundation = "androidx.compose.foundation:foundation:$version"
@@ -38,9 +38,9 @@ object Dependencies {
     const val roomKtx = "androidx.room:room-ktx:$roomVersion"
   }
   object Kotlin {
-    const val version = "1.4.30"
+    const val version = "1.4.31"
     const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$version"
-    const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2"
+    const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3"
   }
   object Logging {
     const val timber = "com.jakewharton.timber:timber:4.7.1"
