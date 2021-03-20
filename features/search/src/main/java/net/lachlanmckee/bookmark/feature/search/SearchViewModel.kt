@@ -4,8 +4,8 @@ import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
 import net.lachlanmckee.bookmark.feature.BookmarkViewModel
 
-interface SearchViewModel :
-  net.lachlanmckee.bookmark.feature.BookmarkViewModel<SearchViewModel.State, SearchViewModel.Event> {
+internal interface SearchViewModel :
+  BookmarkViewModel<SearchViewModel.State, SearchViewModel.Event> {
 
   data class State(
     val query: String,

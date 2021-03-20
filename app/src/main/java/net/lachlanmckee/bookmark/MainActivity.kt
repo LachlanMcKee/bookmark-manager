@@ -7,8 +7,6 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.*
 import dagger.hilt.android.AndroidEntryPoint
 import net.lachlanmckee.bookmark.feature.NavFactory
-import net.lachlanmckee.bookmark.feature.search.SearchScreen
-import net.lachlanmckee.bookmark.feature.search.SearchViewModelImpl
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -33,18 +31,6 @@ class MainActivity : AppCompatActivity() {
       navFactories.forEach { factory ->
         factory.create(this, navController)
       }
-
-      bookmarkComposable<SearchViewModelImpl>(
-        viewModelClass = SearchViewModelImpl::class.java,
-        navController = navController,
-        route = "search",
-        content = {
-          SearchScreen(
-            stateLiveData = state,
-            events = eventConsumer
-          )
-        }
-      )
     }
   }
 }

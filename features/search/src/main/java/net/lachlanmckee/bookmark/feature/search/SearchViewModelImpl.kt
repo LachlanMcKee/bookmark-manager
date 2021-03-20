@@ -4,14 +4,13 @@ import androidx.lifecycle.*
 import androidx.paging.map
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
-import net.lachlanmckee.bookmark.feature.Navigation
 import net.lachlanmckee.bookmark.feature.search.SearchViewModel.*
 import net.lachlanmckee.bookmark.service.repository.BookmarkRepository
 import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class SearchViewModelImpl @Inject constructor(
+internal class SearchViewModelImpl @Inject constructor(
   private val bookmarkRepository: BookmarkRepository
 ) : ViewModel(), SearchViewModel {
 

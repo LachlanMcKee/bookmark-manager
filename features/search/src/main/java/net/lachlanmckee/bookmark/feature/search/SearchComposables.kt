@@ -35,7 +35,7 @@ import net.lachlanmckee.bookmark.feature.BookmarkRowContent
 import net.lachlanmckee.bookmark.feature.search.SearchViewModel.State
 
 @Composable
-fun SearchScreen(
+internal fun SearchScreen(
   stateLiveData: LiveData<State>,
   events: (SearchViewModel.Event) -> Unit
 ) {
@@ -135,7 +135,7 @@ private fun SearchContent(
 }
 
 @Composable
-fun LoadingView(
+internal fun LoadingView(
   modifier: Modifier = Modifier
 ) {
   Column(
@@ -148,7 +148,7 @@ fun LoadingView(
 }
 
 @Composable
-fun LoadingItem() {
+internal fun LoadingItem() {
   CircularProgressIndicator(
     modifier = Modifier.fillMaxWidth()
       .padding(16.dp)
@@ -157,7 +157,7 @@ fun LoadingItem() {
 }
 
 @Composable
-fun ErrorItem(
+internal fun ErrorItem(
   message: String,
   modifier: Modifier = Modifier,
   onClickRetry: () -> Unit
@@ -212,7 +212,7 @@ private fun SearchTextField(
 }
 
 @Composable
-fun RowContent(
+internal fun RowContent(
   content: SearchViewModel.Content,
   events: (SearchViewModel.Event) -> Unit
 ) {
@@ -242,7 +242,7 @@ fun RowContent(
 }
 
 @Composable
-fun RowContentPlaceholder() {
+internal fun RowContentPlaceholder() {
   StandardRow(
     content = {
       Column {
