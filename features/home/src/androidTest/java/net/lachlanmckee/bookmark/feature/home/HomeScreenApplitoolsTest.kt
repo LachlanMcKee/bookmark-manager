@@ -1,33 +1,21 @@
-package net.lachlanmckee.bookmark.testing.home
+package net.lachlanmckee.bookmark.feature.home
 
 import androidx.compose.material.MaterialTheme
-import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.lifecycle.MutableLiveData
-import dagger.hilt.android.testing.HiltAndroidRule
-import dagger.hilt.android.testing.HiltAndroidTest
-import net.lachlanmckee.bookmark.HiltTestActivity
-import net.lachlanmckee.bookmark.feature.home.HomeScreen
-import net.lachlanmckee.bookmark.feature.home.HomeViewModel
 import net.lachlanmckee.bookmark.testing.applitools.ApplitoolsTest
 import net.lachlanmckee.bookmark.testing.applitools.eyesTest
 import org.junit.Rule
 import org.junit.Test
 
 @ApplitoolsTest
-@HiltAndroidTest
 class HomeScreenApplitoolsTest {
 
   @get:Rule
-  val composeTestRule =
-    createAndroidComposeRule<HiltTestActivity>()
-
-  @get:Rule
-  val hiltRule = HiltAndroidRule(this)
+  val composeTestRule = createComposeRule()
 
   @Test
   fun verifyHomeScreenDesign() {
-    hiltRule.inject()
-
     val state: MutableLiveData<HomeViewModel.State> = MutableLiveData()
 
     composeTestRule.setContent {
