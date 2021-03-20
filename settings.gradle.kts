@@ -13,6 +13,8 @@ include(
   ":utils:kotlin-utils",
   ":components:chip",
   ":components:chip-layouts",
-  ":components:row"
+  ":components:row",
+  ":features:common",
+  ":features:home"
 )
 includeBuild("plugins")

@@ -4,7 +4,6 @@ import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.flow.flowOf
-import net.lachlanmckee.bookmark.feature.Navigation
 import net.lachlanmckee.bookmark.feature.home.HomeViewModel.Content.BookmarkContent
 import net.lachlanmckee.bookmark.feature.home.HomeViewModel.Content.FolderContent
 import net.lachlanmckee.bookmark.feature.home.HomeViewModel.State.*
@@ -13,8 +12,6 @@ import net.lachlanmckee.bookmark.service.model.FolderContentModel
 import net.lachlanmckee.bookmark.service.model.FolderModel
 import net.lachlanmckee.bookmark.service.repository.BookmarkRepository
 import net.lachlanmckee.bookmark.test.util.LiveDataTester.testLiveData
-import net.lachlanmckee.bookmark.test.util.getOrAwaitValue
-import net.lachlanmckee.bookmark.test.util.getOrAwaitValues
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
@@ -29,19 +26,19 @@ class HomeViewModelImplTest {
   @Test
   fun givenNoState_whenBackPressed_thenNavigateBack() = testLiveData {
     homeViewModel.eventConsumer(HomeViewModel.Event.Back)
-    assertEquals(Navigation.Back, homeViewModel.navigation.getOrAwaitValue())
+    assertEquals(net.lachlanmckee.bookmark.feature.Navigation.Back, homeViewModel.navigation.getOrAwaitValue())
   }
 
   @Test
   fun givenNoState_whenHomePressed_thenNavigateToHome() = testLiveData {
     homeViewModel.eventConsumer(HomeViewModel.Event.HomeClicked)
-    assertEquals(Navigation.Home, homeViewModel.navigation.getOrAwaitValue())
+    assertEquals(net.lachlanmckee.bookmark.feature.Navigation.Home, homeViewModel.navigation.getOrAwaitValue())
   }
 
   @Test
   fun givenNoState_whenSettingsPressed_thenNavigateToSettings() = testLiveData {
     homeViewModel.eventConsumer(HomeViewModel.Event.SettingsClicked)
-    assertEquals(Navigation.Settings, homeViewModel.navigation.getOrAwaitValue())
+    assertEquals(net.lachlanmckee.bookmark.feature.Navigation.Settings, homeViewModel.navigation.getOrAwaitValue())
   }
 
   @Test
@@ -54,7 +51,7 @@ class HomeViewModelImplTest {
   fun whenBookmarkClicked_thenNavigateToBookmark() = testLiveData {
     homeViewModel.eventConsumer(HomeViewModel.Event.ContentClicked(unselectedBookmarkContent1))
     assertEquals(
-      Navigation.Bookmark("https://www.google.com/"),
+      net.lachlanmckee.bookmark.feature.Navigation.Bookmark("https://www.google.com/"),
       homeViewModel.navigation.getOrAwaitValue()
     )
   }

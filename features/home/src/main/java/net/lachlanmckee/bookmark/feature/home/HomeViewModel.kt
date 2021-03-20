@@ -2,7 +2,7 @@ package net.lachlanmckee.bookmark.feature.home
 
 import net.lachlanmckee.bookmark.feature.BookmarkViewModel
 
-interface HomeViewModel : BookmarkViewModel<HomeViewModel.State, HomeViewModel.Event> {
+internal interface HomeViewModel : BookmarkViewModel<HomeViewModel.State, HomeViewModel.Event> {
 
   sealed class State {
     object Empty : State()

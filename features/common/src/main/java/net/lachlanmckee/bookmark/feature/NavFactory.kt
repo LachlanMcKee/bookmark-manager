@@ -1,4 +1,4 @@
-package net.lachlanmckee.bookmark
+package net.lachlanmckee.bookmark.feature
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController

@@ -1,9 +1,10 @@
-package net.lachlanmckee.bookmark
+package net.lachlanmckee.bookmark.feature.home
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
-import net.lachlanmckee.bookmark.feature.home.HomeScreen
-import net.lachlanmckee.bookmark.feature.home.HomeViewModelImpl
+import net.lachlanmckee.bookmark.feature.NavFactory
+import net.lachlanmckee.bookmark.feature.NavigationDelegationNavFactory
+import net.lachlanmckee.bookmark.feature.create
 import javax.inject.Inject
 
 class HomeNavFactory @Inject constructor(

@@ -17,21 +17,6 @@ import net.lachlanmckee.bookmark.service.persistence.entity.FolderEntity
 import net.lachlanmckee.bookmark.service.persistence.entity.MetadataEntity
 import javax.inject.Inject
 
-interface BookmarkRepository {
-  fun getBookmarksByQuery(
-    terms: List<String>,
-    metadataIds: List<Long>
-  ): Flow<PagingData<BookmarkModel>>
-
-  fun getFolderContent(folderId: Long?): Flow<List<FolderContentModel>>
-
-  fun getAllMetadata(): Flow<List<MetadataModel>>
-
-  suspend fun resetData()
-
-  suspend fun removeContent(folderIds: Set<Long>, bookmarkIds: Set<Long>)
-}
-
 class BookmarkRepositoryImpl @Inject constructor(
   private val database: BookmarkDatabase,
   private val bookmarkDao: BookmarkDao,

@@ -10,20 +10,21 @@ import net.lachlanmckee.bookmark.feature.Navigation
 import javax.inject.Inject
 
 @HiltViewModel
-class SettingsViewModel @Inject constructor() : ViewModel(), BookmarkViewModel<Nothing, Nothing> {
+class SettingsViewModel @Inject constructor() : ViewModel(),
+  net.lachlanmckee.bookmark.feature.BookmarkViewModel<Nothing, Nothing> {
 
-  private val navigationFlow = MutableLiveData<Navigation>()
+  private val navigationFlow = MutableLiveData<net.lachlanmckee.bookmark.feature.Navigation>()
 
   fun homeClicked() {
-    navigationFlow.value = Navigation.Home
+    navigationFlow.value = net.lachlanmckee.bookmark.feature.Navigation.Home
   }
 
   fun searchClicked() {
-    navigationFlow.value = Navigation.Search
+    navigationFlow.value = net.lachlanmckee.bookmark.feature.Navigation.Search
   }
 
   fun settingsClicked() {
-    navigationFlow.value = Navigation.Settings
+    navigationFlow.value = net.lachlanmckee.bookmark.feature.Navigation.Settings
   }
 
   override val state: LiveData<Nothing>
@@ -31,6 +32,6 @@ class SettingsViewModel @Inject constructor() : ViewModel(), BookmarkViewModel<N
 
   override val eventConsumer: (Nothing) -> Unit = {}
 
-  override val navigation: LiveData<Navigation>
+  override val navigation: LiveData<net.lachlanmckee.bookmark.feature.Navigation>
     get() = navigationFlow
 }

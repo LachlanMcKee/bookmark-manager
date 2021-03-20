@@ -1,4 +1,4 @@
-package net.lachlanmckee.bookmark.compose
+package net.lachlanmckee.bookmark.feature
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.shape.CircleShape

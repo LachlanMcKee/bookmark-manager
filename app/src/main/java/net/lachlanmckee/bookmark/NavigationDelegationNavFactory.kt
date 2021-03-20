@@ -21,19 +21,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigate
 import net.lachlanmckee.bookmark.feature.BookmarkViewModel
 import net.lachlanmckee.bookmark.feature.Navigation
+import net.lachlanmckee.bookmark.feature.NavigationDelegationNavFactory
 import javax.inject.Inject
-
-interface NavigationDelegationNavFactory {
-  fun <VM> create(
-    viewModelClass: Class<VM>,
-    builder: NavGraphBuilder,
-    navController: NavHostController,
-    route: String,
-    arguments: List<NamedNavArgument> = emptyList(),
-    deepLinks: List<NavDeepLink> = emptyList(),
-    content: @Composable VM.(NavBackStackEntry) -> Unit
-  ) where VM : ViewModel, VM : BookmarkViewModel<*, *>
-}
 
 class NavigationDelegationNavFactoryImpl @Inject constructor() : NavigationDelegationNavFactory {
 
@@ -55,25 +44,6 @@ class NavigationDelegationNavFactoryImpl @Inject constructor() : NavigationDeleg
       content = content
     )
   }
-}
-
-inline fun <reified VM> NavigationDelegationNavFactory.create(
-  builder: NavGraphBuilder,
-  navController: NavHostController,
-  route: String,
-  arguments: List<NamedNavArgument> = emptyList(),
-  deepLinks: List<NavDeepLink> = emptyList(),
-  noinline content: @Composable VM.(NavBackStackEntry) -> Unit
-) where VM : ViewModel, VM : BookmarkViewModel<*, *> {
-  create(
-    viewModelClass = VM::class.java,
-    builder = builder,
-    navController = navController,
-    route = route,
-    arguments = arguments,
-    deepLinks = deepLinks,
-    content = content
-  )
 }
 
 inline fun <VM> NavGraphBuilder.bookmarkComposable(
@@ -117,9 +87,15 @@ fun NavigationComposable(
       is Navigation.Bookmark -> context.startActivity(
         Intent(Intent.ACTION_VIEW, Uri.parse(nonNullNavigation.url))
       )
-      is Navigation.Home -> navController.navigate("home") { launchSingleTop = true }
-      is Navigation.Search -> navController.navigate("search") { launchSingleTop = true }
-      is Navigation.Settings -> navController.navigate("settings") { launchSingleTop = true }
+      is Navigation.Home -> navController.navigate("home") {
+        launchSingleTop = true
+      }
+      is Navigation.Search -> navController.navigate("search") {
+        launchSingleTop = true
+      }
+      is Navigation.Settings -> navController.navigate("settings") {
+        launchSingleTop = true
+      }
     }
   }
 }

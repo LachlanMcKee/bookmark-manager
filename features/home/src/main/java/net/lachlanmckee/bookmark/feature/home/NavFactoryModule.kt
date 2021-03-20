@@ -1,10 +1,11 @@
-package net.lachlanmckee.bookmark
+package net.lachlanmckee.bookmark.feature.home
 
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import net.lachlanmckee.bookmark.feature.NavigationDelegationNavFactory
+import dagger.multibindings.IntoSet
+import net.lachlanmckee.bookmark.feature.NavFactory
 import javax.inject.Singleton
 
 @Module
@@ -12,5 +13,6 @@ import javax.inject.Singleton
 interface NavFactoryModule {
   @Singleton
   @Binds
-  fun bindNavigationDelegationNavFactory(navFactory: NavigationDelegationNavFactoryImpl): NavigationDelegationNavFactory
+  @IntoSet
+  fun bindHomeNavFactory(navFactory: HomeNavFactory): NavFactory
 }

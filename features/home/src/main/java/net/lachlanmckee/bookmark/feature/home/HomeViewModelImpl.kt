@@ -14,7 +14,7 @@ import net.lachlanmckee.bookmark.service.repository.BookmarkRepository
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModelImpl @Inject constructor(
+internal class HomeViewModelImpl @Inject constructor(
   private val bookmarkRepository: BookmarkRepository
 ) : ViewModel(), HomeViewModel {
 

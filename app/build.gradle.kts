@@ -15,6 +15,8 @@ moduleSetup {
       implementation(
         project(":components:chip-layouts"),
         project(":components:row"),
+        project(":features:common"),
+        project(":features:home"),
 
         Dependencies.Logging.timber,
 

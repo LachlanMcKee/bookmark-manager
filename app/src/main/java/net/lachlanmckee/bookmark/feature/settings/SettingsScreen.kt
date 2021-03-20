@@ -4,7 +4,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
-import net.lachlanmckee.bookmark.compose.RootBottomAppBar
+import net.lachlanmckee.bookmark.feature.RootBottomAppBar
 
 @Composable
 fun SettingsScreen(viewModel: SettingsViewModel) {

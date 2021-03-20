@@ -34,6 +34,9 @@ class DependencyGroup {
   }
 }
 
+fun ProjectDependencies.api(vararg dependencies: Any) =
+  dependencyGroup("api", *dependencies)
+
 fun ProjectDependencies.implementation(vararg dependencies: Any) =
   dependencyGroup("implementation", *dependencies)
 
