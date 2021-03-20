@@ -15,6 +15,8 @@ include(
   ":components:chip-layouts",
   ":components:row",
   ":features:common",
-  ":features:home"
+  ":features:home",
+  ":features:search",
+  ":features:settings"
 )
 includeBuild("plugins")

@@ -9,8 +9,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import net.lachlanmckee.bookmark.feature.NavFactory
 import net.lachlanmckee.bookmark.feature.search.SearchScreen
 import net.lachlanmckee.bookmark.feature.search.SearchViewModelImpl
-import net.lachlanmckee.bookmark.feature.settings.SettingsScreen
-import net.lachlanmckee.bookmark.feature.settings.SettingsViewModel
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -32,7 +30,6 @@ class MainActivity : AppCompatActivity() {
   fun BookmarkApp() {
     val navController = rememberNavController()
     NavHost(navController, startDestination = "home") {
-
       navFactories.forEach { factory ->
         factory.create(this, navController)
       }
@@ -46,14 +43,6 @@ class MainActivity : AppCompatActivity() {
             stateLiveData = state,
             events = eventConsumer
           )
-        }
-      )
-      bookmarkComposable<SettingsViewModel>(
-        viewModelClass = SettingsViewModel::class.java,
-        navController = navController,
-        route = "settings",
-        content = {
-          SettingsScreen(this)
         }
       )
     }

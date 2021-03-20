@@ -17,6 +17,8 @@ moduleSetup {
         project(":components:row"),
         project(":features:common"),
         project(":features:home"),
+        project(":features:search"),
+        project(":features:settings"),
 
         Dependencies.Logging.timber,
 

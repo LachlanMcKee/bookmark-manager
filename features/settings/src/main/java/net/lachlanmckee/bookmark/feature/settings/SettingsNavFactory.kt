@@ -1,4 +1,4 @@
-package net.lachlanmckee.bookmark.feature.home
+package net.lachlanmckee.bookmark.feature.settings
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -13,19 +13,16 @@ import net.lachlanmckee.bookmark.feature.create
 import javax.inject.Inject
 import javax.inject.Singleton
 
-internal class HomeNavFactory @Inject constructor(
+internal class SettingsNavFactory @Inject constructor(
   private val navigationDelegationNavFactory: NavigationDelegationNavFactory
 ) : NavFactory {
   override fun create(builder: NavGraphBuilder, navController: NavHostController) {
-    navigationDelegationNavFactory.create<HomeViewModelImpl>(
+    navigationDelegationNavFactory.create<SettingsViewModel>(
       builder = builder,
       navController = navController,
-      route = "home",
+      route = "settings",
       content = {
-        HomeScreen(
-          stateLiveData = state,
-          events = eventConsumer
-        )
+        SettingsScreen(this)
       }
     )
   }
@@ -37,5 +34,5 @@ internal interface NavFactoryModule {
   @Singleton
   @Binds
   @IntoSet
-  fun bindNavFactory(navFactory: HomeNavFactory): NavFactory
+  fun bindNavFactory(navFactory: SettingsNavFactory): NavFactory
 }

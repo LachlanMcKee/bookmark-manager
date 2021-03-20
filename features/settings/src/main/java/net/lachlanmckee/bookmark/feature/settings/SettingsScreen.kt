@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import net.lachlanmckee.bookmark.feature.RootBottomAppBar
 
 @Composable
-fun SettingsScreen(viewModel: SettingsViewModel) {
+internal fun SettingsScreen(viewModel: SettingsViewModel) {
   Scaffold(
     topBar = {
       TopAppBar(
