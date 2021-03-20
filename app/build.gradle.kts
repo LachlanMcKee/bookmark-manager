@@ -13,6 +13,7 @@ moduleSetup {
       appendFrom(CommonDependencies.ComposeCore(project))
 
       implementation(
+        project(":utils:compose-navigation"),
         project(":components:chip-layouts"),
         project(":components:row"),
         project(":features:common"),

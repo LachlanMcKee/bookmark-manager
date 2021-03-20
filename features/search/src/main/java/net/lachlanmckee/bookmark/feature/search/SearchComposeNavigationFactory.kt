@@ -1,4 +1,4 @@
-package net.lachlanmckee.bookmark.feature.home
+package net.lachlanmckee.bookmark.feature.search
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -7,22 +7,22 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dagger.multibindings.IntoSet
-import net.lachlanmckee.bookmark.feature.NavFactory
 import net.lachlanmckee.bookmark.feature.NavigationDelegationNavFactory
 import net.lachlanmckee.bookmark.feature.create
+import net.lachlanmckee.compose.navigation.ComposeNavigationFactory
 import javax.inject.Inject
 import javax.inject.Singleton
 
-internal class HomeNavFactory @Inject constructor(
+internal class SearchComposeNavigationFactory @Inject constructor(
   private val navigationDelegationNavFactory: NavigationDelegationNavFactory
-) : NavFactory {
+) : ComposeNavigationFactory {
   override fun create(builder: NavGraphBuilder, navController: NavHostController) {
-    navigationDelegationNavFactory.create<HomeViewModelImpl>(
+    navigationDelegationNavFactory.create<SearchViewModelImpl>(
       builder = builder,
       navController = navController,
-      route = "home",
+      route = "search",
       content = {
-        HomeScreen(
+        SearchScreen(
           stateLiveData = state,
           events = eventConsumer
         )
@@ -33,9 +33,9 @@ internal class HomeNavFactory @Inject constructor(
 
 @Module
 @InstallIn(SingletonComponent::class)
-internal interface NavFactoryModule {
+internal interface ComposeNavigationFactoryModule {
   @Singleton
   @Binds
   @IntoSet
-  fun bindNavFactory(navFactory: HomeNavFactory): NavFactory
+  fun bindComposeNavigationFactory(factory: SearchComposeNavigationFactory): ComposeNavigationFactory
 }

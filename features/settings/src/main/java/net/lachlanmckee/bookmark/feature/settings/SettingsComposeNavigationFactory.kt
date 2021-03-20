@@ -7,15 +7,15 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dagger.multibindings.IntoSet
-import net.lachlanmckee.bookmark.feature.NavFactory
 import net.lachlanmckee.bookmark.feature.NavigationDelegationNavFactory
 import net.lachlanmckee.bookmark.feature.create
+import net.lachlanmckee.compose.navigation.ComposeNavigationFactory
 import javax.inject.Inject
 import javax.inject.Singleton
 
-internal class SettingsNavFactory @Inject constructor(
+internal class SettingsComposeNavigationFactory @Inject constructor(
   private val navigationDelegationNavFactory: NavigationDelegationNavFactory
-) : NavFactory {
+) : ComposeNavigationFactory {
   override fun create(builder: NavGraphBuilder, navController: NavHostController) {
     navigationDelegationNavFactory.create<SettingsViewModel>(
       builder = builder,
@@ -30,9 +30,9 @@ internal class SettingsNavFactory @Inject constructor(
 
 @Module
 @InstallIn(SingletonComponent::class)
-internal interface NavFactoryModule {
+internal interface ComposeNavigationFactoryModule {
   @Singleton
   @Binds
   @IntoSet
-  fun bindNavFactory(navFactory: SettingsNavFactory): NavFactory
+  fun bindComposeNavigationFactory(factory: SettingsComposeNavigationFactory): ComposeNavigationFactory
 }

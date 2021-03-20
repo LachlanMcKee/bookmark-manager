@@ -7,14 +7,15 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
-import net.lachlanmckee.bookmark.feature.NavFactory
+import net.lachlanmckee.compose.navigation.ComposeNavigationFactory
+import net.lachlanmckee.compose.navigation.addNavigation
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
   @Inject
-  lateinit var navFactories: @JvmSuppressWildcards Set<NavFactory>
+  lateinit var composeNavigationFactories: @JvmSuppressWildcards Set<ComposeNavigationFactory>
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -28,9 +29,7 @@ class MainActivity : AppCompatActivity() {
   fun BookmarkApp() {
     val navController = rememberNavController()
     NavHost(navController, startDestination = "home") {
-      navFactories.forEach { factory ->
-        factory.create(this, navController)
-      }
+      composeNavigationFactories.addNavigation(this, navController)
     }
   }
 }

@@ -55,6 +55,7 @@ object CommonDependencies {
 
       implementation(
         project.project(":features:common"),
+        project.project(":utils:compose-navigation"),
 
         Dependencies.AndroidX.activityCompose,
         Dependencies.AndroidX.lifecycleViewModelKtx,

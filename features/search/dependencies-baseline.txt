@@ -2,6 +2,7 @@
 debug
 debugCompileClasspath - Dependencies for compilation
 +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
++--- :utils:compose-navigation (variant: debug)
 +--- :features:common (variant: debug)
 +--- androidx.navigation:navigation-compose:1.0.0-alpha09@aar
 +--- androidx.activity:activity-compose:1.3.0-alpha04@aar
@@ -92,6 +93,8 @@ debugRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.compose.foundation:foundation-layout:1.0.0-beta01@aar
 +--- androidx.compose.material:material-icons-extended:1.0.0-beta01@aar
 +--- androidx.compose.material:material-icons-core:1.0.0-beta01@aar
++--- :utils:compose-navigation (variant: debug)
++--- androidx.hilt:hilt-navigation-compose:1.0.0-alpha01@aar
 +--- androidx.navigation:navigation-compose:1.0.0-alpha09@aar
 +--- androidx.activity:activity-compose:1.3.0-alpha04@aar
 +--- androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha03@aar
@@ -109,6 +112,7 @@ debugRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0@aar
 +--- androidx.lifecycle:lifecycle-runtime-ktx:2.3.0@aar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1@jar
++--- androidx.hilt:hilt-navigation:1.0.0-beta01@aar
 +--- com.google.dagger:hilt-android:2.33-beta@aar
 +--- com.google.dagger:hilt-core:2.33-beta@jar
 +--- com.google.dagger:dagger:2.33@jar
@@ -178,6 +182,7 @@ releaseCompileClasspath - Dependencies for compilation
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1@jar
 +--- androidx.paging:paging-common:3.0.0-beta01@jar
 +--- :utils:kotlin-utils (variant: release)
++--- :utils:compose-navigation (variant: release)
 +--- com.google.dagger:hilt-android:2.33-beta@aar
 +--- com.google.dagger:hilt-core:2.33-beta@jar
 +--- com.google.dagger:dagger:2.33@jar
@@ -242,6 +247,8 @@ releaseRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.compose.foundation:foundation-layout:1.0.0-beta01@aar
 +--- androidx.compose.material:material-icons-extended:1.0.0-beta01@aar
 +--- androidx.compose.material:material-icons-core:1.0.0-beta01@aar
++--- :utils:compose-navigation (variant: release)
++--- androidx.hilt:hilt-navigation-compose:1.0.0-alpha01@aar
 +--- androidx.navigation:navigation-compose:1.0.0-alpha09@aar
 +--- androidx.activity:activity-compose:1.3.0-alpha04@aar
 +--- androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha03@aar
@@ -259,6 +266,7 @@ releaseRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0@aar
 +--- androidx.lifecycle:lifecycle-runtime-ktx:2.3.0@aar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1@jar
++--- androidx.hilt:hilt-navigation:1.0.0-beta01@aar
 +--- com.google.dagger:hilt-android:2.33-beta@aar
 +--- com.google.dagger:hilt-core:2.33-beta@jar
 +--- com.google.dagger:dagger:2.33@jar
@@ -379,6 +387,7 @@ debugAndroidTestCompileClasspath - Dependencies for compilation
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1@jar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.1@jar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.2@jar
++--- :utils:compose-navigation (variant: debug)
 +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
 +--- org.jetbrains.kotlin:kotlin-stdlib:1.4.31@jar
 +--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.31@jar
@@ -407,6 +416,7 @@ debugAndroidTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- :components:chip (variant: debug)
 +--- :utils:kotlin-utils (variant: debug)
 +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
++--- :utils:compose-navigation (variant: debug)
 +--- com.github.LachlanMcKee:android-samples:1.0.0@aar
 +--- androidx.compose.ui:ui-tooling:1.0.0-beta01@aar
 +--- androidx.compose.material:material:1.0.0-beta01@aar
@@ -414,6 +424,7 @@ debugAndroidTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.compose.material:material-ripple:1.0.0-beta01@aar
 +--- androidx.compose.foundation:foundation:1.0.0-beta01@aar
 +--- androidx.compose.animation:animation:1.0.0-beta01@aar
++--- androidx.hilt:hilt-navigation-compose:1.0.0-alpha01@aar
 +--- androidx.navigation:navigation-compose:1.0.0-alpha09@aar
 +--- androidx.activity:activity-compose:1.3.0-alpha04@aar
 +--- androidx.compose.runtime:runtime-livedata:1.0.0-beta01@aar
@@ -443,6 +454,7 @@ debugAndroidTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.2@jar
 +--- androidx.lifecycle:lifecycle-livedata-core-ktx:2.2.0@aar
 +--- org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:0.3.3@jar
++--- androidx.hilt:hilt-navigation:1.0.0-beta01@aar
 +--- androidx.navigation:navigation-common-ktx:2.3.4@aar
 +--- androidx.core:core-ktx:1.1.0@aar
 +--- androidx.savedstate:savedstate-ktx:1.1.0@aar
@@ -516,6 +528,7 @@ debugUnitTestCompileClasspath - Dependencies for compilation
 +--- org.apiguardian:apiguardian-api:1.0.0@jar
 +--- org.opentest4j:opentest4j:1.1.1@jar
 +--- io.mockk:mockk:1.10.3@jar
++--- :utils:compose-navigation (variant: debug)
 +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
 +--- :features:common (variant: debug)
 +--- androidx.navigation:navigation-compose:1.0.0-alpha09@aar
@@ -617,6 +630,8 @@ debugUnitTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.compose.foundation:foundation-layout:1.0.0-beta01@aar
 +--- androidx.compose.material:material-icons-extended:1.0.0-beta01@aar
 +--- androidx.compose.material:material-icons-core:1.0.0-beta01@aar
++--- :utils:compose-navigation (variant: debug)
++--- androidx.hilt:hilt-navigation-compose:1.0.0-alpha01@aar
 +--- androidx.navigation:navigation-compose:1.0.0-alpha09@aar
 +--- androidx.activity:activity-compose:1.3.0-alpha04@aar
 +--- androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha03@aar
@@ -634,6 +649,7 @@ debugUnitTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0@aar
 +--- androidx.lifecycle:lifecycle-runtime-ktx:2.3.0@aar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1@jar
++--- androidx.hilt:hilt-navigation:1.0.0-beta01@aar
 +--- com.google.dagger:hilt-android:2.33-beta@aar
 +--- com.google.dagger:hilt-core:2.33-beta@jar
 +--- com.google.dagger:dagger:2.33@jar
@@ -721,6 +737,7 @@ releaseUnitTestCompileClasspath - Dependencies for compilation
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1@jar
 +--- androidx.paging:paging-common:3.0.0-beta01@jar
 +--- :utils:kotlin-utils (variant: release)
++--- :utils:compose-navigation (variant: release)
 +--- com.google.dagger:hilt-android:2.33-beta@aar
 +--- com.google.dagger:hilt-core:2.33-beta@jar
 +--- com.google.dagger:dagger:2.33@jar
@@ -801,6 +818,8 @@ releaseUnitTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.compose.foundation:foundation-layout:1.0.0-beta01@aar
 +--- androidx.compose.material:material-icons-extended:1.0.0-beta01@aar
 +--- androidx.compose.material:material-icons-core:1.0.0-beta01@aar
++--- :utils:compose-navigation (variant: release)
++--- androidx.hilt:hilt-navigation-compose:1.0.0-alpha01@aar
 +--- androidx.navigation:navigation-compose:1.0.0-alpha09@aar
 +--- androidx.activity:activity-compose:1.3.0-alpha04@aar
 +--- androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha03@aar
@@ -818,6 +837,7 @@ releaseUnitTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0@aar
 +--- androidx.lifecycle:lifecycle-runtime-ktx:2.3.0@aar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1@jar
++--- androidx.hilt:hilt-navigation:1.0.0-beta01@aar
 +--- com.google.dagger:hilt-android:2.33-beta@aar
 +--- com.google.dagger:hilt-core:2.33-beta@jar
 +--- com.google.dagger:dagger:2.33@jar

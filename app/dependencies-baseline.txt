@@ -2,6 +2,7 @@
 debug
 debugCompileClasspath - Dependencies for compilation
 +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
++--- :utils:compose-navigation (variant: debug)
 +--- :features:common (variant: debug)
 +--- androidx.hilt:hilt-navigation-compose:1.0.0-alpha01@aar
 +--- androidx.navigation:navigation-compose:1.0.0-alpha09@aar
@@ -130,6 +131,7 @@ debugRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.paging:paging-compose:1.0.0-alpha08@aar
 +--- androidx.compose.material:material-ripple:1.0.0-beta01@aar
 +--- androidx.compose.foundation:foundation:1.0.0-beta01@aar
++--- :utils:compose-navigation (variant: debug)
 +--- androidx.hilt:hilt-navigation-compose:1.0.0-alpha01@aar
 +--- androidx.compose.material:material-icons-extended:1.0.0-beta01@aar
 +--- androidx.compose.runtime:runtime-livedata:1.0.0-beta01@aar
@@ -262,6 +264,7 @@ releaseCompileClasspath - Dependencies for compilation
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1@jar
 +--- androidx.paging:paging-common:3.0.0-beta01@jar
 +--- :utils:kotlin-utils (variant: release)
++--- :utils:compose-navigation (variant: release)
 +--- :components:chip-layouts (variant: release)
 +--- :components:row (variant: release)
 +--- :features:home (variant: release)
@@ -361,6 +364,7 @@ releaseRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.paging:paging-compose:1.0.0-alpha08@aar
 +--- androidx.compose.material:material-ripple:1.0.0-beta01@aar
 +--- androidx.compose.foundation:foundation:1.0.0-beta01@aar
++--- :utils:compose-navigation (variant: release)
 +--- androidx.hilt:hilt-navigation-compose:1.0.0-alpha01@aar
 +--- androidx.compose.material:material-icons-extended:1.0.0-beta01@aar
 +--- androidx.compose.runtime:runtime-livedata:1.0.0-beta01@aar
@@ -578,6 +582,7 @@ debugAndroidTestCompileClasspath - Dependencies for compilation
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.1@jar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.2@jar
 +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
++--- :utils:compose-navigation (variant: debug)
 +--- com.squareup.okhttp3:okhttp:4.9.0@jar
 +--- com.squareup.okio:okio:2.8.0@jar
 +--- org.jetbrains.kotlin:kotlin-stdlib:1.4.31@jar
@@ -690,6 +695,7 @@ debugUnitTestCompileClasspath - Dependencies for compilation
 +--- org.apiguardian:apiguardian-api:1.0.0@jar
 +--- org.opentest4j:opentest4j:1.1.1@jar
 +--- io.mockk:mockk:1.10.3@jar
++--- :utils:compose-navigation (variant: debug)
 +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
 +--- :features:common (variant: debug)
 +--- androidx.hilt:hilt-navigation-compose:1.0.0-alpha01@aar
@@ -828,6 +834,7 @@ debugUnitTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.paging:paging-compose:1.0.0-alpha08@aar
 +--- androidx.compose.material:material-ripple:1.0.0-beta01@aar
 +--- androidx.compose.foundation:foundation:1.0.0-beta01@aar
++--- :utils:compose-navigation (variant: debug)
 +--- androidx.hilt:hilt-navigation-compose:1.0.0-alpha01@aar
 +--- androidx.compose.material:material-icons-extended:1.0.0-beta01@aar
 +--- androidx.compose.runtime:runtime-livedata:1.0.0-beta01@aar
@@ -978,6 +985,7 @@ releaseUnitTestCompileClasspath - Dependencies for compilation
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1@jar
 +--- androidx.paging:paging-common:3.0.0-beta01@jar
 +--- :utils:kotlin-utils (variant: release)
++--- :utils:compose-navigation (variant: release)
 +--- :components:chip-layouts (variant: release)
 +--- :components:row (variant: release)
 +--- :features:home (variant: release)
@@ -1092,6 +1100,7 @@ releaseUnitTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.paging:paging-compose:1.0.0-alpha08@aar
 +--- androidx.compose.material:material-ripple:1.0.0-beta01@aar
 +--- androidx.compose.foundation:foundation:1.0.0-beta01@aar
++--- :utils:compose-navigation (variant: release)
 +--- androidx.hilt:hilt-navigation-compose:1.0.0-alpha01@aar
 +--- androidx.compose.material:material-icons-extended:1.0.0-beta01@aar
 +--- androidx.compose.runtime:runtime-livedata:1.0.0-beta01@aar
