@@ -3,7 +3,6 @@ plugins {
   id("com.google.gms.google-services")
   id("dagger.hilt.android.plugin")
   id("com.google.firebase.appdistribution")
-  id("androidx.navigation.safeargs.kotlin")
 }
 
 moduleSetup {
@@ -22,8 +21,6 @@ moduleSetup {
         Dependencies.AndroidX.activityCompose,
         Dependencies.AndroidX.appcompat,
         Dependencies.AndroidX.coreKtx,
-        Dependencies.AndroidX.navigationFragmentKtx,
-        Dependencies.AndroidX.navigationUiKtx,
         Dependencies.AndroidX.lifecycleViewModelKtx,
         Dependencies.AndroidX.lifecycleLiveDataKtx,
 
@@ -36,13 +33,15 @@ moduleSetup {
       implementation(Dependencies.Di.daggerHilt)
       kapt(Dependencies.Di.daggerCompiler)
       kapt(Dependencies.Di.daggerHiltCompiler)
+      implementation(Dependencies.Di.daggerHiltNavigationCompose)
 
       implementation(
         Dependencies.Compose.iconsCore,
         Dependencies.Compose.iconsExtended,
         Dependencies.Compose.liveData,
         Dependencies.Compose.paging,
-        Dependencies.Compose.simpleFlowRow
+        Dependencies.Compose.simpleFlowRow,
+        Dependencies.Compose.navigation
       )
 
       // Storage
@@ -50,14 +49,7 @@ moduleSetup {
       kapt(Dependencies.Storage.roomCompiler)
       implementation(Dependencies.Storage.roomKtx)
 
-      debugImplementation(EspressoTestDependencies.fragmentTesting)
-      androidTestImplementation(
-        EspressoTestDependencies.espressoIntents,
-        EspressoTestDependencies.mockk,
-        EspressoTestDependencies.navigation,
-        EspressoTestDependencies.daggerHiltAndroidTesting
-      )
-
+      androidTestImplementation(EspressoTestDependencies.daggerHiltAndroidTesting)
       kaptAndroidTest(Dependencies.Di.daggerHiltCompiler)
     }
   )

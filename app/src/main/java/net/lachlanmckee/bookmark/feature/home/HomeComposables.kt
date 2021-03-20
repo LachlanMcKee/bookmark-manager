@@ -126,7 +126,7 @@ private fun BookmarksExistContent(
 }
 
 @Composable
-fun BookmarkRow(
+private fun BookmarkRow(
   label: AnnotatedString,
   link: AnnotatedString,
   metadata: List<Metadata>,
@@ -163,7 +163,7 @@ fun BookmarkRow(
 }
 
 @Composable
-fun FolderRow(
+private fun FolderRow(
   label: AnnotatedString,
   isSelected: Boolean,
   isInEditMode: Boolean,

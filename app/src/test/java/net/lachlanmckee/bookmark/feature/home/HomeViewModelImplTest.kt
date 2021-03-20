@@ -3,9 +3,8 @@ package net.lachlanmckee.bookmark.feature.home
 import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.mockk
-import io.mockk.verify
 import kotlinx.coroutines.flow.flowOf
-import net.lachlanmckee.bookmark.feature.Navigator
+import net.lachlanmckee.bookmark.feature.Navigation
 import net.lachlanmckee.bookmark.feature.home.HomeViewModel.Content.BookmarkContent
 import net.lachlanmckee.bookmark.feature.home.HomeViewModel.Content.FolderContent
 import net.lachlanmckee.bookmark.feature.home.HomeViewModel.State.*
@@ -22,28 +21,27 @@ import org.junit.jupiter.api.Test
 
 class HomeViewModelImplTest {
   private val bookmarkRepository: BookmarkRepository = mockk(relaxed = true)
-  private val navigator: Navigator = mockk(relaxed = true)
 
   private val homeViewModel = HomeViewModelImpl(
-    bookmarkRepository, navigator
+    bookmarkRepository
   )
 
   @Test
-  fun givenNoState_whenBackPressed_thenNavigateBack() {
-    homeViewModel(HomeViewModel.Event.Back)
-    verify { navigator.back() }
+  fun givenNoState_whenBackPressed_thenNavigateBack() = testLiveData {
+    homeViewModel.eventConsumer(HomeViewModel.Event.Back)
+    assertEquals(Navigation.Back, homeViewModel.navigation.getOrAwaitValue())
   }
 
   @Test
-  fun givenNoState_whenHomePressed_thenNavigateToHome() {
-    homeViewModel(HomeViewModel.Event.HomeClicked)
-    verify { navigator.home() }
+  fun givenNoState_whenHomePressed_thenNavigateToHome() = testLiveData {
+    homeViewModel.eventConsumer(HomeViewModel.Event.HomeClicked)
+    assertEquals(Navigation.Home, homeViewModel.navigation.getOrAwaitValue())
   }
 
   @Test
-  fun givenNoState_whenSettingsPressed_thenNavigateToSettings() {
-    homeViewModel(HomeViewModel.Event.SettingsClicked)
-    verify { navigator.settings() }
+  fun givenNoState_whenSettingsPressed_thenNavigateToSettings() = testLiveData {
+    homeViewModel.eventConsumer(HomeViewModel.Event.SettingsClicked)
+    assertEquals(Navigation.Settings, homeViewModel.navigation.getOrAwaitValue())
   }
 
   @Test
@@ -54,8 +52,11 @@ class HomeViewModelImplTest {
 
   @Test
   fun whenBookmarkClicked_thenNavigateToBookmark() = testLiveData {
-    homeViewModel(HomeViewModel.Event.ContentClicked(unselectedBookmarkContent1))
-    verify { navigator.openBookmark("https://www.google.com/") }
+    homeViewModel.eventConsumer(HomeViewModel.Event.ContentClicked(unselectedBookmarkContent1))
+    assertEquals(
+      Navigation.Bookmark("https://www.google.com/"),
+      homeViewModel.navigation.getOrAwaitValue()
+    )
   }
 
   @Test
@@ -77,10 +78,10 @@ class HomeViewModelImplTest {
 
     val statesList = homeViewModel.state.getOrAwaitValues(numberOfValues = 3) { nextStepIndex ->
       if (nextStepIndex == 1) {
-        homeViewModel(HomeViewModel.Event.ContentClicked(unselectedFolderContent1))
+        homeViewModel.eventConsumer(HomeViewModel.Event.ContentClicked(unselectedFolderContent1))
       }
       if (nextStepIndex == 2) {
-        homeViewModel(HomeViewModel.Event.Back)
+        homeViewModel.eventConsumer(HomeViewModel.Event.Back)
       }
     }
 
@@ -148,16 +149,28 @@ class HomeViewModelImplTest {
       val statesList =
         homeViewModel.state.getOrAwaitValues(numberOfValues = 5) { nextStepIndex ->
           if (nextStepIndex == 1) {
-            homeViewModel(HomeViewModel.Event.ContentLongClicked(unselectedFolderContent1))
+            homeViewModel.eventConsumer(
+              HomeViewModel.Event.ContentLongClicked(
+                unselectedFolderContent1
+              )
+            )
           }
           if (nextStepIndex == 2) {
-            homeViewModel(HomeViewModel.Event.ContentClicked(unselectedBookmarkContent1))
+            homeViewModel.eventConsumer(
+              HomeViewModel.Event.ContentClicked(
+                unselectedBookmarkContent1
+              )
+            )
           }
           if (nextStepIndex == 3) {
-            homeViewModel(HomeViewModel.Event.ContentClicked(unselectedFolderContent1))
+            homeViewModel.eventConsumer(HomeViewModel.Event.ContentClicked(unselectedFolderContent1))
           }
           if (nextStepIndex == 4) {
-            homeViewModel(HomeViewModel.Event.ContentClicked(unselectedBookmarkContent1))
+            homeViewModel.eventConsumer(
+              HomeViewModel.Event.ContentClicked(
+                unselectedBookmarkContent1
+              )
+            )
           }
         }
 
@@ -215,10 +228,10 @@ class HomeViewModelImplTest {
 
     val statesList = homeViewModel.state.getOrAwaitValues(numberOfValues = 3) { nextStepIndex ->
       if (nextStepIndex == 1) {
-        homeViewModel(HomeViewModel.Event.ContentLongClicked(unselectedFolderContent1))
+        homeViewModel.eventConsumer(HomeViewModel.Event.ContentLongClicked(unselectedFolderContent1))
       }
       if (nextStepIndex == 2) {
-        homeViewModel(HomeViewModel.Event.Back)
+        homeViewModel.eventConsumer(HomeViewModel.Event.Back)
       }
     }
 
@@ -264,10 +277,14 @@ class HomeViewModelImplTest {
       val statesList =
         homeViewModel.state.getOrAwaitValues(numberOfValues = 3) { nextStepIndex ->
           if (nextStepIndex == 1) {
-            homeViewModel(HomeViewModel.Event.ContentLongClicked(unselectedBookmarkContent1))
+            homeViewModel.eventConsumer(
+              HomeViewModel.Event.ContentLongClicked(
+                unselectedBookmarkContent1
+              )
+            )
           }
           if (nextStepIndex == 2) {
-            homeViewModel(HomeViewModel.Event.ContentClicked(unselectedFolderContent1))
+            homeViewModel.eventConsumer(HomeViewModel.Event.ContentClicked(unselectedFolderContent1))
           }
         }
 
@@ -312,14 +329,14 @@ class HomeViewModelImplTest {
 
     homeViewModel.state.getOrAwaitValues(numberOfValues = 3) { nextStepIndex ->
       if (nextStepIndex == 1) {
-        homeViewModel(HomeViewModel.Event.ContentLongClicked(unselectedFolderContent1))
+        homeViewModel.eventConsumer(HomeViewModel.Event.ContentLongClicked(unselectedFolderContent1))
       }
       if (nextStepIndex == 2) {
-        homeViewModel(HomeViewModel.Event.ContentClicked(unselectedBookmarkContent1))
+        homeViewModel.eventConsumer(HomeViewModel.Event.ContentClicked(unselectedBookmarkContent1))
       }
     }
 
-    homeViewModel(HomeViewModel.Event.Delete)
+    homeViewModel.eventConsumer(HomeViewModel.Event.Delete)
 
     coVerify {
       bookmarkRepository.removeContent(
