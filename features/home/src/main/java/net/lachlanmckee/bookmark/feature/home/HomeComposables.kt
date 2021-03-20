@@ -20,8 +20,8 @@ import androidx.lifecycle.LiveData
 import net.lachlanmckee.bookmark.components.chip.layout.ChipFlowRow
 import net.lachlanmckee.bookmark.components.row.CheckableRow
 import net.lachlanmckee.bookmark.components.row.RowText
-import net.lachlanmckee.bookmark.feature.RootBottomAppBar
 import net.lachlanmckee.bookmark.feature.BookmarkRowContent
+import net.lachlanmckee.bookmark.feature.RootBottomAppBar
 import net.lachlanmckee.bookmark.feature.home.HomeViewModel.Content.BookmarkContent.Metadata
 
 @Composable

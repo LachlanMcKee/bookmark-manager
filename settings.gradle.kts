@@ -11,6 +11,7 @@ include(
   ":utils:applitools-compose",
   ":utils:instrumentation-utils",
   ":utils:kotlin-utils",
+  ":utils:live-data-test-utils",
   ":components:chip",
   ":components:chip-layouts",
   ":components:row",

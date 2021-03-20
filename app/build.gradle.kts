@@ -44,7 +44,6 @@ moduleSetup {
         Dependencies.Compose.iconsExtended,
         Dependencies.Compose.liveData,
         Dependencies.Compose.paging,
-        Dependencies.Compose.simpleFlowRow,
         Dependencies.Compose.navigation
       )
 

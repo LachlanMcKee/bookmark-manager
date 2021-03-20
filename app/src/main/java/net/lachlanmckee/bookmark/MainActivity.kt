@@ -4,7 +4,8 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.Composable
-import androidx.navigation.compose.*
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import net.lachlanmckee.bookmark.feature.NavFactory
 import javax.inject.Inject
@@ -14,7 +15,6 @@ class MainActivity : AppCompatActivity() {
 
   @Inject
   lateinit var navFactories: @JvmSuppressWildcards Set<NavFactory>
-
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)

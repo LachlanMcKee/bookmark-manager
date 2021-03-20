@@ -4,6 +4,7 @@ import androidx.lifecycle.*
 import androidx.paging.map
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
+import net.lachlanmckee.bookmark.feature.Navigation
 import net.lachlanmckee.bookmark.feature.search.SearchViewModel.*
 import net.lachlanmckee.bookmark.service.repository.BookmarkRepository
 import timber.log.Timber
@@ -14,7 +15,7 @@ internal class SearchViewModelImpl @Inject constructor(
   private val bookmarkRepository: BookmarkRepository
 ) : ViewModel(), SearchViewModel {
 
-  private val navigationFlow = MutableLiveData<net.lachlanmckee.bookmark.feature.Navigation>()
+  private val navigationFlow = MutableLiveData<Navigation>()
   private val currentQueryFlowable: MutableStateFlow<QueryMetadata> =
     MutableStateFlow(
       QueryMetadata(
@@ -42,17 +43,17 @@ internal class SearchViewModelImpl @Inject constructor(
 
   override val eventConsumer: (Event) -> Unit = { event ->
     when (event) {
-      is Event.Back -> navigationFlow.value = net.lachlanmckee.bookmark.feature.Navigation.Back
-      is Event.HomeClicked -> navigationFlow.value = net.lachlanmckee.bookmark.feature.Navigation.Home
-      is Event.SearchClicked -> navigationFlow.value = net.lachlanmckee.bookmark.feature.Navigation.Search
-      is Event.SettingsClicked -> navigationFlow.value = net.lachlanmckee.bookmark.feature.Navigation.Settings
+      is Event.Back -> navigationFlow.value = Navigation.Back
+      is Event.HomeClicked -> navigationFlow.value = Navigation.Home
+      is Event.SearchClicked -> navigationFlow.value = Navigation.Search
+      is Event.SettingsClicked -> navigationFlow.value = Navigation.Settings
       is Event.ContentClicked -> contentClicked(event.content)
       is Event.MetadataRowItemClicked -> metadataRowItemClicked(event.metadata)
       is Event.SearchTextChanged -> searchTextChanged(event.searchText)
     }
   }
 
-  override val navigation: LiveData<net.lachlanmckee.bookmark.feature.Navigation>
+  override val navigation: LiveData<Navigation>
     get() = navigationFlow
 
   private fun getBookmarks(
@@ -97,7 +98,7 @@ internal class SearchViewModelImpl @Inject constructor(
   private fun contentClicked(content: Content) {
     when (content) {
       is Content.BookmarkContent -> {
-        navigationFlow.value = net.lachlanmckee.bookmark.feature.Navigation.Bookmark(content.link.fullText)
+        navigationFlow.value = Navigation.Bookmark(content.link.fullText)
       }
     }
   }

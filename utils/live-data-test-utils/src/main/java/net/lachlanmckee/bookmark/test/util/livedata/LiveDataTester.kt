@@ -1,5 +1,6 @@
-package net.lachlanmckee.bookmark.test.util
+package net.lachlanmckee.bookmark.test.util.livedata
 
+import android.annotation.SuppressLint
 import androidx.arch.core.executor.ArchTaskExecutor
 import androidx.arch.core.executor.TaskExecutor
 import kotlinx.coroutines.Dispatchers
@@ -9,6 +10,7 @@ import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.setMain
 
 object LiveDataTester {
+  @SuppressLint("RestrictedApi")
   fun testLiveData(testFunc: () -> Unit) {
     ArchTaskExecutor.getInstance()
       .setDelegate(object : TaskExecutor() {

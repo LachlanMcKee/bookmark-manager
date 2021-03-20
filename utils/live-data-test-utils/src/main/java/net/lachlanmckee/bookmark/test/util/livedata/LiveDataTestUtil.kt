@@ -1,4 +1,4 @@
-package net.lachlanmckee.bookmark.test.util
+package net.lachlanmckee.bookmark.test.util.livedata
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer

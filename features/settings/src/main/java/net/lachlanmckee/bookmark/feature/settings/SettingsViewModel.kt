@@ -10,7 +10,8 @@ import net.lachlanmckee.bookmark.feature.Navigation
 import javax.inject.Inject
 
 @HiltViewModel
-internal class SettingsViewModel @Inject constructor() : ViewModel(),
+internal class SettingsViewModel @Inject constructor() :
+  ViewModel(),
   BookmarkViewModel<Nothing, Nothing> {
 
   private val navigationFlow = MutableLiveData<Navigation>()

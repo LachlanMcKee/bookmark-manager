@@ -30,8 +30,8 @@ import androidx.paging.compose.items
 import net.lachlanmckee.bookmark.components.chip.layout.ChipFlowRow
 import net.lachlanmckee.bookmark.components.chip.layout.ChipHorizontalList
 import net.lachlanmckee.bookmark.components.row.StandardRow
-import net.lachlanmckee.bookmark.feature.RootBottomAppBar
 import net.lachlanmckee.bookmark.feature.BookmarkRowContent
+import net.lachlanmckee.bookmark.feature.RootBottomAppBar
 import net.lachlanmckee.bookmark.feature.search.SearchViewModel.State
 
 @Composable
