@@ -13,8 +13,13 @@ moduleSetup {
       appendFrom(CommonDependencies.ComposeCore(project))
 
       implementation(
+        project(":utils:compose-navigation"),
         project(":components:chip-layouts"),
         project(":components:row"),
+        project(":features:common"),
+        project(":features:home"),
+        project(":features:search"),
+        project(":features:settings"),
 
         Dependencies.Logging.timber,
 
@@ -40,7 +45,6 @@ moduleSetup {
         Dependencies.Compose.iconsExtended,
         Dependencies.Compose.liveData,
         Dependencies.Compose.paging,
-        Dependencies.Compose.simpleFlowRow,
         Dependencies.Compose.navigation
       )
 

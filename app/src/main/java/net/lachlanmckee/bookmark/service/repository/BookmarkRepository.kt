@@ -1,8 +1,14 @@
 package net.lachlanmckee.bookmark.service.repository
 
-import androidx.paging.*
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.map
 import androidx.room.withTransaction
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.map
 import net.lachlanmckee.bookmark.service.model.BookmarkModel
 import net.lachlanmckee.bookmark.service.model.FolderContentModel
 import net.lachlanmckee.bookmark.service.model.FolderModel
@@ -16,21 +22,6 @@ import net.lachlanmckee.bookmark.service.persistence.entity.BookmarkWithMetadata
 import net.lachlanmckee.bookmark.service.persistence.entity.FolderEntity
 import net.lachlanmckee.bookmark.service.persistence.entity.MetadataEntity
 import javax.inject.Inject
-
-interface BookmarkRepository {
-  fun getBookmarksByQuery(
-    terms: List<String>,
-    metadataIds: List<Long>
-  ): Flow<PagingData<BookmarkModel>>
-
-  fun getFolderContent(folderId: Long?): Flow<List<FolderContentModel>>
-
-  fun getAllMetadata(): Flow<List<MetadataModel>>
-
-  suspend fun resetData()
-
-  suspend fun removeContent(folderIds: Set<Long>, bookmarkIds: Set<Long>)
-}
 
 class BookmarkRepositoryImpl @Inject constructor(
   private val database: BookmarkDatabase,

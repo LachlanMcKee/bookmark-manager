@@ -48,4 +48,37 @@ object CommonDependencies {
       return impl.appendFrom(projectDependencies)
     }
   }
+
+  class FeatureCore(project: Project) : ProjectDependencies {
+    private val impl = ProjectDependenciesImpl().apply {
+      appendFrom(ComposeCore(project))
+
+      implementation(
+        project.project(":features:common"),
+        project.project(":utils:compose-navigation"),
+
+        Dependencies.AndroidX.activityCompose,
+        Dependencies.AndroidX.lifecycleViewModelKtx,
+        Dependencies.AndroidX.lifecycleLiveDataKtx,
+        Dependencies.Compose.liveData,
+        Dependencies.Di.dagger,
+        Dependencies.Di.daggerHilt
+      )
+      kapt(
+        Dependencies.Di.daggerCompiler,
+        Dependencies.Di.daggerHiltCompiler
+      )
+    }
+
+    override val groups: Map<String, DependencyGroup>
+      get() = impl.groups
+
+    override fun group(value: String): DependencyGroup {
+      return impl.group(value)
+    }
+
+    override fun appendFrom(projectDependencies: ProjectDependencies) {
+      return impl.appendFrom(projectDependencies)
+    }
+  }
 }

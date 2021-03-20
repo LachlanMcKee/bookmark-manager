@@ -4,26 +4,20 @@ debugCompileClasspath - Dependencies for compilation
 +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
 +--- :utils:compose-navigation (variant: debug)
 +--- :features:common (variant: debug)
-+--- androidx.hilt:hilt-navigation-compose:1.0.0-alpha01@aar
 +--- androidx.navigation:navigation-compose:1.0.0-alpha09@aar
 +--- androidx.activity:activity-compose:1.3.0-alpha04@aar
 +--- androidx.navigation:navigation-runtime-ktx:2.3.4@aar
 +--- androidx.activity:activity-ktx:1.3.0-alpha04@aar
-+--- androidx.core:core-ktx:1.3.2@aar
 +--- androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha03@aar
 +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0@aar
 +--- androidx.lifecycle:lifecycle-livedata-ktx:2.2.0@aar
-+--- com.squareup.okhttp3:okhttp:4.9.0@jar
-+--- androidx.room:room-ktx:2.3.0-alpha04@aar
 +--- androidx.compose.ui:ui-tooling:1.0.0-beta01@aar
 +--- androidx.compose.material:material:1.0.0-beta01@aar
-+--- androidx.paging:paging-compose:1.0.0-alpha08@aar
 +--- androidx.compose.material:material-ripple:1.0.0-beta01@aar
 +--- androidx.compose.foundation:foundation:1.0.0-beta01@aar
-+--- androidx.compose.material:material-icons-extended:1.0.0-beta01@aar
-+--- androidx.compose.material:material-icons-core:1.0.0-beta01@aar
 +--- androidx.compose.ui:ui-tooling-data:1.0.0-beta01@aar
 +--- androidx.compose.animation:animation:1.0.0-beta01@aar
++--- androidx.compose.material:material-icons-core:1.0.0-beta01@aar
 +--- androidx.compose.foundation:foundation-layout:1.0.0-beta01@aar
 +--- androidx.compose.ui:ui:1.0.0-beta02@aar
 +--- androidx.compose.animation:animation-core:1.0.0-beta02@aar
@@ -32,71 +26,37 @@ debugCompileClasspath - Dependencies for compilation
 +--- androidx.compose.runtime:runtime:1.0.0-beta02@aar
 +--- androidx.lifecycle:lifecycle-runtime-ktx:2.3.0@aar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1@jar
-+--- androidx.paging:paging-common:3.0.0-beta01@jar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.2@jar
 +--- androidx.lifecycle:lifecycle-livedata-core-ktx:2.2.0@aar
-+--- com.squareup.okio:okio:2.8.0@jar
-+--- androidx.hilt:hilt-navigation:1.0.0-beta01@aar
++--- androidx.core:core-ktx:1.1.0@aar
 +--- androidx.savedstate:savedstate-ktx:1.1.0@aar
 +--- androidx.navigation:navigation-common-ktx:2.3.4@aar
 +--- org.jetbrains.kotlin:kotlin-stdlib:1.4.31@jar
 +--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.31@jar
-+--- com.jakewharton.timber:timber:4.7.1@aar
-+--- org.jetbrains:annotations:16.0.1@jar
-+--- androidx.appcompat:appcompat:1.3.0-beta01@aar
++--- org.jetbrains:annotations:13.0@jar
 +--- com.google.dagger:hilt-android:2.33-beta@aar
 +--- androidx.compose.ui:ui-text:1.0.0-beta02@aar
 +--- androidx.compose.ui:ui-graphics:1.0.0-beta02@aar
 +--- androidx.compose.ui:ui-unit:1.0.0-beta02@aar
 +--- androidx.compose.ui:ui-geometry:1.0.0-beta02@aar
-+--- com.google.firebase:firebase-analytics:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement-api:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement-sdk:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement-impl:17.6.0@aar
-+--- com.google.android.gms:play-services-ads-identifier:17.0.0@aar
-+--- com.google.android.gms:play-services-measurement-sdk-api:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement-base:17.6.0@aar
-+--- com.google.android.gms:play-services-stats:17.0.0@aar
-+--- com.google.firebase:firebase-installations:16.3.2@aar
-+--- com.google.firebase:firebase-common:19.3.0@aar
-+--- com.google.firebase:firebase-installations-interop:16.0.0@aar
-+--- com.google.android.gms:play-services-tasks:17.0.0@aar
-+--- com.google.firebase:firebase-measurement-connector:18.0.0@aar
-+--- com.google.android.gms:play-services-basement:17.0.0@aar
 +--- androidx.fragment:fragment:1.3.0@aar
 +--- androidx.navigation:navigation-runtime:2.3.4@aar
 +--- androidx.activity:activity:1.3.0-alpha04@aar
-+--- androidx.appcompat:appcompat-resources:1.3.0-beta01@aar
-+--- androidx.drawerlayout:drawerlayout:1.0.0@aar
-+--- androidx.viewpager:viewpager:1.0.0@aar
-+--- androidx.legacy:legacy-support-core-utils:1.0.0@aar
-+--- androidx.loader:loader:1.0.0@aar
-+--- androidx.vectordrawable:vectordrawable-animated:1.1.0@aar
-+--- androidx.vectordrawable:vectordrawable:1.1.0@aar
-+--- androidx.customview:customview:1.0.0@aar
-+--- androidx.core:core:1.5.0-beta01@aar
-+--- androidx.cursoradapter:cursoradapter:1.0.0@aar
 +--- androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.0@aar
-+--- androidx.savedstate:savedstate:1.1.0@aar
++--- androidx.loader:loader:1.0.0@aar
 +--- androidx.lifecycle:lifecycle-viewmodel:2.3.0@aar
-+--- androidx.room:room-runtime:2.3.0-alpha04@aar
-+--- androidx.room:room-common:2.3.0-alpha04@jar
-+--- androidx.sqlite:sqlite-framework:2.1.0@aar
-+--- androidx.sqlite:sqlite:2.1.0@aar
-+--- androidx.lifecycle:lifecycle-runtime:2.3.0@aar
-+--- androidx.versionedparcelable:versionedparcelable:1.1.0@aar
-+--- androidx.collection:collection:1.1.0@jar
++--- androidx.savedstate:savedstate:1.1.0@aar
 +--- androidx.lifecycle:lifecycle-livedata:2.2.0@aar
 +--- androidx.arch.core:core-runtime:2.1.0@aar
++--- androidx.viewpager:viewpager:1.0.0@aar
++--- androidx.customview:customview:1.0.0@aar
++--- androidx.core:core:1.5.0-beta01@aar
++--- androidx.lifecycle:lifecycle-runtime:2.3.0@aar
 +--- androidx.arch.core:core-common:2.1.0@jar
-+--- com.google.firebase:firebase-components:16.0.0@aar
++--- androidx.versionedparcelable:versionedparcelable:1.1.0@aar
++--- androidx.collection:collection:1.1.0@jar
 +--- androidx.lifecycle:lifecycle-livedata-core:2.3.0@aar
 +--- androidx.lifecycle:lifecycle-common:2.3.0@jar
-+--- androidx.interpolator:interpolator:1.0.0@aar
-+--- androidx.documentfile:documentfile:1.0.0@aar
-+--- androidx.localbroadcastmanager:localbroadcastmanager:1.0.0@aar
-+--- androidx.print:print:1.0.0@aar
 +--- androidx.navigation:navigation-common:2.3.4@aar
 +--- androidx.annotation:annotation:1.2.0-beta01@jar
 +--- com.google.dagger:hilt-core:2.33-beta@jar
@@ -105,44 +65,31 @@ debugCompileClasspath - Dependencies for compilation
 +--- com.google.dagger:dagger-lint-aar:2.33@aar
 +--- com.google.code.findbugs:jsr305:3.0.1@jar
 +--- androidx.annotation:annotation-experimental:1.0.0@aar
-+--- com.google.auto.value:auto-value-annotations:1.6.5@jar
-+--- :utils:kotlin-utils (variant: debug)
-+--- :components:chip-layouts (variant: debug)
-+--- :components:row (variant: debug)
-+--- :features:home (variant: debug)
-+--- :features:search (variant: debug)
-\--- :features:settings (variant: debug)
+\--- :utils:kotlin-utils (variant: debug)
 
 debugRuntimeClasspath - Dependencies for runtime/packaging
-+--- :features:home (variant: debug)
-+--- :features:search (variant: debug)
-+--- :components:chip-layouts (variant: debug)
-+--- :features:settings (variant: debug)
 +--- :features:common (variant: debug)
 +--- :components:row (variant: debug)
-+--- :components:chip (variant: debug)
 +--- :utils:kotlin-utils (variant: debug)
 +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
 +--- androidx.lifecycle:lifecycle-livedata-ktx:2.2.0@aar
-+--- androidx.room:room-ktx:2.3.0-alpha04@aar
-+--- com.github.LachlanMcKee:android-samples:1.0.0@aar
 +--- androidx.compose.ui:ui-tooling:1.0.0-beta01@aar
 +--- androidx.compose.material:material:1.0.0-beta01@aar
-+--- androidx.paging:paging-compose:1.0.0-alpha08@aar
 +--- androidx.compose.material:material-ripple:1.0.0-beta01@aar
++--- androidx.paging:paging-compose:1.0.0-alpha08@aar
 +--- androidx.compose.foundation:foundation:1.0.0-beta01@aar
-+--- :utils:compose-navigation (variant: debug)
-+--- androidx.hilt:hilt-navigation-compose:1.0.0-alpha01@aar
-+--- androidx.compose.material:material-icons-extended:1.0.0-beta01@aar
 +--- androidx.compose.runtime:runtime-livedata:1.0.0-beta01@aar
-+--- androidx.navigation:navigation-compose:1.0.0-alpha09@aar
 +--- androidx.compose.ui:ui-tooling-data:1.0.0-beta01@aar
 +--- androidx.compose.animation:animation:1.0.0-beta01@aar
 +--- androidx.compose.foundation:foundation-layout:1.0.0-beta01@aar
-+--- androidx.activity:activity-compose:1.3.0-alpha04@aar
 +--- androidx.compose.material:material-icons-core:1.0.0-beta01@aar
++--- :utils:compose-navigation (variant: debug)
++--- androidx.hilt:hilt-navigation-compose:1.0.0-alpha01@aar
++--- androidx.navigation:navigation-compose:1.0.0-alpha09@aar
++--- androidx.activity:activity-compose:1.3.0-alpha04@aar
 +--- androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha03@aar
 +--- androidx.compose.ui:ui:1.0.0-beta02@aar
++--- androidx.paging:paging-common:3.0.0-beta01@jar
 +--- androidx.compose.ui:ui-text:1.0.0-beta02@aar
 +--- androidx.compose.runtime:runtime-saveable:1.0.0-beta02@aar
 +--- androidx.compose.animation:animation-core:1.0.0-beta02@aar
@@ -156,59 +103,29 @@ debugRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0@aar
 +--- androidx.lifecycle:lifecycle-runtime-ktx:2.3.0@aar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1@jar
-+--- androidx.paging:paging-common:3.0.0-beta01@jar
-+--- com.jakewharton.timber:timber:4.7.1@aar
-+--- androidx.appcompat:appcompat:1.3.0-beta01@aar
-+--- androidx.navigation:navigation-common-ktx:2.3.4@aar
-+--- androidx.core:core-ktx:1.3.2@aar
-+--- com.google.firebase:firebase-analytics:17.6.0@aar
-+--- com.squareup.okhttp3:okhttp:4.9.0@jar
 +--- androidx.hilt:hilt-navigation:1.0.0-beta01@aar
 +--- com.google.dagger:hilt-android:2.33-beta@aar
 +--- com.google.dagger:hilt-core:2.33-beta@jar
 +--- com.google.dagger:dagger:2.33@jar
-+--- androidx.room:room-runtime:2.3.0-alpha04@aar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.2@jar
 +--- androidx.lifecycle:lifecycle-livedata-core-ktx:2.2.0@aar
-+--- com.squareup.okio:okio:2.8.0@jar
 +--- org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:0.3.3@jar
++--- androidx.navigation:navigation-common-ktx:2.3.4@aar
++--- androidx.core:core-ktx:1.1.0@aar
 +--- androidx.savedstate:savedstate-ktx:1.1.0@aar
 +--- org.jetbrains.kotlin:kotlin-stdlib:1.4.31@jar
-+--- com.google.android.gms:play-services-measurement:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement-api:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement-sdk:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement-impl:17.6.0@aar
-+--- com.google.android.gms:play-services-ads-identifier:17.0.0@aar
-+--- com.google.android.gms:play-services-measurement-sdk-api:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement-base:17.6.0@aar
-+--- com.google.android.gms:play-services-stats:17.0.0@aar
-+--- com.google.firebase:firebase-installations:16.3.2@aar
-+--- com.google.firebase:firebase-common:19.3.0@aar
-+--- com.google.firebase:firebase-installations-interop:16.0.0@aar
-+--- com.google.android.gms:play-services-tasks:17.0.0@aar
-+--- com.google.firebase:firebase-measurement-connector:18.0.0@aar
-+--- com.google.android.gms:play-services-basement:17.0.0@aar
 +--- androidx.fragment:fragment:1.3.0@aar
-+--- androidx.appcompat:appcompat-resources:1.3.0-beta01@aar
-+--- androidx.drawerlayout:drawerlayout:1.0.0@aar
-+--- androidx.viewpager:viewpager:1.0.0@aar
-+--- androidx.legacy:legacy-support-core-utils:1.0.0@aar
-+--- androidx.loader:loader:1.0.0@aar
-+--- androidx.vectordrawable:vectordrawable-animated:1.1.0@aar
-+--- androidx.vectordrawable:vectordrawable:1.1.0@aar
-+--- androidx.customview:customview:1.0.0@aar
-+--- androidx.autofill:autofill:1.0.0@aar
 +--- androidx.navigation:navigation-runtime:2.3.4@aar
 +--- androidx.activity:activity:1.3.0-alpha04@aar
-+--- androidx.navigation:navigation-common:2.3.4@aar
-+--- androidx.core:core:1.5.0-beta01@aar
-+--- androidx.cursoradapter:cursoradapter:1.0.0@aar
 +--- androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.0@aar
++--- androidx.loader:loader:1.0.0@aar
 +--- androidx.lifecycle:lifecycle-viewmodel:2.3.0@aar
 +--- androidx.savedstate:savedstate:1.1.0@aar
-+--- androidx.room:room-common:2.3.0-alpha04@jar
-+--- androidx.sqlite:sqlite-framework:2.1.0@aar
-+--- androidx.sqlite:sqlite:2.1.0@aar
++--- androidx.viewpager:viewpager:1.0.0@aar
++--- androidx.customview:customview:1.0.0@aar
++--- androidx.autofill:autofill:1.0.0@aar
++--- androidx.navigation:navigation-common:2.3.4@aar
++--- androidx.core:core:1.5.0-beta01@aar
 +--- androidx.versionedparcelable:versionedparcelable:1.1.0@aar
 +--- androidx.collection:collection:1.1.0@jar
 +--- androidx.lifecycle:lifecycle-livedata:2.2.0@aar
@@ -216,21 +133,15 @@ debugRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.lifecycle:lifecycle-runtime:2.3.0@aar
 +--- androidx.arch.core:core-runtime:2.1.0@aar
 +--- androidx.arch.core:core-common:2.1.0@jar
-+--- com.google.firebase:firebase-components:16.0.0@aar
 +--- androidx.lifecycle:lifecycle-common:2.3.0@jar
-+--- androidx.interpolator:interpolator:1.0.0@aar
-+--- androidx.documentfile:documentfile:1.0.0@aar
-+--- androidx.localbroadcastmanager:localbroadcastmanager:1.0.0@aar
-+--- androidx.print:print:1.0.0@aar
 +--- androidx.tracing:tracing:1.0.0@aar
 +--- androidx.annotation:annotation:1.2.0-beta01@jar
 +--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.31@jar
-+--- org.jetbrains:annotations:16.0.1@jar
 +--- javax.inject:javax.inject:1@jar
 +--- com.google.dagger:dagger-lint-aar:2.33@aar
 +--- com.google.code.findbugs:jsr305:3.0.1@jar
-+--- androidx.annotation:annotation-experimental:1.0.0@aar
-\--- com.google.auto.value:auto-value-annotations:1.6.5@jar
++--- org.jetbrains:annotations:13.0@jar
+\--- androidx.annotation:annotation-experimental:1.0.0@aar
 
 release
 releaseCompileClasspath - Dependencies for compilation
@@ -238,144 +149,91 @@ releaseCompileClasspath - Dependencies for compilation
 +--- androidx.lifecycle:lifecycle-livedata-ktx:2.2.0@aar
 +--- androidx.compose.ui:ui-tooling:1.0.0-beta01@aar
 +--- androidx.compose.material:material:1.0.0-beta01@aar
-+--- androidx.paging:paging-compose:1.0.0-alpha08@aar
 +--- androidx.compose.material:material-ripple:1.0.0-beta01@aar
 +--- androidx.compose.foundation:foundation:1.0.0-beta01@aar
 +--- :features:common (variant: release)
-+--- androidx.hilt:hilt-navigation-compose:1.0.0-alpha01@aar
 +--- androidx.navigation:navigation-compose:1.0.0-alpha09@aar
 +--- androidx.activity:activity-compose:1.3.0-alpha04@aar
-+--- androidx.compose.material:material-icons-extended:1.0.0-beta01@aar
-+--- androidx.compose.material:material-icons-core:1.0.0-beta01@aar
 +--- androidx.compose.ui:ui-tooling-data:1.0.0-beta01@aar
 +--- androidx.compose.animation:animation:1.0.0-beta01@aar
-+--- androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha03@aar
++--- androidx.compose.material:material-icons-core:1.0.0-beta01@aar
 +--- androidx.compose.foundation:foundation-layout:1.0.0-beta01@aar
++--- androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha03@aar
 +--- androidx.compose.ui:ui:1.0.0-beta02@aar
 +--- androidx.compose.animation:animation-core:1.0.0-beta02@aar
 +--- androidx.navigation:navigation-runtime-ktx:2.3.4@aar
 +--- androidx.activity:activity-ktx:1.3.0-alpha04@aar
 +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0@aar
-+--- androidx.room:room-ktx:2.3.0-alpha04@aar
 +--- androidx.compose.runtime:runtime-livedata:1.0.0-beta01@aar
 +--- androidx.compose.runtime:runtime-saveable:1.0.0-beta02@aar
 +--- androidx.compose.runtime:runtime:1.0.0-beta02@aar
 +--- androidx.lifecycle:lifecycle-runtime-ktx:2.3.0@aar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1@jar
-+--- androidx.paging:paging-common:3.0.0-beta01@jar
 +--- :utils:kotlin-utils (variant: release)
 +--- :utils:compose-navigation (variant: release)
-+--- :components:chip-layouts (variant: release)
-+--- :components:row (variant: release)
-+--- :features:home (variant: release)
-+--- :features:search (variant: release)
-+--- :features:settings (variant: release)
-+--- com.jakewharton.timber:timber:4.7.1@aar
-+--- androidx.appcompat:appcompat:1.3.0-beta01@aar
-+--- androidx.core:core-ktx:1.3.2@aar
-+--- com.google.firebase:firebase-analytics:17.6.0@aar
-+--- com.squareup.okhttp3:okhttp:4.9.0@jar
-+--- androidx.hilt:hilt-navigation:1.0.0-beta01@aar
 +--- com.google.dagger:hilt-android:2.33-beta@aar
 +--- com.google.dagger:hilt-core:2.33-beta@jar
 +--- com.google.dagger:dagger:2.33@jar
-+--- androidx.room:room-runtime:2.3.0-alpha04@aar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.2@jar
 +--- androidx.lifecycle:lifecycle-livedata-core-ktx:2.2.0@aar
-+--- com.squareup.okio:okio:2.8.0@jar
++--- androidx.core:core-ktx:1.1.0@aar
 +--- androidx.savedstate:savedstate-ktx:1.1.0@aar
 +--- androidx.navigation:navigation-common-ktx:2.3.4@aar
 +--- org.jetbrains.kotlin:kotlin-stdlib:1.4.31@jar
 +--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.31@jar
-+--- org.jetbrains:annotations:16.0.1@jar
++--- org.jetbrains:annotations:13.0@jar
 +--- androidx.compose.ui:ui-text:1.0.0-beta02@aar
 +--- androidx.compose.ui:ui-graphics:1.0.0-beta02@aar
 +--- androidx.compose.ui:ui-unit:1.0.0-beta02@aar
 +--- androidx.compose.ui:ui-geometry:1.0.0-beta02@aar
-+--- com.google.android.gms:play-services-measurement:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement-api:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement-sdk:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement-impl:17.6.0@aar
-+--- com.google.android.gms:play-services-ads-identifier:17.0.0@aar
-+--- com.google.android.gms:play-services-measurement-sdk-api:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement-base:17.6.0@aar
-+--- com.google.android.gms:play-services-stats:17.0.0@aar
-+--- com.google.firebase:firebase-installations:16.3.2@aar
-+--- com.google.firebase:firebase-common:19.3.0@aar
-+--- com.google.firebase:firebase-installations-interop:16.0.0@aar
-+--- com.google.android.gms:play-services-tasks:17.0.0@aar
-+--- com.google.firebase:firebase-measurement-connector:18.0.0@aar
-+--- com.google.android.gms:play-services-basement:17.0.0@aar
 +--- androidx.fragment:fragment:1.3.0@aar
 +--- androidx.navigation:navigation-runtime:2.3.4@aar
 +--- androidx.activity:activity:1.3.0-alpha04@aar
-+--- androidx.appcompat:appcompat-resources:1.3.0-beta01@aar
-+--- androidx.drawerlayout:drawerlayout:1.0.0@aar
-+--- androidx.viewpager:viewpager:1.0.0@aar
-+--- androidx.legacy:legacy-support-core-utils:1.0.0@aar
-+--- androidx.loader:loader:1.0.0@aar
-+--- androidx.vectordrawable:vectordrawable-animated:1.1.0@aar
-+--- androidx.vectordrawable:vectordrawable:1.1.0@aar
-+--- androidx.customview:customview:1.0.0@aar
-+--- androidx.core:core:1.5.0-beta01@aar
-+--- androidx.cursoradapter:cursoradapter:1.0.0@aar
 +--- androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.0@aar
-+--- androidx.savedstate:savedstate:1.1.0@aar
++--- androidx.loader:loader:1.0.0@aar
 +--- androidx.lifecycle:lifecycle-viewmodel:2.3.0@aar
-+--- androidx.room:room-common:2.3.0-alpha04@jar
-+--- androidx.sqlite:sqlite-framework:2.1.0@aar
-+--- androidx.sqlite:sqlite:2.1.0@aar
-+--- androidx.lifecycle:lifecycle-runtime:2.3.0@aar
-+--- androidx.versionedparcelable:versionedparcelable:1.1.0@aar
-+--- androidx.collection:collection:1.1.0@jar
++--- androidx.savedstate:savedstate:1.1.0@aar
 +--- androidx.lifecycle:lifecycle-livedata:2.2.0@aar
 +--- androidx.arch.core:core-runtime:2.1.0@aar
++--- androidx.viewpager:viewpager:1.0.0@aar
++--- androidx.customview:customview:1.0.0@aar
++--- androidx.core:core:1.5.0-beta01@aar
++--- androidx.lifecycle:lifecycle-runtime:2.3.0@aar
 +--- androidx.arch.core:core-common:2.1.0@jar
-+--- com.google.firebase:firebase-components:16.0.0@aar
++--- androidx.versionedparcelable:versionedparcelable:1.1.0@aar
++--- androidx.collection:collection:1.1.0@jar
 +--- androidx.lifecycle:lifecycle-livedata-core:2.3.0@aar
 +--- androidx.lifecycle:lifecycle-common:2.3.0@jar
-+--- androidx.interpolator:interpolator:1.0.0@aar
-+--- androidx.documentfile:documentfile:1.0.0@aar
-+--- androidx.localbroadcastmanager:localbroadcastmanager:1.0.0@aar
-+--- androidx.print:print:1.0.0@aar
 +--- androidx.navigation:navigation-common:2.3.4@aar
 +--- androidx.annotation:annotation:1.2.0-beta01@jar
 +--- javax.inject:javax.inject:1@jar
 +--- com.google.dagger:dagger-lint-aar:2.33@aar
 +--- com.google.code.findbugs:jsr305:3.0.1@jar
-+--- androidx.annotation:annotation-experimental:1.0.0@aar
-\--- com.google.auto.value:auto-value-annotations:1.6.5@jar
+\--- androidx.annotation:annotation-experimental:1.0.0@aar
 
 releaseRuntimeClasspath - Dependencies for runtime/packaging
-+--- :features:home (variant: release)
-+--- :features:search (variant: release)
-+--- :components:chip-layouts (variant: release)
-+--- :features:settings (variant: release)
 +--- :features:common (variant: release)
 +--- :components:row (variant: release)
-+--- :components:chip (variant: release)
 +--- :utils:kotlin-utils (variant: release)
 +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
 +--- androidx.lifecycle:lifecycle-livedata-ktx:2.2.0@aar
-+--- androidx.room:room-ktx:2.3.0-alpha04@aar
-+--- com.github.LachlanMcKee:android-samples:1.0.0@aar
 +--- androidx.compose.ui:ui-tooling:1.0.0-beta01@aar
 +--- androidx.compose.material:material:1.0.0-beta01@aar
-+--- androidx.paging:paging-compose:1.0.0-alpha08@aar
 +--- androidx.compose.material:material-ripple:1.0.0-beta01@aar
++--- androidx.paging:paging-compose:1.0.0-alpha08@aar
 +--- androidx.compose.foundation:foundation:1.0.0-beta01@aar
-+--- :utils:compose-navigation (variant: release)
-+--- androidx.hilt:hilt-navigation-compose:1.0.0-alpha01@aar
-+--- androidx.compose.material:material-icons-extended:1.0.0-beta01@aar
 +--- androidx.compose.runtime:runtime-livedata:1.0.0-beta01@aar
-+--- androidx.navigation:navigation-compose:1.0.0-alpha09@aar
 +--- androidx.compose.ui:ui-tooling-data:1.0.0-beta01@aar
 +--- androidx.compose.animation:animation:1.0.0-beta01@aar
 +--- androidx.compose.foundation:foundation-layout:1.0.0-beta01@aar
-+--- androidx.activity:activity-compose:1.3.0-alpha04@aar
 +--- androidx.compose.material:material-icons-core:1.0.0-beta01@aar
++--- :utils:compose-navigation (variant: release)
++--- androidx.hilt:hilt-navigation-compose:1.0.0-alpha01@aar
++--- androidx.navigation:navigation-compose:1.0.0-alpha09@aar
++--- androidx.activity:activity-compose:1.3.0-alpha04@aar
 +--- androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha03@aar
 +--- androidx.compose.ui:ui:1.0.0-beta02@aar
++--- androidx.paging:paging-common:3.0.0-beta01@jar
 +--- androidx.compose.ui:ui-text:1.0.0-beta02@aar
 +--- androidx.compose.runtime:runtime-saveable:1.0.0-beta02@aar
 +--- androidx.compose.animation:animation-core:1.0.0-beta02@aar
@@ -389,59 +247,29 @@ releaseRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0@aar
 +--- androidx.lifecycle:lifecycle-runtime-ktx:2.3.0@aar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1@jar
-+--- androidx.paging:paging-common:3.0.0-beta01@jar
-+--- com.jakewharton.timber:timber:4.7.1@aar
-+--- androidx.appcompat:appcompat:1.3.0-beta01@aar
-+--- androidx.navigation:navigation-common-ktx:2.3.4@aar
-+--- androidx.core:core-ktx:1.3.2@aar
-+--- com.google.firebase:firebase-analytics:17.6.0@aar
-+--- com.squareup.okhttp3:okhttp:4.9.0@jar
 +--- androidx.hilt:hilt-navigation:1.0.0-beta01@aar
 +--- com.google.dagger:hilt-android:2.33-beta@aar
 +--- com.google.dagger:hilt-core:2.33-beta@jar
 +--- com.google.dagger:dagger:2.33@jar
-+--- androidx.room:room-runtime:2.3.0-alpha04@aar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.2@jar
 +--- androidx.lifecycle:lifecycle-livedata-core-ktx:2.2.0@aar
-+--- com.squareup.okio:okio:2.8.0@jar
 +--- org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:0.3.3@jar
++--- androidx.navigation:navigation-common-ktx:2.3.4@aar
++--- androidx.core:core-ktx:1.1.0@aar
 +--- androidx.savedstate:savedstate-ktx:1.1.0@aar
 +--- org.jetbrains.kotlin:kotlin-stdlib:1.4.31@jar
-+--- com.google.android.gms:play-services-measurement:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement-api:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement-sdk:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement-impl:17.6.0@aar
-+--- com.google.android.gms:play-services-ads-identifier:17.0.0@aar
-+--- com.google.android.gms:play-services-measurement-sdk-api:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement-base:17.6.0@aar
-+--- com.google.android.gms:play-services-stats:17.0.0@aar
-+--- com.google.firebase:firebase-installations:16.3.2@aar
-+--- com.google.firebase:firebase-common:19.3.0@aar
-+--- com.google.firebase:firebase-installations-interop:16.0.0@aar
-+--- com.google.android.gms:play-services-tasks:17.0.0@aar
-+--- com.google.firebase:firebase-measurement-connector:18.0.0@aar
-+--- com.google.android.gms:play-services-basement:17.0.0@aar
 +--- androidx.fragment:fragment:1.3.0@aar
-+--- androidx.appcompat:appcompat-resources:1.3.0-beta01@aar
-+--- androidx.drawerlayout:drawerlayout:1.0.0@aar
-+--- androidx.viewpager:viewpager:1.0.0@aar
-+--- androidx.legacy:legacy-support-core-utils:1.0.0@aar
-+--- androidx.loader:loader:1.0.0@aar
-+--- androidx.vectordrawable:vectordrawable-animated:1.1.0@aar
-+--- androidx.vectordrawable:vectordrawable:1.1.0@aar
-+--- androidx.customview:customview:1.0.0@aar
-+--- androidx.autofill:autofill:1.0.0@aar
 +--- androidx.navigation:navigation-runtime:2.3.4@aar
 +--- androidx.activity:activity:1.3.0-alpha04@aar
-+--- androidx.navigation:navigation-common:2.3.4@aar
-+--- androidx.core:core:1.5.0-beta01@aar
-+--- androidx.cursoradapter:cursoradapter:1.0.0@aar
 +--- androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.0@aar
++--- androidx.loader:loader:1.0.0@aar
 +--- androidx.lifecycle:lifecycle-viewmodel:2.3.0@aar
 +--- androidx.savedstate:savedstate:1.1.0@aar
-+--- androidx.room:room-common:2.3.0-alpha04@jar
-+--- androidx.sqlite:sqlite-framework:2.1.0@aar
-+--- androidx.sqlite:sqlite:2.1.0@aar
++--- androidx.viewpager:viewpager:1.0.0@aar
++--- androidx.customview:customview:1.0.0@aar
++--- androidx.autofill:autofill:1.0.0@aar
++--- androidx.navigation:navigation-common:2.3.4@aar
++--- androidx.core:core:1.5.0-beta01@aar
 +--- androidx.versionedparcelable:versionedparcelable:1.1.0@aar
 +--- androidx.collection:collection:1.1.0@jar
 +--- androidx.lifecycle:lifecycle-livedata:2.2.0@aar
@@ -449,25 +277,19 @@ releaseRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.lifecycle:lifecycle-runtime:2.3.0@aar
 +--- androidx.arch.core:core-runtime:2.1.0@aar
 +--- androidx.arch.core:core-common:2.1.0@jar
-+--- com.google.firebase:firebase-components:16.0.0@aar
 +--- androidx.lifecycle:lifecycle-common:2.3.0@jar
-+--- androidx.interpolator:interpolator:1.0.0@aar
-+--- androidx.documentfile:documentfile:1.0.0@aar
-+--- androidx.localbroadcastmanager:localbroadcastmanager:1.0.0@aar
-+--- androidx.print:print:1.0.0@aar
 +--- androidx.tracing:tracing:1.0.0@aar
 +--- androidx.annotation:annotation:1.2.0-beta01@jar
 +--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.31@jar
-+--- org.jetbrains:annotations:16.0.1@jar
 +--- javax.inject:javax.inject:1@jar
 +--- com.google.dagger:dagger-lint-aar:2.33@aar
 +--- com.google.code.findbugs:jsr305:3.0.1@jar
-+--- androidx.annotation:annotation-experimental:1.0.0@aar
-\--- com.google.auto.value:auto-value-annotations:1.6.5@jar
++--- org.jetbrains:annotations:13.0@jar
+\--- androidx.annotation:annotation-experimental:1.0.0@aar
 
 debugAndroidTest
 debugAndroidTestCompileClasspath - Dependencies for compilation
-+--- :app
++--- :features:settings (variant: debug)
 +--- androidx.compose.ui:ui-test-junit4:1.0.0-beta01@aar
 +--- androidx.test.ext:junit:1.1.2@aar
 +--- androidx.test.espresso:espresso-core:3.3.0@aar
@@ -475,99 +297,61 @@ debugAndroidTestCompileClasspath - Dependencies for compilation
 +--- androidx.test:runner:1.3.0@aar
 +--- :utils:applitools-compose (variant: debug)
 +--- :utils:instrumentation-utils (variant: debug)
-+--- com.google.dagger:hilt-android-testing:2.33-beta@aar
 +--- junit:junit:4.13@jar
 +--- org.hamcrest:hamcrest-integration:1.3@jar
 +--- org.hamcrest:hamcrest-library:1.3@jar
 +--- org.hamcrest:hamcrest-core:1.3@jar
 +--- androidx.test:core:1.3.0@aar
 +--- androidx.compose.ui:ui-tooling:1.0.0-beta01@aar
-+--- androidx.appcompat:appcompat:1.3.0-beta01@aar
-+--- :features:common (variant: debug)
-+--- androidx.hilt:hilt-navigation-compose:1.0.0-alpha01@aar
-+--- androidx.navigation:navigation-compose:1.0.0-alpha09@aar
-+--- androidx.activity:activity-compose:1.3.0-alpha04@aar
-+--- androidx.navigation:navigation-runtime-ktx:2.3.4@aar
-+--- androidx.activity:activity-ktx:1.3.0-alpha04@aar
-+--- androidx.core:core-ktx:1.3.2@aar
 +--- androidx.compose.material:material:1.0.0-beta01@aar
-+--- androidx.compose.material:material-icons-extended:1.0.0-beta01@aar
-+--- androidx.compose.material:material-icons-core:1.0.0-beta01@aar
-+--- androidx.paging:paging-compose:1.0.0-alpha08@aar
 +--- androidx.compose.material:material-ripple:1.0.0-beta01@aar
 +--- androidx.compose.foundation:foundation:1.0.0-beta01@aar
++--- :features:common (variant: debug)
++--- androidx.navigation:navigation-compose:1.0.0-alpha09@aar
++--- androidx.activity:activity-compose:1.3.0-alpha04@aar
 +--- androidx.compose.ui:ui-test:1.0.0-beta01@aar
 +--- androidx.compose.ui:ui-tooling-data:1.0.0-beta01@aar
-+--- androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha03@aar
 +--- androidx.compose.animation:animation:1.0.0-beta01@aar
++--- androidx.compose.material:material-icons-core:1.0.0-beta01@aar
++--- androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha03@aar
 +--- androidx.compose.foundation:foundation-layout:1.0.0-beta01@aar
 +--- androidx.compose.ui:ui:1.0.0-beta02@aar
-+--- androidx.hilt:hilt-navigation:1.0.0-beta01@aar
 +--- com.google.dagger:hilt-android:2.33-beta@aar
 +--- androidx.test:monitor:1.3.0@aar
-+--- com.google.firebase:firebase-analytics:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement-api:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement-sdk:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement-impl:17.6.0@aar
-+--- com.google.android.gms:play-services-ads-identifier:17.0.0@aar
-+--- com.google.android.gms:play-services-measurement-sdk-api:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement-base:17.6.0@aar
-+--- com.google.android.gms:play-services-stats:17.0.0@aar
-+--- com.google.firebase:firebase-measurement-connector:18.0.0@aar
-+--- com.google.firebase:firebase-installations:16.3.2@aar
-+--- com.google.firebase:firebase-common:19.3.0@aar
-+--- com.google.firebase:firebase-installations-interop:16.0.0@aar
-+--- com.google.android.gms:play-services-tasks:17.0.0@aar
-+--- com.google.android.gms:play-services-basement:17.0.0@aar
++--- androidx.navigation:navigation-runtime-ktx:2.3.4@aar
++--- androidx.activity:activity-ktx:1.3.0-alpha04@aar
 +--- androidx.fragment:fragment:1.3.0@aar
 +--- androidx.navigation:navigation-runtime:2.3.4@aar
 +--- androidx.activity:activity:1.3.0-alpha04@aar
-+--- androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.0@aar
-+--- androidx.legacy:legacy-support-core-utils:1.0.0@aar
-+--- androidx.loader:loader:1.0.0@aar
-+--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0@aar
-+--- androidx.lifecycle:lifecycle-viewmodel:2.3.0@aar
 +--- androidx.compose.animation:animation-core:1.0.0-beta02@aar
-+--- androidx.compose.ui:ui-text:1.0.0-beta02@aar
 +--- androidx.compose.runtime:runtime-saveable:1.0.0-beta02@aar
-+--- androidx.cursoradapter:cursoradapter:1.0.0@aar
-+--- androidx.appcompat:appcompat-resources:1.3.0-beta01@aar
-+--- androidx.drawerlayout:drawerlayout:1.0.0@aar
-+--- androidx.viewpager:viewpager:1.0.0@aar
-+--- androidx.vectordrawable:vectordrawable-animated:1.1.0@aar
-+--- androidx.vectordrawable:vectordrawable:1.1.0@aar
-+--- androidx.customview:customview:1.0.0@aar
-+--- androidx.core:core:1.5.0-beta01@aar
-+--- androidx.savedstate:savedstate-ktx:1.1.0@aar
-+--- androidx.savedstate:savedstate:1.1.0@aar
-+--- androidx.paging:paging-common:3.0.0-beta01@jar
-+--- androidx.room:room-ktx:2.3.0-alpha04@aar
-+--- androidx.room:room-runtime:2.3.0-alpha04@aar
-+--- androidx.room:room-common:2.3.0-alpha04@jar
-+--- androidx.sqlite:sqlite-framework:2.1.0@aar
-+--- androidx.sqlite:sqlite:2.1.0@aar
++--- androidx.compose.ui:ui-text:1.0.0-beta02@aar
 +--- androidx.compose.ui:ui-graphics:1.0.0-beta02@aar
 +--- androidx.compose.ui:ui-unit:1.0.0-beta02@aar
 +--- androidx.compose.ui:ui-geometry:1.0.0-beta02@aar
++--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0@aar
++--- androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.0@aar
++--- androidx.loader:loader:1.0.0@aar
++--- androidx.lifecycle:lifecycle-viewmodel:2.3.0@aar
++--- androidx.savedstate:savedstate-ktx:1.1.0@aar
++--- androidx.savedstate:savedstate:1.1.0@aar
++--- androidx.core:core-ktx:1.1.0@aar
++--- androidx.viewpager:viewpager:1.0.0@aar
++--- androidx.customview:customview:1.0.0@aar
++--- androidx.core:core:1.5.0-beta01@aar
 +--- androidx.lifecycle:lifecycle-runtime-ktx:2.3.0@aar
 +--- androidx.lifecycle:lifecycle-runtime:2.3.0@aar
 +--- androidx.lifecycle:lifecycle-livedata-ktx:2.2.0@aar
-+--- androidx.lifecycle:lifecycle-livedata-core-ktx:2.2.0@aar
 +--- androidx.compose.runtime:runtime-livedata:1.0.0-beta01@aar
 +--- androidx.lifecycle:lifecycle-livedata:2.2.0@aar
++--- androidx.lifecycle:lifecycle-livedata-core-ktx:2.2.0@aar
 +--- androidx.lifecycle:lifecycle-livedata-core:2.3.0@aar
 +--- androidx.lifecycle:lifecycle-common:2.3.0@jar
 +--- androidx.compose.ui:ui-util:1.0.0-beta02@aar
-+--- androidx.versionedparcelable:versionedparcelable:1.1.0@aar
-+--- androidx.collection:collection:1.1.0@jar
 +--- androidx.arch.core:core-runtime:2.1.0@aar
 +--- androidx.arch.core:core-common:2.1.0@jar
-+--- com.google.firebase:firebase-components:16.0.0@aar
-+--- androidx.interpolator:interpolator:1.0.0@aar
-+--- androidx.documentfile:documentfile:1.0.0@aar
-+--- androidx.localbroadcastmanager:localbroadcastmanager:1.0.0@aar
-+--- androidx.print:print:1.0.0@aar
++--- androidx.versionedparcelable:versionedparcelable:1.1.0@aar
++--- androidx.collection:collection:1.1.0@jar
 +--- androidx.navigation:navigation-common-ktx:2.3.4@aar
 +--- androidx.navigation:navigation-common:2.3.4@aar
 +--- androidx.annotation:annotation:1.2.0-beta01@jar
@@ -581,26 +365,17 @@ debugAndroidTestCompileClasspath - Dependencies for compilation
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1@jar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.1@jar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.2@jar
-+--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
 +--- :utils:compose-navigation (variant: debug)
-+--- com.squareup.okhttp3:okhttp:4.9.0@jar
-+--- com.squareup.okio:okio:2.8.0@jar
++--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
 +--- org.jetbrains.kotlin:kotlin-stdlib:1.4.31@jar
 +--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.31@jar
-+--- com.jakewharton.timber:timber:4.7.1@aar
-+--- org.jetbrains:annotations:16.0.1@jar
++--- org.jetbrains:annotations:13.0@jar
 +--- com.google.dagger:dagger-lint-aar:2.33@aar
 +--- androidx.annotation:annotation-experimental:1.0.0@aar
-+--- androidx.multidex:multidex:2.0.1@aar
-+--- com.google.auto.value:auto-value-annotations:1.6.5@jar
-+--- :utils:kotlin-utils (variant: debug)
-+--- :components:chip-layouts (variant: debug)
-+--- :components:row (variant: debug)
-+--- :features:home (variant: debug)
-+--- :features:search (variant: debug)
-\--- :features:settings (variant: debug)
+\--- :utils:kotlin-utils (variant: debug)
 
 debugAndroidTestRuntimeClasspath - Dependencies for runtime/packaging
++--- :features:settings (variant: debug)
 +--- :utils:applitools-compose (variant: debug)
 +--- androidx.compose.ui:ui-test-junit4:1.0.0-beta01@aar
 +--- androidx.test.ext:junit:1.1.2@aar
@@ -609,13 +384,32 @@ debugAndroidTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.test:rules:1.3.0@aar
 +--- :utils:instrumentation-utils (variant: debug)
 +--- androidx.test:runner:1.3.0@aar
-+--- com.google.dagger:hilt-android-testing:2.33-beta@aar
 +--- com.google.firebase:firebase-installations:16.3.2@aar
-+--- org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.1@jar
++--- :features:common (variant: debug)
++--- :components:row (variant: debug)
++--- :utils:kotlin-utils (variant: debug)
++--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
++--- :utils:compose-navigation (variant: debug)
++--- androidx.compose.ui:ui-tooling:1.0.0-beta01@aar
++--- androidx.compose.material:material:1.0.0-beta01@aar
++--- androidx.paging:paging-compose:1.0.0-alpha08@aar
++--- androidx.compose.material:material-ripple:1.0.0-beta01@aar
 +--- androidx.compose.foundation:foundation:1.0.0-beta01@aar
 +--- androidx.compose.animation:animation:1.0.0-beta01@aar
++--- androidx.hilt:hilt-navigation-compose:1.0.0-alpha01@aar
++--- androidx.navigation:navigation-compose:1.0.0-alpha09@aar
++--- androidx.activity:activity-compose:1.3.0-alpha04@aar
++--- androidx.compose.runtime:runtime-livedata:1.0.0-beta01@aar
 +--- androidx.compose.foundation:foundation-layout:1.0.0-beta01@aar
++--- androidx.compose.ui:ui-tooling-data:1.0.0-beta01@aar
++--- androidx.compose.material:material-icons-core:1.0.0-beta01@aar
++--- androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha03@aar
 +--- androidx.compose.ui:ui:1.0.0-beta02@aar
++--- androidx.navigation:navigation-runtime-ktx:2.3.4@aar
++--- androidx.activity:activity-ktx:1.3.0-alpha04@aar
++--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0@aar
++--- androidx.lifecycle:lifecycle-livedata-ktx:2.2.0@aar
++--- org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.1@jar
 +--- androidx.compose.ui:ui-text:1.0.0-beta02@aar
 +--- androidx.compose.ui:ui-graphics:1.0.0-beta02@aar
 +--- androidx.compose.animation:animation-core:1.0.0-beta02@aar
@@ -624,14 +418,22 @@ debugAndroidTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.compose.ui:ui-util:1.0.0-beta02@aar
 +--- androidx.compose.runtime:runtime-saveable:1.0.0-beta02@aar
 +--- androidx.compose.runtime:runtime:1.0.0-beta02@aar
-+--- org.jetbrains.kotlinx:kotlinx-coroutines-debug:1.4.1@jar
++--- androidx.lifecycle:lifecycle-runtime-ktx:2.3.0@aar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1@jar
-+--- org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:0.3.3@jar
++--- org.jetbrains.kotlinx:kotlinx-coroutines-debug:1.4.1@jar
++--- androidx.paging:paging-common:3.0.0-beta01@jar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.2@jar
++--- androidx.lifecycle:lifecycle-livedata-core-ktx:2.2.0@aar
++--- org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:0.3.3@jar
++--- androidx.hilt:hilt-navigation:1.0.0-beta01@aar
++--- androidx.navigation:navigation-common-ktx:2.3.4@aar
++--- androidx.core:core-ktx:1.1.0@aar
++--- androidx.savedstate:savedstate-ktx:1.1.0@aar
 +--- org.jetbrains.kotlin:kotlin-stdlib:1.4.31@jar
 +--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.31@jar
 +--- com.jakewharton.timber:timber:4.7.1@aar
-+--- org.jetbrains:annotations:16.0.1@jar
++--- org.jetbrains:annotations:13.0@jar
++--- com.google.dagger:hilt-android-testing:2.33-beta@aar
 +--- androidx.test:core:1.3.0@aar
 +--- androidx.test:monitor:1.3.0@aar
 +--- com.google.dagger:hilt-android:2.33-beta@aar
@@ -640,22 +442,24 @@ debugAndroidTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- com.google.android.gms:play-services-tasks:17.0.0@aar
 +--- com.google.android.gms:play-services-basement:17.0.0@aar
 +--- androidx.fragment:fragment:1.3.0@aar
++--- androidx.navigation:navigation-runtime:2.3.4@aar
 +--- androidx.activity:activity:1.3.0-alpha04@aar
-+--- androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.0@aar
-+--- androidx.loader:loader:1.0.0@aar
-+--- androidx.lifecycle:lifecycle-viewmodel:2.3.0@aar
 +--- com.google.firebase:firebase-components:16.0.0@aar
-+--- androidx.viewpager:viewpager:1.0.0@aar
 +--- androidx.autofill:autofill:1.0.0@aar
++--- androidx.viewpager:viewpager:1.0.0@aar
++--- androidx.loader:loader:1.0.0@aar
 +--- androidx.customview:customview:1.0.0@aar
++--- androidx.navigation:navigation-common:2.3.4@aar
 +--- androidx.core:core:1.5.0-beta01@aar
 +--- androidx.lifecycle:lifecycle-runtime:2.3.0@aar
++--- androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.0@aar
 +--- androidx.savedstate:savedstate:1.1.0@aar
 +--- androidx.lifecycle:lifecycle-livedata:2.2.0@aar
 +--- androidx.lifecycle:lifecycle-livedata-core:2.3.0@aar
 +--- androidx.lifecycle:lifecycle-common:2.3.0@jar
 +--- androidx.versionedparcelable:versionedparcelable:1.1.0@aar
 +--- androidx.collection:collection:1.1.0@jar
++--- androidx.lifecycle:lifecycle-viewmodel:2.3.0@aar
 +--- androidx.tracing:tracing:1.0.0@aar
 +--- androidx.arch.core:core-runtime:2.1.0@aar
 +--- androidx.arch.core:core-common:2.1.0@jar
@@ -666,7 +470,6 @@ debugAndroidTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- com.google.dagger:dagger-lint-aar:2.33@aar
 +--- com.google.code.findbugs:jsr305:3.0.1@jar
 +--- androidx.annotation:annotation-experimental:1.0.0@aar
-+--- com.google.auto.value:auto-value-annotations:1.6.5@jar
 +--- junit:junit:4.13@jar
 +--- androidx.test.espresso:espresso-idling-resource:3.3.0@aar
 +--- com.squareup:javawriter:2.1.1@jar
@@ -677,9 +480,10 @@ debugAndroidTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- com.applitools:eyes-android-common:4.7.8@jar
 +--- com.applitools:eyes-android-components:4.7.8@aar
 +--- com.applitools:eyes-android-components-androidx:4.7.8@aar
-+--- androidx.multidex:multidex:2.0.1@aar
 +--- org.hamcrest:hamcrest-core:1.3@jar
 +--- com.fasterxml.jackson.core:jackson-databind:2.9.7@jar
++--- androidx.multidex:multidex:2.0.1@aar
++--- com.google.auto.value:auto-value-annotations:1.6.5@jar
 +--- com.fasterxml.jackson.core:jackson-annotations:2.9.0@jar
 +--- com.fasterxml.jackson.core:jackson-core:2.9.7@jar
 +--- net.java.dev.jna:jna-platform:5.5.0@jar
@@ -687,7 +491,7 @@ debugAndroidTestRuntimeClasspath - Dependencies for runtime/packaging
 
 debugUnitTest
 debugUnitTestCompileClasspath - Dependencies for compilation
-+--- :app
++--- :features:settings (variant: debug)
 +--- org.junit.jupiter:junit-jupiter-engine:5.4.2@jar
 +--- org.junit.jupiter:junit-jupiter-api:5.4.2@jar
 +--- org.junit.platform:junit-platform-engine:1.4.2@jar
@@ -698,27 +502,21 @@ debugUnitTestCompileClasspath - Dependencies for compilation
 +--- :utils:compose-navigation (variant: debug)
 +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
 +--- :features:common (variant: debug)
-+--- androidx.hilt:hilt-navigation-compose:1.0.0-alpha01@aar
 +--- androidx.navigation:navigation-compose:1.0.0-alpha09@aar
 +--- androidx.activity:activity-compose:1.3.0-alpha04@aar
 +--- androidx.navigation:navigation-runtime-ktx:2.3.4@aar
 +--- androidx.activity:activity-ktx:1.3.0-alpha04@aar
-+--- androidx.core:core-ktx:1.3.2@aar
 +--- androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha03@aar
 +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0@aar
 +--- androidx.lifecycle:lifecycle-livedata-ktx:2.2.0@aar
-+--- com.squareup.okhttp3:okhttp:4.9.0@jar
-+--- androidx.room:room-ktx:2.3.0-alpha04@aar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2@jar
 +--- androidx.compose.ui:ui-tooling:1.0.0-beta01@aar
 +--- androidx.compose.material:material:1.0.0-beta01@aar
-+--- androidx.paging:paging-compose:1.0.0-alpha08@aar
 +--- androidx.compose.material:material-ripple:1.0.0-beta01@aar
 +--- androidx.compose.foundation:foundation:1.0.0-beta01@aar
-+--- androidx.compose.material:material-icons-extended:1.0.0-beta01@aar
-+--- androidx.compose.material:material-icons-core:1.0.0-beta01@aar
 +--- androidx.compose.ui:ui-tooling-data:1.0.0-beta01@aar
 +--- androidx.compose.animation:animation:1.0.0-beta01@aar
++--- androidx.compose.material:material-icons-core:1.0.0-beta01@aar
 +--- androidx.compose.foundation:foundation-layout:1.0.0-beta01@aar
 +--- androidx.compose.ui:ui:1.0.0-beta02@aar
 +--- androidx.compose.animation:animation-core:1.0.0-beta02@aar
@@ -727,74 +525,40 @@ debugUnitTestCompileClasspath - Dependencies for compilation
 +--- androidx.compose.runtime:runtime:1.0.0-beta02@aar
 +--- androidx.lifecycle:lifecycle-runtime-ktx:2.3.0@aar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1@jar
-+--- androidx.paging:paging-common:3.0.0-beta01@jar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.2@jar
 +--- androidx.lifecycle:lifecycle-livedata-core-ktx:2.2.0@aar
-+--- com.squareup.okio:okio:2.8.0@jar
-+--- androidx.hilt:hilt-navigation:1.0.0-beta01@aar
++--- androidx.core:core-ktx:1.1.0@aar
 +--- androidx.savedstate:savedstate-ktx:1.1.0@aar
 +--- androidx.navigation:navigation-common-ktx:2.3.4@aar
 +--- org.jetbrains.kotlin:kotlin-stdlib:1.4.31@jar
 +--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.31@jar
-+--- com.jakewharton.timber:timber:4.7.1@aar
-+--- org.jetbrains:annotations:16.0.1@jar
++--- org.jetbrains:annotations:13.0@jar
 +--- io.mockk:mockk-common:1.10.3@jar
 +--- io.mockk:mockk-dsl-jvm:1.10.3@jar
 +--- io.mockk:mockk-dsl:1.10.3@jar
-+--- androidx.appcompat:appcompat:1.3.0-beta01@aar
 +--- com.google.dagger:hilt-android:2.33-beta@aar
 +--- androidx.compose.ui:ui-text:1.0.0-beta02@aar
 +--- androidx.compose.ui:ui-graphics:1.0.0-beta02@aar
 +--- androidx.compose.ui:ui-unit:1.0.0-beta02@aar
 +--- androidx.compose.ui:ui-geometry:1.0.0-beta02@aar
-+--- com.google.firebase:firebase-analytics:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement-api:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement-sdk:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement-impl:17.6.0@aar
-+--- com.google.android.gms:play-services-ads-identifier:17.0.0@aar
-+--- com.google.android.gms:play-services-measurement-sdk-api:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement-base:17.6.0@aar
-+--- com.google.android.gms:play-services-stats:17.0.0@aar
-+--- com.google.firebase:firebase-installations:16.3.2@aar
-+--- com.google.firebase:firebase-common:19.3.0@aar
-+--- com.google.firebase:firebase-installations-interop:16.0.0@aar
-+--- com.google.android.gms:play-services-tasks:17.0.0@aar
-+--- com.google.firebase:firebase-measurement-connector:18.0.0@aar
-+--- com.google.android.gms:play-services-basement:17.0.0@aar
 +--- androidx.fragment:fragment:1.3.0@aar
 +--- androidx.navigation:navigation-runtime:2.3.4@aar
 +--- androidx.activity:activity:1.3.0-alpha04@aar
-+--- androidx.appcompat:appcompat-resources:1.3.0-beta01@aar
-+--- androidx.drawerlayout:drawerlayout:1.0.0@aar
-+--- androidx.viewpager:viewpager:1.0.0@aar
-+--- androidx.legacy:legacy-support-core-utils:1.0.0@aar
-+--- androidx.loader:loader:1.0.0@aar
-+--- androidx.vectordrawable:vectordrawable-animated:1.1.0@aar
-+--- androidx.vectordrawable:vectordrawable:1.1.0@aar
-+--- androidx.customview:customview:1.0.0@aar
-+--- androidx.core:core:1.5.0-beta01@aar
-+--- androidx.cursoradapter:cursoradapter:1.0.0@aar
 +--- androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.0@aar
-+--- androidx.savedstate:savedstate:1.1.0@aar
++--- androidx.loader:loader:1.0.0@aar
 +--- androidx.lifecycle:lifecycle-viewmodel:2.3.0@aar
-+--- androidx.room:room-runtime:2.3.0-alpha04@aar
-+--- androidx.room:room-common:2.3.0-alpha04@jar
-+--- androidx.sqlite:sqlite-framework:2.1.0@aar
-+--- androidx.sqlite:sqlite:2.1.0@aar
-+--- androidx.lifecycle:lifecycle-runtime:2.3.0@aar
-+--- androidx.versionedparcelable:versionedparcelable:1.1.0@aar
-+--- androidx.collection:collection:1.1.0@jar
++--- androidx.savedstate:savedstate:1.1.0@aar
 +--- androidx.lifecycle:lifecycle-livedata:2.2.0@aar
 +--- androidx.arch.core:core-runtime:2.1.0@aar
++--- androidx.viewpager:viewpager:1.0.0@aar
++--- androidx.customview:customview:1.0.0@aar
++--- androidx.core:core:1.5.0-beta01@aar
++--- androidx.lifecycle:lifecycle-runtime:2.3.0@aar
 +--- androidx.arch.core:core-common:2.1.0@jar
-+--- com.google.firebase:firebase-components:16.0.0@aar
++--- androidx.versionedparcelable:versionedparcelable:1.1.0@aar
++--- androidx.collection:collection:1.1.0@jar
 +--- androidx.lifecycle:lifecycle-livedata-core:2.3.0@aar
 +--- androidx.lifecycle:lifecycle-common:2.3.0@jar
-+--- androidx.interpolator:interpolator:1.0.0@aar
-+--- androidx.documentfile:documentfile:1.0.0@aar
-+--- androidx.localbroadcastmanager:localbroadcastmanager:1.0.0@aar
-+--- androidx.print:print:1.0.0@aar
 +--- androidx.navigation:navigation-common:2.3.4@aar
 +--- androidx.annotation:annotation:1.2.0-beta01@jar
 +--- com.google.dagger:hilt-core:2.33-beta@jar
@@ -803,49 +567,37 @@ debugUnitTestCompileClasspath - Dependencies for compilation
 +--- com.google.dagger:dagger-lint-aar:2.33@aar
 +--- com.google.code.findbugs:jsr305:3.0.1@jar
 +--- androidx.annotation:annotation-experimental:1.0.0@aar
-+--- com.google.auto.value:auto-value-annotations:1.6.5@jar
-+--- :utils:kotlin-utils (variant: debug)
-+--- :components:chip-layouts (variant: debug)
-+--- :components:row (variant: debug)
-+--- :features:home (variant: debug)
-+--- :features:search (variant: debug)
-\--- :features:settings (variant: debug)
+\--- :utils:kotlin-utils (variant: debug)
 
 debugUnitTestRuntimeClasspath - Dependencies for runtime/packaging
++--- :features:settings (variant: debug)
 +--- org.junit.jupiter:junit-jupiter-engine:5.4.2@jar
 +--- org.junit.jupiter:junit-jupiter-api:5.4.2@jar
 +--- io.mockk:mockk:1.10.3@jar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2@jar
-+--- :features:home (variant: debug)
-+--- :features:search (variant: debug)
-+--- :components:chip-layouts (variant: debug)
-+--- :features:settings (variant: debug)
 +--- :features:common (variant: debug)
 +--- :components:row (variant: debug)
-+--- :components:chip (variant: debug)
 +--- :utils:kotlin-utils (variant: debug)
 +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
 +--- androidx.lifecycle:lifecycle-livedata-ktx:2.2.0@aar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-debug:1.4.2@jar
-+--- androidx.room:room-ktx:2.3.0-alpha04@aar
-+--- com.github.LachlanMcKee:android-samples:1.0.0@aar
 +--- androidx.compose.ui:ui-tooling:1.0.0-beta01@aar
 +--- androidx.compose.material:material:1.0.0-beta01@aar
-+--- androidx.paging:paging-compose:1.0.0-alpha08@aar
 +--- androidx.compose.material:material-ripple:1.0.0-beta01@aar
++--- androidx.paging:paging-compose:1.0.0-alpha08@aar
 +--- androidx.compose.foundation:foundation:1.0.0-beta01@aar
-+--- :utils:compose-navigation (variant: debug)
-+--- androidx.hilt:hilt-navigation-compose:1.0.0-alpha01@aar
-+--- androidx.compose.material:material-icons-extended:1.0.0-beta01@aar
 +--- androidx.compose.runtime:runtime-livedata:1.0.0-beta01@aar
-+--- androidx.navigation:navigation-compose:1.0.0-alpha09@aar
 +--- androidx.compose.ui:ui-tooling-data:1.0.0-beta01@aar
 +--- androidx.compose.animation:animation:1.0.0-beta01@aar
 +--- androidx.compose.foundation:foundation-layout:1.0.0-beta01@aar
-+--- androidx.activity:activity-compose:1.3.0-alpha04@aar
 +--- androidx.compose.material:material-icons-core:1.0.0-beta01@aar
++--- :utils:compose-navigation (variant: debug)
++--- androidx.hilt:hilt-navigation-compose:1.0.0-alpha01@aar
++--- androidx.navigation:navigation-compose:1.0.0-alpha09@aar
++--- androidx.activity:activity-compose:1.3.0-alpha04@aar
 +--- androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha03@aar
 +--- androidx.compose.ui:ui:1.0.0-beta02@aar
++--- androidx.paging:paging-common:3.0.0-beta01@jar
 +--- androidx.compose.ui:ui-text:1.0.0-beta02@aar
 +--- androidx.compose.runtime:runtime-saveable:1.0.0-beta02@aar
 +--- androidx.compose.animation:animation-core:1.0.0-beta02@aar
@@ -859,18 +611,10 @@ debugUnitTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0@aar
 +--- androidx.lifecycle:lifecycle-runtime-ktx:2.3.0@aar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1@jar
-+--- androidx.paging:paging-common:3.0.0-beta01@jar
-+--- com.jakewharton.timber:timber:4.7.1@aar
-+--- androidx.appcompat:appcompat:1.3.0-beta01@aar
-+--- androidx.navigation:navigation-common-ktx:2.3.4@aar
-+--- androidx.core:core-ktx:1.3.2@aar
-+--- com.google.firebase:firebase-analytics:17.6.0@aar
-+--- com.squareup.okhttp3:okhttp:4.9.0@jar
 +--- androidx.hilt:hilt-navigation:1.0.0-beta01@aar
 +--- com.google.dagger:hilt-android:2.33-beta@aar
 +--- com.google.dagger:hilt-core:2.33-beta@jar
 +--- com.google.dagger:dagger:2.33@jar
-+--- androidx.room:room-runtime:2.3.0-alpha04@aar
 +--- org.junit.platform:junit-platform-engine:1.4.2@jar
 +--- org.junit.platform:junit-platform-commons:1.4.2@jar
 +--- org.apiguardian:apiguardian-api:1.0.0@jar
@@ -881,45 +625,23 @@ debugUnitTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- io.mockk:mockk-common:1.10.3@jar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.2@jar
 +--- androidx.lifecycle:lifecycle-livedata-core-ktx:2.2.0@aar
-+--- com.squareup.okio:okio:2.8.0@jar
 +--- org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:0.3.3@jar
++--- androidx.navigation:navigation-common-ktx:2.3.4@aar
++--- androidx.core:core-ktx:1.1.0@aar
 +--- androidx.savedstate:savedstate-ktx:1.1.0@aar
 +--- org.jetbrains.kotlin:kotlin-stdlib:1.4.31@jar
-+--- com.google.android.gms:play-services-measurement:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement-api:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement-sdk:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement-impl:17.6.0@aar
-+--- com.google.android.gms:play-services-ads-identifier:17.0.0@aar
-+--- com.google.android.gms:play-services-measurement-sdk-api:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement-base:17.6.0@aar
-+--- com.google.android.gms:play-services-stats:17.0.0@aar
-+--- com.google.firebase:firebase-installations:16.3.2@aar
-+--- com.google.firebase:firebase-common:19.3.0@aar
-+--- com.google.firebase:firebase-installations-interop:16.0.0@aar
-+--- com.google.android.gms:play-services-tasks:17.0.0@aar
-+--- com.google.firebase:firebase-measurement-connector:18.0.0@aar
-+--- com.google.android.gms:play-services-basement:17.0.0@aar
 +--- androidx.fragment:fragment:1.3.0@aar
-+--- androidx.appcompat:appcompat-resources:1.3.0-beta01@aar
-+--- androidx.drawerlayout:drawerlayout:1.0.0@aar
-+--- androidx.viewpager:viewpager:1.0.0@aar
-+--- androidx.legacy:legacy-support-core-utils:1.0.0@aar
-+--- androidx.loader:loader:1.0.0@aar
-+--- androidx.vectordrawable:vectordrawable-animated:1.1.0@aar
-+--- androidx.vectordrawable:vectordrawable:1.1.0@aar
-+--- androidx.customview:customview:1.0.0@aar
-+--- androidx.autofill:autofill:1.0.0@aar
 +--- androidx.navigation:navigation-runtime:2.3.4@aar
 +--- androidx.activity:activity:1.3.0-alpha04@aar
-+--- androidx.navigation:navigation-common:2.3.4@aar
-+--- androidx.core:core:1.5.0-beta01@aar
-+--- androidx.cursoradapter:cursoradapter:1.0.0@aar
 +--- androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.0@aar
++--- androidx.loader:loader:1.0.0@aar
 +--- androidx.lifecycle:lifecycle-viewmodel:2.3.0@aar
 +--- androidx.savedstate:savedstate:1.1.0@aar
-+--- androidx.room:room-common:2.3.0-alpha04@jar
-+--- androidx.sqlite:sqlite-framework:2.1.0@aar
-+--- androidx.sqlite:sqlite:2.1.0@aar
++--- androidx.viewpager:viewpager:1.0.0@aar
++--- androidx.customview:customview:1.0.0@aar
++--- androidx.autofill:autofill:1.0.0@aar
++--- androidx.navigation:navigation-common:2.3.4@aar
++--- androidx.core:core:1.5.0-beta01@aar
 +--- androidx.versionedparcelable:versionedparcelable:1.1.0@aar
 +--- androidx.collection:collection:1.1.0@jar
 +--- androidx.lifecycle:lifecycle-livedata:2.2.0@aar
@@ -927,16 +649,10 @@ debugUnitTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.lifecycle:lifecycle-runtime:2.3.0@aar
 +--- androidx.arch.core:core-runtime:2.1.0@aar
 +--- androidx.arch.core:core-common:2.1.0@jar
-+--- com.google.firebase:firebase-components:16.0.0@aar
 +--- androidx.lifecycle:lifecycle-common:2.3.0@jar
-+--- androidx.interpolator:interpolator:1.0.0@aar
-+--- androidx.documentfile:documentfile:1.0.0@aar
-+--- androidx.localbroadcastmanager:localbroadcastmanager:1.0.0@aar
-+--- androidx.print:print:1.0.0@aar
 +--- androidx.tracing:tracing:1.0.0@aar
 +--- androidx.annotation:annotation:1.2.0-beta01@jar
 +--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.31@jar
-+--- org.jetbrains:annotations:16.0.1@jar
 +--- javax.inject:javax.inject:1@jar
 +--- com.google.dagger:dagger-lint-aar:2.33@aar
 +--- com.google.code.findbugs:jsr305:3.0.1@jar
@@ -948,59 +664,42 @@ debugUnitTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- io.mockk:mockk-dsl:1.10.3@jar
 +--- net.java.dev.jna:jna-platform:5.5.0@jar
 +--- net.java.dev.jna:jna:5.5.0@jar
-+--- androidx.annotation:annotation-experimental:1.0.0@aar
-\--- com.google.auto.value:auto-value-annotations:1.6.5@jar
++--- org.jetbrains:annotations:13.0@jar
+\--- androidx.annotation:annotation-experimental:1.0.0@aar
 
 releaseUnitTest
 releaseUnitTestCompileClasspath - Dependencies for compilation
-+--- :app
++--- :features:settings (variant: release)
 +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
 +--- androidx.lifecycle:lifecycle-livedata-ktx:2.2.0@aar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2@jar
 +--- androidx.compose.ui:ui-tooling:1.0.0-beta01@aar
 +--- androidx.compose.material:material:1.0.0-beta01@aar
-+--- androidx.paging:paging-compose:1.0.0-alpha08@aar
 +--- androidx.compose.material:material-ripple:1.0.0-beta01@aar
 +--- androidx.compose.foundation:foundation:1.0.0-beta01@aar
 +--- :features:common (variant: release)
-+--- androidx.hilt:hilt-navigation-compose:1.0.0-alpha01@aar
 +--- androidx.navigation:navigation-compose:1.0.0-alpha09@aar
 +--- androidx.activity:activity-compose:1.3.0-alpha04@aar
-+--- androidx.compose.material:material-icons-extended:1.0.0-beta01@aar
-+--- androidx.compose.material:material-icons-core:1.0.0-beta01@aar
 +--- androidx.compose.ui:ui-tooling-data:1.0.0-beta01@aar
 +--- androidx.compose.animation:animation:1.0.0-beta01@aar
-+--- androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha03@aar
++--- androidx.compose.material:material-icons-core:1.0.0-beta01@aar
 +--- androidx.compose.foundation:foundation-layout:1.0.0-beta01@aar
++--- androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha03@aar
 +--- androidx.compose.ui:ui:1.0.0-beta02@aar
 +--- androidx.compose.animation:animation-core:1.0.0-beta02@aar
 +--- androidx.navigation:navigation-runtime-ktx:2.3.4@aar
 +--- androidx.activity:activity-ktx:1.3.0-alpha04@aar
 +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0@aar
-+--- androidx.room:room-ktx:2.3.0-alpha04@aar
 +--- androidx.compose.runtime:runtime-livedata:1.0.0-beta01@aar
 +--- androidx.compose.runtime:runtime-saveable:1.0.0-beta02@aar
 +--- androidx.compose.runtime:runtime:1.0.0-beta02@aar
 +--- androidx.lifecycle:lifecycle-runtime-ktx:2.3.0@aar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1@jar
-+--- androidx.paging:paging-common:3.0.0-beta01@jar
 +--- :utils:kotlin-utils (variant: release)
 +--- :utils:compose-navigation (variant: release)
-+--- :components:chip-layouts (variant: release)
-+--- :components:row (variant: release)
-+--- :features:home (variant: release)
-+--- :features:search (variant: release)
-+--- :features:settings (variant: release)
-+--- com.jakewharton.timber:timber:4.7.1@aar
-+--- androidx.appcompat:appcompat:1.3.0-beta01@aar
-+--- androidx.core:core-ktx:1.3.2@aar
-+--- com.google.firebase:firebase-analytics:17.6.0@aar
-+--- com.squareup.okhttp3:okhttp:4.9.0@jar
-+--- androidx.hilt:hilt-navigation:1.0.0-beta01@aar
 +--- com.google.dagger:hilt-android:2.33-beta@aar
 +--- com.google.dagger:hilt-core:2.33-beta@jar
 +--- com.google.dagger:dagger:2.33@jar
-+--- androidx.room:room-runtime:2.3.0-alpha04@aar
 +--- org.junit.jupiter:junit-jupiter-engine:5.4.2@jar
 +--- org.junit.jupiter:junit-jupiter-api:5.4.2@jar
 +--- org.junit.platform:junit-platform-engine:1.4.2@jar
@@ -1010,12 +709,12 @@ releaseUnitTestCompileClasspath - Dependencies for compilation
 +--- io.mockk:mockk:1.10.3@jar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.2@jar
 +--- androidx.lifecycle:lifecycle-livedata-core-ktx:2.2.0@aar
-+--- com.squareup.okio:okio:2.8.0@jar
++--- androidx.core:core-ktx:1.1.0@aar
 +--- androidx.savedstate:savedstate-ktx:1.1.0@aar
 +--- androidx.navigation:navigation-common-ktx:2.3.4@aar
 +--- org.jetbrains.kotlin:kotlin-stdlib:1.4.31@jar
 +--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.31@jar
-+--- org.jetbrains:annotations:16.0.1@jar
++--- org.jetbrains:annotations:13.0@jar
 +--- io.mockk:mockk-common:1.10.3@jar
 +--- io.mockk:mockk-dsl-jvm:1.10.3@jar
 +--- io.mockk:mockk-dsl:1.10.3@jar
@@ -1023,95 +722,60 @@ releaseUnitTestCompileClasspath - Dependencies for compilation
 +--- androidx.compose.ui:ui-graphics:1.0.0-beta02@aar
 +--- androidx.compose.ui:ui-unit:1.0.0-beta02@aar
 +--- androidx.compose.ui:ui-geometry:1.0.0-beta02@aar
-+--- com.google.android.gms:play-services-measurement:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement-api:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement-sdk:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement-impl:17.6.0@aar
-+--- com.google.android.gms:play-services-ads-identifier:17.0.0@aar
-+--- com.google.android.gms:play-services-measurement-sdk-api:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement-base:17.6.0@aar
-+--- com.google.android.gms:play-services-stats:17.0.0@aar
-+--- com.google.firebase:firebase-installations:16.3.2@aar
-+--- com.google.firebase:firebase-common:19.3.0@aar
-+--- com.google.firebase:firebase-installations-interop:16.0.0@aar
-+--- com.google.android.gms:play-services-tasks:17.0.0@aar
-+--- com.google.firebase:firebase-measurement-connector:18.0.0@aar
-+--- com.google.android.gms:play-services-basement:17.0.0@aar
 +--- androidx.fragment:fragment:1.3.0@aar
 +--- androidx.navigation:navigation-runtime:2.3.4@aar
 +--- androidx.activity:activity:1.3.0-alpha04@aar
-+--- androidx.appcompat:appcompat-resources:1.3.0-beta01@aar
-+--- androidx.drawerlayout:drawerlayout:1.0.0@aar
-+--- androidx.viewpager:viewpager:1.0.0@aar
-+--- androidx.legacy:legacy-support-core-utils:1.0.0@aar
-+--- androidx.loader:loader:1.0.0@aar
-+--- androidx.vectordrawable:vectordrawable-animated:1.1.0@aar
-+--- androidx.vectordrawable:vectordrawable:1.1.0@aar
-+--- androidx.customview:customview:1.0.0@aar
-+--- androidx.core:core:1.5.0-beta01@aar
-+--- androidx.cursoradapter:cursoradapter:1.0.0@aar
 +--- androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.0@aar
-+--- androidx.savedstate:savedstate:1.1.0@aar
++--- androidx.loader:loader:1.0.0@aar
 +--- androidx.lifecycle:lifecycle-viewmodel:2.3.0@aar
-+--- androidx.room:room-common:2.3.0-alpha04@jar
-+--- androidx.sqlite:sqlite-framework:2.1.0@aar
-+--- androidx.sqlite:sqlite:2.1.0@aar
-+--- androidx.lifecycle:lifecycle-runtime:2.3.0@aar
-+--- androidx.versionedparcelable:versionedparcelable:1.1.0@aar
-+--- androidx.collection:collection:1.1.0@jar
++--- androidx.savedstate:savedstate:1.1.0@aar
 +--- androidx.lifecycle:lifecycle-livedata:2.2.0@aar
 +--- androidx.arch.core:core-runtime:2.1.0@aar
++--- androidx.viewpager:viewpager:1.0.0@aar
++--- androidx.customview:customview:1.0.0@aar
++--- androidx.core:core:1.5.0-beta01@aar
++--- androidx.lifecycle:lifecycle-runtime:2.3.0@aar
 +--- androidx.arch.core:core-common:2.1.0@jar
-+--- com.google.firebase:firebase-components:16.0.0@aar
++--- androidx.versionedparcelable:versionedparcelable:1.1.0@aar
++--- androidx.collection:collection:1.1.0@jar
 +--- androidx.lifecycle:lifecycle-livedata-core:2.3.0@aar
 +--- androidx.lifecycle:lifecycle-common:2.3.0@jar
-+--- androidx.interpolator:interpolator:1.0.0@aar
-+--- androidx.documentfile:documentfile:1.0.0@aar
-+--- androidx.localbroadcastmanager:localbroadcastmanager:1.0.0@aar
-+--- androidx.print:print:1.0.0@aar
 +--- androidx.navigation:navigation-common:2.3.4@aar
 +--- androidx.annotation:annotation:1.2.0-beta01@jar
 +--- javax.inject:javax.inject:1@jar
 +--- com.google.dagger:dagger-lint-aar:2.33@aar
 +--- com.google.code.findbugs:jsr305:3.0.1@jar
-+--- androidx.annotation:annotation-experimental:1.0.0@aar
-\--- com.google.auto.value:auto-value-annotations:1.6.5@jar
+\--- androidx.annotation:annotation-experimental:1.0.0@aar
 
 releaseUnitTestRuntimeClasspath - Dependencies for runtime/packaging
++--- :features:settings (variant: release)
 +--- org.junit.jupiter:junit-jupiter-engine:5.4.2@jar
 +--- org.junit.jupiter:junit-jupiter-api:5.4.2@jar
 +--- io.mockk:mockk:1.10.3@jar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2@jar
-+--- :features:home (variant: release)
-+--- :features:search (variant: release)
-+--- :components:chip-layouts (variant: release)
-+--- :features:settings (variant: release)
 +--- :features:common (variant: release)
 +--- :components:row (variant: release)
-+--- :components:chip (variant: release)
 +--- :utils:kotlin-utils (variant: release)
 +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30@jar
 +--- androidx.lifecycle:lifecycle-livedata-ktx:2.2.0@aar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-debug:1.4.2@jar
-+--- androidx.room:room-ktx:2.3.0-alpha04@aar
-+--- com.github.LachlanMcKee:android-samples:1.0.0@aar
 +--- androidx.compose.ui:ui-tooling:1.0.0-beta01@aar
 +--- androidx.compose.material:material:1.0.0-beta01@aar
-+--- androidx.paging:paging-compose:1.0.0-alpha08@aar
 +--- androidx.compose.material:material-ripple:1.0.0-beta01@aar
++--- androidx.paging:paging-compose:1.0.0-alpha08@aar
 +--- androidx.compose.foundation:foundation:1.0.0-beta01@aar
-+--- :utils:compose-navigation (variant: release)
-+--- androidx.hilt:hilt-navigation-compose:1.0.0-alpha01@aar
-+--- androidx.compose.material:material-icons-extended:1.0.0-beta01@aar
 +--- androidx.compose.runtime:runtime-livedata:1.0.0-beta01@aar
-+--- androidx.navigation:navigation-compose:1.0.0-alpha09@aar
 +--- androidx.compose.ui:ui-tooling-data:1.0.0-beta01@aar
 +--- androidx.compose.animation:animation:1.0.0-beta01@aar
 +--- androidx.compose.foundation:foundation-layout:1.0.0-beta01@aar
-+--- androidx.activity:activity-compose:1.3.0-alpha04@aar
 +--- androidx.compose.material:material-icons-core:1.0.0-beta01@aar
++--- :utils:compose-navigation (variant: release)
++--- androidx.hilt:hilt-navigation-compose:1.0.0-alpha01@aar
++--- androidx.navigation:navigation-compose:1.0.0-alpha09@aar
++--- androidx.activity:activity-compose:1.3.0-alpha04@aar
 +--- androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha03@aar
 +--- androidx.compose.ui:ui:1.0.0-beta02@aar
++--- androidx.paging:paging-common:3.0.0-beta01@jar
 +--- androidx.compose.ui:ui-text:1.0.0-beta02@aar
 +--- androidx.compose.runtime:runtime-saveable:1.0.0-beta02@aar
 +--- androidx.compose.animation:animation-core:1.0.0-beta02@aar
@@ -1125,18 +789,10 @@ releaseUnitTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0@aar
 +--- androidx.lifecycle:lifecycle-runtime-ktx:2.3.0@aar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1@jar
-+--- androidx.paging:paging-common:3.0.0-beta01@jar
-+--- com.jakewharton.timber:timber:4.7.1@aar
-+--- androidx.appcompat:appcompat:1.3.0-beta01@aar
-+--- androidx.navigation:navigation-common-ktx:2.3.4@aar
-+--- androidx.core:core-ktx:1.3.2@aar
-+--- com.google.firebase:firebase-analytics:17.6.0@aar
-+--- com.squareup.okhttp3:okhttp:4.9.0@jar
 +--- androidx.hilt:hilt-navigation:1.0.0-beta01@aar
 +--- com.google.dagger:hilt-android:2.33-beta@aar
 +--- com.google.dagger:hilt-core:2.33-beta@jar
 +--- com.google.dagger:dagger:2.33@jar
-+--- androidx.room:room-runtime:2.3.0-alpha04@aar
 +--- org.junit.platform:junit-platform-engine:1.4.2@jar
 +--- org.junit.platform:junit-platform-commons:1.4.2@jar
 +--- org.apiguardian:apiguardian-api:1.0.0@jar
@@ -1147,45 +803,23 @@ releaseUnitTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- io.mockk:mockk-common:1.10.3@jar
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.2@jar
 +--- androidx.lifecycle:lifecycle-livedata-core-ktx:2.2.0@aar
-+--- com.squareup.okio:okio:2.8.0@jar
 +--- org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:0.3.3@jar
++--- androidx.navigation:navigation-common-ktx:2.3.4@aar
++--- androidx.core:core-ktx:1.1.0@aar
 +--- androidx.savedstate:savedstate-ktx:1.1.0@aar
 +--- org.jetbrains.kotlin:kotlin-stdlib:1.4.31@jar
-+--- com.google.android.gms:play-services-measurement:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement-api:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement-sdk:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement-impl:17.6.0@aar
-+--- com.google.android.gms:play-services-ads-identifier:17.0.0@aar
-+--- com.google.android.gms:play-services-measurement-sdk-api:17.6.0@aar
-+--- com.google.android.gms:play-services-measurement-base:17.6.0@aar
-+--- com.google.android.gms:play-services-stats:17.0.0@aar
-+--- com.google.firebase:firebase-installations:16.3.2@aar
-+--- com.google.firebase:firebase-common:19.3.0@aar
-+--- com.google.firebase:firebase-installations-interop:16.0.0@aar
-+--- com.google.android.gms:play-services-tasks:17.0.0@aar
-+--- com.google.firebase:firebase-measurement-connector:18.0.0@aar
-+--- com.google.android.gms:play-services-basement:17.0.0@aar
 +--- androidx.fragment:fragment:1.3.0@aar
-+--- androidx.appcompat:appcompat-resources:1.3.0-beta01@aar
-+--- androidx.drawerlayout:drawerlayout:1.0.0@aar
-+--- androidx.viewpager:viewpager:1.0.0@aar
-+--- androidx.legacy:legacy-support-core-utils:1.0.0@aar
-+--- androidx.loader:loader:1.0.0@aar
-+--- androidx.vectordrawable:vectordrawable-animated:1.1.0@aar
-+--- androidx.vectordrawable:vectordrawable:1.1.0@aar
-+--- androidx.customview:customview:1.0.0@aar
-+--- androidx.autofill:autofill:1.0.0@aar
 +--- androidx.navigation:navigation-runtime:2.3.4@aar
 +--- androidx.activity:activity:1.3.0-alpha04@aar
-+--- androidx.navigation:navigation-common:2.3.4@aar
-+--- androidx.core:core:1.5.0-beta01@aar
-+--- androidx.cursoradapter:cursoradapter:1.0.0@aar
 +--- androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.0@aar
++--- androidx.loader:loader:1.0.0@aar
 +--- androidx.lifecycle:lifecycle-viewmodel:2.3.0@aar
 +--- androidx.savedstate:savedstate:1.1.0@aar
-+--- androidx.room:room-common:2.3.0-alpha04@jar
-+--- androidx.sqlite:sqlite-framework:2.1.0@aar
-+--- androidx.sqlite:sqlite:2.1.0@aar
++--- androidx.viewpager:viewpager:1.0.0@aar
++--- androidx.customview:customview:1.0.0@aar
++--- androidx.autofill:autofill:1.0.0@aar
++--- androidx.navigation:navigation-common:2.3.4@aar
++--- androidx.core:core:1.5.0-beta01@aar
 +--- androidx.versionedparcelable:versionedparcelable:1.1.0@aar
 +--- androidx.collection:collection:1.1.0@jar
 +--- androidx.lifecycle:lifecycle-livedata:2.2.0@aar
@@ -1193,16 +827,10 @@ releaseUnitTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- androidx.lifecycle:lifecycle-runtime:2.3.0@aar
 +--- androidx.arch.core:core-runtime:2.1.0@aar
 +--- androidx.arch.core:core-common:2.1.0@jar
-+--- com.google.firebase:firebase-components:16.0.0@aar
 +--- androidx.lifecycle:lifecycle-common:2.3.0@jar
-+--- androidx.interpolator:interpolator:1.0.0@aar
-+--- androidx.documentfile:documentfile:1.0.0@aar
-+--- androidx.localbroadcastmanager:localbroadcastmanager:1.0.0@aar
-+--- androidx.print:print:1.0.0@aar
 +--- androidx.tracing:tracing:1.0.0@aar
 +--- androidx.annotation:annotation:1.2.0-beta01@jar
 +--- org.jetbrains.kotlin:kotlin-stdlib-common:1.4.31@jar
-+--- org.jetbrains:annotations:16.0.1@jar
 +--- javax.inject:javax.inject:1@jar
 +--- com.google.dagger:dagger-lint-aar:2.33@aar
 +--- com.google.code.findbugs:jsr305:3.0.1@jar
@@ -1214,6 +842,6 @@ releaseUnitTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- io.mockk:mockk-dsl:1.10.3@jar
 +--- net.java.dev.jna:jna-platform:5.5.0@jar
 +--- net.java.dev.jna:jna:5.5.0@jar
-+--- androidx.annotation:annotation-experimental:1.0.0@aar
-\--- com.google.auto.value:auto-value-annotations:1.6.5@jar
++--- org.jetbrains:annotations:13.0@jar
+\--- androidx.annotation:annotation-experimental:1.0.0@aar
 
