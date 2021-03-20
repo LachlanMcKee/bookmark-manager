@@ -140,8 +140,8 @@ debugRuntimeClasspath - Dependencies for runtime/packaging
 +--- javax.inject:javax.inject:1@jar
 +--- com.google.dagger:dagger-lint-aar:2.33@aar
 +--- com.google.code.findbugs:jsr305:3.0.1@jar
-+--- org.jetbrains:annotations:13.0@jar
-\--- androidx.annotation:annotation-experimental:1.0.0@aar
++--- androidx.annotation:annotation-experimental:1.0.0@aar
+\--- org.jetbrains:annotations:13.0@jar
 
 release
 releaseCompileClasspath - Dependencies for compilation
@@ -284,8 +284,8 @@ releaseRuntimeClasspath - Dependencies for runtime/packaging
 +--- javax.inject:javax.inject:1@jar
 +--- com.google.dagger:dagger-lint-aar:2.33@aar
 +--- com.google.code.findbugs:jsr305:3.0.1@jar
-+--- org.jetbrains:annotations:13.0@jar
-\--- androidx.annotation:annotation-experimental:1.0.0@aar
++--- androidx.annotation:annotation-experimental:1.0.0@aar
+\--- org.jetbrains:annotations:13.0@jar
 
 debugAndroidTest
 debugAndroidTestCompileClasspath - Dependencies for compilation
@@ -664,8 +664,8 @@ debugUnitTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- io.mockk:mockk-dsl:1.10.3@jar
 +--- net.java.dev.jna:jna-platform:5.5.0@jar
 +--- net.java.dev.jna:jna:5.5.0@jar
-+--- org.jetbrains:annotations:13.0@jar
-\--- androidx.annotation:annotation-experimental:1.0.0@aar
++--- androidx.annotation:annotation-experimental:1.0.0@aar
+\--- org.jetbrains:annotations:13.0@jar
 
 releaseUnitTest
 releaseUnitTestCompileClasspath - Dependencies for compilation
@@ -842,6 +842,6 @@ releaseUnitTestRuntimeClasspath - Dependencies for runtime/packaging
 +--- io.mockk:mockk-dsl:1.10.3@jar
 +--- net.java.dev.jna:jna-platform:5.5.0@jar
 +--- net.java.dev.jna:jna:5.5.0@jar
-+--- org.jetbrains:annotations:13.0@jar
-\--- androidx.annotation:annotation-experimental:1.0.0@aar
++--- androidx.annotation:annotation-experimental:1.0.0@aar
+\--- org.jetbrains:annotations:13.0@jar
 
