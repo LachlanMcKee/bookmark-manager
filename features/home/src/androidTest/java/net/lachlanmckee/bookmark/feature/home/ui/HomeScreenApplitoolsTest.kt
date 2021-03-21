@@ -1,8 +1,10 @@
-package net.lachlanmckee.bookmark.feature.home
+package net.lachlanmckee.bookmark.feature.home.ui
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.lifecycle.MutableLiveData
+import net.lachlanmckee.bookmark.feature.home.HomeViewModel
+import net.lachlanmckee.bookmark.feature.home.model.HomeContent
 import net.lachlanmckee.bookmark.testing.applitools.ApplitoolsTest
 import net.lachlanmckee.bookmark.testing.applitools.eyesTest
 import org.junit.Rule
@@ -28,12 +30,12 @@ class HomeScreenApplitoolsTest {
       state.postValue(
         HomeViewModel.State.BookmarksExist(
           contentList = listOf(
-            HomeViewModel.Content.FolderContent(
+            HomeContent.FolderContent(
               id = 1,
               name = "Folder 1",
               selected = false
             ),
-            HomeViewModel.Content.BookmarkContent(
+            HomeContent.BookmarkContent(
               id = 1,
               name = "Bookmark 1",
               selected = false,
@@ -50,12 +52,12 @@ class HomeScreenApplitoolsTest {
       state.postValue(
         HomeViewModel.State.BookmarksExist(
           contentList = listOf(
-            HomeViewModel.Content.FolderContent(
+            HomeContent.FolderContent(
               id = 1,
               name = "Folder 1",
               selected = true
             ),
-            HomeViewModel.Content.BookmarkContent(
+            HomeContent.BookmarkContent(
               id = 1,
               name = "Bookmark 1",
               selected = true,

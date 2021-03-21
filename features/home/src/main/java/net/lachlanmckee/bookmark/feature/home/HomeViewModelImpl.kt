@@ -1,11 +1,16 @@
 package net.lachlanmckee.bookmark.feature.home
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import net.lachlanmckee.bookmark.feature.Navigation
 import net.lachlanmckee.bookmark.feature.home.HomeViewModel.*
+import net.lachlanmckee.bookmark.feature.home.model.FolderMetadata
+import net.lachlanmckee.bookmark.feature.home.model.HomeContent
+import net.lachlanmckee.bookmark.feature.model.Navigation
 import net.lachlanmckee.bookmark.service.model.FolderContentModel
 import net.lachlanmckee.bookmark.service.repository.BookmarkRepository
 import javax.inject.Inject
@@ -41,20 +46,20 @@ internal class HomeViewModelImpl @Inject constructor(
           val contentList = bookmarkContent.map { contentModel ->
             when (contentModel) {
               is FolderContentModel.Folder -> {
-                Content.FolderContent(
+                HomeContent.FolderContent(
                   id = contentModel.folder.id,
                   name = contentModel.folder.name,
                   selected = editState.selectedFolderIds.contains(contentModel.folder.id)
                 )
               }
               is FolderContentModel.Bookmark -> {
-                Content.BookmarkContent(
+                HomeContent.BookmarkContent(
                   id = contentModel.bookmark.id,
                   name = contentModel.bookmark.name,
                   selected = editState.selectedBookmarkIds.contains(contentModel.bookmark.id),
                   link = contentModel.bookmark.link,
                   metadata = contentModel.bookmark.metadata.map {
-                    Content.BookmarkContent.Metadata(it.id, it.name)
+                    HomeContent.BookmarkContent.Metadata(it.id, it.name)
                   }
                 )
               }
@@ -95,13 +100,13 @@ internal class HomeViewModelImpl @Inject constructor(
     }
   }
 
-  private fun contentClicked(content: Content) {
+  private fun contentClicked(content: HomeContent) {
     val currentEditState = editStateFlowable.value
     if (currentEditState.isInEditMode) {
       editStateFlowable.value = currentEditState.copy(
         selectedFolderIds = currentEditState.selectedFolderIds
           .let { selectedIds ->
-            if (content is Content.FolderContent) {
+            if (content is HomeContent.FolderContent) {
               if (selectedIds.contains(content.id)) {
                 selectedIds.minus(content.id)
               } else {
@@ -113,7 +118,7 @@ internal class HomeViewModelImpl @Inject constructor(
           },
         selectedBookmarkIds = currentEditState.selectedBookmarkIds
           .let { selectedIds ->
-            if (content is Content.BookmarkContent) {
+            if (content is HomeContent.BookmarkContent) {
               if (selectedIds.contains(content.id)) {
                 selectedIds.minus(content.id)
               } else {
@@ -126,13 +131,13 @@ internal class HomeViewModelImpl @Inject constructor(
       )
     } else {
       when (content) {
-        is Content.FolderContent -> {
+        is HomeContent.FolderContent -> {
           currentFolderFlowable.value = FolderMetadata(
             content.id,
             currentFolderFlowable.value
           )
         }
-        is Content.BookmarkContent -> {
+        is HomeContent.BookmarkContent -> {
           viewModelScope.launch {
             navigationSharedFlow.emit(Navigation.Bookmark(content.link))
           }
@@ -141,15 +146,15 @@ internal class HomeViewModelImpl @Inject constructor(
     }
   }
 
-  private fun contentLongClicked(content: Content) {
+  private fun contentLongClicked(content: HomeContent) {
     val currentEditState = editStateFlowable.value
     if (!currentEditState.isInEditMode) {
-      val selectedFolderIds = if (content is Content.FolderContent) {
+      val selectedFolderIds = if (content is HomeContent.FolderContent) {
         setOf(content.id)
       } else {
         emptySet()
       }
-      val selectedBookmarkIds = if (content is Content.BookmarkContent) {
+      val selectedBookmarkIds = if (content is HomeContent.BookmarkContent) {
         setOf(content.id)
       } else {
         emptySet()

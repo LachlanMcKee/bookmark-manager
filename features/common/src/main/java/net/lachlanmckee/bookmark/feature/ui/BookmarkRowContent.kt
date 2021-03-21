@@ -1,4 +1,4 @@
-package net.lachlanmckee.bookmark.feature
+package net.lachlanmckee.bookmark.feature.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.MaterialTheme

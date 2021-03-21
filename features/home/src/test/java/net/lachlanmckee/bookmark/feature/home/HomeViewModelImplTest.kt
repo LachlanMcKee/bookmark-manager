@@ -5,11 +5,11 @@ import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.flow.flowOf
-import net.lachlanmckee.bookmark.feature.Navigation
-import net.lachlanmckee.bookmark.feature.home.HomeViewModel.Content.BookmarkContent
-import net.lachlanmckee.bookmark.feature.home.HomeViewModel.Content.FolderContent
 import net.lachlanmckee.bookmark.feature.home.HomeViewModel.State.BookmarksExist
 import net.lachlanmckee.bookmark.feature.home.HomeViewModel.State.Empty
+import net.lachlanmckee.bookmark.feature.home.model.HomeContent.BookmarkContent
+import net.lachlanmckee.bookmark.feature.home.model.HomeContent.FolderContent
+import net.lachlanmckee.bookmark.feature.model.Navigation
 import net.lachlanmckee.bookmark.service.model.BookmarkModel
 import net.lachlanmckee.bookmark.service.model.FolderContentModel
 import net.lachlanmckee.bookmark.service.model.FolderModel

@@ -1,4 +1,4 @@
-package net.lachlanmckee.bookmark.feature
+package net.lachlanmckee.bookmark.feature.model
 
 sealed class Navigation {
   object Back : Navigation()

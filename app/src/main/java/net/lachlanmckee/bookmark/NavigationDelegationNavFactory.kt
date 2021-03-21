@@ -16,8 +16,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import net.lachlanmckee.bookmark.feature.BookmarkViewModel
-import net.lachlanmckee.bookmark.feature.Navigation
 import net.lachlanmckee.bookmark.feature.NavigationDelegationNavFactory
+import net.lachlanmckee.bookmark.feature.model.Navigation
 import net.lachlanmckee.compose.navigation.viewModelComposable
 import timber.log.Timber
 import javax.inject.Inject

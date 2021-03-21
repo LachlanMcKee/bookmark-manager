@@ -1,4 +1,4 @@
-package net.lachlanmckee.bookmark.feature.search
+package net.lachlanmckee.bookmark.feature.search.ui
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
@@ -30,9 +30,12 @@ import androidx.paging.compose.items
 import net.lachlanmckee.bookmark.components.chip.layout.ChipFlowRow
 import net.lachlanmckee.bookmark.components.chip.layout.ChipHorizontalList
 import net.lachlanmckee.bookmark.components.row.StandardRow
-import net.lachlanmckee.bookmark.feature.BookmarkRowContent
-import net.lachlanmckee.bookmark.feature.RootBottomAppBar
+import net.lachlanmckee.bookmark.feature.search.SearchViewModel
 import net.lachlanmckee.bookmark.feature.search.SearchViewModel.State
+import net.lachlanmckee.bookmark.feature.search.model.SearchContent
+import net.lachlanmckee.bookmark.feature.search.model.TextSegment
+import net.lachlanmckee.bookmark.feature.ui.BookmarkRowContent
+import net.lachlanmckee.bookmark.feature.ui.RootBottomAppBar
 
 @Composable
 internal fun SearchScreen(
@@ -74,7 +77,7 @@ private fun SearchContent(
   state: State,
   events: (SearchViewModel.Event) -> Unit
 ) {
-  val lazyPagingContent: LazyPagingItems<SearchViewModel.Content> =
+  val lazyPagingContent: LazyPagingItems<SearchContent> =
     state.contentList.collectAsLazyPagingItems()
 
   Column {
@@ -213,11 +216,11 @@ private fun SearchTextField(
 
 @Composable
 internal fun RowContent(
-  content: SearchViewModel.Content,
+  content: SearchContent,
   events: (SearchViewModel.Event) -> Unit
 ) {
   when (content) {
-    is SearchViewModel.Content.BookmarkContent -> {
+    is SearchContent.BookmarkContent -> {
       StandardRow(
         onClick = { events(SearchViewModel.Event.ContentClicked(content)) },
         content = {
@@ -247,8 +250,8 @@ internal fun RowContentPlaceholder() {
     content = {
       Column {
         BookmarkRowContent(
-          label = buildAnnotatedString(listOf(SearchViewModel.TextSegment.Standard("Loading"))),
-          link = buildAnnotatedString(listOf(SearchViewModel.TextSegment.Standard("Loading")))
+          label = buildAnnotatedString(listOf(TextSegment.Standard("Loading"))),
+          link = buildAnnotatedString(listOf(TextSegment.Standard("Loading")))
         )
       }
     }
@@ -256,14 +259,14 @@ internal fun RowContentPlaceholder() {
   Divider()
 }
 
-private fun buildAnnotatedString(segments: List<SearchViewModel.TextSegment>): AnnotatedString {
+private fun buildAnnotatedString(segments: List<TextSegment>): AnnotatedString {
   return with(AnnotatedString.Builder()) {
     segments.forEach { segment ->
       when (segment) {
-        is SearchViewModel.TextSegment.Standard -> {
+        is TextSegment.Standard -> {
           append(segment.text)
         }
-        is SearchViewModel.TextSegment.Highlighted -> {
+        is TextSegment.Highlighted -> {
           append(
             AnnotatedString
               .Builder()

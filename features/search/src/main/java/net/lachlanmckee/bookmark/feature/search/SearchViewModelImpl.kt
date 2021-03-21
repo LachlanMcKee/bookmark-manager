@@ -8,8 +8,13 @@ import androidx.paging.map
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import net.lachlanmckee.bookmark.feature.Navigation
+import net.lachlanmckee.bookmark.feature.model.Navigation
 import net.lachlanmckee.bookmark.feature.search.SearchViewModel.*
+import net.lachlanmckee.bookmark.feature.search.model.SearchContent
+import net.lachlanmckee.bookmark.feature.search.model.SearchMetadata
+import net.lachlanmckee.bookmark.feature.search.model.SearchText
+import net.lachlanmckee.bookmark.feature.search.model.SelectableMetadata
+import net.lachlanmckee.bookmark.feature.search.model.TextSegment
 import net.lachlanmckee.bookmark.service.repository.BookmarkRepository
 import timber.log.Timber
 import javax.inject.Inject
@@ -85,7 +90,7 @@ internal class SearchViewModelImpl @Inject constructor(
           Timber.d("Search. query: ${queryMetadata.query}, result: $bookmarksData")
 
           bookmarksData.map { bookmark ->
-            Content.BookmarkContent(
+            SearchContent.BookmarkContent(
               id = bookmark.id,
               name = createSearchText(bookmark.name, terms),
               link = createSearchText(bookmark.link, terms),
@@ -101,9 +106,9 @@ internal class SearchViewModelImpl @Inject constructor(
     )
   }
 
-  private fun contentClicked(content: Content) {
+  private fun contentClicked(content: SearchContent) {
     when (content) {
-      is Content.BookmarkContent -> {
+      is SearchContent.BookmarkContent -> {
         viewModelScope.launch {
           navigationSharedFlow.emit(Navigation.Bookmark(content.link.fullText))
         }
