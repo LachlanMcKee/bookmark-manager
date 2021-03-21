@@ -8,7 +8,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 import net.lachlanmckee.bookmark.feature.BookmarkViewModel
-import net.lachlanmckee.bookmark.feature.Navigation
+import net.lachlanmckee.bookmark.feature.model.Navigation
 import javax.inject.Inject
 
 @HiltViewModel

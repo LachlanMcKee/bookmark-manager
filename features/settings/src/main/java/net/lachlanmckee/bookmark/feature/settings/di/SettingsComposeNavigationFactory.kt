@@ -1,4 +1,4 @@
-package net.lachlanmckee.bookmark.feature.settings
+package net.lachlanmckee.bookmark.feature.settings.di
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -9,6 +9,8 @@ import dagger.hilt.components.SingletonComponent
 import dagger.multibindings.IntoSet
 import net.lachlanmckee.bookmark.feature.NavigationDelegationNavFactory
 import net.lachlanmckee.bookmark.feature.create
+import net.lachlanmckee.bookmark.feature.settings.SettingsViewModel
+import net.lachlanmckee.bookmark.feature.settings.ui.SettingsScreen
 import net.lachlanmckee.compose.navigation.ComposeNavigationFactory
 import javax.inject.Inject
 import javax.inject.Singleton

@@ -76,3 +76,9 @@ jobs:
           api-level: ${{ matrix.api-level }}
           arch: x86
           script: ./gradlew connectedCheck --stacktrace
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-reports
+          path: '**/build/reports'

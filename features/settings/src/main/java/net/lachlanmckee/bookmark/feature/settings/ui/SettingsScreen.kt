@@ -1,10 +1,11 @@
-package net.lachlanmckee.bookmark.feature.settings
+package net.lachlanmckee.bookmark.feature.settings.ui
 
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
-import net.lachlanmckee.bookmark.feature.RootBottomAppBar
+import net.lachlanmckee.bookmark.feature.settings.SettingsViewModel
+import net.lachlanmckee.bookmark.feature.ui.RootBottomAppBar
 
 @Composable
 internal fun SettingsScreen(viewModel: SettingsViewModel) {
