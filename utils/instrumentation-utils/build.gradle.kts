@@ -8,6 +8,7 @@ moduleSetup {
       implementation(Dependencies.Logging.timber)
       implementation(EspressoTestDependencies.runner)
       implementation(EspressoTestDependencies.daggerHiltAndroidTesting)
+      implementation("com.karumi:shot-android:5.10.3@aar")
     }
   )
 }

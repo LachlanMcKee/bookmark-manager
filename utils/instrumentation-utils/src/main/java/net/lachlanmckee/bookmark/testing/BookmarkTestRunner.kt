@@ -1,5 +1,5 @@
 package net.lachlanmckee.bookmark.testing
 
-import androidx.test.runner.AndroidJUnitRunner
+import com.karumi.shot.ShotTestRunner
 
-open class BookmarkTestRunner : AndroidJUnitRunner()
+open class BookmarkTestRunner : ShotTestRunner()
