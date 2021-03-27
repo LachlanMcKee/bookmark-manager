@@ -42,34 +42,32 @@ internal fun SearchScreen(
   stateLiveData: LiveData<State>,
   events: (SearchViewModel.Event) -> Unit
 ) {
-  val state: State? by stateLiveData.observeAsState()
+  val state: State by stateLiveData.observeAsState(State.emptyState)
 
   BackHandler {
     events(SearchViewModel.Event.Back)
   }
 
-  if (state != null) {
-    Scaffold(
-      topBar = {
-        TopAppBar(
-          title = {
-            Text(text = "Bookmark Search")
-          }
-        )
-      },
-      content = {
-        SearchContent(state!!, events)
-      },
-      bottomBar = {
-        RootBottomAppBar(
-          homeClick = { events(SearchViewModel.Event.HomeClicked) },
-          searchClick = { events(SearchViewModel.Event.SearchClicked) },
-          resetClick = { },
-          settingsClick = { events(SearchViewModel.Event.SettingsClicked) }
-        )
-      }
-    )
-  }
+  Scaffold(
+    topBar = {
+      TopAppBar(
+        title = {
+          Text(text = "Bookmark Search")
+        }
+      )
+    },
+    content = {
+      SearchContent(state, events)
+    },
+    bottomBar = {
+      RootBottomAppBar(
+        homeClick = { events(SearchViewModel.Event.HomeClicked) },
+        searchClick = { events(SearchViewModel.Event.SearchClicked) },
+        resetClick = { },
+        settingsClick = { events(SearchViewModel.Event.SettingsClicked) }
+      )
+    }
+  )
 }
 
 @Composable
@@ -85,7 +83,9 @@ private fun SearchContent(
 
     if (state.metadata.isNotEmpty()) {
       ChipHorizontalList(
-        modifier = Modifier.background(Color.DarkGray),
+        modifier = Modifier
+          .fillMaxWidth()
+          .background(Color.DarkGray),
         data = state.metadata.map { it.metadata },
         isSelected = state.metadata.map { it.isSelected },
         labelFunc = { buildAnnotatedString(it.name.segments) },
