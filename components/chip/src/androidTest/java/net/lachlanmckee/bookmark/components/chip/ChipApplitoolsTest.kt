@@ -3,20 +3,18 @@ package net.lachlanmckee.bookmark.components.chip
 import androidx.compose.material.MaterialTheme
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.text.AnnotatedString
-import net.lachlanmckee.bookmark.testing.applitools.ApplitoolsTest
-import net.lachlanmckee.bookmark.testing.applitools.eyesTest
+import com.karumi.shot.ScreenshotTest
 import org.junit.Rule
 import org.junit.Test
 
-@ApplitoolsTest
-class HomeScreenApplitoolsTest {
+class HomeScreenScreenshotTest : ScreenshotTest {
 
   @get:Rule
-  val composeTestRule = createComposeRule()
+  val composeRule = createComposeRule()
 
   @Test
   fun verifyHomeScreenDesign() {
-    composeTestRule.setContent {
+    composeRule.setContent {
       MaterialTheme {
         Chip(
           text = AnnotatedString("Chip"),
@@ -25,8 +23,6 @@ class HomeScreenApplitoolsTest {
       }
     }
 
-    composeTestRule.eyesTest("Chip") {
-      checkWindow("Standard Chip")
-    }
+    compareScreenshot(composeRule, "Standard_Chip")
   }
 }

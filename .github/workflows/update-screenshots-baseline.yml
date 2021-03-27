@@ -1,0 +1,33 @@
+name: Pull Request CI
+on:
+  workflow_dispatch:
+jobs:
+  screenshots-baseline-update:
+    name: Screenshots baseline update
+    runs-on: macOS-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Copy CI gradle.properties
+        run: mkdir -p ~/.gradle ; cp .github/ci-gradle.properties ~/.gradle/gradle.properties
+
+      - uses: gradle/wrapper-validation-action@v1
+
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 11.0.8
+
+      - name: Instrumentation tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api-level }}
+          arch: x86
+          script: ./gradlew :executeScreenshotTests -Precord --stacktrace
+
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-reports-${{ matrix.api-level }}
+          path: '**/build/reports'

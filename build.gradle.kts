@@ -72,6 +72,11 @@ subprojects {
   buildscript {
     repositories {
       google()
+      jcenter()
+    }
+
+    dependencies {
+      classpath("com.karumi:shot:5.10.3")
     }
   }
 

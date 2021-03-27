@@ -27,12 +27,8 @@ object CommonDependencies {
         EspressoTestDependencies.runner,
         EspressoTestDependencies.rules,
         EspressoTestDependencies.composeTesting,
-        project.project(":utils:applitools-compose"),
         project.project(":utils:instrumentation-utils")
       )
-
-      // Weirdly without this Applitools fails due to a NPE within 'HttpStream.writeRequestHeaders'
-      androidTestRuntimeOnly("com.google.firebase:firebase-installations:16.3.2")
 
       androidTestUtil(EspressoTestDependencies.orchestrator)
     }
