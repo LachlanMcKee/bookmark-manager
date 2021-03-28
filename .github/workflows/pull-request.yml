@@ -28,14 +28,24 @@ jobs:
         with:
           java-version: 11.0.8
 
-      - uses: actions/cache@v1
+      - name: Cache Gradle packages
+        uses: actions/cache@v2
         with:
-          path: ~/.gradle/caches
-          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
 
       - name: Spotless
         run: ./gradlew spotlessCheck
         working-directory: .
+
+      - name: Cleanup Gradle Cache
+        run: |
+          rm -f ~/.gradle/caches/modules-2/modules-2.lock
+          rm -f ~/.gradle/caches/modules-2/gc.properties
 
   unit-tests:
     name: Unit tests
@@ -54,14 +64,24 @@ jobs:
         with:
           java-version: 11.0.8
 
-      - uses: actions/cache@v1
+      - name: Cache Gradle packages
+        uses: actions/cache@v2
         with:
-          path: ~/.gradle/caches
-          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
 
       - name: Unit tests
         run: ./gradlew testDebugUnitTest
         working-directory: .
+
+      - name: Cleanup Gradle Cache
+        run: |
+          rm -f ~/.gradle/caches/modules-2/modules-2.lock
+          rm -f ~/.gradle/caches/modules-2/gc.properties
 
   instrumentation-tests:
     name: Instrumentation tests
@@ -83,6 +103,16 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: 11.0.8
+
+      - name: Cache Gradle packages
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
 
       - name: Instrumentation tests
         uses: reactivecircus/android-emulator-runner@v2
@@ -106,3 +136,8 @@ jobs:
         with:
           name: logcat-${{ matrix.api-level }}
           path: logcat.out
+
+      - name: Cleanup Gradle Cache
+        run: |
+          rm -f ~/.gradle/caches/modules-2/modules-2.lock
+          rm -f ~/.gradle/caches/modules-2/gc.properties
