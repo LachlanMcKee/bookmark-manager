@@ -1,14 +1,14 @@
 name: Screenshots baseline update
 
 on:
-  pull_request:
-    types: [opened]
   issue_comment:
     types: [created]
 
 jobs:
-  comment-check:
-    runs-on: ubuntu-latest
+  screenshots-baseline-update:
+    name: Screenshots baseline update
+    runs-on: macOS-latest
+    timeout-minutes: 45
     steps:
       - name: acknowledge shot update to commenter
         id: check
@@ -18,63 +18,56 @@ jobs:
           reaction: rocket
         env:
           GITHUB_TOKEN: "${{ secrets.PAT }}"
-    outputs:
-      triggered: ${{ steps.check.outputs.triggered }}
 
-  cancel-old-workflows:
-    runs-on: ubuntu-latest
-    timeout-minutes: 3
-    needs: comment-check
-    if: needs.comment-check.outputs.triggered == 'true'
-    steps:
       - name: Cancel Old Workflows
         uses: styfle/cancel-workflow-action@0.8.0
+        if: steps.check.outputs.triggered == 'true'
         with:
           workflow_id: update-screenshots-baseline.yml,pull-request.yml
           access_token: ${{ github.token }}
 
       - name: Cancel Pull Requests
         uses: styfle/cancel-workflow-action@0.8.0
+        if: steps.check.outputs.triggered == 'true'
         with:
           ignore_sha: true
           workflow_id: pull-request.yml
           access_token: ${{ github.token }}
 
-  screenshots-baseline-update:
-    name: Screenshots baseline update
-    runs-on: macOS-latest
-    timeout-minutes: 45
-    needs: comment-check
-    if: needs.comment-check.outputs.triggered == 'true'
-    steps:
       - uses: actions/checkout@v2
+        if: steps.check.outputs.triggered == 'true'
         with:
           token: ${{ secrets.PAT }}
 
       - name: Copy CI gradle.properties
+        if: steps.check.outputs.triggered == 'true'
         run: mkdir -p ~/.gradle ; cp .github/ci-gradle.properties ~/.gradle/gradle.properties
 
       - uses: gradle/wrapper-validation-action@v1
+        if: steps.check.outputs.triggered == 'true'
 
       - uses: actions/setup-java@v1
+        if: steps.check.outputs.triggered == 'true'
         with:
           java-version: 11.0.8
 
       - name: Instrumentation tests
         uses: reactivecircus/android-emulator-runner@v2
+        if: steps.check.outputs.triggered == 'true'
         with:
           api-level: 26
           arch: x86
           script: ./gradlew executeScreenshotTests -Precord --stacktrace
 
       - uses: EndBug/add-and-commit@v7
+        if: steps.check.outputs.triggered == 'true'
         with:
           message: 'Updated screenshots baseline'
           pull_strategy: 'NO-PULL'
           push: true
 
       - name: Upload test reports
-        if: always()
+        if: steps.check.outputs.triggered == 'true'
         uses: actions/upload-artifact@v2
         with:
           name: test-reports-26
