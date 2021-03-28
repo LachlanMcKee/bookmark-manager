@@ -1,13 +1,8 @@
 package net.lachlanmckee.bookmark.service.repository
 
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
-import androidx.paging.map
 import androidx.room.withTransaction
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import net.lachlanmckee.bookmark.service.model.BookmarkModel
 import net.lachlanmckee.bookmark.service.model.FolderContentModel
@@ -29,26 +24,6 @@ class BookmarkRepositoryImpl @Inject constructor(
   private val metadataDao: MetadataDao,
   private val folderDao: FolderDao
 ) : BookmarkRepository {
-
-  override fun getBookmarksByQuery(
-    terms: List<String>,
-    metadataIds: List<Long>
-  ): Flow<PagingData<BookmarkModel>> {
-    if (terms.isEmpty() && metadataIds.isEmpty()) {
-      return flowOf(PagingData.empty())
-    }
-
-    return Pager(PagingConfig(pageSize = 20)) {
-      bookmarkDao
-        .findByTermsAndMetadataIds(terms, metadataIds)
-    }
-      .flow
-      .map { pagingData ->
-        pagingData.map {
-          mapToBookmark(it)
-        }
-      }
-  }
 
   override fun getFolderContent(folderId: Long?): Flow<List<FolderContentModel>> {
     val bookmarksFlow = if (folderId != null) {

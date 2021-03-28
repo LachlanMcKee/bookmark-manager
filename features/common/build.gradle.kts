@@ -10,9 +10,12 @@ moduleSetup {
 
       implementation(
         project(":components:row"),
-        Dependencies.Compose.liveData,
-        Dependencies.Compose.paging
+        Dependencies.Compose.liveData
       )
+
+      implementation(Dependencies.Storage.roomRuntime)
+      kapt(Dependencies.Storage.roomCompiler)
+      implementation(Dependencies.Storage.roomKtx)
 
       api(Dependencies.Compose.navigation)
     }

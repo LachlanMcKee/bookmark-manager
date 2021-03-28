@@ -2,6 +2,7 @@ package net.lachlanmckee.bookmark.service.persistence
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import net.lachlanmckee.bookmark.feature.search.service.persistence.SearchDatabase
 import net.lachlanmckee.bookmark.service.persistence.dao.BookmarkDao
 import net.lachlanmckee.bookmark.service.persistence.dao.FolderDao
 import net.lachlanmckee.bookmark.service.persistence.dao.MetadataDao
@@ -19,7 +20,7 @@ import net.lachlanmckee.bookmark.service.persistence.entity.MetadataEntity
     BookmarkMetadataCrossRef::class
   ]
 )
-abstract class BookmarkDatabase : RoomDatabase() {
+abstract class BookmarkDatabase : RoomDatabase(), SearchDatabase {
   abstract fun bookmarkDao(): BookmarkDao
   abstract fun folderDao(): FolderDao
   abstract fun metadataDao(): MetadataDao
