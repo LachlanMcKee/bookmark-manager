@@ -51,6 +51,17 @@ jobs:
         with:
           java-version: 11.0.8
 
+      - name: Cache Gradle packages
+        if: steps.check.outputs.triggered == 'true'
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
       - name: Instrumentation tests
         uses: reactivecircus/android-emulator-runner@v2
         if: steps.check.outputs.triggered == 'true'
@@ -58,6 +69,12 @@ jobs:
           api-level: 26
           arch: x86
           script: ./gradlew executeScreenshotTests -Precord --stacktrace
+
+      - name: Cleanup Gradle Cache
+        if: steps.check.outputs.triggered == 'true'
+        run: |
+          rm -f ~/.gradle/caches/modules-2/modules-2.lock
+          rm -f ~/.gradle/caches/modules-2/gc.properties
 
       - uses: EndBug/add-and-commit@v7
         if: steps.check.outputs.triggered == 'true'
