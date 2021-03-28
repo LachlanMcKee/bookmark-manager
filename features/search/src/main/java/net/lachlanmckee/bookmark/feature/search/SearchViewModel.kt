@@ -2,6 +2,7 @@ package net.lachlanmckee.bookmark.feature.search
 
 import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emptyFlow
 import net.lachlanmckee.bookmark.feature.BookmarkViewModel
 import net.lachlanmckee.bookmark.feature.search.model.SearchContent
 import net.lachlanmckee.bookmark.feature.search.model.SearchMetadata
@@ -14,7 +15,15 @@ internal interface SearchViewModel :
     val query: String,
     val metadata: List<SelectableMetadata>,
     val contentList: Flow<PagingData<SearchContent>>
-  )
+  ) {
+    companion object {
+      val emptyState = State(
+        query = "",
+        metadata = emptyList(),
+        contentList = emptyFlow()
+      )
+    }
+  }
 
   sealed class Event {
     object Back : Event()

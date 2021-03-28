@@ -6,12 +6,6 @@ apply {
   plugin("shot")
 }
 
-android {
-  defaultConfig {
-    testApplicationId = "net.lachlanmckee.bookmark"
-  }
-}
-
 moduleSetup {
   configuration = ModuleConfiguration(
     composeEnabled = true,

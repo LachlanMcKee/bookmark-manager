@@ -46,7 +46,7 @@ internal class SearchViewModelImpl @Inject constructor(
             getBookmarks(queryMetadata, allMetadata)
           }
       }
-      .onStart { emit(emptyResults) }
+      .onStart { emit(State.emptyState) }
       .asLiveData(viewModelScope.coroutineContext)
   }
 
@@ -162,12 +162,6 @@ internal class SearchViewModelImpl @Inject constructor(
       segments = listOf(TextSegment.Standard(fullText))
     )
   }
-
-  private val emptyResults = State(
-    query = "",
-    metadata = emptyList(),
-    contentList = emptyFlow()
-  )
 
   private data class QueryMetadata(
     val query: String,

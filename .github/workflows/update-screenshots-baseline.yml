@@ -1,13 +1,55 @@
 name: Screenshots baseline update
+
 on:
-  workflow_dispatch:
+  pull_request:
+    types: [opened]
+  issue_comment:
+    types: [created]
+
 jobs:
+  comment-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: acknowledge shot update to commenter
+        id: check
+        uses: Khan/pull-request-comment-trigger@1.0.0
+        with:
+          trigger: "/shot-update"
+          reaction: rocket
+        env:
+          GITHUB_TOKEN: "${{ secrets.PAT }}"
+    outputs:
+      triggered: ${{ steps.check.outputs.triggered }}
+
+  cancel-old-workflows:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    needs: comment-check
+    if: needs.comment-check.outputs.triggered == 'true'
+    steps:
+      - name: Cancel Old Workflows
+        uses: styfle/cancel-workflow-action@0.8.0
+        with:
+          workflow_id: update-screenshots-baseline.yml,pull-request.yml
+          access_token: ${{ github.token }}
+
+      - name: Cancel Pull Requests
+        uses: styfle/cancel-workflow-action@0.8.0
+        with:
+          ignore_sha: true
+          workflow_id: pull-request.yml
+          access_token: ${{ github.token }}
+
   screenshots-baseline-update:
     name: Screenshots baseline update
     runs-on: macOS-latest
     timeout-minutes: 45
+    needs: comment-check
+    if: needs.comment-check.outputs.triggered == 'true'
     steps:
       - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.PAT }}
 
       - name: Copy CI gradle.properties
         run: mkdir -p ~/.gradle ; cp .github/ci-gradle.properties ~/.gradle/gradle.properties
@@ -21,13 +63,19 @@ jobs:
       - name: Instrumentation tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: ${{ matrix.api-level }}
+          api-level: 26
           arch: x86
-          script: ./gradlew :executeScreenshotTests -Precord --stacktrace
+          script: ./gradlew executeScreenshotTests -Precord --stacktrace
+
+      - uses: EndBug/add-and-commit@v7
+        with:
+          message: 'Updated screenshots baseline'
+          pull_strategy: 'NO-PULL'
+          push: true
 
       - name: Upload test reports
         if: always()
         uses: actions/upload-artifact@v2
         with:
-          name: test-reports-${{ matrix.api-level }}
+          name: test-reports-26
           path: '**/build/reports'

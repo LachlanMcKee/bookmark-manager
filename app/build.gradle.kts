@@ -5,6 +5,10 @@ plugins {
   id("com.google.firebase.appdistribution")
 }
 
+apply {
+  plugin("shot")
+}
+
 moduleSetup {
   configuration = ModuleConfiguration(
     composeEnabled = true,
