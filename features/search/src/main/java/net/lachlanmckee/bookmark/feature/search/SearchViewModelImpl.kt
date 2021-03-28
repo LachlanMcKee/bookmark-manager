@@ -15,13 +15,15 @@ import net.lachlanmckee.bookmark.feature.search.model.SearchMetadata
 import net.lachlanmckee.bookmark.feature.search.model.SearchText
 import net.lachlanmckee.bookmark.feature.search.model.SelectableMetadata
 import net.lachlanmckee.bookmark.feature.search.model.TextSegment
+import net.lachlanmckee.bookmark.feature.search.service.repository.SearchRepository
 import net.lachlanmckee.bookmark.service.repository.BookmarkRepository
 import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
 internal class SearchViewModelImpl @Inject constructor(
-  private val bookmarkRepository: BookmarkRepository
+  private val bookmarkRepository: BookmarkRepository,
+  private val searchRepository: SearchRepository
 ) : ViewModel(), SearchViewModel {
 
   private val navigationSharedFlow = MutableSharedFlow<Navigation>()
@@ -81,7 +83,7 @@ internal class SearchViewModelImpl @Inject constructor(
       metadata = allMetadata.map { metadata ->
         SelectableMetadata(queryMetadata.selectedMetadata.contains(metadata), metadata)
       },
-      contentList = bookmarkRepository
+      contentList = searchRepository
         .getBookmarksByQuery(
           terms = terms,
           metadataIds = queryMetadata.selectedMetadata.map { it.id }

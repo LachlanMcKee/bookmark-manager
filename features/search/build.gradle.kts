@@ -18,6 +18,10 @@ moduleSetup {
         Dependencies.Compose.paging,
         Dependencies.Logging.timber
       )
+
+      implementation(Dependencies.Storage.roomRuntime)
+      kapt(Dependencies.Storage.roomCompiler)
+      implementation(Dependencies.Storage.roomKtx)
     }
   )
 }
