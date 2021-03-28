@@ -41,6 +41,10 @@ internal abstract class ProjectPlugin : Plugin<Project> {
       extensions.configure<LibraryExtension>("android") {
         applyAndroid(moduleConfiguration)
 
+        defaultConfig {
+          testApplicationId = "net.lachlanmckee.bookmark"
+        }
+
         if (moduleConfiguration.composeEnabled) {
           buildFeatures {
             compose = true

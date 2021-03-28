@@ -1,6 +1,8 @@
 name: Screenshots baseline update
 
 on:
+  pull_request:
+    types: [opened]
   issue_comment:
     types: [created]
 
@@ -20,7 +22,6 @@ jobs:
       triggered: ${{ steps.check.outputs.triggered }}
 
   cancel-old-workflows:
-    name: Cancel Workflows
     runs-on: ubuntu-latest
     timeout-minutes: 3
     needs: comment-check

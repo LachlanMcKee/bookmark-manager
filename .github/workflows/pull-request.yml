@@ -1,8 +1,7 @@
 name: Pull Request CI
 on: pull_request
 jobs:
-  cancel-old-workflows:
-    name: Cancel Old Workflows
+  setup:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
@@ -14,6 +13,7 @@ jobs:
 
   spotless:
     name: Spotless
+    needs: setup
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
