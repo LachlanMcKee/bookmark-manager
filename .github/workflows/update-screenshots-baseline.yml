@@ -1,11 +1,30 @@
 name: Screenshots baseline update
+
 on:
-  workflow_dispatch:
+  issue_comment:
+    types: [created]
+
 jobs:
+  comment-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: acknowledge shot update to commenter
+        id: check
+        uses: Khan/pull-request-comment-trigger@1.0.0
+        with:
+          trigger: "/shot-update"
+          reaction: rocket
+        env:
+          GITHUB_TOKEN: "${{ secrets.PAT }}"
+    outputs:
+      triggered: ${{ steps.check.outputs.triggered }}
+
   cancel-old-workflows:
     name: Cancel Workflows
     runs-on: ubuntu-latest
     timeout-minutes: 3
+    needs: comment-check
+    if: needs.comment-check.outputs.triggered == 'true'
     steps:
       - name: Cancel Old Workflows
         uses: styfle/cancel-workflow-action@0.8.0
@@ -24,6 +43,8 @@ jobs:
     name: Screenshots baseline update
     runs-on: macOS-latest
     timeout-minutes: 45
+    needs: comment-check
+    if: needs.comment-check.outputs.triggered == 'true'
     steps:
       - uses: actions/checkout@v2
         with:
