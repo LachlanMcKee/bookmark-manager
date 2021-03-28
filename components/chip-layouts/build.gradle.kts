@@ -8,7 +8,7 @@ moduleSetup {
     dependencies = { project ->
       appendFrom(CommonDependencies.ComposeCore(project))
 
-      implementation(Dependencies.Compose.simpleFlowRow)
+      implementation(Dependencies.Compose.flowLayout)
       implementation(project(":components:chip"))
     }
   )
