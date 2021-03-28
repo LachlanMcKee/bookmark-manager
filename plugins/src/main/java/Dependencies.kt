@@ -21,7 +21,7 @@ object Dependencies {
     const val liveData = "androidx.compose.runtime:runtime-livedata:$version"
     const val paging = "androidx.paging:paging-compose:1.0.0-alpha08"
     const val navigation = "androidx.navigation:navigation-compose:1.0.0-alpha09"
-    const val simpleFlowRow = "com.github.LachlanMcKee:android-samples:1.0.0"
+    const val flowLayout = "com.google.accompanist:accompanist-flowlayout:0.7.0"
   }
   object Di {
     const val version = "2.33"

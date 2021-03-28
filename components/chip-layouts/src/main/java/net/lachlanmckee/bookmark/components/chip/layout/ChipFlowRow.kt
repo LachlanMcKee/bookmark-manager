@@ -7,7 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
-import com.icesmith.simplecomposeflowrow.SimpleFlowRow
+import com.google.accompanist.flowlayout.FlowRow
 import net.lachlanmckee.bookmark.components.chip.Chip
 
 @Composable
@@ -20,9 +20,9 @@ fun <T> ChipFlowRow(
   onClick: (T) -> Unit
 ) {
   Box(modifier = modifier) {
-    SimpleFlowRow(
-      horizontalGap = 4.dp,
-      verticalGap = 4.dp,
+    FlowRow(
+      mainAxisSpacing = 4.dp,
+      crossAxisSpacing = 4.dp,
       content = {
         data.forEach { item ->
           Chip(
