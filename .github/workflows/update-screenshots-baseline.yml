@@ -70,6 +70,13 @@ jobs:
           arch: x86
           script: ./gradlew executeScreenshotTests -Precord --stacktrace
 
+      - name: Upload instrumentation test reports
+        if: steps.check.outputs.triggered == 'true' && failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: instrumentation-failure-26
+          path: '**/build/reports'
+
       - name: Cleanup Gradle Cache
         if: steps.check.outputs.triggered == 'true'
         run: |
@@ -82,10 +89,3 @@ jobs:
           message: 'Updated screenshots baseline'
           pull_strategy: 'NO-PULL'
           push: true
-
-      - name: Upload test reports
-        if: steps.check.outputs.triggered == 'true'
-        uses: actions/upload-artifact@v2
-        with:
-          name: test-reports-26
-          path: '**/build/reports'

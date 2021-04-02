@@ -78,6 +78,13 @@ jobs:
         run: ./gradlew testDebugUnitTest
         working-directory: .
 
+      - name: Upload instrumentation test reports
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: instrumentation-failure-26
+          path: '**/build/reports'
+
       - name: Cleanup Gradle Cache
         run: |
           rm -f ~/.gradle/caches/modules-2/modules-2.lock
@@ -123,19 +130,14 @@ jobs:
             adb logcat > logcat.out &
             ./gradlew connectedCheck --stacktrace
 
-      - name: Upload test reports
-        if: always()
+      - name: Upload instrumentation test reports
+        if: failure()
         uses: actions/upload-artifact@v2
         with:
-          name: test-reports-${{ matrix.api-level }}
-          path: '**/build/reports'
-
-      - name: Upload logcat
-        if: always()
-        uses: actions/upload-artifact@v2
-        with:
-          name: logcat-${{ matrix.api-level }}
-          path: logcat.out
+          name: instrumentation-failure-${{ matrix.api-level }}
+          path: |
+            '**/build/reports'
+            logcat.out
 
       - name: Cleanup Gradle Cache
         run: |
