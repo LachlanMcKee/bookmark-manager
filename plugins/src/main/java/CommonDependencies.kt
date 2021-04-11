@@ -58,11 +58,13 @@ object CommonDependencies {
         Dependencies.AndroidX.lifecycleRuntimeKtx,
         Dependencies.Compose.liveData,
         Dependencies.Di.dagger,
-        Dependencies.Di.daggerHilt
+        Dependencies.Di.daggerHilt,
+        Dependencies.Di.composeNavigationFactory
       )
       kapt(
         Dependencies.Di.daggerCompiler,
-        Dependencies.Di.daggerHiltCompiler
+        Dependencies.Di.daggerHiltCompiler,
+        Dependencies.Di.composeNavigationFactoryCompiler
       )
     }
 

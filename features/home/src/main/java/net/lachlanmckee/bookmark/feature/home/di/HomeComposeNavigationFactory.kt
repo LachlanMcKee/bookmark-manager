@@ -2,19 +2,15 @@ package net.lachlanmckee.bookmark.feature.home.di
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
-import dagger.Binds
-import dagger.Module
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import dagger.multibindings.IntoSet
 import net.lachlanmckee.bookmark.feature.NavigationDelegationNavFactory
 import net.lachlanmckee.bookmark.feature.create
 import net.lachlanmckee.bookmark.feature.home.HomeViewModelImpl
 import net.lachlanmckee.bookmark.feature.home.ui.HomeScreen
-import net.lachlanmckee.compose.navigation.ComposeNavigationFactory
+import net.lachlanmckee.hilt.compose.navigation.factory.ComposeNavigationFactory
+import net.lachlanmckee.hilt.compose.navigation.factory.HiltComposeNavigationFactory
 import javax.inject.Inject
-import javax.inject.Singleton
 
+@HiltComposeNavigationFactory
 internal class HomeComposeNavigationFactory @Inject constructor(
   private val navigationDelegationNavFactory: NavigationDelegationNavFactory
 ) : ComposeNavigationFactory {
@@ -31,13 +27,4 @@ internal class HomeComposeNavigationFactory @Inject constructor(
       }
     )
   }
-}
-
-@Module
-@InstallIn(SingletonComponent::class)
-internal interface ComposeNavigationFactoryModule {
-  @Singleton
-  @Binds
-  @IntoSet
-  fun bindComposeNavigationFactory(factory: HomeComposeNavigationFactory): ComposeNavigationFactory
 }

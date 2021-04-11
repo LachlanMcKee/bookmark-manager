@@ -33,6 +33,7 @@ moduleSetup {
       kapt(Dependencies.Di.daggerCompiler)
       kapt(Dependencies.Di.daggerHiltCompiler)
       implementation(Dependencies.Di.daggerHiltNavigationCompose)
+      implementation(Dependencies.Di.composeNavigationFactory)
 
       implementation(Dependencies.Compose.navigation)
       implementation(Dependencies.Compose.paging)
