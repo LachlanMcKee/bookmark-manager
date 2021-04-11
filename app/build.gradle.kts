@@ -1,8 +1,6 @@
 plugins {
   id("net.lachlanmckee.bookmark.app")
-  id("com.google.gms.google-services")
   id("dagger.hilt.android.plugin")
-  id("com.google.firebase.appdistribution")
 }
 
 apply {
@@ -30,12 +28,7 @@ moduleSetup {
         Dependencies.AndroidX.activityCompose,
         Dependencies.AndroidX.appcompat,
         Dependencies.AndroidX.coreKtx,
-        Dependencies.AndroidX.lifecycleViewModelKtx,
-        Dependencies.AndroidX.lifecycleLiveDataKtx,
-
-        Dependencies.Analytics.firebaseAnalytics,
-
-        Dependencies.Network.okHttp
+        Dependencies.AndroidX.lifecycleLiveDataKtx
       )
 
       implementation(Dependencies.Di.dagger)
@@ -44,13 +37,8 @@ moduleSetup {
       kapt(Dependencies.Di.daggerHiltCompiler)
       implementation(Dependencies.Di.daggerHiltNavigationCompose)
 
-      implementation(
-        Dependencies.Compose.iconsCore,
-        Dependencies.Compose.iconsExtended,
-        Dependencies.Compose.liveData,
-        Dependencies.Compose.paging,
-        Dependencies.Compose.navigation
-      )
+      implementation(Dependencies.Compose.navigation)
+      implementation(Dependencies.Compose.paging)
 
       // Storage
       implementation(Dependencies.Storage.roomRuntime)

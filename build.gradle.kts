@@ -7,18 +7,16 @@ buildscript {
     jcenter()
   }
   dependencies {
-    classpath("com.android.tools.build:gradle:7.0.0-alpha12")
-    classpath(kotlin("gradle-plugin", version = "1.4.31"))
+    classpath("com.android.tools.build:gradle:7.0.0-alpha14")
+    classpath(kotlin("gradle-plugin", version = "1.4.32"))
 
-    classpath("com.google.gms:google-services:4.3.4")
-    classpath("com.google.dagger:hilt-android-gradle-plugin:2.33-beta")
-    classpath("com.google.firebase:firebase-appdistribution-gradle:2.0.1")
+    classpath("com.google.dagger:hilt-android-gradle-plugin:2.34-beta")
   }
 }
 
 plugins {
-  id("com.diffplug.spotless") version "5.7.0"
-  id("com.github.ben-manes.versions") version "0.33.0"
+  id("com.diffplug.spotless") version "5.12.0"
+  id("com.github.ben-manes.versions") version "0.38.0"
 }
 
 spotless {
@@ -49,14 +47,7 @@ spotless {
   }
 }
 
-tasks.named("dependencyUpdates", DependencyUpdatesTask::class.java).configure {
-  rejectVersionIf {
-    candidate.version.contains("alpha") ||
-      candidate.version.contains("beta") ||
-      candidate.version.contains("RC") ||
-      candidate.version.contains("M[0-9]+?$".toRegex())
-  }
-}
+tasks.named("dependencyUpdates", DependencyUpdatesTask::class.java)
 
 allprojects {
   repositories {

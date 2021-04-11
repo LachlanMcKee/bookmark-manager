@@ -54,7 +54,6 @@ object CommonDependencies {
         project.project(":utils:compose-navigation"),
 
         Dependencies.AndroidX.activityCompose,
-        Dependencies.AndroidX.lifecycleViewModelKtx,
         Dependencies.AndroidX.lifecycleLiveDataKtx,
         Dependencies.Compose.liveData,
         Dependencies.Di.dagger,

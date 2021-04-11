@@ -6,7 +6,7 @@ buildscript {
 }
 
 plugins {
-  kotlin("jvm") version "1.4.31"
+  kotlin("jvm") version "1.4.32"
   `java-gradle-plugin`
   `kotlin-dsl`
   `kotlin-dsl-precompiled-script-plugins`
@@ -18,8 +18,8 @@ repositories {
 }
 
 dependencies {
-  implementation("com.android.tools.build:gradle:7.0.0-alpha12")
-  implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.31")
+  implementation("com.android.tools.build:gradle:7.0.0-alpha14")
+  implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.32")
 }
 
 gradlePlugin {

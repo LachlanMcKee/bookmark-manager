@@ -136,7 +136,7 @@ jobs:
         with:
           name: instrumentation-failure-${{ matrix.api-level }}
           path: |
-            '**/build/reports'
+            **/build/reports
             logcat.out
 
       - name: Cleanup Gradle Cache

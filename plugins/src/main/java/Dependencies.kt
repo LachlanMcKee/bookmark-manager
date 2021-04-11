@@ -1,17 +1,12 @@
 object Dependencies {
-  object Analytics {
-    const val firebaseAnalytics = "com.google.firebase:firebase-analytics:17.6.0"
-  }
   object AndroidX {
-    private const val lifecycleVersion = "2.3.0"
-    const val activityCompose = "androidx.activity:activity-compose:1.3.0-alpha04"
-    const val appcompat = "androidx.appcompat:appcompat:1.3.0-beta01"
-    const val coreKtx = "androidx.core:core-ktx:1.5.0-beta02"
-    const val lifecycleViewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
-    const val lifecycleLiveDataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+    const val activityCompose = "androidx.activity:activity-compose:1.3.0-alpha06"
+    const val appcompat = "androidx.appcompat:appcompat:1.3.0-rc01"
+    const val coreKtx = "androidx.core:core-ktx:1.5.0-rc01"
+    const val lifecycleLiveDataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:2.4.0-alpha01"
   }
   object Compose {
-    const val version = "1.0.0-beta02"
+    const val version = "1.0.0-beta04"
     const val ui = "androidx.compose.ui:ui:$version"
     const val uiTooling = "androidx.compose.ui:ui-tooling:$version"
     const val foundation = "androidx.compose.foundation:foundation:$version"
@@ -20,11 +15,11 @@ object Dependencies {
     const val iconsExtended = "androidx.compose.material:material-icons-extended:$version"
     const val liveData = "androidx.compose.runtime:runtime-livedata:$version"
     const val paging = "androidx.paging:paging-compose:1.0.0-alpha08"
-    const val navigation = "androidx.navigation:navigation-compose:1.0.0-alpha09"
-    const val flowLayout = "com.google.accompanist:accompanist-flowlayout:0.7.0"
+    const val navigation = "androidx.navigation:navigation-compose:1.0.0-alpha10"
+    const val flowLayout = "com.google.accompanist:accompanist-flowlayout:0.7.1"
   }
   object Di {
-    const val version = "2.33"
+    const val version = "2.34"
     const val dagger = "com.google.dagger:dagger:$version"
     const val daggerHilt = "com.google.dagger:hilt-android:$version-beta"
     const val daggerCompiler = "com.google.dagger:dagger-compiler:$version"
@@ -32,13 +27,13 @@ object Dependencies {
     const val daggerHiltNavigationCompose = "androidx.hilt:hilt-navigation-compose:1.0.0-alpha01"
   }
   object Storage {
-    private const val roomVersion = "2.3.0-alpha04"
+    private const val roomVersion = "2.3.0-rc01"
     const val roomRuntime = "androidx.room:room-runtime:$roomVersion"
     const val roomCompiler = "androidx.room:room-compiler:$roomVersion"
     const val roomKtx = "androidx.room:room-ktx:$roomVersion"
   }
   object Kotlin {
-    const val version = "1.4.31"
+    const val version = "1.4.32"
     const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$version"
     const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3"
   }
