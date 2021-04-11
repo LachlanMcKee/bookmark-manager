@@ -73,6 +73,8 @@ internal class HomeViewModelImpl @Inject constructor(
           State.Empty
         }
       }
+      .onStart { emit(State.Empty) }
+      .distinctUntilChanged()
       .asLiveData(viewModelScope.coroutineContext)
   }
 

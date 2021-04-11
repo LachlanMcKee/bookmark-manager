@@ -7,5 +7,5 @@ object EspressoTestDependencies {
   const val runner = "androidx.test:runner:1.3.0"
   const val rules = "androidx.test:rules:1.3.0"
   const val orchestrator = "androidx.test:orchestrator:1.3.0"
-  const val mockk = "io.mockk:mockk-android:1.10.3"
+  const val mockk = "io.mockk:mockk-android:1.11.0"
 }

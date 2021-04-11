@@ -12,6 +12,8 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.testTag
 
 @Composable
 fun RootBottomAppBar(
@@ -21,18 +23,40 @@ fun RootBottomAppBar(
   settingsClick: () -> Unit
 ) {
   BottomAppBar(cutoutShape = CircleShape) {
-    IconButton(onClick = { homeClick() }) {
-      Icon(Icons.Filled.Home, "Home")
-    }
-    IconButton(onClick = { searchClick() }) {
-      Icon(Icons.Filled.Search, "Search")
-    }
+    BottomAppBarButton(
+      contentDescription = "Home navigation",
+      icon = Icons.Filled.Home,
+      onClick = { homeClick() }
+    )
+    BottomAppBarButton(
+      contentDescription = "Search navigation",
+      icon = Icons.Filled.Search,
+      onClick = { searchClick() }
+    )
     Spacer(Modifier.weight(1f, true))
-    IconButton(onClick = { resetClick() }) {
-      Icon(Icons.Filled.Refresh, "Refresh")
-    }
-    IconButton(onClick = { settingsClick() }) {
-      Icon(Icons.Filled.Settings, "Settings")
-    }
+    BottomAppBarButton(
+      contentDescription = "Refresh navigation",
+      icon = Icons.Filled.Refresh,
+      onClick = { resetClick() }
+    )
+    BottomAppBarButton(
+      contentDescription = "Settings navigation",
+      icon = Icons.Filled.Settings,
+      onClick = { settingsClick() }
+    )
   }
+}
+
+@Composable
+private fun BottomAppBarButton(
+  contentDescription: String,
+  icon: ImageVector,
+  onClick: () -> Unit
+) {
+  IconButton(
+    // TODO: Compose appears to have broken searching by content description in beta04
+    modifier = Modifier.testTag(contentDescription),
+    onClick = onClick,
+    content = { Icon(icon, contentDescription) }
+  )
 }

@@ -89,17 +89,18 @@ class HomeViewModelImplTest {
       )
     )
 
-    val statesList = homeViewModel.state.getOrAwaitValues(numberOfValues = 3) { nextStepIndex ->
-      if (nextStepIndex == 1) {
+    val statesList = homeViewModel.state.getOrAwaitValues(numberOfValues = 4) { nextStepIndex ->
+      if (nextStepIndex == 2) {
         homeViewModel.eventConsumer(HomeViewModel.Event.ContentClicked(unselectedFolderContent1))
       }
-      if (nextStepIndex == 2) {
+      if (nextStepIndex == 3) {
         homeViewModel.eventConsumer(HomeViewModel.Event.Back)
       }
     }
 
     assertEquals(
       listOf(
+        Empty,
         BookmarksExist(
           contentList = listOf(
             unselectedFolderContent1,
@@ -144,7 +145,7 @@ class HomeViewModelImplTest {
           ),
           isInEditMode = false
         ),
-        homeViewModel.state.getOrAwaitValue()
+        homeViewModel.state.getOrAwaitValues(numberOfValues = 2, executionFunc = {}).last()
       )
     }
 
@@ -160,25 +161,25 @@ class HomeViewModelImplTest {
       )
 
       val statesList =
-        homeViewModel.state.getOrAwaitValues(numberOfValues = 5) { nextStepIndex ->
-          if (nextStepIndex == 1) {
+        homeViewModel.state.getOrAwaitValues(numberOfValues = 6) { nextStepIndex ->
+          if (nextStepIndex == 2) {
             homeViewModel.eventConsumer(
               HomeViewModel.Event.ContentLongClicked(
                 unselectedFolderContent1
               )
             )
           }
-          if (nextStepIndex == 2) {
+          if (nextStepIndex == 3) {
             homeViewModel.eventConsumer(
               HomeViewModel.Event.ContentClicked(
                 unselectedBookmarkContent1
               )
             )
           }
-          if (nextStepIndex == 3) {
+          if (nextStepIndex == 4) {
             homeViewModel.eventConsumer(HomeViewModel.Event.ContentClicked(unselectedFolderContent1))
           }
-          if (nextStepIndex == 4) {
+          if (nextStepIndex == 5) {
             homeViewModel.eventConsumer(
               HomeViewModel.Event.ContentClicked(
                 unselectedBookmarkContent1
@@ -189,6 +190,7 @@ class HomeViewModelImplTest {
 
       assertEquals(
         listOf(
+          Empty,
           BookmarksExist(
             contentList = listOf(
               unselectedFolderContent1,
@@ -239,17 +241,18 @@ class HomeViewModelImplTest {
       )
     )
 
-    val statesList = homeViewModel.state.getOrAwaitValues(numberOfValues = 3) { nextStepIndex ->
-      if (nextStepIndex == 1) {
+    val statesList = homeViewModel.state.getOrAwaitValues(numberOfValues = 4) { nextStepIndex ->
+      if (nextStepIndex == 2) {
         homeViewModel.eventConsumer(HomeViewModel.Event.ContentLongClicked(unselectedFolderContent1))
       }
-      if (nextStepIndex == 2) {
+      if (nextStepIndex == 3) {
         homeViewModel.eventConsumer(HomeViewModel.Event.Back)
       }
     }
 
     assertEquals(
       listOf(
+        Empty,
         BookmarksExist(
           contentList = listOf(
             unselectedFolderContent1,
@@ -288,21 +291,22 @@ class HomeViewModelImplTest {
       )
 
       val statesList =
-        homeViewModel.state.getOrAwaitValues(numberOfValues = 3) { nextStepIndex ->
-          if (nextStepIndex == 1) {
+        homeViewModel.state.getOrAwaitValues(numberOfValues = 4) { nextStepIndex ->
+          if (nextStepIndex == 2) {
             homeViewModel.eventConsumer(
               HomeViewModel.Event.ContentLongClicked(
                 unselectedBookmarkContent1
               )
             )
           }
-          if (nextStepIndex == 2) {
+          if (nextStepIndex == 3) {
             homeViewModel.eventConsumer(HomeViewModel.Event.ContentClicked(unselectedFolderContent1))
           }
         }
 
       assertEquals(
         listOf(
+          Empty,
           BookmarksExist(
             contentList = listOf(
               unselectedFolderContent1,

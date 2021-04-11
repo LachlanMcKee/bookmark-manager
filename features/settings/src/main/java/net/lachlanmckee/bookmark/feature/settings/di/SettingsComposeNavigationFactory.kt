@@ -9,7 +9,7 @@ import dagger.hilt.components.SingletonComponent
 import dagger.multibindings.IntoSet
 import net.lachlanmckee.bookmark.feature.NavigationDelegationNavFactory
 import net.lachlanmckee.bookmark.feature.create
-import net.lachlanmckee.bookmark.feature.settings.SettingsViewModel
+import net.lachlanmckee.bookmark.feature.settings.SettingsViewModelImpl
 import net.lachlanmckee.bookmark.feature.settings.ui.SettingsScreen
 import net.lachlanmckee.compose.navigation.ComposeNavigationFactory
 import javax.inject.Inject
@@ -19,12 +19,12 @@ internal class SettingsComposeNavigationFactory @Inject constructor(
   private val navigationDelegationNavFactory: NavigationDelegationNavFactory
 ) : ComposeNavigationFactory {
   override fun create(builder: NavGraphBuilder, navController: NavHostController) {
-    navigationDelegationNavFactory.create<SettingsViewModel>(
+    navigationDelegationNavFactory.create<SettingsViewModelImpl>(
       builder = builder,
       navController = navController,
       route = "settings",
       content = {
-        SettingsScreen(this)
+        SettingsScreen(state, eventConsumer)
       }
     )
   }

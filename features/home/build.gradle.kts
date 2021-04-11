@@ -1,9 +1,6 @@
 plugins {
   id("net.lachlanmckee.bookmark.library")
-}
-
-apply {
-  plugin("shot")
+  id("shot")
 }
 
 moduleSetup {
@@ -14,7 +11,8 @@ moduleSetup {
 
       implementation(
         project(":components:row"),
-        project(":components:chip-layouts")
+        project(":components:chip-layouts"),
+        Dependencies.Logging.timber
       )
 
       testImplementation(

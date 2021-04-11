@@ -55,6 +55,7 @@ object CommonDependencies {
 
         Dependencies.AndroidX.activityCompose,
         Dependencies.AndroidX.lifecycleLiveDataKtx,
+        Dependencies.AndroidX.lifecycleRuntimeKtx,
         Dependencies.Compose.liveData,
         Dependencies.Di.dagger,
         Dependencies.Di.daggerHilt
