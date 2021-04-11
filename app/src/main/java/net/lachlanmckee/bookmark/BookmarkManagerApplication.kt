@@ -5,7 +5,7 @@ import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
 @HiltAndroidApp
-class LinkCleanerApplication : Application() {
+class BookmarkManagerApplication : Application() {
   override fun onCreate() {
     super.onCreate()
     Timber.plant(Timber.DebugTree())
