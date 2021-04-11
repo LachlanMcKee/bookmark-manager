@@ -14,6 +14,7 @@ import androidx.lifecycle.LiveData
 import net.lachlanmckee.bookmark.feature.home.HomeViewModel
 import net.lachlanmckee.bookmark.feature.home.model.HomeContent
 import net.lachlanmckee.bookmark.feature.ui.RootBottomAppBar
+import timber.log.Timber
 
 @Composable
 internal fun HomeScreen(
@@ -21,6 +22,7 @@ internal fun HomeScreen(
   events: (HomeViewModel.Event) -> Unit
 ) {
   val state: HomeViewModel.State by stateLiveData.observeAsState(HomeViewModel.State.Empty)
+  Timber.d("HomeScreen $state")
 
   BackHandler {
     events(HomeViewModel.Event.Back)

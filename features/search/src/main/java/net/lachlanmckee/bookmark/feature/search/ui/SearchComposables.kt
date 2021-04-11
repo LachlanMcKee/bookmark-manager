@@ -5,6 +5,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
@@ -14,13 +16,17 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.LiveData
 import androidx.paging.LoadState
@@ -36,6 +42,7 @@ import net.lachlanmckee.bookmark.feature.search.model.SearchContent
 import net.lachlanmckee.bookmark.feature.search.model.TextSegment
 import net.lachlanmckee.bookmark.feature.ui.BookmarkRowContent
 import net.lachlanmckee.bookmark.feature.ui.RootBottomAppBar
+import timber.log.Timber
 
 @Composable
 internal fun SearchScreen(
@@ -43,6 +50,7 @@ internal fun SearchScreen(
   events: (SearchViewModel.Event) -> Unit
 ) {
   val state: State by stateLiveData.observeAsState(State.emptyState)
+  Timber.d("SearchScreen: $state")
 
   BackHandler {
     events(SearchViewModel.Event.Back)
@@ -183,6 +191,7 @@ internal fun ErrorItem(
   }
 }
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 private fun SearchTextField(
   state: State,
@@ -193,10 +202,14 @@ private fun SearchTextField(
     focusRequester.requestFocus()
     onDispose { }
   }
+
+  val keyboardController = LocalSoftwareKeyboardController.current
+
   TextField(
     modifier = Modifier
       .fillMaxWidth()
-      .focusRequester(focusRequester),
+      .focusRequester(focusRequester)
+      .testTag("SearchText"),
     leadingIcon = { Icon(Icons.Filled.Search, "Search") },
     trailingIcon = {
       if (state.query.isNotEmpty()) {
@@ -210,7 +223,11 @@ private fun SearchTextField(
     value = state.query,
     onValueChange = {
       events(SearchViewModel.Event.SearchTextChanged(it))
-    }
+    },
+    keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+    keyboardActions = KeyboardActions(
+      onDone = { keyboardController?.hideSoftwareKeyboard() }
+    )
   )
 }
 

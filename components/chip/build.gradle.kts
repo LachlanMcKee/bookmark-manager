@@ -1,9 +1,6 @@
 plugins {
   id("net.lachlanmckee.bookmark.library")
-}
-
-apply {
-  plugin("shot")
+  id("shot")
 }
 
 moduleSetup {

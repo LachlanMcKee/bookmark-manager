@@ -4,6 +4,7 @@ object Dependencies {
     const val appcompat = "androidx.appcompat:appcompat:1.3.0-rc01"
     const val coreKtx = "androidx.core:core-ktx:1.5.0-rc01"
     const val lifecycleLiveDataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:2.4.0-alpha01"
+    const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-alpha01"
   }
   object Compose {
     const val version = "1.0.0-beta04"

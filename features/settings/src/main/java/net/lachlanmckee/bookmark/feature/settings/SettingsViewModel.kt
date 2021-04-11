@@ -1,40 +1,18 @@
 package net.lachlanmckee.bookmark.feature.settings
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
-import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.emptyFlow
 import net.lachlanmckee.bookmark.feature.BookmarkViewModel
-import net.lachlanmckee.bookmark.feature.model.Navigation
-import javax.inject.Inject
+import net.lachlanmckee.bookmark.feature.settings.SettingsViewModel.Event
+import net.lachlanmckee.bookmark.feature.settings.SettingsViewModel.State
 
-@HiltViewModel
-internal class SettingsViewModel @Inject constructor() :
-  ViewModel(),
-  BookmarkViewModel<Nothing, Nothing> {
-
-  private val navigationFlow = MutableLiveData<Navigation>()
-
-  fun homeClicked() {
-    navigationFlow.value = Navigation.Home
+internal interface SettingsViewModel : BookmarkViewModel<State, Event> {
+  sealed class State {
+    object Empty : State()
   }
 
-  fun searchClicked() {
-    navigationFlow.value = Navigation.Search
+  sealed class Event {
+    object Back : Event()
+    object HomeClicked : Event()
+    object SearchClicked : Event()
+    object SettingsClicked : Event()
   }
-
-  fun settingsClicked() {
-    navigationFlow.value = Navigation.Settings
-  }
-
-  override val state: LiveData<Nothing>
-    get() = liveData { }
-
-  override val eventConsumer: (Nothing) -> Unit = {}
-
-  override val navigation: Flow<Navigation>
-    get() = emptyFlow()
 }

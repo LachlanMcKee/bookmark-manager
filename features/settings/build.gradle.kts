@@ -7,6 +7,8 @@ moduleSetup {
     composeEnabled = true,
     dependencies = { project ->
       appendFrom(CommonDependencies.FeatureCore(project))
+
+      implementation(Dependencies.Logging.timber)
     }
   )
 }
