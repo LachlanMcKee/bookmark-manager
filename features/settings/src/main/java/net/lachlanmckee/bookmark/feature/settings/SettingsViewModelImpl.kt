@@ -1,12 +1,12 @@
 package net.lachlanmckee.bookmark.feature.settings
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import net.lachlanmckee.bookmark.feature.model.Navigation
 import net.lachlanmckee.bookmark.feature.settings.SettingsViewModel.Event
@@ -19,8 +19,8 @@ internal class SettingsViewModelImpl @Inject constructor() :
 
   private val navigationSharedFlow = MutableSharedFlow<Navigation>()
 
-  override val state: LiveData<State>
-    get() = liveData { }
+  override val state: StateFlow<State>
+    get() = MutableStateFlow(State.Empty)
 
   override val eventConsumer: (Event) -> Unit = { event ->
     viewModelScope.launch {

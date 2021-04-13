@@ -9,8 +9,7 @@ moduleSetup {
       appendFrom(CommonDependencies.ComposeCore(project))
 
       implementation(
-        project(":components:row"),
-        Dependencies.Compose.liveData
+        project(":components:row")
       )
 
       implementation(Dependencies.Storage.roomRuntime)

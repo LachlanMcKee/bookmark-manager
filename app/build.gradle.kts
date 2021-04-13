@@ -24,8 +24,7 @@ moduleSetup {
 
         Dependencies.AndroidX.activityCompose,
         Dependencies.AndroidX.appcompat,
-        Dependencies.AndroidX.coreKtx,
-        Dependencies.AndroidX.lifecycleLiveDataKtx
+        Dependencies.AndroidX.coreKtx
       )
 
       implementation(Dependencies.Di.dagger)

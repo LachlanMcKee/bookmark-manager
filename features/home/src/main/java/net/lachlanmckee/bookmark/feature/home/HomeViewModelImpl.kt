@@ -1,13 +1,12 @@
 package net.lachlanmckee.bookmark.feature.home
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import net.lachlanmckee.bookmark.feature.home.HomeViewModel.*
+import net.lachlanmckee.bookmark.feature.home.HomeViewModel.Event
+import net.lachlanmckee.bookmark.feature.home.HomeViewModel.State
 import net.lachlanmckee.bookmark.feature.home.model.FolderMetadata
 import net.lachlanmckee.bookmark.feature.home.model.HomeContent
 import net.lachlanmckee.bookmark.feature.model.Navigation
@@ -31,7 +30,7 @@ internal class HomeViewModelImpl @Inject constructor(
     )
   )
 
-  override val state: LiveData<State> by lazy {
+  override val state: StateFlow<State> by lazy {
     currentFolderFlowable
       .flatMapLatest { folderMetadata ->
         val folderId = folderMetadata?.folderId
@@ -73,9 +72,8 @@ internal class HomeViewModelImpl @Inject constructor(
           State.Empty
         }
       }
-      .onStart { emit(State.Empty) }
       .distinctUntilChanged()
-      .asLiveData(viewModelScope.coroutineContext)
+      .stateIn(viewModelScope, SharingStarted.Eagerly, State.Empty)
   }
 
   override val eventConsumer: (Event) -> Unit = { event ->
