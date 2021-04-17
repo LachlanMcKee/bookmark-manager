@@ -54,9 +54,7 @@ object CommonDependencies {
         project.project(":utils:compose-navigation"),
 
         Dependencies.AndroidX.activityCompose,
-        Dependencies.AndroidX.lifecycleLiveDataKtx,
         Dependencies.AndroidX.lifecycleRuntimeKtx,
-        Dependencies.Compose.liveData,
         Dependencies.Di.dagger,
         Dependencies.Di.daggerHilt,
         Dependencies.Di.composeNavigationFactory
@@ -65,6 +63,10 @@ object CommonDependencies {
         Dependencies.Di.daggerCompiler,
         Dependencies.Di.daggerHiltCompiler,
         Dependencies.Di.composeNavigationFactoryCompiler
+      )
+      testImplementation(
+        UnitTestDependencies.turbine,
+        project.project(":utils:flow-test-utils")
       )
     }
 

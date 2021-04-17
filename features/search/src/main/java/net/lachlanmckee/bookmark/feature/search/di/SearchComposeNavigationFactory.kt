@@ -21,7 +21,7 @@ internal class SearchComposeNavigationFactory @Inject constructor(
       route = "search",
       content = {
         SearchScreen(
-          stateLiveData = state,
+          stateFlow = state,
           events = eventConsumer
         )
       }

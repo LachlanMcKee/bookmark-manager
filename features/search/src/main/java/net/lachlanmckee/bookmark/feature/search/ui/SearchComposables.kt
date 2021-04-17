@@ -13,8 +13,8 @@ import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -28,11 +28,11 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.LiveData
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
+import kotlinx.coroutines.flow.StateFlow
 import net.lachlanmckee.bookmark.components.chip.layout.ChipFlowRow
 import net.lachlanmckee.bookmark.components.chip.layout.ChipHorizontalList
 import net.lachlanmckee.bookmark.components.row.StandardRow
@@ -46,10 +46,10 @@ import timber.log.Timber
 
 @Composable
 internal fun SearchScreen(
-  stateLiveData: LiveData<State>,
+  stateFlow: StateFlow<State>,
   events: (SearchViewModel.Event) -> Unit
 ) {
-  val state: State by stateLiveData.observeAsState(State.emptyState)
+  val state: State by stateFlow.collectAsState()
   Timber.d("SearchScreen: $state")
 
   BackHandler {

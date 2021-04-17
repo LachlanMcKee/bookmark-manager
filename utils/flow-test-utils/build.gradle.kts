@@ -8,8 +8,9 @@ moduleSetup {
       implementation(
         Dependencies.Kotlin.stdlib,
         Dependencies.AndroidX.coreKtx,
-        Dependencies.Compose.liveData,
-        UnitTestDependencies.coroutinesTest
+        UnitTestDependencies.coroutinesTest,
+        UnitTestDependencies.junitApi,
+        UnitTestDependencies.turbine
       )
     }
   )

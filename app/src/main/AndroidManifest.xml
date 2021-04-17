@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="net.lachlanmckee.bookmark"
-    android:sharedUserId="net.lachlanmckee.bookmark.uid">
+    package="net.lachlanmckee.bookmark">
 
     <application
         android:name=".BookmarkManagerApplication"

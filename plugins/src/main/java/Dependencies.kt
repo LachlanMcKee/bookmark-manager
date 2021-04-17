@@ -3,7 +3,6 @@ object Dependencies {
     const val activityCompose = "androidx.activity:activity-compose:1.3.0-alpha06"
     const val appcompat = "androidx.appcompat:appcompat:1.3.0-rc01"
     const val coreKtx = "androidx.core:core-ktx:1.5.0-rc01"
-    const val lifecycleLiveDataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:2.4.0-alpha01"
     const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-alpha01"
   }
 
@@ -15,7 +14,6 @@ object Dependencies {
     const val material = "androidx.compose.material:material:$version"
     const val iconsCore = "androidx.compose.material:material-icons-core:$version"
     const val iconsExtended = "androidx.compose.material:material-icons-extended:$version"
-    const val liveData = "androidx.compose.runtime:runtime-livedata:$version"
     const val paging = "androidx.paging:paging-compose:1.0.0-alpha08"
     const val navigation = "androidx.navigation:navigation-compose:1.0.0-alpha10"
     const val flowLayout = "com.google.accompanist:accompanist-flowlayout:0.7.1"

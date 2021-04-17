@@ -1,20 +1,15 @@
 package net.lachlanmckee.bookmark.feature.search
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.map
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import net.lachlanmckee.bookmark.feature.model.Navigation
-import net.lachlanmckee.bookmark.feature.search.SearchViewModel.*
-import net.lachlanmckee.bookmark.feature.search.model.SearchContent
-import net.lachlanmckee.bookmark.feature.search.model.SearchMetadata
-import net.lachlanmckee.bookmark.feature.search.model.SearchText
-import net.lachlanmckee.bookmark.feature.search.model.SelectableMetadata
-import net.lachlanmckee.bookmark.feature.search.model.TextSegment
+import net.lachlanmckee.bookmark.feature.search.SearchViewModel.Event
+import net.lachlanmckee.bookmark.feature.search.SearchViewModel.State
+import net.lachlanmckee.bookmark.feature.search.model.*
 import net.lachlanmckee.bookmark.feature.search.service.repository.SearchRepository
 import net.lachlanmckee.bookmark.service.repository.BookmarkRepository
 import timber.log.Timber
@@ -35,7 +30,7 @@ internal class SearchViewModelImpl @Inject constructor(
       )
     )
 
-  override val state: LiveData<State> by lazy {
+  override val state: StateFlow<State> by lazy {
     bookmarkRepository
       .getAllMetadata()
       .flatMapLatest { allMetadataModelList ->
@@ -48,8 +43,8 @@ internal class SearchViewModelImpl @Inject constructor(
             getBookmarks(queryMetadata, allMetadata)
           }
       }
-      .onStart { emit(State.emptyState) }
-      .asLiveData(viewModelScope.coroutineContext)
+      .distinctUntilChanged()
+      .stateIn(viewModelScope, SharingStarted.Eagerly, State.emptyState)
   }
 
   override val eventConsumer: (Event) -> Unit = { event ->

@@ -21,7 +21,7 @@ internal class HomeComposeNavigationFactory @Inject constructor(
       route = "home",
       content = {
         HomeScreen(
-          stateLiveData = state,
+          stateFlow = state,
           events = eventConsumer
         )
       }

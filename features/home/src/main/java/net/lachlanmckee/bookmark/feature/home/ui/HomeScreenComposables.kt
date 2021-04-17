@@ -7,10 +7,10 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.text.AnnotatedString
-import androidx.lifecycle.LiveData
+import kotlinx.coroutines.flow.StateFlow
 import net.lachlanmckee.bookmark.feature.home.HomeViewModel
 import net.lachlanmckee.bookmark.feature.home.model.HomeContent
 import net.lachlanmckee.bookmark.feature.ui.RootBottomAppBar
@@ -18,10 +18,10 @@ import timber.log.Timber
 
 @Composable
 internal fun HomeScreen(
-  stateLiveData: LiveData<HomeViewModel.State>,
+  stateFlow: StateFlow<HomeViewModel.State>,
   events: (HomeViewModel.Event) -> Unit
 ) {
-  val state: HomeViewModel.State by stateLiveData.observeAsState(HomeViewModel.State.Empty)
+  val state: HomeViewModel.State by stateFlow.collectAsState()
   Timber.d("HomeScreen $state")
 
   BackHandler {

@@ -2,8 +2,8 @@ package net.lachlanmckee.bookmark.feature.home.ui
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.lifecycle.MutableLiveData
 import com.karumi.shot.ScreenshotTest
+import kotlinx.coroutines.flow.MutableStateFlow
 import net.lachlanmckee.bookmark.feature.home.HomeViewModel
 import net.lachlanmckee.bookmark.feature.home.model.HomeContent
 import org.junit.Rule
@@ -16,7 +16,7 @@ class HomeScreenScreenshotTest : ScreenshotTest {
 
   @Test
   fun verifyHomeScreenDesign() {
-    val state: MutableLiveData<HomeViewModel.State> = MutableLiveData()
+    val state: MutableStateFlow<HomeViewModel.State> = MutableStateFlow(HomeViewModel.State.Empty)
 
     composeRule.setContent {
       MaterialTheme {
@@ -24,7 +24,9 @@ class HomeScreenScreenshotTest : ScreenshotTest {
       }
     }
 
-    state.postValue(
+    compareScreenshot(composeRule, "Empty")
+
+    state.value =
       HomeViewModel.State.BookmarksExist(
         contentList = listOf(
           HomeContent.FolderContent(
@@ -42,11 +44,10 @@ class HomeScreenScreenshotTest : ScreenshotTest {
         ),
         isInEditMode = false
       )
-    )
 
     compareScreenshot(composeRule, "Non_Empty_Non_Selected")
 
-    state.postValue(
+    state.value =
       HomeViewModel.State.BookmarksExist(
         contentList = listOf(
           HomeContent.FolderContent(
@@ -64,12 +65,7 @@ class HomeScreenScreenshotTest : ScreenshotTest {
         ),
         isInEditMode = true
       )
-    )
 
     compareScreenshot(composeRule, "Non_Empty_Selected")
-
-    state.postValue(HomeViewModel.State.Empty)
-
-    compareScreenshot(composeRule, "Empty")
   }
 }

@@ -2,9 +2,9 @@ package net.lachlanmckee.bookmark.feature.search.ui
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagingData
 import com.karumi.shot.ScreenshotTest
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.flowOf
 import net.lachlanmckee.bookmark.feature.search.SearchViewModel
@@ -19,7 +19,8 @@ class SearchScreenScreenTest : ScreenshotTest {
 
   @Test
   fun verifySearchScreenDesign() {
-    val state: MutableLiveData<SearchViewModel.State> = MutableLiveData()
+    val state: MutableStateFlow<SearchViewModel.State> =
+      MutableStateFlow(SearchViewModel.State.emptyState)
 
     composeRule.setContent {
       MaterialTheme {
@@ -27,21 +28,18 @@ class SearchScreenScreenTest : ScreenshotTest {
       }
     }
 
-    state.postValue(SearchViewModel.State.emptyState)
-
     compareScreenshot(composeRule, "Empty")
 
-    state.postValue(
+    state.value =
       SearchViewModel.State(
         query = "Query",
         metadata = emptyList(),
         contentList = emptyFlow()
       )
-    )
 
     compareScreenshot(composeRule, "No_Results")
 
-    state.postValue(
+    state.value =
       SearchViewModel.State(
         query = "Query",
         metadata = listOf(
@@ -96,7 +94,6 @@ class SearchScreenScreenTest : ScreenshotTest {
           )
         )
       )
-    )
 
     compareScreenshot(composeRule, "With_Results")
   }
