@@ -3,6 +3,7 @@ package net.lachlanmckee.bookmark
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.NavHost
@@ -18,7 +19,9 @@ class MainActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
 
     setContent {
-      BookmarkApp()
+      MaterialTheme {
+        BookmarkApp()
+      }
     }
   }
 }

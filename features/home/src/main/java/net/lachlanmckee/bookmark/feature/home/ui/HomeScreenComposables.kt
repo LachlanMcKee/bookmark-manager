@@ -1,7 +1,10 @@
 package net.lachlanmckee.bookmark.feature.home.ui
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -11,6 +14,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.text.AnnotatedString
 import kotlinx.coroutines.flow.StateFlow
+import net.lachlanmckee.bookmark.components.list.ScrollToTopLazyColumn
 import net.lachlanmckee.bookmark.feature.home.HomeViewModel
 import net.lachlanmckee.bookmark.feature.home.model.HomeContent
 import net.lachlanmckee.bookmark.feature.ui.RootBottomAppBar
@@ -53,22 +57,22 @@ internal fun HomeScreen(
   )
 }
 
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 private fun HomeFab(
   state: HomeViewModel.State,
   events: (HomeViewModel.Event) -> Unit
 ) {
-  when (state) {
-    HomeViewModel.State.Empty -> {
-    }
-    is HomeViewModel.State.BookmarksExist -> {
-      if (state.isInEditMode) {
-        FloatingActionButton(onClick = { events(HomeViewModel.Event.Delete) }) {
-          Icon(Icons.Filled.Delete, "Delete")
-        }
+  AnimatedVisibility(
+    visible = state is HomeViewModel.State.BookmarksExist && state.isInEditMode,
+    enter = fadeIn(),
+    exit = fadeOut(),
+    content = {
+      FloatingActionButton(onClick = { events(HomeViewModel.Event.Delete) }) {
+        Icon(Icons.Filled.Delete, "Delete")
       }
     }
-  }
+  )
 }
 
 @Composable
@@ -76,42 +80,51 @@ private fun HomeContent(
   state: HomeViewModel.State,
   events: (HomeViewModel.Event) -> Unit
 ) {
-  when (state) {
-    HomeViewModel.State.Empty -> {
-    }
-    is HomeViewModel.State.BookmarksExist -> {
-      BookmarksExistContent(state, events)
-    }
+  if (state is HomeViewModel.State.BookmarksExist) {
+    BookmarksExistContent(state, events)
   }
 }
 
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 private fun BookmarksExistContent(
   state: HomeViewModel.State.BookmarksExist,
   events: (HomeViewModel.Event) -> Unit
 ) {
-  LazyColumn {
-    items(state.contentList) { content ->
-      when (content) {
-        is HomeContent.FolderContent -> FolderRow(
-          label = AnnotatedString(content.name),
-          isSelected = content.selected,
-          isInEditMode = state.isInEditMode,
-          onClick = { events(HomeViewModel.Event.ContentClicked(content)) },
-          onLongClick = { events(HomeViewModel.Event.ContentLongClicked(content)) }
-        )
-        is HomeContent.BookmarkContent -> BookmarkRow(
-          label = AnnotatedString(content.name),
-          link = AnnotatedString(content.link),
-          metadata = content.metadata,
-          isSelected = content.selected,
-          isInEditMode = state.isInEditMode,
-          bookmarkOnClick = { events(HomeViewModel.Event.ContentClicked(content)) },
-          bookmarkOnLongClick = { events(HomeViewModel.Event.ContentLongClicked(content)) },
-          metadataOnClick = { }
-        )
-      }
+  ScrollToTopLazyColumn {
+    items(
+      items = state.contentList,
+      key = { content -> content.javaClass.simpleName + content.id }
+    ) { content ->
+      BookmarkRow(state, content, events)
       Divider()
     }
+  }
+}
+
+@Composable
+private fun BookmarkRow(
+  state: HomeViewModel.State.BookmarksExist,
+  content: HomeContent,
+  events: (HomeViewModel.Event) -> Unit
+) {
+  when (content) {
+    is HomeContent.FolderContent -> FolderRow(
+      label = AnnotatedString(content.name),
+      isSelected = content.selected,
+      isInEditMode = state.isInEditMode,
+      onClick = { events(HomeViewModel.Event.ContentClicked(content)) },
+      onLongClick = { events(HomeViewModel.Event.ContentLongClicked(content)) }
+    )
+    is HomeContent.BookmarkContent -> BookmarkRow(
+      label = AnnotatedString(content.name),
+      link = AnnotatedString(content.link),
+      metadata = content.metadata,
+      isSelected = content.selected,
+      isInEditMode = state.isInEditMode,
+      bookmarkOnClick = { events(HomeViewModel.Event.ContentClicked(content)) },
+      bookmarkOnLongClick = { events(HomeViewModel.Event.ContentLongClicked(content)) },
+      metadataOnClick = { }
+    )
   }
 }

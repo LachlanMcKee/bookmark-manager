@@ -10,6 +10,7 @@ moduleSetup {
       appendFrom(CommonDependencies.FeatureCore(project))
 
       implementation(
+        project(":components:list"),
         project(":components:row"),
         project(":components:chip-layouts"),
         Dependencies.Compose.paging,

@@ -143,7 +143,7 @@ class BookmarkRepositoryImpl @Inject constructor(
         metadataIds[2]
       )
 
-      repeat(1000) {
+      repeat(50) {
         bookmarkDao.insert(
           BookmarkEntity(
             name = "Amazon Very Long $it",
