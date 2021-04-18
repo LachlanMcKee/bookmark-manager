@@ -10,7 +10,7 @@ buildscript {
     classpath("com.android.tools.build:gradle:7.0.0-alpha14")
     classpath(kotlin("gradle-plugin", version = "1.4.32"))
 
-    classpath("com.google.dagger:hilt-android-gradle-plugin:2.34-beta")
+    classpath("com.google.dagger:hilt-android-gradle-plugin:2.34.1-beta")
   }
 }
 
@@ -67,7 +67,7 @@ subprojects {
     }
 
     dependencies {
-      classpath("com.karumi:shot:5.10.3")
+      classpath("com.karumi:shot:5.10.4")
     }
   }
 

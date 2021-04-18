@@ -95,7 +95,8 @@ class HomeViewModelImplTest {
             unselectedFolderContent1,
             unselectedBookmarkContent1
           ),
-          isInEditMode = false
+          isInEditMode = false,
+          isRootFolder = true
         )
       )
 
@@ -106,7 +107,8 @@ class HomeViewModelImplTest {
           contentList = listOf(
             unselectedBookmarkContent2
           ),
-          isInEditMode = false
+          isInEditMode = false,
+          isRootFolder = false
         )
       )
 
@@ -118,7 +120,8 @@ class HomeViewModelImplTest {
             unselectedFolderContent1,
             unselectedBookmarkContent1
           ),
-          isInEditMode = false
+          isInEditMode = false,
+          isRootFolder = true
         )
       )
     }
@@ -142,7 +145,8 @@ class HomeViewModelImplTest {
               unselectedFolderContent1,
               unselectedBookmarkContent1
             ),
-            isInEditMode = false
+            isInEditMode = false,
+            isRootFolder = true
           )
         )
       }
@@ -166,7 +170,8 @@ class HomeViewModelImplTest {
               unselectedFolderContent1,
               unselectedBookmarkContent1
             ),
-            isInEditMode = false
+            isInEditMode = false,
+            isRootFolder = true
           )
         )
 
@@ -178,7 +183,8 @@ class HomeViewModelImplTest {
               unselectedFolderContent1.copy(selected = true),
               unselectedBookmarkContent1
             ),
-            isInEditMode = true
+            isInEditMode = true,
+            isRootFolder = true
           )
         )
 
@@ -190,7 +196,8 @@ class HomeViewModelImplTest {
               unselectedFolderContent1.copy(selected = true),
               unselectedBookmarkContent1.copy(selected = true)
             ),
-            isInEditMode = true
+            isInEditMode = true,
+            isRootFolder = true
           )
         )
 
@@ -202,7 +209,8 @@ class HomeViewModelImplTest {
               unselectedFolderContent1,
               unselectedBookmarkContent1.copy(selected = true)
             ),
-            isInEditMode = true
+            isInEditMode = true,
+            isRootFolder = true
           )
         )
 
@@ -214,7 +222,8 @@ class HomeViewModelImplTest {
               unselectedFolderContent1,
               unselectedBookmarkContent1
             ),
-            isInEditMode = true
+            isInEditMode = true,
+            isRootFolder = true
           )
         )
       }
@@ -237,7 +246,8 @@ class HomeViewModelImplTest {
             unselectedFolderContent1,
             unselectedBookmarkContent1
           ),
-          isInEditMode = false
+          isInEditMode = false,
+          isRootFolder = true
         )
       )
 
@@ -249,7 +259,8 @@ class HomeViewModelImplTest {
             unselectedFolderContent1.copy(selected = true),
             unselectedBookmarkContent1
           ),
-          isInEditMode = true
+          isInEditMode = true,
+          isRootFolder = true
         )
       )
 
@@ -261,7 +272,8 @@ class HomeViewModelImplTest {
             unselectedFolderContent1,
             unselectedBookmarkContent1
           ),
-          isInEditMode = false
+          isInEditMode = false,
+          isRootFolder = true
         )
       )
     }
@@ -285,7 +297,8 @@ class HomeViewModelImplTest {
               unselectedFolderContent1,
               unselectedBookmarkContent1
             ),
-            isInEditMode = false
+            isInEditMode = false,
+            isRootFolder = true
           )
         )
 
@@ -297,7 +310,8 @@ class HomeViewModelImplTest {
               unselectedFolderContent1,
               unselectedBookmarkContent1.copy(selected = true)
             ),
-            isInEditMode = true
+            isInEditMode = true,
+            isRootFolder = true
           )
         )
 
@@ -309,7 +323,8 @@ class HomeViewModelImplTest {
               unselectedFolderContent1.copy(selected = true),
               unselectedBookmarkContent1.copy(selected = true)
             ),
-            isInEditMode = true
+            isInEditMode = true,
+            isRootFolder = true
           )
         )
       }
