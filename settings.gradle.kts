@@ -21,6 +21,7 @@ include(
   ":utils:flow-test-utils",
   ":components:chip",
   ":components:chip-layouts",
+  ":components:list",
   ":components:row",
   ":features:common",
   ":features:home",

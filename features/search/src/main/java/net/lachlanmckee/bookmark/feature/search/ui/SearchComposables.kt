@@ -4,7 +4,6 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
@@ -35,6 +34,7 @@ import androidx.paging.compose.items
 import kotlinx.coroutines.flow.StateFlow
 import net.lachlanmckee.bookmark.components.chip.layout.ChipFlowRow
 import net.lachlanmckee.bookmark.components.chip.layout.ChipHorizontalList
+import net.lachlanmckee.bookmark.components.list.ScrollToTopLazyColumn
 import net.lachlanmckee.bookmark.components.row.StandardRow
 import net.lachlanmckee.bookmark.feature.search.SearchViewModel
 import net.lachlanmckee.bookmark.feature.search.SearchViewModel.State
@@ -101,7 +101,7 @@ private fun SearchContent(
       )
     }
 
-    LazyColumn {
+    ScrollToTopLazyColumn {
       items(lazyPagingContent) { content ->
         if (content != null) {
           RowContent(content, events)
