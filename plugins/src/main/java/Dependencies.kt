@@ -20,7 +20,7 @@ object Dependencies {
   }
 
   object Di {
-    const val version = "2.34"
+    const val version = "2.34.1"
     const val dagger = "com.google.dagger:dagger:$version"
     const val daggerHilt = "com.google.dagger:hilt-android:$version-beta"
     const val daggerCompiler = "com.google.dagger:dagger-compiler:$version"

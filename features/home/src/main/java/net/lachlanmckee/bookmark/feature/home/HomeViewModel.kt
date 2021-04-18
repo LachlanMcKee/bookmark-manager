@@ -6,10 +6,17 @@ import net.lachlanmckee.bookmark.feature.home.model.HomeContent
 internal interface HomeViewModel : BookmarkViewModel<HomeViewModel.State, HomeViewModel.Event> {
 
   sealed class State {
-    object Empty : State()
+    abstract val isRootFolder: Boolean
+
+    object Empty : State() {
+      override val isRootFolder = true
+    }
+
+    data class NoBookmarks(override val isRootFolder: Boolean) : State()
     data class BookmarksExist(
       val contentList: List<HomeContent>,
-      val isInEditMode: Boolean
+      val isInEditMode: Boolean,
+      override val isRootFolder: Boolean
     ) : State()
   }
 

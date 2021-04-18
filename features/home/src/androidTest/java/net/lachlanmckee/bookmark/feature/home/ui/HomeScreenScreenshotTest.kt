@@ -26,6 +26,12 @@ class HomeScreenScreenshotTest : ScreenshotTest {
 
     compareScreenshot(composeRule, "Empty")
 
+    state.value = HomeViewModel.State.NoBookmarks(isRootFolder = true)
+    compareScreenshot(composeRule, "No_Bookmarks")
+
+    state.value = HomeViewModel.State.NoBookmarks(isRootFolder = false)
+    compareScreenshot(composeRule, "No_Bookmarks_Not_root")
+
     state.value =
       HomeViewModel.State.BookmarksExist(
         contentList = listOf(
@@ -42,7 +48,8 @@ class HomeScreenScreenshotTest : ScreenshotTest {
             metadata = emptyList()
           )
         ),
-        isInEditMode = false
+        isInEditMode = false,
+        isRootFolder = true
       )
 
     compareScreenshot(composeRule, "Non_Empty_Non_Selected")
@@ -63,7 +70,8 @@ class HomeScreenScreenshotTest : ScreenshotTest {
             metadata = emptyList()
           )
         ),
-        isInEditMode = true
+        isInEditMode = true,
+        isRootFolder = true
       )
 
     compareScreenshot(composeRule, "Non_Empty_Selected")

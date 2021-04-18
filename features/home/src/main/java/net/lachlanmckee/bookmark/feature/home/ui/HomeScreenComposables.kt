@@ -5,16 +5,23 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.style.TextAlign
 import kotlinx.coroutines.flow.StateFlow
 import net.lachlanmckee.bookmark.components.list.ScrollToTopLazyColumn
+import net.lachlanmckee.bookmark.compose.ConditionalComposable
 import net.lachlanmckee.bookmark.feature.home.HomeViewModel
 import net.lachlanmckee.bookmark.feature.home.model.HomeContent
 import net.lachlanmckee.bookmark.feature.ui.RootBottomAppBar
@@ -37,6 +44,11 @@ internal fun HomeScreen(
       TopAppBar(
         title = {
           Text(text = "Bookmarks")
+        },
+        navigationIcon = ConditionalComposable(!state.isRootFolder) {
+          IconButton(onClick = { events(HomeViewModel.Event.Back) }) {
+            Icon(Icons.Filled.ArrowBack, "Back")
+          }
         }
       )
     },
@@ -80,8 +92,22 @@ private fun HomeContent(
   state: HomeViewModel.State,
   events: (HomeViewModel.Event) -> Unit
 ) {
-  if (state is HomeViewModel.State.BookmarksExist) {
-    BookmarksExistContent(state, events)
+  when (state) {
+    is HomeViewModel.State.BookmarksExist -> {
+      BookmarksExistContent(state, events)
+    }
+    is HomeViewModel.State.NoBookmarks -> {
+      Box(modifier = Modifier.fillMaxSize()) {
+        Text(
+          modifier = Modifier.align(Alignment.Center),
+          textAlign = TextAlign.Center,
+          style = MaterialTheme.typography.body1,
+          text = "Folder is empty"
+        )
+      }
+    }
+    is HomeViewModel.State.Empty -> {
+    }
   }
 }
 
