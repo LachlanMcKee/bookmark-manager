@@ -43,7 +43,7 @@ internal fun HomeScreen(
     topBar = {
       TopAppBar(
         title = {
-          Text(text = "Bookmarks")
+          Text(text = state.folderName ?: "Bookmarks")
         },
         navigationIcon = ConditionalComposable(!state.isRootFolder) {
           IconButton(onClick = { events(HomeViewModel.Event.Back) }) {
