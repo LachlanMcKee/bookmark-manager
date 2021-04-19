@@ -91,6 +91,7 @@ class HomeViewModelImplTest {
     homeViewModel.state.test {
       assertItem(
         BookmarksExist(
+          folderName = null,
           contentList = listOf(
             unselectedFolderContent1,
             unselectedBookmarkContent1
@@ -104,6 +105,7 @@ class HomeViewModelImplTest {
 
       assertItem(
         BookmarksExist(
+          folderName = "folder1",
           contentList = listOf(
             unselectedBookmarkContent2
           ),
@@ -116,6 +118,7 @@ class HomeViewModelImplTest {
 
       assertItem(
         BookmarksExist(
+          folderName = null,
           contentList = listOf(
             unselectedFolderContent1,
             unselectedBookmarkContent1
@@ -141,6 +144,7 @@ class HomeViewModelImplTest {
       homeViewModel.state.test {
         assertItem(
           BookmarksExist(
+            folderName = null,
             contentList = listOf(
               unselectedFolderContent1,
               unselectedBookmarkContent1
@@ -166,6 +170,7 @@ class HomeViewModelImplTest {
       homeViewModel.state.test {
         assertItem(
           BookmarksExist(
+            folderName = null,
             contentList = listOf(
               unselectedFolderContent1,
               unselectedBookmarkContent1
@@ -179,6 +184,7 @@ class HomeViewModelImplTest {
 
         assertItem(
           BookmarksExist(
+            folderName = null,
             contentList = listOf(
               unselectedFolderContent1.copy(selected = true),
               unselectedBookmarkContent1
@@ -192,6 +198,7 @@ class HomeViewModelImplTest {
 
         assertItem(
           BookmarksExist(
+            folderName = null,
             contentList = listOf(
               unselectedFolderContent1.copy(selected = true),
               unselectedBookmarkContent1.copy(selected = true)
@@ -205,6 +212,7 @@ class HomeViewModelImplTest {
 
         assertItem(
           BookmarksExist(
+            folderName = null,
             contentList = listOf(
               unselectedFolderContent1,
               unselectedBookmarkContent1.copy(selected = true)
@@ -218,6 +226,7 @@ class HomeViewModelImplTest {
 
         assertItem(
           BookmarksExist(
+            folderName = null,
             contentList = listOf(
               unselectedFolderContent1,
               unselectedBookmarkContent1
@@ -242,6 +251,7 @@ class HomeViewModelImplTest {
     homeViewModel.state.test {
       assertItem(
         BookmarksExist(
+          folderName = null,
           contentList = listOf(
             unselectedFolderContent1,
             unselectedBookmarkContent1
@@ -255,6 +265,7 @@ class HomeViewModelImplTest {
 
       assertItem(
         BookmarksExist(
+          folderName = null,
           contentList = listOf(
             unselectedFolderContent1.copy(selected = true),
             unselectedBookmarkContent1
@@ -268,6 +279,7 @@ class HomeViewModelImplTest {
 
       assertItem(
         BookmarksExist(
+          folderName = null,
           contentList = listOf(
             unselectedFolderContent1,
             unselectedBookmarkContent1
@@ -293,6 +305,7 @@ class HomeViewModelImplTest {
       homeViewModel.state.test {
         assertItem(
           BookmarksExist(
+            folderName = null,
             contentList = listOf(
               unselectedFolderContent1,
               unselectedBookmarkContent1
@@ -306,6 +319,7 @@ class HomeViewModelImplTest {
 
         assertItem(
           BookmarksExist(
+            folderName = null,
             contentList = listOf(
               unselectedFolderContent1,
               unselectedBookmarkContent1.copy(selected = true)
@@ -319,6 +333,7 @@ class HomeViewModelImplTest {
 
         assertItem(
           BookmarksExist(
+            folderName = null,
             contentList = listOf(
               unselectedFolderContent1.copy(selected = true),
               unselectedBookmarkContent1.copy(selected = true)

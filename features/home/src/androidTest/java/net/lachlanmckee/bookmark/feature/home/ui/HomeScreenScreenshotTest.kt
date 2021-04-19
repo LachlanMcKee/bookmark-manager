@@ -26,14 +26,15 @@ class HomeScreenScreenshotTest : ScreenshotTest {
 
     compareScreenshot(composeRule, "Empty")
 
-    state.value = HomeViewModel.State.NoBookmarks(isRootFolder = true)
+    state.value = HomeViewModel.State.NoBookmarks(folderName = null, isRootFolder = true)
     compareScreenshot(composeRule, "No_Bookmarks")
 
-    state.value = HomeViewModel.State.NoBookmarks(isRootFolder = false)
+    state.value = HomeViewModel.State.NoBookmarks(folderName = "Folder1", isRootFolder = false)
     compareScreenshot(composeRule, "No_Bookmarks_Not_root")
 
     state.value =
       HomeViewModel.State.BookmarksExist(
+        folderName = null,
         contentList = listOf(
           HomeContent.FolderContent(
             id = 1,
@@ -56,6 +57,7 @@ class HomeScreenScreenshotTest : ScreenshotTest {
 
     state.value =
       HomeViewModel.State.BookmarksExist(
+        folderName = null,
         contentList = listOf(
           HomeContent.FolderContent(
             id = 1,

@@ -33,15 +33,14 @@ internal class HomeViewModelImpl @Inject constructor(
   override val state: StateFlow<State> by lazy {
     currentFolderFlowable
       .flatMapLatest { folderMetadata ->
-        val parentFolderId = folderMetadata?.folderId
         combine(
-          flowOf(parentFolderId),
-          bookmarkRepository.getFolderContent(parentFolderId),
+          flowOf(folderMetadata),
+          bookmarkRepository.getFolderContent(folderMetadata?.folderId),
           editStateFlowable,
           ::Triple
         )
       }
-      .map { (parentFolderId, bookmarkContent, editState) ->
+      .map { (folderMetadata, bookmarkContent, editState) ->
         if (bookmarkContent.isNotEmpty()) {
           val contentList = bookmarkContent.map { contentModel ->
             when (contentModel) {
@@ -66,12 +65,16 @@ internal class HomeViewModelImpl @Inject constructor(
             }
           }
           State.BookmarksExist(
+            folderName = folderMetadata?.folderName,
             contentList = contentList,
             isInEditMode = editState.isInEditMode,
-            isRootFolder = parentFolderId == null
+            isRootFolder = folderMetadata == null
           )
         } else {
-          State.NoBookmarks(isRootFolder = parentFolderId == null)
+          State.NoBookmarks(
+            folderName = folderMetadata?.folderName,
+            isRootFolder = folderMetadata == null
+          )
         }
       }
       .distinctUntilChanged()
@@ -136,6 +139,7 @@ internal class HomeViewModelImpl @Inject constructor(
         is HomeContent.FolderContent -> {
           currentFolderFlowable.value = FolderMetadata(
             content.id,
+            content.name,
             currentFolderFlowable.value
           )
         }
