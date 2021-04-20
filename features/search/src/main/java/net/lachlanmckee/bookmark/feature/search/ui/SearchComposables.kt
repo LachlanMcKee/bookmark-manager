@@ -226,7 +226,7 @@ private fun SearchTextField(
     },
     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
     keyboardActions = KeyboardActions(
-      onDone = { keyboardController?.hideSoftwareKeyboard() }
+      onDone = { keyboardController?.hide() }
     )
   )
 }

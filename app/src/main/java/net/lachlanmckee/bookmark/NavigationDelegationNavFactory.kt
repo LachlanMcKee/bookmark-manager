@@ -86,6 +86,7 @@ fun NavigationComposable(
           launchSingleTop = true
           popUpToRoute("home")
         }
+        is Navigation.AddBookmark -> navController.navigate("bookmark-form")
       }
     }
   }

@@ -29,6 +29,7 @@ internal interface HomeViewModel : BookmarkViewModel<HomeViewModel.State, HomeVi
 
   sealed class Event {
     object Back : Event()
+    object Add : Event()
     object Delete : Event()
     object HomeClicked : Event()
     object SearchClicked : Event()
