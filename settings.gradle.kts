@@ -23,6 +23,7 @@ include(
   ":components:chip-layouts",
   ":components:list",
   ":components:row",
+  ":features:bookmark-form",
   ":features:common",
   ":features:home",
   ":features:search",

@@ -15,6 +15,7 @@ moduleSetup {
         project(":utils:compose-navigation"),
         project(":components:chip-layouts"),
         project(":components:row"),
+        project(":features:bookmark-form"),
         project(":features:common"),
         project(":features:home"),
         project(":features:search"),

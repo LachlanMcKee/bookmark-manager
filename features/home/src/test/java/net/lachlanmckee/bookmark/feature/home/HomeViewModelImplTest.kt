@@ -39,6 +39,15 @@ class HomeViewModelImplTest {
   }
 
   @Test
+  fun givenNoState_whenAddPressed_thenNavigateAddBookmark() = suspendTest {
+    homeViewModel.navigation.test {
+      homeViewModel.eventConsumer(Event.Add)
+      assertItem(Navigation.AddBookmark)
+      cancel()
+    }
+  }
+
+  @Test
   fun givenNoState_whenHomePressed_thenNavigateToHome() = suspendTest {
     homeViewModel.navigation.test {
       homeViewModel.eventConsumer(Event.HomeClicked)

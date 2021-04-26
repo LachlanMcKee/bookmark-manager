@@ -83,6 +83,7 @@ internal class HomeViewModelImpl @Inject constructor(
     viewModelScope.launch {
       when (event) {
         is Event.Back -> backPressed()
+        is Event.Add -> navigate(Navigation.AddBookmark)
         is Event.ContentClicked -> contentClicked(event.content)
         is Event.ContentLongClicked -> contentLongClicked(event.content)
         is Event.Delete -> deleteClicked()
