@@ -1,10 +1,10 @@
 package net.lachlanmckee.bookmark.feature.home
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import net.lachlanmckee.bookmark.feature.StandardViewModel
 import net.lachlanmckee.bookmark.feature.home.HomeViewModel.Event
 import net.lachlanmckee.bookmark.feature.home.HomeViewModel.State
 import net.lachlanmckee.bookmark.feature.home.model.FolderMetadata
@@ -17,9 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 internal class HomeViewModelImpl @Inject constructor(
   private val bookmarkRepository: BookmarkRepository
-) : ViewModel(), HomeViewModel {
+) : StandardViewModel<State, Event>(), HomeViewModel {
 
-  private val navigationSharedFlow = MutableSharedFlow<Navigation>()
   private val currentFolderFlowable: MutableStateFlow<FolderMetadata?> = MutableStateFlow(null)
 
   private val editStateFlowable = MutableStateFlow(
@@ -30,7 +29,9 @@ internal class HomeViewModelImpl @Inject constructor(
     )
   )
 
-  override val state: StateFlow<State> by lazy {
+  override val initialState: State = State.Empty
+
+  override fun createState(): Flow<State> =
     currentFolderFlowable
       .flatMapLatest { folderMetadata ->
         combine(
@@ -77,9 +78,6 @@ internal class HomeViewModelImpl @Inject constructor(
           )
         }
       }
-      .distinctUntilChanged()
-      .stateIn(viewModelScope, SharingStarted.Eagerly, State.Empty)
-  }
 
   override val eventConsumer: (Event) -> Unit = { event ->
     viewModelScope.launch {
@@ -88,16 +86,13 @@ internal class HomeViewModelImpl @Inject constructor(
         is Event.ContentClicked -> contentClicked(event.content)
         is Event.ContentLongClicked -> contentLongClicked(event.content)
         is Event.Delete -> deleteClicked()
-        is Event.HomeClicked -> navigationSharedFlow.emit(Navigation.Home)
+        is Event.HomeClicked -> navigate(Navigation.Home)
         is Event.ResetDataClicked -> resetData()
-        is Event.SearchClicked -> navigationSharedFlow.emit(Navigation.Search)
-        is Event.SettingsClicked -> navigationSharedFlow.emit(Navigation.Settings)
+        is Event.SearchClicked -> navigate(Navigation.Search)
+        is Event.SettingsClicked -> navigate(Navigation.Settings)
       }
     }
   }
-
-  override val navigation: Flow<Navigation>
-    get() = navigationSharedFlow
 
   private fun resetData() {
     viewModelScope.launch {
@@ -144,9 +139,7 @@ internal class HomeViewModelImpl @Inject constructor(
           )
         }
         is HomeContent.BookmarkContent -> {
-          viewModelScope.launch {
-            navigationSharedFlow.emit(Navigation.Bookmark(content.link))
-          }
+          navigate(Navigation.Bookmark(content.link))
         }
       }
     }
@@ -196,9 +189,7 @@ internal class HomeViewModelImpl @Inject constructor(
       if (currentFolderFlowable.value != null) {
         currentFolderFlowable.value = currentFolderFlowable.value?.parent
       } else {
-        viewModelScope.launch {
-          navigationSharedFlow.emit(Navigation.Back)
-        }
+        navigate(Navigation.Back)
       }
     }
   }

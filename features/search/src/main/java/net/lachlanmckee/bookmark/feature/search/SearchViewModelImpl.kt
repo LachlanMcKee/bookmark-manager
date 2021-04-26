@@ -1,11 +1,9 @@
 package net.lachlanmckee.bookmark.feature.search
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import androidx.paging.map
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
+import net.lachlanmckee.bookmark.feature.StandardViewModel
 import net.lachlanmckee.bookmark.feature.model.Navigation
 import net.lachlanmckee.bookmark.feature.search.SearchViewModel.Event
 import net.lachlanmckee.bookmark.feature.search.SearchViewModel.State
@@ -19,9 +17,8 @@ import javax.inject.Inject
 internal class SearchViewModelImpl @Inject constructor(
   private val bookmarkRepository: BookmarkRepository,
   private val searchRepository: SearchRepository
-) : ViewModel(), SearchViewModel {
+) : StandardViewModel<State, Event>(), SearchViewModel {
 
-  private val navigationSharedFlow = MutableSharedFlow<Navigation>()
   private val currentQueryFlowable: MutableStateFlow<QueryMetadata> =
     MutableStateFlow(
       QueryMetadata(
@@ -30,7 +27,9 @@ internal class SearchViewModelImpl @Inject constructor(
       )
     )
 
-  override val state: StateFlow<State> by lazy {
+  override val initialState: State = State.emptyState
+
+  override fun createState(): Flow<State> =
     bookmarkRepository
       .getAllMetadata()
       .flatMapLatest { allMetadataModelList ->
@@ -43,26 +42,18 @@ internal class SearchViewModelImpl @Inject constructor(
             getBookmarks(queryMetadata, allMetadata)
           }
       }
-      .distinctUntilChanged()
-      .stateIn(viewModelScope, SharingStarted.Eagerly, State.emptyState)
-  }
 
   override val eventConsumer: (Event) -> Unit = { event ->
-    viewModelScope.launch {
-      when (event) {
-        is Event.Back -> navigationSharedFlow.emit(Navigation.Back)
-        is Event.HomeClicked -> navigationSharedFlow.emit(Navigation.Home)
-        is Event.SearchClicked -> navigationSharedFlow.emit(Navigation.Search)
-        is Event.SettingsClicked -> navigationSharedFlow.emit(Navigation.Settings)
-        is Event.ContentClicked -> contentClicked(event.content)
-        is Event.MetadataRowItemClicked -> metadataRowItemClicked(event.metadata)
-        is Event.SearchTextChanged -> searchTextChanged(event.searchText)
-      }
+    when (event) {
+      is Event.Back -> navigate(Navigation.Back)
+      is Event.HomeClicked -> navigate(Navigation.Home)
+      is Event.SearchClicked -> navigate(Navigation.Search)
+      is Event.SettingsClicked -> navigate(Navigation.Settings)
+      is Event.ContentClicked -> contentClicked(event.content)
+      is Event.MetadataRowItemClicked -> metadataRowItemClicked(event.metadata)
+      is Event.SearchTextChanged -> searchTextChanged(event.searchText)
     }
   }
-
-  override val navigation: Flow<Navigation>
-    get() = navigationSharedFlow
 
   private fun getBookmarks(
     queryMetadata: QueryMetadata,
@@ -106,9 +97,7 @@ internal class SearchViewModelImpl @Inject constructor(
   private fun contentClicked(content: SearchContent) {
     when (content) {
       is SearchContent.BookmarkContent -> {
-        viewModelScope.launch {
-          navigationSharedFlow.emit(Navigation.Bookmark(content.link.fullText))
-        }
+        navigate(Navigation.Bookmark(content.link.fullText))
       }
     }
   }
