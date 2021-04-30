@@ -20,11 +20,11 @@ object Dependencies {
   }
 
   object Di {
-    const val version = "2.34.1"
+    const val version = "2.35.1"
     const val dagger = "com.google.dagger:dagger:$version"
-    const val daggerHilt = "com.google.dagger:hilt-android:$version-beta"
+    const val daggerHilt = "com.google.dagger:hilt-android:$version"
     const val daggerCompiler = "com.google.dagger:dagger-compiler:$version"
-    const val daggerHiltCompiler = "com.google.dagger:hilt-compiler:$version-beta"
+    const val daggerHiltCompiler = "com.google.dagger:hilt-compiler:$version"
     const val daggerHiltNavigationCompose = "androidx.hilt:hilt-navigation-compose:1.0.0-alpha01"
     const val composeNavigationFactory =
       "net.lachlanmckee:hilt-compose-navigation-factory:1.0.0-alpha01"
