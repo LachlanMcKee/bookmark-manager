@@ -4,22 +4,31 @@ plugins {
 }
 
 moduleSetup {
-  configuration = ModuleConfiguration(
-    composeEnabled = true,
-    dependencies = { project ->
-      appendFrom(CommonDependencies.FeatureCore(project))
+  configuration = ModuleConfiguration(composeEnabled = true)
+}
 
-      implementation(
-        project(":components:list"),
-        project(":components:row"),
-        project(":components:chip-layouts"),
-        Dependencies.Compose.paging,
-        Dependencies.Logging.timber
-      )
+dependencies {
+  implementation(libs.bundles.kotlin)
+  implementation(libs.bundles.composeCore)
+  implementation(libs.androidx.activityCompose)
 
-      implementation(Dependencies.Storage.roomRuntime)
-      kapt(Dependencies.Storage.roomCompiler)
-      implementation(Dependencies.Storage.roomKtx)
-    }
-  )
+  // DI
+  implementation(libs.bundles.daggerRuntimes)
+  kapt(libs.bundles.daggerCompilers)
+
+  // Compose navigation factory
+  implementation(libs.dagger.hilt.navigation.composeFactory.runtime)
+  kapt(libs.dagger.hilt.navigation.composeFactory.compiler)
+
+  implementation(libs.bundles.room)
+  kapt(libs.room.compiler)
+
+  implementation(libs.compose.paging)
+  implementation(libs.timber)
+
+  implementation(projects.features.common)
+  implementation(projects.utils.composeNavigation)
+  implementation(projects.components.list)
+  implementation(projects.components.row)
+  implementation(projects.components.chipLayouts)
 }

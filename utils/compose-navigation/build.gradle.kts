@@ -3,11 +3,10 @@ plugins {
 }
 
 moduleSetup {
-  configuration = ModuleConfiguration(
-    composeEnabled = true,
-    dependencies = {
-      implementation(Dependencies.Compose.navigation)
-      implementation(Dependencies.Di.daggerHiltNavigationCompose)
-    }
-  )
+  configuration = ModuleConfiguration(composeEnabled = true)
+}
+
+dependencies {
+  implementation(libs.compose.navigation)
+  implementation(libs.dagger.hilt.navigation.compose)
 }

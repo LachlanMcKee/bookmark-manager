@@ -7,45 +7,7 @@ plugins {
 moduleSetup {
   configuration = ModuleConfiguration(
     composeEnabled = true,
-    useHiltWithinAndroidTest = true,
-    dependencies = { project ->
-      appendFrom(CommonDependencies.ComposeCore(project))
-
-      implementation(
-        project(":utils:compose-navigation"),
-        project(":components:chip-layouts"),
-        project(":components:row"),
-        project(":features:bookmark-form"),
-        project(":features:common"),
-        project(":features:home"),
-        project(":features:search"),
-        project(":features:settings"),
-
-        Dependencies.Logging.timber,
-
-        Dependencies.AndroidX.activityCompose,
-        Dependencies.AndroidX.appcompat,
-        Dependencies.AndroidX.coreKtx
-      )
-
-      implementation(Dependencies.Di.dagger)
-      implementation(Dependencies.Di.daggerHilt)
-      kapt(Dependencies.Di.daggerCompiler)
-      kapt(Dependencies.Di.daggerHiltCompiler)
-      implementation(Dependencies.Di.daggerHiltNavigationCompose)
-      implementation(Dependencies.Di.composeNavigationFactory)
-
-      implementation(Dependencies.Compose.navigation)
-      implementation(Dependencies.Compose.paging)
-
-      // Storage
-      implementation(Dependencies.Storage.roomRuntime)
-      kapt(Dependencies.Storage.roomCompiler)
-      implementation(Dependencies.Storage.roomKtx)
-
-      androidTestImplementation(EspressoTestDependencies.daggerHiltAndroidTesting)
-      kaptAndroidTest(Dependencies.Di.daggerHiltCompiler)
-    }
+    useHiltWithinAndroidTest = true
   )
 }
 
@@ -75,4 +37,38 @@ android {
       proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
     }
   }
+}
+
+dependencies {
+  implementation(libs.bundles.kotlin)
+  implementation(libs.bundles.composeCore)
+  implementation(libs.bundles.composeNavigation)
+  implementation(libs.compose.paging)
+
+  implementation(projects.utils.composeNavigation)
+  implementation(projects.components.chipLayouts)
+  implementation(projects.components.row)
+  implementation(projects.features.common)
+  implementation(projects.features.bookmarkForm)
+  implementation(projects.features.home)
+  implementation(projects.features.search)
+  implementation(projects.features.settings)
+
+  implementation(libs.timber)
+
+  implementation(libs.androidx.activityCompose)
+  implementation(libs.androidx.appcompat)
+  implementation(libs.androidx.coreKtx)
+  implementation(libs.androidx.lifecycleRuntimeKtx)
+
+  implementation(libs.bundles.daggerRuntimes)
+  kapt(libs.bundles.daggerCompilers)
+
+  // Storage
+  implementation(libs.bundles.room)
+  kapt(libs.room.compiler)
+
+  androidTestImplementation(libs.bundles.espressoCore)
+  androidTestImplementation(libs.dagger.hilt.androidTesting)
+  kaptAndroidTest(libs.bundles.daggerCompilers)
 }

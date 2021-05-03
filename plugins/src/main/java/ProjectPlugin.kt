@@ -61,7 +61,7 @@ internal abstract class ProjectPlugin : Plugin<Project> {
       useJUnitPlatform()
     }
 
-    addDependencies(moduleConfiguration)
+    addDependencies()
   }
 
   private fun BaseExtension.applyAndroid(moduleConfiguration: ModuleConfiguration) {
@@ -92,7 +92,7 @@ internal abstract class ProjectPlugin : Plugin<Project> {
 
     if (moduleConfiguration.composeEnabled) {
       composeOptions {
-        kotlinCompilerExtensionVersion = Dependencies.Compose.version
+        kotlinCompilerExtensionVersion = Versions.Compose
       }
     }
 
@@ -106,15 +106,9 @@ internal abstract class ProjectPlugin : Plugin<Project> {
     }
   }
 
-  private fun Project.addDependencies(moduleConfiguration: ModuleConfiguration) {
-    val allDependencies = ProjectDependenciesImpl()
-    moduleConfiguration.dependencies(allDependencies, this)
-
-    allDependencies.groups.forEach { (groupName, group) ->
-      group.dependencies.forEach { dependency ->
-        project.dependencies.add(groupName, dependency)
-      }
-    }
+  private fun Project.addDependencies() {
+    project.dependencies.add("androidTestImplementation", project(":utils:instrumentation-utils"))
+    project.dependencies.add("androidTestUtil", Dependencies.Orchestrator)
   }
 
   abstract val androidPluginId: String

@@ -3,9 +3,9 @@ plugins {
 }
 
 moduleSetup {
-  configuration = ModuleConfiguration(
-    dependencies = {
-      implementation(Dependencies.Kotlin.stdlib)
-    }
-  )
+  configuration = ModuleConfiguration()
+}
+
+dependencies {
+  implementation(libs.kotlin.stdlib.jdk7)
 }

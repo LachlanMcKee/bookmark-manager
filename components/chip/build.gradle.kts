@@ -4,12 +4,14 @@ plugins {
 }
 
 moduleSetup {
-  configuration = ModuleConfiguration(
-    composeEnabled = true,
-    dependencies = { project ->
-      appendFrom(CommonDependencies.ComposeCore(project))
+  configuration = ModuleConfiguration(composeEnabled = true)
+}
 
-      implementation(Dependencies.Compose.iconsExtended)
-    }
-  )
+dependencies {
+  implementation(libs.bundles.kotlin)
+  implementation(libs.bundles.composeCore)
+
+  implementation(libs.compose.icons.extended)
+
+  androidTestImplementation(libs.bundles.espressoCore)
 }
