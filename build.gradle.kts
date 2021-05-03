@@ -36,7 +36,7 @@ spotless {
     target("**/*.kt")
     trimTrailingWhitespace()
     endWithNewline()
-    targetExclude("**/build/**")
+    targetExclude("**/build/**", "**/GeneratedLibraries.kt")
   }
   kotlinGradle {
     ktlint("0.39.0").userData(mapOf("indent_size" to "2"))

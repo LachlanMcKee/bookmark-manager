@@ -3,20 +3,17 @@ plugins {
 }
 
 moduleSetup {
-  configuration = ModuleConfiguration(
-    composeEnabled = true,
-    dependencies = { project ->
-      appendFrom(CommonDependencies.ComposeCore(project))
+  configuration = ModuleConfiguration(composeEnabled = true)
+}
 
-      implementation(
-        project(":components:row")
-      )
+dependencies {
+  implementation(libs.bundles.kotlin)
+  implementation(libs.bundles.composeCore)
 
-      implementation(Dependencies.Storage.roomRuntime)
-      kapt(Dependencies.Storage.roomCompiler)
-      implementation(Dependencies.Storage.roomKtx)
+  implementation(projects.components.row)
 
-      api(Dependencies.Compose.navigation)
-    }
-  )
+  implementation(libs.bundles.room)
+  kapt(libs.room.compiler)
+
+  api(libs.compose.navigation)
 }

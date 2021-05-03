@@ -3,13 +3,17 @@ plugins {
 }
 
 moduleSetup {
-  configuration = ModuleConfiguration(
-    composeEnabled = true,
-    dependencies = { project ->
-      appendFrom(CommonDependencies.ComposeCore(project))
+  configuration = ModuleConfiguration(composeEnabled = true)
+}
 
-      implementation(Dependencies.Compose.flowLayout)
-      implementation(project(":components:chip"))
-    }
-  )
+dependencies {
+  implementation(projects.components.chip)
+
+  implementation(libs.bundles.kotlin)
+  implementation(libs.bundles.composeCore)
+
+  implementation(libs.compose.icons.extended)
+  implementation(libs.compose.flowLayout)
+
+  androidTestImplementation(libs.bundles.espressoCore)
 }

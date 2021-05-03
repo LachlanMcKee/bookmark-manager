@@ -12,7 +12,10 @@ pluginManagement {
   }
 }
 
-rootProject.name = "Bookmark Manager"
+enableFeaturePreview("VERSION_CATALOGS")
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
+rootProject.name = "BookmarkManager"
 include(
   ":app",
   ":utils:compose-navigation",

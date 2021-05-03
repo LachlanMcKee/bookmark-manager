@@ -3,15 +3,13 @@ plugins {
 }
 
 moduleSetup {
-  configuration = ModuleConfiguration(
-    dependencies = {
-      implementation(
-        Dependencies.Kotlin.stdlib,
-        Dependencies.AndroidX.coreKtx,
-        UnitTestDependencies.coroutinesTest,
-        UnitTestDependencies.junitApi,
-        UnitTestDependencies.turbine
-      )
-    }
-  )
+  configuration = ModuleConfiguration()
+}
+
+dependencies {
+  implementation(libs.kotlin.stdlib.jdk7)
+  implementation(libs.androidx.coreKtx)
+  implementation(libs.kotlin.coroutines.test)
+  implementation(libs.junit.api)
+  implementation(libs.turbine)
 }

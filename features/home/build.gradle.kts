@@ -4,21 +4,31 @@ plugins {
 }
 
 moduleSetup {
-  configuration = ModuleConfiguration(
-    composeEnabled = true,
-    dependencies = { project ->
-      appendFrom(CommonDependencies.FeatureCore(project))
+  configuration = ModuleConfiguration(composeEnabled = true)
+}
 
-      implementation(
-        project(":components:list"),
-        project(":components:row"),
-        project(":components:chip-layouts"),
-        Dependencies.Logging.timber
-      )
+dependencies {
+  implementation(libs.bundles.kotlin)
+  implementation(libs.bundles.composeCore)
+  implementation(libs.androidx.activityCompose)
 
-      testImplementation(
-        UnitTestDependencies.turbine
-      )
-    }
-  )
+  // DI
+  implementation(libs.bundles.daggerRuntimes)
+  kapt(libs.bundles.daggerCompilers)
+
+  // Compose navigation factory
+  implementation(libs.dagger.hilt.navigation.composeFactory.runtime)
+  kapt(libs.dagger.hilt.navigation.composeFactory.compiler)
+
+  implementation(libs.timber)
+
+  implementation(projects.features.common)
+  implementation(projects.utils.composeNavigation)
+  implementation(projects.components.list)
+  implementation(projects.components.row)
+  implementation(projects.components.chipLayouts)
+
+  testImplementation(libs.bundles.junitCore)
+  testImplementation(libs.turbine)
+  testImplementation(projects.utils.flowTestUtils)
 }

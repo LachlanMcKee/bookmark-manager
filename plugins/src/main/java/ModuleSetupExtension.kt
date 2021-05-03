@@ -1,4 +1,3 @@
-import org.gradle.api.Project
 import javax.inject.Inject
 
 open class ModuleSetupExtension @Inject constructor(
@@ -19,6 +18,5 @@ interface ConfigurationChanged {
 
 data class ModuleConfiguration(
   val composeEnabled: Boolean = false,
-  val useHiltWithinAndroidTest: Boolean = false,
-  val dependencies: (ProjectDependencies.(Project) -> Unit) = {}
+  val useHiltWithinAndroidTest: Boolean = false
 )
