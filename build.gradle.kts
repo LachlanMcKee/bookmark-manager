@@ -7,10 +7,14 @@ buildscript {
     jcenter()
   }
   dependencies {
-    classpath("com.android.tools.build:gradle:7.0.0-alpha15")
-    classpath(kotlin("gradle-plugin", version = "1.4.32"))
+    // TODO: Once gradle adds support for accessing libs within build script, this can be removed.
+    val libs = project.extensions
+      .getByType<VersionCatalogsExtension>()
+      .named("libs") as org.gradle.accessors.dm.LibrariesForLibs
 
-    classpath("com.google.dagger:hilt-android-gradle-plugin:2.35.1")
+    classpath(libs.plugin.androidTools)
+    classpath(kotlin("gradle-plugin", version = libs.versions.kotlin.get()))
+    classpath(libs.plugin.hiltAndroidGradle)
   }
 }
 
@@ -58,6 +62,7 @@ allprojects {
 }
 
 val rootDir = projectDir
+val subprojectLibs = libs
 
 subprojects {
   buildscript {
@@ -67,7 +72,7 @@ subprojects {
     }
 
     dependencies {
-      classpath("com.karumi:shot:5.10.4")
+      classpath(subprojectLibs.plugin.karumiShot)
     }
   }
 
