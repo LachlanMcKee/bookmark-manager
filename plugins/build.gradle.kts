@@ -10,7 +10,6 @@ buildscript {
 }
 
 plugins {
-  kotlin("jvm") version "1.4.32"
   `java-gradle-plugin`
   `kotlin-dsl`
   `kotlin-dsl-precompiled-script-plugins`
@@ -22,8 +21,8 @@ repositories {
 }
 
 dependencies {
-  implementation("com.android.tools.build:gradle:7.0.0-alpha15")
-  implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:${libs.versions.kotlin.get()}")
+  implementation(libs.plugin.androidTools)
+  implementation(libs.plugin.kotlinGradle)
 }
 
 gradlePlugin {
