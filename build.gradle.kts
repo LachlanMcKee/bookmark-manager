@@ -101,4 +101,15 @@ subprojects {
       )
     }
   }
+
+  configurations.all {
+    resolutionStrategy {
+      eachDependency {
+        when (requested.module.toString()) {
+          "androidx.compose.runtime:runtime" -> useVersion(libs.versions.compose.get())
+          "androidx.compose.ui:ui" -> useVersion(libs.versions.compose.get())
+        }
+      }
+    }
+  }
 }

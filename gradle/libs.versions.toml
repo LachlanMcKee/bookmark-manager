@@ -1,5 +1,5 @@
 [versions]
-compose = "1.0.0-beta05"
+compose = "1.0.0-beta06"
 dagger = "2.35.1"
 room = "2.3.0"
 kotlin = "1.4.32"
@@ -63,7 +63,7 @@ compose-testing = { module = "androidx.compose.ui:ui-test-junit4", version.ref =
 karumiShot = { module = "com.karumi:shot-android", version.ref = "karumiShot" }
 
 # Gradle plugins
-plugin-androidTools = "com.android.tools.build:gradle:7.0.0-alpha15"
+plugin-androidTools = "com.android.tools.build:gradle:7.0.0-beta02"
 plugin-hiltAndroidGradle = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "dagger" }
 plugin-karumiShot = { module = "com.karumi:shot", version.ref = "karumiShot" }
 plugin-kotlinGradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
