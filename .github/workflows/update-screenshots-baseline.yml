@@ -54,7 +54,7 @@ jobs:
 
       - name: Cache Gradle packages
         if: steps.check.outputs.triggered == 'true'
-        uses: actions/cache@v2
+        uses: actions/cache@v2.1.5
         with:
           path: |
             ~/.gradle/caches
