@@ -43,7 +43,7 @@ jobs:
         if: steps.check.outputs.triggered == 'true'
         run: mkdir -p ~/.gradle ; cp .github/ci-gradle.properties ~/.gradle/gradle.properties
 
-      - uses: gradle/wrapper-validation-action@v1
+      - uses: gradle/wrapper-validation-action@v1.0.3
         if: steps.check.outputs.triggered == 'true'
 
       - uses: actions/setup-java@v2
