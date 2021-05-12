@@ -15,14 +15,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download debug apk
-        uses: dawidd6/action-download-artifact@v2
+        uses: dawidd6/action-download-artifact@v2.14.0
         with:
           workflow: pull-request.yml
           run_id: ${{ github.event.inputs.runId }}
           name: debug
           path: apks
       - name: Download espresso apk
-        uses: dawidd6/action-download-artifact@v2
+        uses: dawidd6/action-download-artifact@v2.14.0
         with:
           workflow: pull-request.yml
           run_id: ${{ github.event.inputs.runId }}
