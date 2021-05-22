@@ -5,7 +5,7 @@ val libs = the<LibrariesForLibs>()
 buildscript {
   repositories {
     google()
-    jcenter()
+    mavenCentral()
   }
 }
 
@@ -17,7 +17,7 @@ plugins {
 
 repositories {
   google()
-  jcenter()
+  mavenCentral()
 }
 
 dependencies {

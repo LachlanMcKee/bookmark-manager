@@ -4,7 +4,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 buildscript {
   repositories {
     google()
-    jcenter()
+    mavenCentral()
   }
   dependencies {
     // TODO: Once gradle adds support for accessing libs within build script, this can be removed.
@@ -56,7 +56,7 @@ tasks.named("dependencyUpdates", DependencyUpdatesTask::class.java)
 allprojects {
   repositories {
     google()
-    jcenter()
+    mavenCentral()
     maven(url = "https://jitpack.io")
   }
 }
@@ -68,7 +68,7 @@ subprojects {
   buildscript {
     repositories {
       google()
-      jcenter()
+      mavenCentral()
     }
 
     dependencies {
@@ -78,7 +78,7 @@ subprojects {
 
   repositories {
     google()
-    jcenter()
+    mavenCentral()
   }
 
   pluginManager.withPlugin("java") {
