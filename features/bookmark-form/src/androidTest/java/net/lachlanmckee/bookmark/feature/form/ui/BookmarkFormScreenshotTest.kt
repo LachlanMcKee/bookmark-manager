@@ -24,5 +24,11 @@ class BookmarkFormScreenshotTest : ScreenshotTest {
     }
 
     compareScreenshot(composeRule, "Empty")
+
+    state.value = State(name = "Bookmark", url = "https://www.bookmark.com/", loading = false)
+    compareScreenshot(composeRule, "With_Content")
+
+    state.value = State(name = "Bookmark", url = "https://www.bookmark.com/", loading = true)
+    compareScreenshot(composeRule, "With_Content_Saving")
   }
 }
