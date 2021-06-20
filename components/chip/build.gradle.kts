@@ -14,4 +14,6 @@ dependencies {
   implementation(libs.compose.icons.extended)
 
   androidTestImplementation(libs.bundles.espressoCore)
+  androidTestImplementation(libs.compose.test.junit4)
+  debugImplementation(libs.compose.test.manifest)
 }

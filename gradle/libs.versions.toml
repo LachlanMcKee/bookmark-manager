@@ -59,7 +59,8 @@ espresso-rules = { module = "androidx.test:rules", version.ref = "androidXTest" 
 espresso-orchestrator = { module = "androidx.test:orchestrator", version.ref = "androidXTest" }
 espresso-mockk = { module = "io.mockk:mockk-android", version.ref = "mockk" }
 dagger-hilt-androidTesting = { module = "com.google.dagger:hilt-android-testing", version.ref = "dagger" }
-compose-testing = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "compose" }
+compose-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "compose" }
+compose-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "compose" }
 karumiShot = { module = "com.karumi:shot-android", version.ref = "karumiShot" }
 
 # Gradle plugins

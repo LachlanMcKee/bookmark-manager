@@ -72,5 +72,7 @@ dependencies {
 
   androidTestImplementation(libs.bundles.espressoCore)
   androidTestImplementation(libs.dagger.hilt.androidTesting)
+  androidTestImplementation(libs.compose.test.junit4)
+  debugImplementation(libs.compose.test.manifest)
   kaptAndroidTest(libs.bundles.daggerCompilers)
 }
