@@ -31,4 +31,8 @@ dependencies {
   testImplementation(libs.bundles.junitCore)
   testImplementation(libs.turbine)
   testImplementation(projects.utils.flowTestUtils)
+
+  androidTestImplementation(libs.bundles.espressoCore)
+  androidTestImplementation(libs.compose.test.junit4)
+  debugImplementation(libs.compose.test.manifest)
 }

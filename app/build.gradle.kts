@@ -68,7 +68,11 @@ dependencies {
   implementation(libs.bundles.room)
   kapt(libs.room.compiler)
 
+  testImplementation(libs.bundles.junitCore)
+
   androidTestImplementation(libs.bundles.espressoCore)
   androidTestImplementation(libs.dagger.hilt.androidTesting)
+  androidTestImplementation(libs.compose.test.junit4)
+  debugImplementation(libs.compose.test.manifest)
   kaptAndroidTest(libs.bundles.daggerCompilers)
 }
