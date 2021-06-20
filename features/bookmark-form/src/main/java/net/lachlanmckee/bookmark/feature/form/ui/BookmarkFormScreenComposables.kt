@@ -1,7 +1,10 @@
 package net.lachlanmckee.bookmark.feature.form.ui
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
@@ -11,8 +14,8 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.*
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.focus.FocusDirection
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -65,16 +68,11 @@ private fun Content() {
     modifier = Modifier.fillMaxSize().padding(24.dp),
     verticalArrangement = Arrangement.spacedBy(16.dp)
   ) {
-    val focusRequester = FocusRequester()
-    DisposableEffect(Unit) {
-      focusRequester.requestFocus()
-      onDispose { }
-    }
-
+    val focusManager = LocalFocusManager.current
     val keyboardController = LocalSoftwareKeyboardController.current
+
     var nameText by remember { mutableStateOf(TextFieldValue()) }
     TextField(
-      modifier = Modifier.fillMaxWidth().focusRequester(focusRequester),
       value = nameText,
       onValueChange = {
         nameText = it
@@ -82,13 +80,12 @@ private fun Content() {
       label = { Text("Name") },
       keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
       keyboardActions = KeyboardActions(
-        onNext = { focusRequester.requestFocus() }
+        onNext = { focusManager.moveFocus(FocusDirection.Down) }
       )
     )
 
     var emailText by remember { mutableStateOf(TextFieldValue()) }
     TextField(
-      modifier = Modifier.fillMaxWidth().focusRequester(focusRequester),
       value = emailText,
       onValueChange = {
         emailText = it
