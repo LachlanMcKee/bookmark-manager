@@ -9,6 +9,8 @@ interface BookmarkRepository {
 
   fun getAllMetadata(): Flow<List<MetadataModel>>
 
+  suspend fun saveBookmark(name: String, url: String)
+
   suspend fun resetData()
 
   suspend fun removeContent(folderIds: Set<Long>, bookmarkIds: Set<Long>)

@@ -11,7 +11,9 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
@@ -19,7 +21,6 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.flow.StateFlow
 import net.lachlanmckee.bookmark.feature.form.BookmarkFormViewModel
@@ -51,19 +52,28 @@ internal fun BookmarkFormScreen(
       )
     },
     floatingActionButton = {
-      FloatingActionButton(onClick = { events(BookmarkFormViewModel.Event.Save) }) {
-        Icon(Icons.Filled.Add, "Add")
+      if (!state.loading) {
+        FloatingActionButton(onClick = { events(BookmarkFormViewModel.Event.Save) }) {
+          Icon(Icons.Filled.Add, "Add")
+        }
+      } else {
+        FloatingActionButton(onClick = { }) {
+          CircularProgressIndicator()
+        }
       }
     },
     content = {
-      Content()
+      Content(state, events)
     }
   )
 }
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-private fun Content() {
+private fun Content(
+  state: BookmarkFormViewModel.State,
+  events: (BookmarkFormViewModel.Event) -> Unit
+) {
   Column(
     modifier = Modifier.fillMaxSize().padding(24.dp),
     verticalArrangement = Arrangement.spacedBy(16.dp)
@@ -71,11 +81,11 @@ private fun Content() {
     val focusManager = LocalFocusManager.current
     val keyboardController = LocalSoftwareKeyboardController.current
 
-    var nameText by remember { mutableStateOf(TextFieldValue()) }
     TextField(
-      value = nameText,
+      value = state.name,
+      enabled = !state.loading,
       onValueChange = {
-        nameText = it
+        events(BookmarkFormViewModel.Event.NameUpdated(it))
       },
       label = { Text("Name") },
       keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
@@ -84,13 +94,13 @@ private fun Content() {
       )
     )
 
-    var emailText by remember { mutableStateOf(TextFieldValue()) }
     TextField(
-      value = emailText,
+      value = state.url,
+      enabled = !state.loading,
       onValueChange = {
-        emailText = it
+        events(BookmarkFormViewModel.Event.UrlUpdated(it))
       },
-      label = { Text("Email") },
+      label = { Text("Url") },
       keyboardOptions = KeyboardOptions(
         keyboardType = KeyboardType.Uri,
         imeAction = ImeAction.Done

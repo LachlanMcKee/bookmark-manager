@@ -68,6 +68,18 @@ class BookmarkRepositoryImpl @Inject constructor(
     }
   }
 
+  override suspend fun saveBookmark(name: String, url: String) {
+    database.withTransaction {
+      bookmarkDao.insert(
+        BookmarkEntity(
+          name = name,
+          link = url,
+          folderId = null
+        )
+      )
+    }
+  }
+
   private fun mapToBookmark(entity: BookmarkWithMetadata): BookmarkModel {
     return BookmarkModel(
       id = entity.bookmark.bookmarkId,
