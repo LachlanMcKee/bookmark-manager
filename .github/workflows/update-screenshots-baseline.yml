@@ -19,12 +19,11 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ secrets.PAT }}"
 
-        # needed to be able to check out correct branch
-        - uses: xt0rted/pull-request-comment-branch@v1
-          if: steps.check.outputs.triggered == 'true'
-          id: comment-branch
-          with:
-            repo_token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: xt0rted/pull-request-comment-branch@v1
+        if: steps.check.outputs.triggered == 'true'
+        id: comment-branch
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Cancel Old Workflows
         uses: styfle/cancel-workflow-action@0.9.0
