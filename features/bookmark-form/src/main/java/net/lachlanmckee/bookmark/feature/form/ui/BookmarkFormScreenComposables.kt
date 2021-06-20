@@ -52,8 +52,14 @@ internal fun BookmarkFormScreen(
       )
     },
     floatingActionButton = {
-      FloatingActionButton(onClick = { events(BookmarkFormViewModel.Event.Save) }) {
-        Icon(Icons.Filled.Add, "Add")
+      if (!state.loading) {
+        FloatingActionButton(onClick = { events(BookmarkFormViewModel.Event.Save) }) {
+          Icon(Icons.Filled.Add, "Add")
+        }
+      } else {
+        FloatingActionButton(onClick = { }) {
+          CircularProgressIndicator()
+        }
       }
     },
     content = {
@@ -77,6 +83,7 @@ private fun Content(
 
     TextField(
       value = state.name,
+      enabled = !state.loading,
       onValueChange = {
         events(BookmarkFormViewModel.Event.NameUpdated(it))
       },
@@ -89,6 +96,7 @@ private fun Content(
 
     TextField(
       value = state.url,
+      enabled = !state.loading,
       onValueChange = {
         events(BookmarkFormViewModel.Event.UrlUpdated(it))
       },

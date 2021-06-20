@@ -15,7 +15,7 @@ class BookmarkFormScreenshotTest : ScreenshotTest {
 
   @Test
   fun verifyBookmarkFormScreenDesign() {
-    val state: MutableStateFlow<State> = MutableStateFlow(State.Empty)
+    val state: MutableStateFlow<State> = MutableStateFlow(State.emptyState)
 
     composeRule.setContent {
       MaterialTheme {

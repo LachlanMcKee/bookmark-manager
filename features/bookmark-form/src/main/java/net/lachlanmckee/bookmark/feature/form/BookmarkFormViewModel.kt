@@ -9,11 +9,13 @@ internal interface BookmarkFormViewModel : BookmarkViewModel<State, Event> {
   data class State(
     val name: String,
     val url: String,
+    val loading: Boolean,
   ) {
     companion object {
       val emptyState = State(
         name = "",
         url = "",
+        loading = false
       )
     }
   }
