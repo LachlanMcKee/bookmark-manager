@@ -37,6 +37,10 @@ internal class BookmarkFormViewModelImpl @Inject constructor(
 
   private fun save() {
     val currentState = currentStateFlowable.value
+    if (currentState.name.isBlank() || currentState.url.isBlank()) {
+      return
+    }
+
     currentStateFlowable.value = currentState.copy(loading = true)
     viewModelScope.launch {
       bookmarkRepository.saveBookmark(
