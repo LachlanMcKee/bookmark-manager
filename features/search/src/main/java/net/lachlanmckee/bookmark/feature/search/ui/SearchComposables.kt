@@ -64,8 +64,10 @@ internal fun SearchScreen(
         }
       )
     },
-    content = {
-      SearchContent(state, events)
+    content = { innerPadding ->
+      Box(modifier = Modifier.padding(innerPadding)) {
+        SearchContent(state, events)
+      }
     },
     bottomBar = {
       RootBottomAppBar(

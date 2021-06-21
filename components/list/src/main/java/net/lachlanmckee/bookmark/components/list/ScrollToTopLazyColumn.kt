@@ -46,7 +46,7 @@ fun ScrollToTopLazyColumn(
       visible = showButton,
       enter = fadeIn(),
       exit = fadeOut(),
-      modifier = Modifier.align(Alignment.BottomCenter).padding(60.dp),
+      modifier = Modifier.align(Alignment.BottomCenter).padding(8.dp),
       content = {
         IconButton(
           onClick = {

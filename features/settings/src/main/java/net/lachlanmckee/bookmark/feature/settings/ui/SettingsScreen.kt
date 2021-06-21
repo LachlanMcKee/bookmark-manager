@@ -1,12 +1,15 @@
 package net.lachlanmckee.bookmark.feature.settings.ui
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import kotlinx.coroutines.flow.StateFlow
 import net.lachlanmckee.bookmark.feature.settings.SettingsViewModel.Event
 import net.lachlanmckee.bookmark.feature.settings.SettingsViewModel.State
@@ -33,10 +36,12 @@ internal fun SettingsScreen(
         }
       )
     },
-    content = {
-      when (state) {
-        State.Empty -> {
-          Text(text = "Settings screen")
+    content = { innerPadding ->
+      Box(modifier = Modifier.padding(innerPadding)) {
+        when (state) {
+          State.Empty -> {
+            Text(text = "Settings screen")
+          }
         }
       }
     },

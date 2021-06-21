@@ -4,6 +4,7 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -53,8 +54,10 @@ internal fun HomeScreen(
     floatingActionButton = {
       HomeFab(state, events)
     },
-    content = {
-      HomeContent(state, events)
+    content = { innerPadding ->
+      Box(modifier = Modifier.padding(innerPadding)) {
+        HomeContent(state, events)
+      }
     },
     bottomBar = {
       RootBottomAppBar(
