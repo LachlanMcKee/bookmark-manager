@@ -81,6 +81,7 @@ private fun Content(
     val keyboardController = LocalSoftwareKeyboardController.current
 
     TextField(
+      modifier = Modifier.fillMaxWidth(),
       value = state.name,
       enabled = !state.loading,
       onValueChange = {
@@ -94,6 +95,7 @@ private fun Content(
     )
 
     TextField(
+      modifier = Modifier.fillMaxWidth(),
       value = state.url,
       enabled = !state.loading,
       onValueChange = {
