@@ -39,6 +39,7 @@ import net.lachlanmckee.bookmark.components.row.StandardRow
 import net.lachlanmckee.bookmark.feature.search.SearchViewModel
 import net.lachlanmckee.bookmark.feature.search.SearchViewModel.State
 import net.lachlanmckee.bookmark.feature.search.model.SearchContent
+import net.lachlanmckee.bookmark.feature.search.model.SearchMetadata
 import net.lachlanmckee.bookmark.feature.search.model.TextSegment
 import net.lachlanmckee.bookmark.feature.ui.BookmarkRowContent
 import net.lachlanmckee.bookmark.feature.ui.RootBottomAppBar
@@ -89,7 +90,10 @@ private fun SearchContent(
     state.contentList.collectAsLazyPagingItems()
 
   Column {
-    SearchTextField(state, events)
+    SearchTextField(
+      query = state.query,
+      onSearchTextChanged = { events(SearchViewModel.Event.SearchTextChanged(it)) }
+    )
 
     if (state.metadata.isNotEmpty()) {
       ChipHorizontalList(
@@ -106,7 +110,11 @@ private fun SearchContent(
     ScrollToTopLazyColumn {
       items(lazyPagingContent) { content ->
         if (content != null) {
-          RowContent(content, events)
+          RowContent(
+            content = content,
+            onBookmarkContentClicked = { events(SearchViewModel.Event.ContentClicked(it)) },
+            onMetadataRowItemClicked = { events(SearchViewModel.Event.MetadataRowItemClicked(it)) }
+          )
         } else {
           RowContentPlaceholder()
         }
@@ -196,8 +204,8 @@ internal fun ErrorItem(
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 private fun SearchTextField(
-  state: State,
-  events: (SearchViewModel.Event) -> Unit
+  query: String,
+  onSearchTextChanged: (String) -> Unit
 ) {
   val focusRequester = FocusRequester()
   DisposableEffect(Unit) {
@@ -214,18 +222,16 @@ private fun SearchTextField(
       .testTag("SearchText"),
     leadingIcon = { Icon(Icons.Filled.Search, "Search") },
     trailingIcon = {
-      if (state.query.isNotEmpty()) {
+      if (query.isNotEmpty()) {
         Box(
-          modifier = Modifier.clickable { events(SearchViewModel.Event.SearchTextChanged("")) }
+          modifier = Modifier.clickable { onSearchTextChanged("") }
         ) {
           Icon(Icons.Filled.Clear, "Clear")
         }
       }
     },
-    value = state.query,
-    onValueChange = {
-      events(SearchViewModel.Event.SearchTextChanged(it))
-    },
+    value = query,
+    onValueChange = { onSearchTextChanged(it) },
     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
     keyboardActions = KeyboardActions(
       onDone = { keyboardController?.hide() }
@@ -236,12 +242,13 @@ private fun SearchTextField(
 @Composable
 internal fun RowContent(
   content: SearchContent,
-  events: (SearchViewModel.Event) -> Unit
+  onBookmarkContentClicked: (SearchContent.BookmarkContent) -> Unit,
+  onMetadataRowItemClicked: (SearchMetadata) -> Unit
 ) {
   when (content) {
     is SearchContent.BookmarkContent -> {
       StandardRow(
-        onClick = { events(SearchViewModel.Event.ContentClicked(content)) },
+        onClick = { onBookmarkContentClicked(content) },
         content = {
           Column {
             BookmarkRowContent(
@@ -253,7 +260,7 @@ internal fun RowContent(
               modifier = Modifier.padding(top = 8.dp),
               data = content.metadata,
               labelFunc = { buildAnnotatedString(it.name.segments) },
-              onClick = { events(SearchViewModel.Event.MetadataRowItemClicked(it)) }
+              onClick = { onMetadataRowItemClicked(it) }
             )
           }
         }

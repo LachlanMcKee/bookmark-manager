@@ -1,7 +1,6 @@
 package net.lachlanmckee.bookmark.feature.home.ui
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -56,7 +55,11 @@ internal fun HomeScreen(
     },
     content = { innerPadding ->
       Box(modifier = Modifier.padding(innerPadding)) {
-        HomeContent(state, events)
+        HomeContent(
+          state = state,
+          onContentClicked = { events(HomeViewModel.Event.ContentClicked(it)) },
+          onContentLongClicked = { events(HomeViewModel.Event.ContentLongClicked(it)) }
+        )
       }
     },
     bottomBar = {
@@ -70,7 +73,6 @@ internal fun HomeScreen(
   )
 }
 
-@OptIn(ExperimentalAnimationApi::class)
 @Composable
 private fun HomeFab(
   state: HomeViewModel.State,
@@ -90,11 +92,17 @@ private fun HomeFab(
 @Composable
 private fun HomeContent(
   state: HomeViewModel.State,
-  events: (HomeViewModel.Event) -> Unit
+  onContentClicked: (HomeContent) -> Unit,
+  onContentLongClicked: (HomeContent) -> Unit
 ) {
   when (state) {
     is HomeViewModel.State.BookmarksExist -> {
-      BookmarksExistContent(state, events)
+      BookmarksExistContent(
+        contentList = state.contentList,
+        isInEditMode = state.isInEditMode,
+        onContentClicked = onContentClicked,
+        onContentLongClicked = onContentLongClicked
+      )
     }
     is HomeViewModel.State.NoBookmarks -> {
       Box(modifier = Modifier.fillMaxSize()) {
@@ -111,18 +119,24 @@ private fun HomeContent(
   }
 }
 
-@OptIn(ExperimentalAnimationApi::class)
 @Composable
 private fun BookmarksExistContent(
-  state: HomeViewModel.State.BookmarksExist,
-  events: (HomeViewModel.Event) -> Unit
+  contentList: List<HomeContent>,
+  isInEditMode: Boolean,
+  onContentClicked: (HomeContent) -> Unit,
+  onContentLongClicked: (HomeContent) -> Unit
 ) {
   ScrollToTopLazyColumn {
     items(
-      items = state.contentList,
+      items = contentList,
       key = { content -> content.javaClass.simpleName + content.id }
     ) { content ->
-      BookmarkRow(state, content, events)
+      BookmarkRow(
+        content = content,
+        isInEditMode = isInEditMode,
+        onContentClicked = onContentClicked,
+        onContentLongClicked = onContentLongClicked
+      )
       Divider()
     }
   }
@@ -130,26 +144,27 @@ private fun BookmarksExistContent(
 
 @Composable
 private fun BookmarkRow(
-  state: HomeViewModel.State.BookmarksExist,
   content: HomeContent,
-  events: (HomeViewModel.Event) -> Unit
+  isInEditMode: Boolean,
+  onContentClicked: (HomeContent) -> Unit,
+  onContentLongClicked: (HomeContent) -> Unit
 ) {
   when (content) {
     is HomeContent.FolderContent -> FolderRow(
       label = AnnotatedString(content.name),
       isSelected = content.selected,
-      isInEditMode = state.isInEditMode,
-      onClick = { events(HomeViewModel.Event.ContentClicked(content)) },
-      onLongClick = { events(HomeViewModel.Event.ContentLongClicked(content)) }
+      isInEditMode = isInEditMode,
+      onClick = { onContentClicked(content) },
+      onLongClick = { onContentLongClicked(content) }
     )
     is HomeContent.BookmarkContent -> BookmarkRow(
       label = AnnotatedString(content.name),
       link = AnnotatedString(content.link),
       metadata = content.metadata,
       isSelected = content.selected,
-      isInEditMode = state.isInEditMode,
-      bookmarkOnClick = { events(HomeViewModel.Event.ContentClicked(content)) },
-      bookmarkOnLongClick = { events(HomeViewModel.Event.ContentLongClicked(content)) },
+      isInEditMode = isInEditMode,
+      bookmarkOnClick = { onContentClicked(content) },
+      bookmarkOnLongClick = { onContentLongClicked(content) },
       metadataOnClick = { }
     )
   }
