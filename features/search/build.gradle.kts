@@ -27,7 +27,6 @@ dependencies {
   implementation(libs.timber)
 
   implementation(projects.features.common)
-  implementation(projects.utils.composeNavigation)
   implementation(projects.components.list)
   implementation(projects.components.row)
   implementation(projects.components.chipLayouts)
