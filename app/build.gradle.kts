@@ -45,7 +45,6 @@ dependencies {
   implementation(libs.bundles.composeNavigation)
   implementation(libs.compose.paging)
 
-  implementation(projects.utils.composeNavigation)
   implementation(projects.components.chipLayouts)
   implementation(projects.components.row)
   implementation(projects.features.common)

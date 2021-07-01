@@ -22,5 +22,4 @@ dependencies {
   implementation(libs.timber)
 
   implementation(projects.features.common)
-  implementation(projects.utils.composeNavigation)
 }

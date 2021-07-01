@@ -18,7 +18,6 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 rootProject.name = "BookmarkManager"
 include(
   ":app",
-  ":utils:compose-navigation",
   ":utils:instrumentation-utils",
   ":utils:kotlin-utils",
   ":utils:flow-test-utils",
