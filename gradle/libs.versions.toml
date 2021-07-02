@@ -65,7 +65,7 @@ compose-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", versi
 karumiShot = { module = "com.karumi:shot-android", version.ref = "karumiShot" }
 
 # Gradle plugins
-plugin-androidTools = "com.android.tools.build:gradle:7.0.0-beta03"
+plugin-androidTools = "com.android.tools.build:gradle:7.0.0-beta05"
 plugin-hiltAndroidGradle = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "dagger" }
 plugin-karumiShot = { module = "com.karumi:shot", version.ref = "karumiShot" }
 plugin-kotlinGradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
