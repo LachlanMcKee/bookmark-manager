@@ -7,11 +7,6 @@ buildscript {
     mavenCentral()
   }
   dependencies {
-    // TODO: Once gradle adds support for accessing libs within build script, this can be removed.
-    val libs = project.extensions
-      .getByType<VersionCatalogsExtension>()
-      .named("libs") as org.gradle.accessors.dm.LibrariesForLibs
-
     classpath(libs.plugin.androidTools)
     classpath(kotlin("gradle-plugin", version = libs.versions.kotlin.get()))
     classpath(libs.plugin.hiltAndroidGradle)
@@ -19,8 +14,8 @@ buildscript {
 }
 
 plugins {
-  id("com.diffplug.spotless") version "5.14.2"
-  id("com.github.ben-manes.versions") version "0.39.0"
+  alias(libs.plugins.spotless)
+  alias(libs.plugins.dependencyUpdates)
 }
 
 spotless {
@@ -51,7 +46,22 @@ spotless {
   }
 }
 
-tasks.named("dependencyUpdates", DependencyUpdatesTask::class.java)
+fun isStable(version: String): Boolean {
+  val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { version.toUpperCase().contains(it) }
+  val regex = "^[0-9,.v-]+(-r)?$".toRegex()
+  val isStable = stableKeyword || regex.matches(version)
+  return isStable
+}
+
+tasks.named("dependencyUpdates", DependencyUpdatesTask::class.java) {
+  rejectVersionIf {
+    if (isStable(currentVersion)) {
+      !isStable(candidate.version)
+    } else {
+      false
+    }
+  }
+}
 
 allprojects {
   repositories {
