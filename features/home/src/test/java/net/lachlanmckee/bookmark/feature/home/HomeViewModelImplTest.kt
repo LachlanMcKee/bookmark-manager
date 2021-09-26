@@ -66,10 +66,11 @@ class HomeViewModelImplTest {
   }
 
   @Test
-  fun givenFolderAndBookmarksDoNotExist_whenStateObserved_thenExpectEmptyState() {
-    givenFolderContent(null, emptyList())
-    assertEquals(Empty, homeViewModel.state.value)
-  }
+  fun givenFolderAndBookmarksDoNotExist_whenStateObserved_thenExpectEmptyState() =
+    suspendTest(startDispatcher = false) {
+      givenFolderContent(null, emptyList())
+      assertEquals(Empty, homeViewModel.state.value)
+    }
 
   @Test
   fun whenBookmarkClicked_thenNavigateToBookmark() = suspendTest {

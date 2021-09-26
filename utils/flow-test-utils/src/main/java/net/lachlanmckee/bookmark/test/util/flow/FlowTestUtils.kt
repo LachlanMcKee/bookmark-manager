@@ -9,8 +9,11 @@ import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
 import org.junit.jupiter.api.Assertions.assertEquals
 
-fun suspendTest(body: suspend TestCoroutineScope.() -> Unit) {
+fun suspendTest(startDispatcher: Boolean = true, body: suspend TestCoroutineScope.() -> Unit) {
   val dispatcher = TestCoroutineDispatcher()
+  if (!startDispatcher) {
+    dispatcher.pauseDispatcher()
+  }
   Dispatchers.setMain(dispatcher)
   val scope = TestCoroutineScope()
   var throwable: Throwable? = null
