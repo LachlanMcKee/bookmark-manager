@@ -9,9 +9,10 @@ internal interface HomeViewModel : BookmarkViewModel<HomeViewModel.State, HomeVi
     abstract val folderName: String?
     abstract val isRootFolder: Boolean
 
-    object Empty : State() {
+    data class Loading(
+      override val isRootFolder: Boolean
+    ) : State() {
       override val folderName: String? = null
-      override val isRootFolder = true
     }
 
     data class NoBookmarks(

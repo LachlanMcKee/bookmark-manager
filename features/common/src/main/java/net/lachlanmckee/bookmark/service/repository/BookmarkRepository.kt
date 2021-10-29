@@ -5,7 +5,7 @@ import net.lachlanmckee.bookmark.service.model.FolderContentModel
 import net.lachlanmckee.bookmark.service.model.MetadataModel
 
 interface BookmarkRepository {
-  fun getFolderContent(folderId: Long?): Flow<List<FolderContentModel>>
+  fun getFolderContent(folderId: Long?): Flow<FolderContentModel>
 
   fun getAllMetadata(): Flow<List<MetadataModel>>
 

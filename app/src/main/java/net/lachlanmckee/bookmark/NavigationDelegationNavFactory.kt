@@ -5,6 +5,9 @@ import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
 import android.net.Uri
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -22,7 +25,7 @@ import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavDeepLink
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.composable
+import com.google.accompanist.navigation.animation.composable
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import net.lachlanmckee.bookmark.feature.BookmarkViewModel
@@ -32,6 +35,7 @@ import javax.inject.Inject
 
 class NavigationDelegationNavFactoryImpl @Inject constructor() : NavigationDelegationNavFactory {
 
+  @OptIn(ExperimentalAnimationApi::class)
   override fun <VM> create(
     viewModelClass: Class<VM>,
     builder: NavGraphBuilder,
@@ -42,23 +46,30 @@ class NavigationDelegationNavFactoryImpl @Inject constructor() : NavigationDeleg
     content: @Composable VM.(NavBackStackEntry) -> Unit
   ) where VM : ViewModel, VM : BookmarkViewModel<*, *> {
 
-    builder.composable(route, arguments, deepLinks) {
-      // Logic copied from hiltNavGraphViewModel for now as they do not provide a non-reified version.
-      val owner = LocalViewModelStoreOwner.current
-      val viewModel: VM =
-        if (owner is NavBackStackEntry) {
-          val viewModelFactory = HiltViewModelFactory(
-            context = LocalContext.current,
-            navBackStackEntry = owner
-          )
-          ViewModelProvider(owner, viewModelFactory).get(viewModelClass)
-        } else {
-          viewModel(viewModelClass)
-        }
+    builder.composable(
+      route = route,
+      arguments = arguments,
+      deepLinks = deepLinks,
+      enterTransition = { initial, _ -> slideInHorizontally(initialOffsetX = { 0 }) },
+      exitTransition = { _, target -> slideOutHorizontally(targetOffsetX = { 0 }) },
+      content = {
+        // Logic copied from hiltNavGraphViewModel for now as they do not provide a non-reified version.
+        val owner = LocalViewModelStoreOwner.current
+        val viewModel: VM =
+          if (owner is NavBackStackEntry) {
+            val viewModelFactory = HiltViewModelFactory(
+              context = LocalContext.current,
+              navBackStackEntry = owner
+            )
+            ViewModelProvider(owner, viewModelFactory).get(viewModelClass)
+          } else {
+            viewModel(viewModelClass)
+          }
 
-      NavigationComposable(navController, viewModel.navigation)
-      content(viewModel, it)
-    }
+        NavigationComposable(navController, viewModel.navigation)
+        content(viewModel, it)
+      }
+    )
   }
 }
 
@@ -88,6 +99,9 @@ fun NavigationComposable(
         }
         is Navigation.Home -> navController.navigate("home") {
           launchSingleTop = true
+        }
+        is Navigation.Folder -> {
+          navController.navigate("home/folder?folderId=${navigation.folderId}")
         }
         is Navigation.Search -> navController.navigate("search") {
           launchSingleTop = true

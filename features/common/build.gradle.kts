@@ -16,4 +16,5 @@ dependencies {
   kapt(libs.room.compiler)
 
   api(libs.compose.navigation)
+  implementation(libs.compose.placeholder)
 }

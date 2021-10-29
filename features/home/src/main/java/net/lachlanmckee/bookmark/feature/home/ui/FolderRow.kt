@@ -1,13 +1,12 @@
 package net.lachlanmckee.bookmark.feature.home.ui
 
-import androidx.compose.material.LocalContentColor
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.style.TextOverflow
 import net.lachlanmckee.bookmark.components.row.CheckableRow
-import net.lachlanmckee.bookmark.components.row.RowText
 
 @Composable
 internal fun FolderRow(
@@ -24,12 +23,13 @@ internal fun FolderRow(
     onClick = onClick,
     onLongClick = onLongClick,
     content = {
-      CompositionLocalProvider(LocalContentColor provides Color.White) {
-        RowText(
-          text = label,
-          style = MaterialTheme.typography.h6
-        )
-      }
+      Text(
+        text = label,
+        style = MaterialTheme.typography.h6,
+        color = Color.White,
+        overflow = TextOverflow.Ellipsis,
+        maxLines = 1
+      )
     }
   )
 }

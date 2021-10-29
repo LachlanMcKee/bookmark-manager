@@ -1,5 +1,6 @@
 package net.lachlanmckee.bookmark.feature.home
 
+import androidx.lifecycle.SavedStateHandle
 import app.cash.turbine.test
 import io.mockk.coVerify
 import io.mockk.every
@@ -7,12 +8,12 @@ import io.mockk.mockk
 import kotlinx.coroutines.flow.flowOf
 import net.lachlanmckee.bookmark.feature.home.HomeViewModel.Event
 import net.lachlanmckee.bookmark.feature.home.HomeViewModel.State.BookmarksExist
-import net.lachlanmckee.bookmark.feature.home.HomeViewModel.State.Empty
 import net.lachlanmckee.bookmark.feature.home.model.HomeContent.BookmarkContent
 import net.lachlanmckee.bookmark.feature.home.model.HomeContent.FolderContent
 import net.lachlanmckee.bookmark.feature.model.Navigation
 import net.lachlanmckee.bookmark.service.model.BookmarkModel
 import net.lachlanmckee.bookmark.service.model.FolderContentModel
+import net.lachlanmckee.bookmark.service.model.FolderItemModel
 import net.lachlanmckee.bookmark.service.model.FolderModel
 import net.lachlanmckee.bookmark.service.repository.BookmarkRepository
 import net.lachlanmckee.bookmark.test.util.flow.assertItem
@@ -24,9 +25,13 @@ import kotlin.time.ExperimentalTime
 @ExperimentalTime
 class HomeViewModelImplTest {
   private val bookmarkRepository: BookmarkRepository = mockk(relaxed = true)
+  private val savedStateHandle = mockk<SavedStateHandle>(relaxed = true) {
+    every { get<String>("folderId") } returns null
+  }
 
   private val homeViewModel = HomeViewModelImpl(
-    bookmarkRepository
+    bookmarkRepository,
+    savedStateHandle
   )
 
   @Test
@@ -69,7 +74,7 @@ class HomeViewModelImplTest {
   fun givenFolderAndBookmarksDoNotExist_whenStateObserved_thenExpectEmptyState() =
     suspendTest(startDispatcher = false) {
       givenFolderContent(null, emptyList())
-      assertEquals(Empty, homeViewModel.state.value)
+      assertEquals(HomeViewModel.State.Loading(isRootFolder = true), homeViewModel.state.value)
     }
 
   @Test
@@ -82,61 +87,11 @@ class HomeViewModelImplTest {
   }
 
   @Test
-  fun whenFolderClicked_thenRequestNewDataAndShowNestedFolder() = suspendTest {
-    givenFolderContent(
-      parentId = null,
-      folderContentModels = listOf(
-        FolderContentModel.Folder(folder1),
-        FolderContentModel.Bookmark(bookmark1)
-      )
-    )
-
-    givenFolderContent(
-      parentId = 1,
-      folderContentModels = listOf(
-        FolderContentModel.Bookmark(bookmark2)
-      )
-    )
-
-    homeViewModel.state.test {
-      assertItem(
-        BookmarksExist(
-          folderName = null,
-          contentList = listOf(
-            unselectedFolderContent1,
-            unselectedBookmarkContent1
-          ),
-          isInEditMode = false,
-          isRootFolder = true
-        )
-      )
-
+  fun whenFolderClicked_thenNavigateToFolder() = suspendTest {
+    homeViewModel.navigation.test {
       homeViewModel.eventConsumer(Event.ContentClicked(unselectedFolderContent1))
-
-      assertItem(
-        BookmarksExist(
-          folderName = "folder1",
-          contentList = listOf(
-            unselectedBookmarkContent2
-          ),
-          isInEditMode = false,
-          isRootFolder = false
-        )
-      )
-
-      homeViewModel.eventConsumer(Event.Back)
-
-      assertItem(
-        BookmarksExist(
-          folderName = null,
-          contentList = listOf(
-            unselectedFolderContent1,
-            unselectedBookmarkContent1
-          ),
-          isInEditMode = false,
-          isRootFolder = true
-        )
-      )
+      assertItem(Navigation.Folder("1"))
+      cancel()
     }
   }
 
@@ -144,10 +99,10 @@ class HomeViewModelImplTest {
   fun givenFolderAndBookmarksExists_whenStateObserved_thenExpectBookmarksExistState() =
     suspendTest {
       givenFolderContent(
-        parentId = null,
-        folderContentModels = listOf(
-          FolderContentModel.Folder(folder1),
-          FolderContentModel.Bookmark(bookmark1)
+        parentFolder = null,
+        folderItemModels = listOf(
+          FolderItemModel.Folder(folder1),
+          FolderItemModel.Bookmark(bookmark1)
         )
       )
 
@@ -170,10 +125,10 @@ class HomeViewModelImplTest {
   fun givenFolderAndBookmarksExists_whenLongClickFolderAndClickBookmark_thenExpectEditMode() =
     suspendTest {
       givenFolderContent(
-        parentId = null,
-        folderContentModels = listOf(
-          FolderContentModel.Folder(folder1),
-          FolderContentModel.Bookmark(bookmark1)
+        parentFolder = null,
+        folderItemModels = listOf(
+          FolderItemModel.Folder(folder1),
+          FolderItemModel.Bookmark(bookmark1)
         )
       )
 
@@ -251,10 +206,10 @@ class HomeViewModelImplTest {
   @Test
   fun givenInEditMode_whenBackPressed_thenExitEditMode() = suspendTest {
     givenFolderContent(
-      parentId = null,
-      folderContentModels = listOf(
-        FolderContentModel.Folder(folder1),
-        FolderContentModel.Bookmark(bookmark1)
+      parentFolder = null,
+      folderItemModels = listOf(
+        FolderItemModel.Folder(folder1),
+        FolderItemModel.Bookmark(bookmark1)
       )
     )
 
@@ -305,10 +260,10 @@ class HomeViewModelImplTest {
   fun givenFolderAndBookmarksExists_whenLongClickBookmarkAndClickFolder_thenExpectEditMode() =
     suspendTest {
       givenFolderContent(
-        parentId = null,
-        folderContentModels = listOf(
-          FolderContentModel.Folder(folder1),
-          FolderContentModel.Bookmark(bookmark1)
+        parentFolder = null,
+        folderItemModels = listOf(
+          FolderItemModel.Folder(folder1),
+          FolderItemModel.Bookmark(bookmark1)
         )
       )
 
@@ -358,10 +313,10 @@ class HomeViewModelImplTest {
   @Test
   fun givenInEditMode_whenDeletePressed_thenRemoveFoldersAndBookmarks() = suspendTest {
     givenFolderContent(
-      parentId = null,
-      folderContentModels = listOf(
-        FolderContentModel.Folder(folder1),
-        FolderContentModel.Bookmark(bookmark1)
+      parentFolder = null,
+      folderItemModels = listOf(
+        FolderItemModel.Folder(folder1),
+        FolderItemModel.Bookmark(bookmark1)
       )
     )
 
@@ -377,8 +332,16 @@ class HomeViewModelImplTest {
     }
   }
 
-  private fun givenFolderContent(parentId: Long?, folderContentModels: List<FolderContentModel>) {
-    every { bookmarkRepository.getFolderContent(parentId) } returns flowOf(folderContentModels)
+  private fun givenFolderContent(
+    parentFolder: FolderModel?,
+    folderItemModels: List<FolderItemModel>
+  ) {
+    every { bookmarkRepository.getFolderContent(parentFolder?.id) } returns flowOf(
+      FolderContentModel(
+        folder = parentFolder,
+        items = folderItemModels
+      )
+    )
   }
 
   private companion object {

@@ -11,6 +11,7 @@ dependencies {
   implementation(libs.bundles.kotlin)
   implementation(libs.bundles.composeCore)
   implementation(libs.androidx.activityCompose)
+  implementation(libs.compose.placeholder)
 
   // DI
   implementation(libs.bundles.daggerRuntimes)
