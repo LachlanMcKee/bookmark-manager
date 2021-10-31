@@ -31,5 +31,5 @@ fun suspendTest(startDispatcher: Boolean = true, body: suspend TestCoroutineScop
 }
 
 suspend fun <T> FlowTurbine<T>.assertItem(expectItem: T) {
-  assertEquals(expectItem, expectItem())
+  assertEquals(expectItem, awaitItem())
 }

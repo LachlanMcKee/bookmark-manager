@@ -10,9 +10,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
 import net.lachlanmckee.bookmark.components.chip.layout.ChipFlowRow
+import net.lachlanmckee.bookmark.components.chip.layout.ChipFlowRowPlaceholder
 import net.lachlanmckee.bookmark.components.row.CheckableRow
+import net.lachlanmckee.bookmark.components.row.StandardRow
 import net.lachlanmckee.bookmark.feature.home.model.HomeContent
 import net.lachlanmckee.bookmark.feature.ui.BookmarkRowContent
+import net.lachlanmckee.bookmark.feature.ui.BookmarkRowContentPreview
 
 @Composable
 internal fun BookmarkRow(
@@ -49,4 +52,17 @@ internal fun BookmarkRow(
       }
     }
   )
+}
+
+@Composable
+internal fun BookmarkRowPlaceholder() {
+  StandardRow {
+    Column {
+      BookmarkRowContentPreview()
+      ChipFlowRowPlaceholder(
+        modifier = Modifier.padding(top = 8.dp),
+        count = 3
+      )
+    }
+  }
 }

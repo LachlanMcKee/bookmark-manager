@@ -1,6 +1,7 @@
 package net.lachlanmckee.bookmark.feature.home.ui
 
 import androidx.compose.material.MaterialTheme
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.test.junit4.createComposeRule
 import com.karumi.shot.ScreenshotTest
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,11 +17,11 @@ class HomeScreenScreenshotTest : ScreenshotTest {
 
   @Test
   fun verifyHomeScreenDesign() {
-    val state: MutableStateFlow<HomeViewModel.State> = MutableStateFlow(HomeViewModel.State.Empty)
+    val state: MutableStateFlow<HomeViewModel.State> = MutableStateFlow(HomeViewModel.State.Loading(isRootFolder = true))
 
     composeRule.setContent {
       MaterialTheme {
-        HomeScreen(state) {}
+        HomeScreen(state.collectAsState().value) {}
       }
     }
 

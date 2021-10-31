@@ -14,6 +14,7 @@ dependencies {
 
   implementation(libs.compose.icons.extended)
   implementation(libs.compose.flowLayout)
+  implementation(libs.compose.placeholder)
 
   androidTestImplementation(libs.bundles.espressoCore)
 }

@@ -11,6 +11,9 @@ interface FolderDao {
   @Query("SELECT * FROM folder WHERE parentId is NULL")
   fun getTopLevelFolders(): Flow<List<FolderEntity>>
 
+  @Query("SELECT * FROM folder WHERE folderId = :folderId")
+  fun getFolder(folderId: Long): Flow<FolderEntity>
+
   @Query("SELECT * FROM folder WHERE parentId = :parentId")
   fun getChildFolders(parentId: Long): Flow<List<FolderEntity>>
 

@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import net.lachlanmckee.bookmark.service.model.BookmarkModel
 import net.lachlanmckee.bookmark.service.model.FolderContentModel
+import net.lachlanmckee.bookmark.service.model.FolderItemModel
 import net.lachlanmckee.bookmark.service.model.FolderModel
 import net.lachlanmckee.bookmark.service.model.MetadataModel
 import net.lachlanmckee.bookmark.service.persistence.BookmarkDatabase
@@ -25,7 +26,7 @@ class BookmarkRepositoryImpl @Inject constructor(
   private val folderDao: FolderDao
 ) : BookmarkRepository {
 
-  override fun getFolderContent(folderId: Long?): Flow<List<FolderContentModel>> {
+  override fun getFolderContent(folderId: Long?): Flow<FolderContentModel> {
     val bookmarksFlow = if (folderId != null) {
       bookmarkDao.getBookmarksWithinFolder(folderId)
     } else {
@@ -38,27 +39,42 @@ class BookmarkRepositoryImpl @Inject constructor(
       folderDao.getTopLevelFolders()
     }
 
+    val folder = if (folderId != null) {
+      folderDao
+        .getFolder(folderId)
+        .map { entity -> mapToFolder(entity) }
+    } else {
+      null
+    }
+
     val folders = foldersFlow
       .map { folderEntities ->
-        folderEntities.map { entity ->
-          FolderContentModel.Folder(
-            FolderModel(
-              id = entity.folderId,
-              parentId = entity.parentId,
-              name = entity.name
-            )
-          )
-        }
+        folderEntities.map { entity -> FolderItemModel.Folder(mapToFolder(entity)) }
       }
 
     val bookmarks = bookmarksFlow
       .map { bookmarkEntities ->
-        bookmarkEntities.map {
-          FolderContentModel.Bookmark(mapToBookmark(it))
-        }
+        bookmarkEntities.map { FolderItemModel.Bookmark(mapToBookmark(it)) }
       }
-    return folders.flatMapLatest { folderList ->
-      bookmarks.map { bookmarkList -> folderList.plus(bookmarkList) }
+
+    return if (folder != null) {
+      folder.flatMapLatest { folder ->
+        folders
+          .flatMapLatest { folderList ->
+            bookmarks.map { bookmarkList -> folderList.plus(bookmarkList) }
+          }
+          .map { items ->
+            FolderContentModel(folder, items)
+          }
+      }
+    } else {
+      folders
+        .flatMapLatest { folderList ->
+          bookmarks.map { bookmarkList -> folderList.plus(bookmarkList) }
+        }
+        .map { items ->
+          FolderContentModel(null, items)
+        }
     }
   }
 
@@ -78,6 +94,14 @@ class BookmarkRepositoryImpl @Inject constructor(
         )
       )
     }
+  }
+
+  private fun mapToFolder(entity: FolderEntity): FolderModel {
+    return FolderModel(
+      id = entity.folderId,
+      parentId = entity.parentId,
+      name = entity.name
+    )
   }
 
   private fun mapToBookmark(entity: BookmarkWithMetadata): BookmarkModel {

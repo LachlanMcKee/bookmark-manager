@@ -16,18 +16,24 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.takeOrElse
-import androidx.compose.ui.text.*
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.Placeholder
+import androidx.compose.ui.text.PlaceholderVerticalAlign
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import net.lachlanmckee.bookmark.util.runIfNotNull
 
 @Composable
 fun Chip(
+  modifier: Modifier = Modifier,
   text: AnnotatedString,
   backgroundColor: Color = Color.Unspecified,
   style: TextStyle = MaterialTheme.typography.subtitle1,
   showCloseIcon: Boolean = false,
-  onClick: () -> Unit
+  onClick: (() -> Unit)? = null
 ) {
   val chipText = if (showCloseIcon) {
     buildAnnotatedString {
@@ -57,8 +63,10 @@ fun Chip(
   }
 
   Text(
-    modifier = Modifier
-      .clickable(onClick = onClick)
+    modifier = modifier
+      .runIfNotNull(onClick) { nonNullOnClick ->
+        clickable(onClick = nonNullOnClick)
+      }
       .background(backgroundColor.takeOrElse { Color.LightGray }, RoundedCornerShape(8.dp))
       .padding(vertical = 8.dp, horizontal = 12.dp),
     text = chipText,
