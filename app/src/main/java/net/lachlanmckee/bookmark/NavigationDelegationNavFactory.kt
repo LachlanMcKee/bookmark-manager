@@ -50,8 +50,8 @@ class NavigationDelegationNavFactoryImpl @Inject constructor() : NavigationDeleg
       route = route,
       arguments = arguments,
       deepLinks = deepLinks,
-      enterTransition = { initial, _ -> slideInHorizontally(initialOffsetX = { 0 }) },
-      exitTransition = { _, target -> slideOutHorizontally(targetOffsetX = { 0 }) },
+      enterTransition = { slideInHorizontally(initialOffsetX = { 0 }) },
+      exitTransition = { slideOutHorizontally(targetOffsetX = { 0 }) },
       content = {
         // Logic copied from hiltNavGraphViewModel for now as they do not provide a non-reified version.
         val owner = LocalViewModelStoreOwner.current
