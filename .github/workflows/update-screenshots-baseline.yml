@@ -114,7 +114,7 @@ jobs:
           rm -f ~/.gradle/caches/modules-2/modules-2.lock
           rm -f ~/.gradle/caches/modules-2/gc.properties
 
-      - uses: EndBug/add-and-commit@v7
+      - uses: EndBug/add-and-commit@v8
         if: steps.check.outputs.triggered == 'true'
         with:
           message: 'Updated screenshots baseline'
