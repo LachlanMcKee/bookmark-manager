@@ -1,33 +1,30 @@
 package net.lachlanmckee.bookmark.test.util.flow
 
 import app.cash.turbine.FlowTurbine
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.test.TestCoroutineDispatcher
-import kotlinx.coroutines.test.TestCoroutineScope
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.TestScope
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.jupiter.api.Assertions.assertEquals
 
-fun suspendTest(startDispatcher: Boolean = true, body: suspend TestCoroutineScope.() -> Unit) {
-  val dispatcher = TestCoroutineDispatcher()
-  if (!startDispatcher) {
-    dispatcher.pauseDispatcher()
-  }
-  Dispatchers.setMain(dispatcher)
-  val scope = TestCoroutineScope()
-  var throwable: Throwable? = null
-  scope.launch {
-    try {
-      scope.body()
-    } catch (t: Throwable) {
-      throwable = t
+@OptIn(ExperimentalCoroutinesApi::class)
+fun suspendTest(startDispatcher: Boolean = true, body: suspend TestScope.() -> Unit) {
+  val dispatcher: CoroutineDispatcher =
+    if (startDispatcher) {
+      UnconfinedTestDispatcher()
+    } else {
+      StandardTestDispatcher()
     }
+  Dispatchers.setMain(dispatcher)
+  runTest(dispatcher) {
+    body()
   }
-  scope.cleanupTestCoroutines()
   Dispatchers.resetMain()
-
-  throwable?.let { throw it }
 }
 
 suspend fun <T> FlowTurbine<T>.assertItem(expectItem: T) {
