@@ -2,7 +2,7 @@
 compose = "1.1.0-rc03"
 accompanist = "0.22.1-rc"
 dagger = "2.40.5"
-room = "2.3.0"
+room = "2.4.1"
 kotlin = "1.6.10"
 kotlinCoroutines = "1.6.0"
 espresso = "3.4.0"
@@ -13,8 +13,8 @@ karumiShot = "5.13.0"
 compileSdk = "31"
 minSdk = "21"
 targetSdk = "30"
-spotless = "6.2.0"
-dependencyUpdates = "0.41.0"
+spotless = "6.2.1"
+dependencyUpdates = "0.42.0"
 
 [plugins]
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
@@ -47,6 +47,7 @@ dagger-hilt-navigation-composeFactory-runtime = "net.lachlanmckee:hilt-compose-n
 dagger-hilt-navigation-composeFactory-compiler = "net.lachlanmckee:hilt-compose-navigation-factory-compiler:1.1.0-rc01"
 
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+room-paging = { module = "androidx.room:room-paging", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 
@@ -76,7 +77,7 @@ compose-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", versi
 karumiShot = { module = "com.karumi:shot-android", version.ref = "karumiShot" }
 
 # Gradle plugins
-plugin-androidTools = "com.android.tools.build:gradle:7.1.0"
+plugin-androidTools = "com.android.tools.build:gradle:7.1.1"
 plugin-hiltAndroidGradle = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "dagger" }
 plugin-karumiShot = { module = "com.karumi:shot", version.ref = "karumiShot" }
 plugin-kotlinGradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
