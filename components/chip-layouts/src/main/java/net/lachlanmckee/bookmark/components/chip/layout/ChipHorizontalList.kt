@@ -4,20 +4,24 @@ import androidx.compose.foundation.layout.Arrangement.Absolute.spacedBy
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.material.ChipDefaults
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.FilterChip
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
-import net.lachlanmckee.bookmark.components.chip.Chip
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun <T> ChipHorizontalList(
   modifier: Modifier,
   style: TextStyle = MaterialTheme.typography.subtitle1,
-  showCloseIcon: Boolean = false,
+  leadingIcon: @Composable (() -> Unit)? = null,
   data: List<T>,
   isSelected: List<Boolean>,
   labelFunc: (T) -> AnnotatedString,
@@ -29,16 +33,12 @@ fun <T> ChipHorizontalList(
     horizontalArrangement = spacedBy(8.dp)
   ) {
     itemsIndexed(data) { index, item ->
-      Chip(
-        text = labelFunc(item),
-        backgroundColor = if (isSelected[index]) {
-          Color.Red
-        } else {
-          Color.Unspecified
-        },
-        style = style,
-        showCloseIcon = showCloseIcon,
-        onClick = { onClick(item) }
+      FilterChip(
+        selected = isSelected[index],
+        colors = ChipDefaults.filterChipColors(selectedBackgroundColor = Color.Red),
+        onClick = { onClick(item) },
+        leadingIcon = leadingIcon,
+        content = { Text(text = labelFunc(item), style = style) }
       )
     }
   }

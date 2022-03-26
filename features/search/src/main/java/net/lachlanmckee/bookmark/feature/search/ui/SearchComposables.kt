@@ -257,7 +257,6 @@ internal fun RowContent(
             )
 
             ChipFlowRow(
-              modifier = Modifier.padding(top = 8.dp),
               data = content.metadata,
               labelFunc = { buildAnnotatedString(it.name.segments) },
               onClick = { onMetadataRowItemClicked(it) }
