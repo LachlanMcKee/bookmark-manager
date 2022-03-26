@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: acknowledge shot update to commenter
         id: check
-        uses: Khan/pull-request-comment-trigger@1.0.0
+        uses: Khan/pull-request-comment-trigger@v1.1.0
         with:
           trigger: "/shot-update"
           reaction: rocket
