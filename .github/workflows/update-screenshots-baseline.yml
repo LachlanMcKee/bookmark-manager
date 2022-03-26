@@ -61,7 +61,7 @@ jobs:
 
       - name: Cache Gradle packages
         if: steps.check.outputs.triggered == 'true'
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             ~/.gradle/caches
@@ -71,7 +71,7 @@ jobs:
             ${{ runner.os }}-gradle-
 
       - name: AVD cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         id: avd-cache
         with:
           path: |
