@@ -1,5 +1,6 @@
 package net.lachlanmckee.bookmark.feature.search
 
+import androidx.compose.runtime.Stable
 import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
@@ -11,6 +12,7 @@ import net.lachlanmckee.bookmark.feature.search.model.SelectableMetadata
 internal interface SearchViewModel :
   BookmarkViewModel<SearchViewModel.State, SearchViewModel.Event> {
 
+  @Stable
   data class State(
     val query: String,
     val metadata: List<SelectableMetadata>,

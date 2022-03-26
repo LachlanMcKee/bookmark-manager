@@ -120,7 +120,7 @@ private fun HomeContent(
   when (state) {
     is HomeViewModel.State.Loading -> {
       LazyColumn {
-        items(3) {
+        items(count = 3) {
           Box(modifier = Modifier.fillMaxSize()) {
             BookmarkRowPlaceholder()
           }
@@ -159,7 +159,8 @@ private fun BookmarksExistContent(
   ScrollToTopLazyColumn {
     items(
       items = contentList,
-      key = { content -> content.javaClass.simpleName + content.id }
+      key = { content -> content.javaClass.simpleName + content.id },
+      contentType = { it.contentType }
     ) { content ->
       BookmarkRow(
         content = content,
