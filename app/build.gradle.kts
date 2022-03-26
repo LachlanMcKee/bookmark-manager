@@ -65,6 +65,7 @@ dependencies {
 
   // Storage
   implementation(libs.bundles.room)
+  implementation(libs.room.paging)
   kapt(libs.room.compiler)
 
   testImplementation(libs.bundles.junitCore)

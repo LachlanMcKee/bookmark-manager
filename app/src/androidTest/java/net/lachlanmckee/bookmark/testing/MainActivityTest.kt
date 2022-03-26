@@ -1,29 +1,29 @@
 package net.lachlanmckee.bookmark.testing
 
-import androidx.compose.ui.test.*
-import androidx.compose.ui.test.junit4.createEmptyComposeRule
-import androidx.test.ext.junit.rules.ActivityScenarioRule
+import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performImeAction
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import net.lachlanmckee.bookmark.MainActivity
 import org.junit.Rule
 import org.junit.Test
+import org.junit.rules.RuleChain
 
 @HiltAndroidTest
 class MainActivityTest {
-  @get:Rule
-  val hiltRule = HiltAndroidRule(this)
+  private val composeRule = createAndroidComposeRule<MainActivity>()
 
   @get:Rule
-  val activityRule = ActivityScenarioRule(MainActivity::class.java)
-
-  @get:Rule
-  val composeRule = createEmptyComposeRule()
+  val chain: RuleChain = RuleChain
+    .outerRule(HiltAndroidRule(this))
+    .around(composeRule)
 
   @Test
   fun verifyNavigation() {
-    activityRule.scenario
-
     with(composeRule) {
       // Home
       onNodeWithText("Bookmarks").assertIsDisplayed()
