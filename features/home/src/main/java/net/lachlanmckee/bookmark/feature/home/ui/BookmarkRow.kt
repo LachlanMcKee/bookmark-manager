@@ -43,7 +43,6 @@ internal fun BookmarkRow(
           )
 
           ChipFlowRow(
-            modifier = Modifier.padding(top = 8.dp),
             data = metadata,
             labelFunc = { AnnotatedString(it.name) },
             onClick = { metadataOnClick(it.id) }

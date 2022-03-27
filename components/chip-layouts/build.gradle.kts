@@ -7,8 +7,6 @@ moduleSetup {
 }
 
 dependencies {
-  implementation(projects.components.chip)
-
   implementation(libs.bundles.kotlin)
   implementation(libs.bundles.composeCore)
 

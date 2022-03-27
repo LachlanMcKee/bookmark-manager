@@ -21,7 +21,6 @@ include(
   ":utils:instrumentation-utils",
   ":utils:kotlin-utils",
   ":utils:flow-test-utils",
-  ":components:chip",
   ":components:chip-layouts",
   ":components:list",
   ":components:row",
