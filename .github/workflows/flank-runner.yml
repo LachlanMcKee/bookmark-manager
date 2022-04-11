@@ -38,7 +38,7 @@ jobs:
       - run: curl -L https://github.com/Flank/flank/releases/download/v20.09.3/flank.jar --output flank.jar
       - run: java -jar flank.jar firebase test android run
       - name: Upload Flank Data
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: flank-data.zip
           path: |
