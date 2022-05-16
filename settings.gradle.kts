@@ -6,7 +6,7 @@ pluginManagement {
   resolutionStrategy {
     eachPlugin {
       if (requested.id.id == "shot") {
-        useModule("com.karumi:shot:5.13.0")
+        useModule("com.karumi:shot:5.14.1")
       }
     }
   }
