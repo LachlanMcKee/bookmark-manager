@@ -26,14 +26,14 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Cancel Old Workflows
-        uses: styfle/cancel-workflow-action@0.9.1
+        uses: styfle/cancel-workflow-action@0.10.0
         if: steps.check.outputs.triggered == 'true'
         with:
           workflow_id: update-screenshots-baseline.yml,pull-request.yml
           access_token: ${{ github.token }}
 
       - name: Cancel Pull Requests
-        uses: styfle/cancel-workflow-action@0.9.1
+        uses: styfle/cancel-workflow-action@0.10.0
         if: steps.check.outputs.triggered == 'true'
         with:
           ignore_sha: true
