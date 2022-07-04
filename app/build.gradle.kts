@@ -1,5 +1,6 @@
 plugins {
   id("net.lachlanmckee.bookmark.app")
+  id("kotlin-parcelize")
   id("dagger.hilt.android.plugin")
   id("shot")
 }
@@ -67,6 +68,8 @@ dependencies {
   implementation(libs.bundles.room)
   implementation(libs.room.paging)
   kapt(libs.room.compiler)
+
+  implementation(libs.appyx.core)
 
   testImplementation(libs.bundles.junitCore)
 

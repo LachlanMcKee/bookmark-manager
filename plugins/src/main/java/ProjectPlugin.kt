@@ -65,7 +65,7 @@ internal abstract class ProjectPlugin : Plugin<Project> {
   }
 
   private fun BaseExtension.applyAndroid(moduleConfiguration: ModuleConfiguration) {
-    compileSdkVersion(31)
+    compileSdkVersion(32)
 
     defaultConfig {
       minSdkVersion(21)

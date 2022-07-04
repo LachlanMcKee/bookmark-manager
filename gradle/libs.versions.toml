@@ -1,10 +1,11 @@
 [versions]
-compose = "1.2.0-alpha06"
-accompanist = "0.24.5-alpha"
-dagger = "2.41"
+compose = "1.2.0-rc01"
+accompanist = "0.24.11-rc"
+dagger = "2.42"
 room = "2.4.2"
-kotlin = "1.6.10"
-kotlinCoroutines = "1.6.0"
+kotlin = "1.6.21"
+kotlinCoroutines = "1.6.3"
+appyx = "1.0-alpha01"
 espresso = "3.4.0"
 junit = "5.8.2"
 mockk = "1.12.3"
@@ -18,7 +19,7 @@ dependencyUpdates = "0.42.0"
 
 [plugins]
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
-dependencyUpdates = { id = "com.github.ben-manes.versions", version.ref = "dependencyUpdates" }
+#dependencyUpdates = { id = "com.github.ben-manes.versions", version.ref = "dependencyUpdates" }
 
 [libraries]
 androidx-activityCompose = "androidx.activity:activity-compose:1.4.0"
@@ -57,6 +58,8 @@ kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-co
 timber = "com.jakewharton.timber:timber:5.0.1"
 
 okhttp = "com.squareup.okhttp3:okhttp:4.9.1"
+
+appyx-core = { module = "com.bumble.appyx:core", version.ref = "appyx" }
 
 # Unit testing
 junit-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit" }

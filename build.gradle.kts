@@ -1,10 +1,11 @@
-import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
+//import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 buildscript {
   repositories {
     google()
     mavenCentral()
+    maven(url = "https://jitpack.io")
   }
   dependencies {
     classpath(libs.plugin.androidTools)
@@ -15,7 +16,7 @@ buildscript {
 
 plugins {
   alias(libs.plugins.spotless)
-  alias(libs.plugins.dependencyUpdates)
+//  alias(libs.plugins.dependencyUpdates)
 }
 
 spotless {
@@ -46,22 +47,22 @@ spotless {
   }
 }
 
-fun isStable(version: String): Boolean {
-  val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { version.toUpperCase().contains(it) }
-  val regex = "^[0-9,.v-]+(-r)?$".toRegex()
-  val isStable = stableKeyword || regex.matches(version)
-  return isStable
-}
-
-tasks.named("dependencyUpdates", DependencyUpdatesTask::class.java) {
-  rejectVersionIf {
-    if (isStable(currentVersion)) {
-      !isStable(candidate.version)
-    } else {
-      false
-    }
-  }
-}
+//fun isStable(version: String): Boolean {
+//  val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { version.toUpperCase().contains(it) }
+//  val regex = "^[0-9,.v-]+(-r)?$".toRegex()
+//  val isStable = stableKeyword || regex.matches(version)
+//  return isStable
+//}
+//
+//tasks.named("dependencyUpdates", DependencyUpdatesTask::class.java) {
+//  rejectVersionIf {
+//    if (isStable(currentVersion)) {
+//      !isStable(candidate.version)
+//    } else {
+//      false
+//    }
+//  }
+//}
 
 allprojects {
   repositories {
@@ -79,6 +80,7 @@ subprojects {
     repositories {
       google()
       mavenCentral()
+      maven(url = "https://jitpack.io")
     }
 
     dependencies {
@@ -89,6 +91,7 @@ subprojects {
   repositories {
     google()
     mavenCentral()
+    maven(url = "https://jitpack.io")
   }
 
   pluginManager.withPlugin("java") {
