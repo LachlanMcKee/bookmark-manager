@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.bumble.appyx.core.composable.Children
+import com.bumble.appyx.core.integration.NodeFactory
 import com.bumble.appyx.core.integration.NodeHost
 import com.bumble.appyx.core.integrationpoint.NodeActivity
 import com.bumble.appyx.core.modality.BuildContext
@@ -23,9 +24,13 @@ import com.bumble.appyx.routingsource.backstack.BackStack
 import com.bumble.appyx.routingsource.backstack.operation.pop
 import com.bumble.appyx.routingsource.backstack.operation.push
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class AppyxMainActivity : NodeActivity() {
+
+  @Inject
+  lateinit var composeNavigationFactories: @JvmSuppressWildcards Map<String, NodeFactory<*>>
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -34,11 +39,12 @@ class AppyxMainActivity : NodeActivity() {
       MaterialTheme {
         NodeHost(integrationPoint = integrationPoint) {
           RootNode(buildContext = it) { routing, buildContext, backStack ->
-            when (routing) {
-              "home" -> SomeChildNode3(buildContext, backStack)
-              "other" -> SomeChildNode2(buildContext, backStack)
-              else -> SomeChildNode(buildContext, backStack)
-            }
+            composeNavigationFactories.getValue(routing).create(buildContext)
+//            when (routing) {
+//              "home" -> SomeChildNode3(buildContext, backStack)
+//              "other" -> SomeChildNode2(buildContext, backStack)
+//              else -> SomeChildNode(buildContext, backStack)
+//            }
           }
         }
       }

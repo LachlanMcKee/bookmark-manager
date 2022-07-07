@@ -28,6 +28,8 @@ dependencies {
   implementation(projects.components.row)
   implementation(projects.components.chipLayouts)
 
+  implementation(libs.appyx.core)
+
   testImplementation(libs.bundles.junitCore)
   testImplementation(libs.turbine)
   testImplementation(projects.utils.flowTestUtils)

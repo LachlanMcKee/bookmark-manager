@@ -25,6 +25,9 @@ import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavDeepLink
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
+import com.bumble.appyx.routingsource.backstack.BackStack
+import com.bumble.appyx.routingsource.backstack.operation.pop
+import com.bumble.appyx.routingsource.backstack.operation.push
 import com.google.accompanist.navigation.animation.composable
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
@@ -112,6 +115,41 @@ fun NavigationComposable(
           popUpTo("home")
         }
         is Navigation.AddBookmark -> navController.navigate("bookmark-form")
+      }
+    }
+  }
+}
+
+@Composable
+fun AppyxNavigationComposable(
+  backStack: BackStack<String>,
+  navigationFlow: Flow<Navigation>
+) {
+  val context = LocalContext.current
+  val lifecycleOwner = LocalLifecycleOwner.current
+  val navigationFlowLifecycleAware = remember(navigationFlow, lifecycleOwner) {
+    navigationFlow.flowWithLifecycle(lifecycleOwner.lifecycle, Lifecycle.State.STARTED)
+  }
+  LaunchedEffect(navigationFlowLifecycleAware) {
+    navigationFlowLifecycleAware.collectLatest { navigation ->
+      when (navigation) {
+        is Navigation.Back -> {
+//          val canPopBackstack = backStack.screenState.value.onScreen[0].key.id != "home"
+          backStack.pop()
+//          if (!canPopBackstack || backStack.pop()) {
+//            closeActivity(context)
+//          }
+        }
+        is Navigation.Bookmark -> {
+          context.startActivity(
+            Intent(Intent.ACTION_VIEW, Uri.parse(navigation.url))
+          )
+        }
+        is Navigation.Home -> backStack.push("home")
+        is Navigation.Folder -> backStack.push("home")
+        is Navigation.Search -> backStack.push("home")
+        is Navigation.Settings -> backStack.push("home")
+        is Navigation.AddBookmark -> backStack.push("home")
       }
     }
   }

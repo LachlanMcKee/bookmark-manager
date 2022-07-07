@@ -17,4 +17,6 @@ dependencies {
 
   api(libs.compose.navigation)
   implementation(libs.compose.placeholder)
+
+  api(libs.appyx.core)
 }
