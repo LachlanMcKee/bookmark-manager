@@ -24,7 +24,7 @@ spotless {
     endWithNewline()
   }
   kotlin {
-    ktlint("0.39.0").userData(
+    ktlint().editorConfigOverride(
       mapOf(
         "indent_size" to "2",
         "disabled_rules" to "no-wildcard-imports"
@@ -36,7 +36,7 @@ spotless {
     targetExclude("**/build/**", "**/GeneratedLibraries.kt")
   }
   kotlinGradle {
-    ktlint("0.39.0").userData(mapOf("indent_size" to "2"))
+    ktlint().editorConfigOverride(mapOf("indent_size" to "2"))
     target("**/*.gradle.kts")
     trimTrailingWhitespace()
     endWithNewline()

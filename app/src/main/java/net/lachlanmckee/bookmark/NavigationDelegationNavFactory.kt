@@ -45,7 +45,6 @@ class NavigationDelegationNavFactoryImpl @Inject constructor() : NavigationDeleg
     deepLinks: List<NavDeepLink>,
     content: @Composable VM.(NavBackStackEntry) -> Unit
   ) where VM : ViewModel, VM : BookmarkViewModel<*, *> {
-
     builder.composable(
       route = route,
       arguments = arguments,

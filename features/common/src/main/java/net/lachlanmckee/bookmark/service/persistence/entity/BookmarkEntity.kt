@@ -12,7 +12,7 @@ import androidx.room.PrimaryKey
       parentColumns = ["folderId"],
       childColumns = ["folderId"],
       onDelete = ForeignKey.CASCADE
-    ),
+    )
   ]
 )
 data class BookmarkEntity(
