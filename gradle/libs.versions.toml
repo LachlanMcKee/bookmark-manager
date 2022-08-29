@@ -54,7 +54,7 @@ kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-co
 
 timber = "com.jakewharton.timber:timber:5.0.1"
 
-okhttp = "com.squareup.okhttp3:okhttp:4.9.1"
+okhttp = "com.squareup.okhttp3:okhttp:4.10.0"
 
 # Unit testing
 junit-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit" }
