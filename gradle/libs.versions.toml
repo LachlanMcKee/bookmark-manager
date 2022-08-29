@@ -10,7 +10,6 @@ espresso = "3.4.0"
 junit = "5.8.2"
 mockk = "1.12.3"
 androidXTest = "1.4.0"
-karumiShot = "5.13.0"
 compileSdk = "32"
 minSdk = "21"
 targetSdk = "32"
@@ -75,12 +74,10 @@ espresso-mockk = { module = "io.mockk:mockk-android", version.ref = "mockk" }
 dagger-hilt-androidTesting = { module = "com.google.dagger:hilt-android-testing", version.ref = "dagger" }
 compose-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "compose" }
 compose-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "compose" }
-karumiShot = { module = "com.karumi:shot-android", version.ref = "karumiShot" }
 
 # Gradle plugins
 plugin-androidTools = "com.android.tools.build:gradle:7.2.2"
 plugin-hiltAndroidGradle = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "dagger" }
-plugin-karumiShot = { module = "com.karumi:shot", version.ref = "karumiShot" }
 plugin-kotlinGradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 
 [bundles]
