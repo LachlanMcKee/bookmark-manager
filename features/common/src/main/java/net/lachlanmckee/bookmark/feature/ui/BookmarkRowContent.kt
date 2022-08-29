@@ -18,7 +18,7 @@ import com.google.accompanist.placeholder.material.placeholder
 @Composable
 fun BookmarkRowContent(
   label: AnnotatedString,
-  link: AnnotatedString,
+  link: AnnotatedString
 ) {
   Column {
     TitleText(label = label)
@@ -34,7 +34,7 @@ fun BookmarkRowContentPreview() {
         .width(200.dp)
         .placeholder(
           visible = true,
-          highlight = PlaceholderHighlight.fade(),
+          highlight = PlaceholderHighlight.fade()
         ),
       label = AnnotatedString("")
     )
@@ -43,7 +43,7 @@ fun BookmarkRowContentPreview() {
         .width(400.dp)
         .placeholder(
           visible = true,
-          highlight = PlaceholderHighlight.fade(),
+          highlight = PlaceholderHighlight.fade()
         ),
       label = AnnotatedString("")
     )

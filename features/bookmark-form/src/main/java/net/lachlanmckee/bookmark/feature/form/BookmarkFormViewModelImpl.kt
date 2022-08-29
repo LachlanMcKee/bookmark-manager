@@ -45,7 +45,7 @@ internal class BookmarkFormViewModelImpl @Inject constructor(
     viewModelScope.launch {
       bookmarkRepository.saveBookmark(
         name = currentState.name,
-        url = currentState.url,
+        url = currentState.url
       )
       currentStateFlowable.value = currentState.copy(loading = false)
       navigate(Navigation.Back)

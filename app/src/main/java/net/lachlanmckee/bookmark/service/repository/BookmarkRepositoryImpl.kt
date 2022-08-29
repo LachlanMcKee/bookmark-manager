@@ -138,7 +138,7 @@ class BookmarkRepositoryImpl @Inject constructor(
         MetadataEntity("Social"),
         MetadataEntity("Work"),
         MetadataEntity("News"),
-        MetadataEntity("Finance"),
+        MetadataEntity("Finance")
       )
 
       bookmarkDao.insert(

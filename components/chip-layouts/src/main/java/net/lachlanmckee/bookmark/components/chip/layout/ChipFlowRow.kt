@@ -46,7 +46,7 @@ fun <T> ChipFlowRow(
 fun ChipFlowRowPlaceholder(
   modifier: Modifier = Modifier,
   chipWidth: Dp = 80.dp,
-  count: Int,
+  count: Int
 ) {
   ChipFlowRowContainer(modifier) {
     repeat(count) {
@@ -57,7 +57,7 @@ fun ChipFlowRowPlaceholder(
           .placeholder(
             visible = true,
             shape = MaterialTheme.shapes.small.copy(CornerSize(percent = 50)),
-            highlight = PlaceholderHighlight.fade(),
+            highlight = PlaceholderHighlight.fade()
           )
       )
     }
