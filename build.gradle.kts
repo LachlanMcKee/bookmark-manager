@@ -80,10 +80,6 @@ subprojects {
       google()
       mavenCentral()
     }
-
-    dependencies {
-      classpath(subprojectLibs.plugin.karumiShot)
-    }
   }
 
   repositories {

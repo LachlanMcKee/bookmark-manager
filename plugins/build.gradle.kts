@@ -44,7 +44,7 @@ tasks.register("createLibrary") {
     .writeText(
       """
       object Versions {
-        const val Compose = "${libs.versions.compose.get()}"
+        const val ComposeCompiler = "${libs.versions.composeCompiler.get()}"
       }
       object Dependencies {
         const val Orchestrator = "${orchestrator.module.group}:${orchestrator.module.name}:${orchestrator.versionConstraint.requiredVersion}"

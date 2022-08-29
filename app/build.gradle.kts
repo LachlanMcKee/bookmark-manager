@@ -1,7 +1,6 @@
 plugins {
   id("net.lachlanmckee.bookmark.app")
   id("dagger.hilt.android.plugin")
-  id("shot")
 }
 
 moduleSetup {

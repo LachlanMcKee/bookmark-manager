@@ -65,11 +65,11 @@ internal abstract class ProjectPlugin : Plugin<Project> {
   }
 
   private fun BaseExtension.applyAndroid(moduleConfiguration: ModuleConfiguration) {
-    compileSdkVersion(31)
+    compileSdkVersion(32)
 
     defaultConfig {
-      minSdkVersion(21)
-      targetSdkVersion(30)
+      minSdk = 21
+      targetSdk = 32
 
       testInstrumentationRunner =
         if (moduleConfiguration.useHiltWithinAndroidTest) {
@@ -92,7 +92,7 @@ internal abstract class ProjectPlugin : Plugin<Project> {
 
     if (moduleConfiguration.composeEnabled) {
       composeOptions {
-        kotlinCompilerExtensionVersion = Versions.Compose
+        kotlinCompilerExtensionVersion = Versions.ComposeCompiler
       }
     }
 
