@@ -14,11 +14,9 @@ compileSdk = "32"
 minSdk = "21"
 targetSdk = "32"
 spotless = "6.3.0"
-dependencyUpdates = "0.42.0"
 
 [plugins]
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
-dependencyUpdates = { id = "com.github.ben-manes.versions", version.ref = "dependencyUpdates" }
 
 [libraries]
 androidx-activityCompose = "androidx.activity:activity-compose:1.5.1"
