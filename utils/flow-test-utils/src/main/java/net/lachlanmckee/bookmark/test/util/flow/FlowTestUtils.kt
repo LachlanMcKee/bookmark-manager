@@ -1,6 +1,6 @@
 package net.lachlanmckee.bookmark.test.util.flow
 
-import app.cash.turbine.FlowTurbine
+import app.cash.turbine.ReceiveTurbine
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -27,6 +27,6 @@ fun suspendTest(startDispatcher: Boolean = true, body: suspend TestScope.() -> U
   Dispatchers.resetMain()
 }
 
-suspend fun <T> FlowTurbine<T>.assertItem(expectItem: T) {
+suspend fun <T> ReceiveTurbine<T>.assertItem(expectItem: T) {
   assertEquals(expectItem, awaitItem())
 }
