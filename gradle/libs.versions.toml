@@ -74,7 +74,7 @@ compose-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.r
 compose-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "compose" }
 
 # Gradle plugins
-plugin-androidTools = "com.android.tools.build:gradle:7.2.2"
+plugin-androidTools = "com.android.tools.build:gradle:7.4.2"
 plugin-hiltAndroidGradle = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "dagger" }
 plugin-kotlinGradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 
