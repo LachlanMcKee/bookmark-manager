@@ -61,7 +61,7 @@ junit-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref 
 junit-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 kotlin-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinCoroutines" }
-turbine = "app.cash.turbine:turbine:0.9.0"
+turbine = "app.cash.turbine:turbine:0.13.0"
 
 # Espresso testing
 espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
