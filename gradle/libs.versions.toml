@@ -67,7 +67,7 @@ turbine = "app.cash.turbine:turbine:0.9.0"
 espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
 espresso-runner = { module = "androidx.test:runner", version.ref = "androidXTest" }
 espresso-rules = { module = "androidx.test:rules", version.ref = "androidXTest" }
-espresso-orchestrator = "androidx.test:orchestrator:1.4.1"
+espresso-orchestrator = "androidx.test:orchestrator:1.5.1"
 espresso-mockk = { module = "io.mockk:mockk-android", version.ref = "mockk" }
 dagger-hilt-androidTesting = { module = "com.google.dagger:hilt-android-testing", version.ref = "dagger" }
 compose-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "compose" }
